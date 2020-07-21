@@ -6,12 +6,12 @@ import 'package:gracker_app/core/util/input_converter.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:gracker_app/domain/authentication/usecases/get_authenticated.dart';
-import 'auth_bloc.dart';
 import 'package:gracker_app/presentation/authentication/bloc/login_event.dart';
 import 'package:gracker_app/presentation/authentication/bloc/login_state.dart';
-import 'package:gracker_app/presentation/authentication/auth_failures.dart';
-import 'package:gracker_app/domain/core/entities/user.dart';
+import 'package:injectable/injectable.dart';
+import '../../core/blocs/auth_bloc.dart';
 
+@injectable
 class Login_Bloc extends Bloc<LoginEvent, LoginState> {
   Get_Authenticated getAuthenticated;
   InputConverter inputConverter;
@@ -23,21 +23,22 @@ class Login_Bloc extends Bloc<LoginEvent, LoginState> {
       @required this.authBloc})
       : assert(getAuthenticated != null),
         assert(inputConverter != null),
-        assert(authBloc != null);
-
-  @override
-  LoginState get initialState => LoginState.initial();
+        assert(authBloc != null),
+        super(LoginState.initial());
 
   @override
   Stream<LoginState> mapEventToState(LoginEvent event) async* {
     yield* event.map(submit: (e) async* {
       yield state.copyWith(isSubmitting: true);
-      final permissionLevel = inputConverter.boolToUnsignedInt(e.adminCheck);
-      Either<AuthFailure, Unit> failureOrSuccess = await getAuthenticated.call(
-          Params(
-              username: e.username,
-              plainPassword: e.plainPassword,
-              permissionLevel: permissionLevel));
+      final permissionLevel =
+          inputConverter.boolToUnsignedInt(value: e.adminCheck);
+      final failureOrSuccess = await getAuthenticated.call(
+        Params(
+          username: e.username,
+          plainPassword: e.plainPassword,
+          permissionLevel: permissionLevel,
+        ),
+      );
 
       yield state.copyWith(
           isSubmitting: false,

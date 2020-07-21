@@ -6,7 +6,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:gracker_app/core/network/network_info.dart';
 import 'package:gracker_app/core/usecases/usecase.dart';
-import 'package:gracker_app/domain/core/entities/guard.dart';
 import 'package:gracker_app/domain/core/entities/user.dart';
 import 'package:gracker_app/domain/guard_crud/repositories/guard_crud_repository.dart';
 import 'package:gracker_app/presentation/guard_crud/guard_crud_failures.dart';
@@ -23,12 +22,15 @@ class Create_Guard implements UseCase<Guard_CRUD_Failure, Unit, Params> {
 
   @override
   Future<Either<Guard_CRUD_Failure, Unit>> call(Params params) async {
+    /* Comenté esto porque Lint me estaba marcando que no se estaba usando... y efectivamente no se está usando
+    Asi que en vez de borrarlo te lo dejo para que lo revises
     final guard = Guard(
-        name: params.name,
-        surname: params.surname,
-        employeeID: params.employeeID);
-    final String username = params.surname + "_" + params.employeeID;
-    List<String> list = new List(2);
+      name: params.name,
+      surname: params.surname,
+      employeeID: params.employeeID,
+    );*/
+    final String username = "${params.surname}_${params.employeeID}";
+    final list = List(2) as List<String>;
     _generateStart_End_random(list);
     final String plainPassword =
         "$list[0]${params.surname}_${params.employeeID}$list[1]";
@@ -40,7 +42,7 @@ class Create_Guard implements UseCase<Guard_CRUD_Failure, Unit, Params> {
       final result = await guard_CRUD_Repository.create_Guard(user, hashedPass);
       return result.fold((failure) => Left(failure), (r) => Right(r));
     } else {
-      return Left(Guard_CRUD_Failure.noInternetConnection());
+      return const Left(Guard_CRUD_Failure.noInternetConnection());
     }
   }
 }
@@ -63,7 +65,7 @@ class Params extends Equatable {
   final String surname;
   final String employeeID;
 
-  Params(
+  const Params(
       {@required this.name, @required this.surname, @required this.employeeID});
 
   @override

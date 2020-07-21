@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:gracker_app/core/error/exceptions.dart';
 import 'package:gracker_app/data/authentication/datasources/user_remote_datasource.dart';
 import 'package:gracker_app/data/authentication/models/user_model.dart';
+import 'package:injectable/injectable.dart';
 import 'package:postgres/postgres.dart';
 
+@LazySingleton(as: User_Remote_DataSource)
 class User_Remote_PostgreSQL implements User_Remote_DataSource {
   final PostgreSQLConnection postgreSQLConnection;
 
@@ -13,19 +15,15 @@ class User_Remote_PostgreSQL implements User_Remote_DataSource {
     try {
       await postgreSQLConnection.open();
       final result = await postgreSQLConnection.mappedResultsQuery(
-          "SELECT pass FROM users WHERE username='" +
-              userModel.username +
-              "' AND permissions='" +
-              userModel.permissionLevel.toString() +
-              "';");
+          "SELECT pass FROM users WHERE username='${userModel.username}' AND permissions='${userModel.permissionLevel.toString()}';");
       await postgreSQLConnection.close();
       if (result.isEmpty) {
         throw DataBaseException();
       } else {
         return (result.removeAt(0).remove("users").remove("pass")).toString();
       }
-    } on Exception catch (e) {
-      throw e;
+    } on Exception catch (_) {
+      rethrow;
     }
   }
 }

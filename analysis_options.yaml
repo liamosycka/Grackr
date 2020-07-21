@@ -1,13 +1,32 @@
 include: package:lint/analysis_options.yaml
 
-linter:
-  rules:
-    - parameter_assignments
-    - camel_case_types
-
-analzyer:
-  error:
+analyzer:
+  enable-experiment:
+    - extension-methods
+  errors:
     missing_required_param: error
     parameter_assignments: error
     camel_case_types: ignore
     non_part_of_directive_in_part: ignore
+    missing_return: error
+    must_be_immutable: error
+    prefer_const_constructors: error
+    unused_import: error
+    non_constant_identifier_names: ignore
+    prefer_const_constructors_in_immutables: error
+    prefer_final_locals: error
+    unnecessary_new: error
+    prefer_interpolation_to_compose_strings: error
+    unused_local_variable: ignore
+    avoid_print: warning
+    unnecessary_cast: warning
+    unnecessary_const: warning
+    void_checks: error
+    avoid_positional_boolean_parameters: warning
+    type_annotate_public_apis: warning
+    annotate_overrides: warning
+    directives_ordering: ignore
+    avoid_single_cascade_in_expression_statements: ignore
+    constant_identifier_names: ignore
+    unused_catch_clause: warning
+    unused_element: ignore

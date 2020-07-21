@@ -3,22 +3,21 @@ import 'package:dbcrypt/dbcrypt.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gracker_app/core/network/network_info.dart';
 import 'package:gracker_app/core/util/input_converter.dart';
+import 'package:gracker_app/data/authentication/datasources/user_local_datasource.dart';
 import 'package:gracker_app/data/authentication/datasources/user_local_impl/user_local_sharedpreferences.dart';
+import 'package:gracker_app/data/authentication/datasources/user_remote_datasource.dart';
 import 'package:gracker_app/data/authentication/datasources/user_remote_impl/user_remote_postgresql.dart';
 import 'package:gracker_app/data/authentication/repositories/user_repository_impl.dart';
+import 'package:gracker_app/domain/authentication/repositories/user_repository.dart';
 import 'package:gracker_app/domain/authentication/usecases/check_if_authenticated.dart';
 import 'package:gracker_app/domain/authentication/usecases/get_authenticated.dart';
-import 'package:gracker_app/presentation/authentication/bloc/auth_bloc.dart';
 import 'package:gracker_app/presentation/authentication/bloc/login_bloc.dart';
+import 'package:gracker_app/presentation/core/blocs/auth_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'data/authentication/datasources/user_local_datasource.dart';
-import 'data/authentication/datasources/user_remote_datasource.dart';
-import 'domain/authentication/repositories/user_repository.dart';
 
 import 'package:postgres/postgres.dart';
 
-final serviceLocator = GetIt.instance;
+final GetIt serviceLocator = GetIt.instance;
 /*
   Factories son volatiles. Si una Page pide una instancia de un Factory, se va a generar uno nuevo siempre
   Singleton son persistentes. Si una Page pide una instancia de un Singleton, se devuelve siempre el mismo (Pues se cachea la primera vez que fue creado)
@@ -26,15 +25,14 @@ final serviceLocator = GetIt.instance;
  */
 Future<void> init() async {
   // Features
-  _initFeatures();
+  await _initFeatures();
   // Core
-  _initCore();
+  await _initCore();
   // External
-  _initExternal();
-  return null;
+  await _initExternal();
 }
 
-void _initFeatures() async {
+Future<void> _initFeatures() async {
   // Feature - Auth
   // Bloc
   serviceLocator.registerFactory<Login_Bloc>(() => Login_Bloc(
@@ -74,7 +72,7 @@ Future<void> _initCore() async {
       () => NetworkInfoImpl(dataConnectionChecker: serviceLocator()));
 }
 
-void _initExternal() async {
+Future<void> _initExternal() async {
   // External
   final sharedPreferences = await SharedPreferences.getInstance();
   serviceLocator

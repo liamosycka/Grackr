@@ -6,7 +6,7 @@ class User_Model extends User {
   static const String _PASSWORD = 'plainPassword';
   static const String _PERMISSIONS = 'permissionLevel';
 
-  User_Model(
+  const User_Model(
       {@required String username,
       @required String plainPassword,
       @required int permissionLevel})

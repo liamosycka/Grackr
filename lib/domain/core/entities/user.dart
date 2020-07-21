@@ -6,7 +6,7 @@ class User extends Equatable {
   final String plainPassword;
   final int permissionLevel;
 
-  User(
+  const User(
       {@required this.username,
       @required this.plainPassword,
       @required this.permissionLevel});

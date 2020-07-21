@@ -6,7 +6,7 @@ class Guard extends Equatable {
   final String surname;
   final String employeeID;
 
-  Guard(
+  const Guard(
       {@required this.name, @required this.surname, @required this.employeeID});
 
   @override

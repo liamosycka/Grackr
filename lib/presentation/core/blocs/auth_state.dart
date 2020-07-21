@@ -12,5 +12,4 @@ abstract class AuthState with _$AuthState {
   const factory AuthState.authenticated({@required int permissionLevel}) =
       Authenticated;
   const factory AuthState.unauthenticated() = Unauthenticated;
-  const factory AuthState.loading() = Loading;
 }

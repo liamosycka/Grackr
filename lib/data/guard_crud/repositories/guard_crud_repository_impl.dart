@@ -14,13 +14,13 @@ class Guard_CRUD_Repository_Impl implements Guard_CRUD_Repository {
 
   @override
   Future<Either<Guard_CRUD_Failure, Unit>> create_Guard(
-      User user, hashedPassword) async {
+      User user, String hashedPassword) async {
     try {
       final result = await guard_CRUD_RemoteDataSource.create_guard(
           User_Model.fromUser(user), hashedPassword);
       return Right(result);
-    } on OperationFailedException catch (e) {
-      return Left(Guard_CRUD_Failure.failedToCreateUser());
+    } on OperationFailedException catch (_) {
+      return const Left(Guard_CRUD_Failure.failedToCreateUser());
     }
   }
 }

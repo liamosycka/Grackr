@@ -28,11 +28,6 @@ class _$AuthStateTearOff {
   Unauthenticated unauthenticated() {
     return const Unauthenticated();
   }
-
-// ignore: unused_element
-  Loading loading() {
-    return const Loading();
-  }
 }
 
 // ignore: unused_element
@@ -44,14 +39,12 @@ mixin _$AuthState {
     @required Result uninitialized(),
     @required Result authenticated(int permissionLevel),
     @required Result unauthenticated(),
-    @required Result loading(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result uninitialized(),
     Result authenticated(int permissionLevel),
     Result unauthenticated(),
-    Result loading(),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -59,14 +52,12 @@ mixin _$AuthState {
     @required Result uninitialized(Uninitialized value),
     @required Result authenticated(Authenticated value),
     @required Result unauthenticated(Unauthenticated value),
-    @required Result loading(Loading value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result uninitialized(Uninitialized value),
     Result authenticated(Authenticated value),
     Result unauthenticated(Unauthenticated value),
-    Result loading(Loading value),
     @required Result orElse(),
   });
 }
@@ -128,12 +119,10 @@ class _$Uninitialized with DiagnosticableTreeMixin implements Uninitialized {
     @required Result uninitialized(),
     @required Result authenticated(int permissionLevel),
     @required Result unauthenticated(),
-    @required Result loading(),
   }) {
     assert(uninitialized != null);
     assert(authenticated != null);
     assert(unauthenticated != null);
-    assert(loading != null);
     return uninitialized();
   }
 
@@ -143,7 +132,6 @@ class _$Uninitialized with DiagnosticableTreeMixin implements Uninitialized {
     Result uninitialized(),
     Result authenticated(int permissionLevel),
     Result unauthenticated(),
-    Result loading(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -159,12 +147,10 @@ class _$Uninitialized with DiagnosticableTreeMixin implements Uninitialized {
     @required Result uninitialized(Uninitialized value),
     @required Result authenticated(Authenticated value),
     @required Result unauthenticated(Unauthenticated value),
-    @required Result loading(Loading value),
   }) {
     assert(uninitialized != null);
     assert(authenticated != null);
     assert(unauthenticated != null);
-    assert(loading != null);
     return uninitialized(this);
   }
 
@@ -174,7 +160,6 @@ class _$Uninitialized with DiagnosticableTreeMixin implements Uninitialized {
     Result uninitialized(Uninitialized value),
     Result authenticated(Authenticated value),
     Result unauthenticated(Unauthenticated value),
-    Result loading(Loading value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -261,12 +246,10 @@ class _$Authenticated with DiagnosticableTreeMixin implements Authenticated {
     @required Result uninitialized(),
     @required Result authenticated(int permissionLevel),
     @required Result unauthenticated(),
-    @required Result loading(),
   }) {
     assert(uninitialized != null);
     assert(authenticated != null);
     assert(unauthenticated != null);
-    assert(loading != null);
     return authenticated(permissionLevel);
   }
 
@@ -276,7 +259,6 @@ class _$Authenticated with DiagnosticableTreeMixin implements Authenticated {
     Result uninitialized(),
     Result authenticated(int permissionLevel),
     Result unauthenticated(),
-    Result loading(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -292,12 +274,10 @@ class _$Authenticated with DiagnosticableTreeMixin implements Authenticated {
     @required Result uninitialized(Uninitialized value),
     @required Result authenticated(Authenticated value),
     @required Result unauthenticated(Unauthenticated value),
-    @required Result loading(Loading value),
   }) {
     assert(uninitialized != null);
     assert(authenticated != null);
     assert(unauthenticated != null);
-    assert(loading != null);
     return authenticated(this);
   }
 
@@ -307,7 +287,6 @@ class _$Authenticated with DiagnosticableTreeMixin implements Authenticated {
     Result uninitialized(Uninitialized value),
     Result authenticated(Authenticated value),
     Result unauthenticated(Unauthenticated value),
-    Result loading(Loading value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -372,12 +351,10 @@ class _$Unauthenticated
     @required Result uninitialized(),
     @required Result authenticated(int permissionLevel),
     @required Result unauthenticated(),
-    @required Result loading(),
   }) {
     assert(uninitialized != null);
     assert(authenticated != null);
     assert(unauthenticated != null);
-    assert(loading != null);
     return unauthenticated();
   }
 
@@ -387,7 +364,6 @@ class _$Unauthenticated
     Result uninitialized(),
     Result authenticated(int permissionLevel),
     Result unauthenticated(),
-    Result loading(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -403,12 +379,10 @@ class _$Unauthenticated
     @required Result uninitialized(Uninitialized value),
     @required Result authenticated(Authenticated value),
     @required Result unauthenticated(Unauthenticated value),
-    @required Result loading(Loading value),
   }) {
     assert(uninitialized != null);
     assert(authenticated != null);
     assert(unauthenticated != null);
-    assert(loading != null);
     return unauthenticated(this);
   }
 
@@ -418,7 +392,6 @@ class _$Unauthenticated
     Result uninitialized(Uninitialized value),
     Result authenticated(Authenticated value),
     Result unauthenticated(Unauthenticated value),
-    Result loading(Loading value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -431,107 +404,4 @@ class _$Unauthenticated
 
 abstract class Unauthenticated implements AuthState {
   const factory Unauthenticated() = _$Unauthenticated;
-}
-
-abstract class $LoadingCopyWith<$Res> {
-  factory $LoadingCopyWith(Loading value, $Res Function(Loading) then) =
-      _$LoadingCopyWithImpl<$Res>;
-}
-
-class _$LoadingCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
-    implements $LoadingCopyWith<$Res> {
-  _$LoadingCopyWithImpl(Loading _value, $Res Function(Loading) _then)
-      : super(_value, (v) => _then(v as Loading));
-
-  @override
-  Loading get _value => super._value as Loading;
-}
-
-class _$Loading with DiagnosticableTreeMixin implements Loading {
-  const _$Loading();
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AuthState.loading()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'AuthState.loading'));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Loading);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result uninitialized(),
-    @required Result authenticated(int permissionLevel),
-    @required Result unauthenticated(),
-    @required Result loading(),
-  }) {
-    assert(uninitialized != null);
-    assert(authenticated != null);
-    assert(unauthenticated != null);
-    assert(loading != null);
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result uninitialized(),
-    Result authenticated(int permissionLevel),
-    Result unauthenticated(),
-    Result loading(),
-    @required Result orElse(),
-  }) {
-    assert(orElse != null);
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result uninitialized(Uninitialized value),
-    @required Result authenticated(Authenticated value),
-    @required Result unauthenticated(Unauthenticated value),
-    @required Result loading(Loading value),
-  }) {
-    assert(uninitialized != null);
-    assert(authenticated != null);
-    assert(unauthenticated != null);
-    assert(loading != null);
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result uninitialized(Uninitialized value),
-    Result authenticated(Authenticated value),
-    Result unauthenticated(Unauthenticated value),
-    Result loading(Loading value),
-    @required Result orElse(),
-  }) {
-    assert(orElse != null);
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Loading implements AuthState {
-  const factory Loading() = _$Loading;
 }

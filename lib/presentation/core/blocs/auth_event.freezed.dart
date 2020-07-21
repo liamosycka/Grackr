@@ -18,11 +18,6 @@ class _$AuthEventTearOff {
   }
 
 // ignore: unused_element
-  LoggedIn loggedIn() {
-    return const LoggedIn();
-  }
-
-// ignore: unused_element
   LoggedOut loggedOut() {
     return const LoggedOut();
   }
@@ -35,26 +30,22 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result appStart(),
-    @required Result loggedIn(),
     @required Result loggedOut(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result appStart(),
-    Result loggedIn(),
     Result loggedOut(),
     @required Result orElse(),
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result appStart(AppStart value),
-    @required Result loggedIn(LoggedIn value),
     @required Result loggedOut(LoggedOut value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result appStart(AppStart value),
-    Result loggedIn(LoggedIn value),
     Result loggedOut(LoggedOut value),
     @required Result orElse(),
   });
@@ -113,11 +104,9 @@ class _$AppStart with DiagnosticableTreeMixin implements AppStart {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result appStart(),
-    @required Result loggedIn(),
     @required Result loggedOut(),
   }) {
     assert(appStart != null);
-    assert(loggedIn != null);
     assert(loggedOut != null);
     return appStart();
   }
@@ -126,7 +115,6 @@ class _$AppStart with DiagnosticableTreeMixin implements AppStart {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result appStart(),
-    Result loggedIn(),
     Result loggedOut(),
     @required Result orElse(),
   }) {
@@ -141,11 +129,9 @@ class _$AppStart with DiagnosticableTreeMixin implements AppStart {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result appStart(AppStart value),
-    @required Result loggedIn(LoggedIn value),
     @required Result loggedOut(LoggedOut value),
   }) {
     assert(appStart != null);
-    assert(loggedIn != null);
     assert(loggedOut != null);
     return appStart(this);
   }
@@ -154,7 +140,6 @@ class _$AppStart with DiagnosticableTreeMixin implements AppStart {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result appStart(AppStart value),
-    Result loggedIn(LoggedIn value),
     Result loggedOut(LoggedOut value),
     @required Result orElse(),
   }) {
@@ -168,103 +153,6 @@ class _$AppStart with DiagnosticableTreeMixin implements AppStart {
 
 abstract class AppStart implements AuthEvent {
   const factory AppStart() = _$AppStart;
-}
-
-abstract class $LoggedInCopyWith<$Res> {
-  factory $LoggedInCopyWith(LoggedIn value, $Res Function(LoggedIn) then) =
-      _$LoggedInCopyWithImpl<$Res>;
-}
-
-class _$LoggedInCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
-    implements $LoggedInCopyWith<$Res> {
-  _$LoggedInCopyWithImpl(LoggedIn _value, $Res Function(LoggedIn) _then)
-      : super(_value, (v) => _then(v as LoggedIn));
-
-  @override
-  LoggedIn get _value => super._value as LoggedIn;
-}
-
-class _$LoggedIn with DiagnosticableTreeMixin implements LoggedIn {
-  const _$LoggedIn();
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AuthEvent.loggedIn()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'AuthEvent.loggedIn'));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is LoggedIn);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result appStart(),
-    @required Result loggedIn(),
-    @required Result loggedOut(),
-  }) {
-    assert(appStart != null);
-    assert(loggedIn != null);
-    assert(loggedOut != null);
-    return loggedIn();
-  }
-
-  @override
-  @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result appStart(),
-    Result loggedIn(),
-    Result loggedOut(),
-    @required Result orElse(),
-  }) {
-    assert(orElse != null);
-    if (loggedIn != null) {
-      return loggedIn();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result appStart(AppStart value),
-    @required Result loggedIn(LoggedIn value),
-    @required Result loggedOut(LoggedOut value),
-  }) {
-    assert(appStart != null);
-    assert(loggedIn != null);
-    assert(loggedOut != null);
-    return loggedIn(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result appStart(AppStart value),
-    Result loggedIn(LoggedIn value),
-    Result loggedOut(LoggedOut value),
-    @required Result orElse(),
-  }) {
-    assert(orElse != null);
-    if (loggedIn != null) {
-      return loggedIn(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class LoggedIn implements AuthEvent {
-  const factory LoggedIn() = _$LoggedIn;
 }
 
 abstract class $LoggedOutCopyWith<$Res> {
@@ -307,11 +195,9 @@ class _$LoggedOut with DiagnosticableTreeMixin implements LoggedOut {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result appStart(),
-    @required Result loggedIn(),
     @required Result loggedOut(),
   }) {
     assert(appStart != null);
-    assert(loggedIn != null);
     assert(loggedOut != null);
     return loggedOut();
   }
@@ -320,7 +206,6 @@ class _$LoggedOut with DiagnosticableTreeMixin implements LoggedOut {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result appStart(),
-    Result loggedIn(),
     Result loggedOut(),
     @required Result orElse(),
   }) {
@@ -335,11 +220,9 @@ class _$LoggedOut with DiagnosticableTreeMixin implements LoggedOut {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result appStart(AppStart value),
-    @required Result loggedIn(LoggedIn value),
     @required Result loggedOut(LoggedOut value),
   }) {
     assert(appStart != null);
-    assert(loggedIn != null);
     assert(loggedOut != null);
     return loggedOut(this);
   }
@@ -348,7 +231,6 @@ class _$LoggedOut with DiagnosticableTreeMixin implements LoggedOut {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result appStart(AppStart value),
-    Result loggedIn(LoggedIn value),
     Result loggedOut(LoggedOut value),
     @required Result orElse(),
   }) {
