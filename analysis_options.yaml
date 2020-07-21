@@ -1,0 +1,13 @@
+include: package:lint/analysis_options.yaml
+
+linter:
+  rules:
+    - parameter_assignments
+    - camel_case_types
+
+analzyer:
+  error:
+    missing_required_param: error
+    parameter_assignments: error
+    camel_case_types: ignore
+    non_part_of_directive_in_part: ignore
