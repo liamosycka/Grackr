@@ -1,13 +1,17 @@
 import 'package:auto_route/auto_route_annotations.dart';
+import 'package:gracker_app/presentation/admin_features/pages/admin_page.dart';
 import 'package:gracker_app/presentation/authentication/pages/landing_page.dart';
 import 'package:gracker_app/presentation/core/pages/splash/splash_page.dart';
 import 'package:gracker_app/presentation/core/routes/test_page.dart';
+import 'package:gracker_app/presentation/admin_features/guard_crud/pages/create_guard_page.dart';
 
 @MaterialAutoRouter(
   routes: <AutoRoute>[
     MaterialRoute(page: SplashPage, initial: true),
     MaterialRoute(page: LandingPage),
     MaterialRoute(page: TestPage),
+    MaterialRoute(page: AdminPage),
+    MaterialRoute(page: CreateGuardPage),
   ],
   generateNavigationHelperExtension: true,
 )

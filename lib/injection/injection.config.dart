@@ -15,14 +15,19 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../core/network/network_info.dart';
 import '../core/util/input_converter.dart';
+import '../data/admin_features/datasources/guard_crud_remote_datasource.dart';
+import '../data/admin_features/repositories/guard_crud_repository_impl.dart';
 import '../data/authentication/datasources/user_local_datasource.dart';
 import '../data/authentication/datasources/user_local_impl/user_local_sharedpreferences.dart';
 import '../data/authentication/datasources/user_remote_datasource.dart';
 import '../data/authentication/datasources/user_remote_impl/user_remote_postgresql.dart';
 import '../data/authentication/repositories/user_repository_impl.dart';
+import '../domain/admin_features/repositories/guard_crud_repository.dart';
+import '../domain/admin_features/usecases/create_guard.dart';
 import '../domain/authentication/repositories/user_repository.dart';
 import '../domain/authentication/usecases/check_if_authenticated.dart';
 import '../domain/authentication/usecases/get_authenticated.dart';
+import '../presentation/admin_features/guard_crud/create_guard/bloc/create_guard_bloc.dart';
 import '../presentation/authentication/bloc/login_bloc.dart';
 import '../presentation/core/blocs/auth_bloc.dart';
 import 'injectable_module.dart';
@@ -38,6 +43,10 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
   final injectableModule = _$InjectableModule();
   gh.lazySingleton<DBCrypt>(() => injectableModule.db);
   gh.lazySingleton<DataConnectionChecker>(() => injectableModule.checker);
+  gh.lazySingleton<Guard_CRUD_Repository>(
+      () => Guard_CRUD_Repository_Impl(
+          guard_CRUD_RemoteDataSource: g<Guard_CRUD_Remote_DataSource>()),
+      registerFor: {_prod});
   gh.lazySingleton<InputConverter>(() => InputConverter());
   gh.lazySingleton<Network_Info>(
       () => NetworkInfoImpl(dataConnectionChecker: g<DataConnectionChecker>()));
@@ -55,6 +64,13 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
       registerFor: {_prod});
   gh.lazySingleton<Check_If_Authenticated>(
       () => Check_If_Authenticated(userRepository: g<User_Repository>()));
+  gh.lazySingleton<Create_Guard>(() => Create_Guard(
+        guard_CRUD_Repository: g<Guard_CRUD_Repository>(),
+        networkInfo: g<Network_Info>(),
+        dbCrypt: g<DBCrypt>(),
+      ));
+  gh.factory<Create_Guard_Bloc>(
+      () => Create_Guard_Bloc(createGuard: g<Create_Guard>()));
   gh.lazySingleton<Get_Authenticated>(() => Get_Authenticated(
         userRepository: g<User_Repository>(),
         networkInfo: g<Network_Info>(),

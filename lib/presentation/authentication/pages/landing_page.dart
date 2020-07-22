@@ -95,7 +95,13 @@ class _LoginForm extends State<LoginForm> {
                   backgroundColor: Colors.green),
             );
             await Future.delayed(const Duration(seconds: 3));
-            ExtendedNavigator.of(context).pushTestPage();
+            //TODO Ver mejor forma de diferenciar si se loggeo como admin/guardia
+            //TODO usar algun evento de authenticatedAdmin/authenticatedGuard ??
+            if (_adminCheck) {
+              ExtendedNavigator.of(context).pushAdminPage();
+            } else {
+              ExtendedNavigator.of(context).pushTestPage();
+            }
           });
         });
       },

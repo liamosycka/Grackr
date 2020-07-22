@@ -9,6 +9,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import '../../admin_features/guard_crud/pages/create_guard_page.dart';
+import '../../admin_features/pages/admin_page.dart';
 import '../../authentication/pages/landing_page.dart';
 import '../pages/splash/splash_page.dart';
 import 'test_page.dart';
@@ -17,10 +19,14 @@ class Routes {
   static const String splashPage = '/';
   static const String landingPage = '/landing-page';
   static const String testPage = '/test-page';
+  static const String adminPage = '/admin-page';
+  static const String createGuardPage = '/create-guard-page';
   static const all = <String>{
     splashPage,
     landingPage,
     testPage,
+    adminPage,
+    createGuardPage,
   };
 }
 
@@ -31,6 +37,8 @@ class Router extends RouterBase {
     RouteDef(Routes.splashPage, page: SplashPage),
     RouteDef(Routes.landingPage, page: LandingPage),
     RouteDef(Routes.testPage, page: TestPage),
+    RouteDef(Routes.adminPage, page: AdminPage),
+    RouteDef(Routes.createGuardPage, page: CreateGuardPage),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -53,6 +61,18 @@ class Router extends RouterBase {
         settings: data,
       );
     },
+    AdminPage: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const AdminPage(),
+        settings: data,
+      );
+    },
+    CreateGuardPage: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const CreateGuardPage(),
+        settings: data,
+      );
+    },
   };
 }
 
@@ -66,4 +86,9 @@ extension RouterExtendedNavigatorStateX on ExtendedNavigatorState {
   Future<dynamic> pushLandingPage() => push<dynamic>(Routes.landingPage);
 
   Future<dynamic> pushTestPage() => push<dynamic>(Routes.testPage);
+
+  Future<dynamic> pushAdminPage() => push<dynamic>(Routes.adminPage);
+
+  Future<dynamic> pushCreateGuardPage() =>
+      push<dynamic>(Routes.createGuardPage);
 }
