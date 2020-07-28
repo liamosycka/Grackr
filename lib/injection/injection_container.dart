@@ -17,7 +17,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:postgres/postgres.dart';
 
-final GetIt serviceLocator = GetIt.instance;
+final GetIt getIt = GetIt.instance;
 /*
   Factories son volatiles. Si una Page pide una instancia de un Factory, se va a generar uno nuevo siempre
   Singleton son persistentes. Si una Page pide una instancia de un Singleton, se devuelve siempre el mismo (Pues se cachea la primera vez que fue creado)
@@ -35,56 +35,48 @@ Future<void> init() async {
 Future<void> _initFeatures() async {
   // Feature - Auth
   // Bloc
-  serviceLocator.registerFactory<Login_Bloc>(() => Login_Bloc(
-      getAuthenticated: serviceLocator(),
-      inputConverter: serviceLocator(),
-      authBloc: serviceLocator()));
-  serviceLocator.registerLazySingleton<Auth_Bloc>(
-      () => Auth_Bloc(checkIfAuthenticated: serviceLocator()));
-  /*serviceLocator.registerFactory<MainGuardiaBloc>(
+  getIt.registerFactory<Login_Bloc>(() => Login_Bloc(
+      getAuthenticated: getIt(), inputConverter: getIt(), authBloc: getIt()));
+  getIt.registerLazySingleton<Auth_Bloc>(
+      () => Auth_Bloc(checkIfAuthenticated: getIt()));
+  /*getIt.registerFactory<MainGuardiaBloc>(
           () => MainGuardiaBloc());*/
   //! UseCases
-  serviceLocator.registerLazySingleton<Get_Authenticated>(() =>
-      Get_Authenticated(
-          userRepository: serviceLocator(),
-          dbCrypt: serviceLocator(),
-          networkInfo: serviceLocator()));
-  serviceLocator.registerLazySingleton<Check_If_Authenticated>(
-      () => Check_If_Authenticated(userRepository: serviceLocator()));
+  getIt.registerLazySingleton<Get_Authenticated>(() => Get_Authenticated(
+      userRepository: getIt(), dbCrypt: getIt(), networkInfo: getIt()));
+  getIt.registerLazySingleton<Check_If_Authenticated>(
+      () => Check_If_Authenticated(userRepository: getIt()));
   //! Repository
-  serviceLocator.registerLazySingleton<User_Repository>(() =>
-      User_Repository_Impl(
-          userRemoteDataSource: serviceLocator(),
-          userLocalDataSource: serviceLocator()));
+  getIt.registerLazySingleton<User_Repository>(() => User_Repository_Impl(
+      userRemoteDataSource: getIt(), userLocalDataSource: getIt()));
   //! Data Sources
-  serviceLocator.registerLazySingleton<User_Remote_DataSource>(
-      () => User_Remote_PostgreSQL(postgreSQLConnection: serviceLocator()));
-  serviceLocator.registerLazySingleton<User_Local_DataSource>(
-      () => User_Local_SharedPreferences(sharedPreferences: serviceLocator()));
+  getIt.registerLazySingleton<User_Remote_DataSource>(
+      () => User_Remote_PostgreSQL(postgreSQLConnection: getIt()));
+  getIt.registerLazySingleton<User_Local_DataSource>(
+      () => User_Local_SharedPreferences(sharedPreferences: getIt()));
 }
 
 Future<void> _initCore() async {
   // Core - Util
-  serviceLocator.registerLazySingleton<InputConverter>(() => InputConverter());
+  getIt.registerLazySingleton<InputConverter>(() => InputConverter());
 
   // Core - Network
-  serviceLocator.registerLazySingleton<Network_Info>(
-      () => NetworkInfoImpl(dataConnectionChecker: serviceLocator()));
+  getIt.registerLazySingleton<Network_Info>(
+      () => NetworkInfoImpl(dataConnectionChecker: getIt()));
 }
 
 Future<void> _initExternal() async {
   // External
   final sharedPreferences = await SharedPreferences.getInstance();
-  serviceLocator
-      .registerLazySingleton<SharedPreferences>(() => sharedPreferences);
+  getIt.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
   final dbCrypt = DBCrypt();
-  serviceLocator.registerLazySingleton<DBCrypt>(() => dbCrypt);
+  getIt.registerLazySingleton<DBCrypt>(() => dbCrypt);
 
   // TODO Postgresql Connection
-  serviceLocator.registerLazySingleton<PostgreSQLConnection>(() =>
-      PostgreSQLConnection("ruby.db.elephantsql.com", 5432, "dbpxbgmk",
-          username: "dbpxbgmk", password: "L1GhaFDYwqF5wUBpzsXF3VW0G_p1uQWv"));
+  getIt.registerLazySingleton<PostgreSQLConnection>(() => PostgreSQLConnection(
+      "ruby.db.elephantsql.com", 5432, "dbpxbgmk",
+      username: "dbpxbgmk", password: "L1GhaFDYwqF5wUBpzsXF3VW0G_p1uQWv"));
 
-  serviceLocator.registerLazySingleton<DataConnectionChecker>(
+  getIt.registerLazySingleton<DataConnectionChecker>(
       () => DataConnectionChecker());
 }

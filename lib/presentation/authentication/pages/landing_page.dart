@@ -22,7 +22,7 @@ class _LandingHome extends State<LandingPage> {
         title: const Text('Login'),
       ),
       body: BlocProvider(
-        create: (_) => serviceLocator<Login_Bloc>(),
+        create: (_) => getIt<Login_Bloc>(),
         //return LoginBloc(authBloc: BlocProvider.of<AuthBloc>(context), loginState: Provider.of<LoginStateRepo>(context, listen: false));
         //return LoginBloc(authBloc: BlocProvider.of<AuthBloc>(context));
 

@@ -1,4 +1,4 @@
-import 'package:data_connection_checker/data_connection_checker.dart';
+/*import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:dbcrypt/dbcrypt.dart';
 import 'package:injectable/injectable.dart';
 import 'package:postgres/postgres.dart';
@@ -22,3 +22,4 @@ abstract class InjectableModule {
       PostgreSQLConnection("ruby.db.elephantsql.com", 5432, "dbpxbgmk",
           username: "dbpxbgmk", password: "L1GhaFDYwqF5wUBpzsXF3VW0G_p1uQWv");
 }
+*/

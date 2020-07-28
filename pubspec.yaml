@@ -14,7 +14,7 @@ description: A Guard tracking app.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.8.0 <3.0.0"
 
 dependencies:
   provider: ^4.0.4
@@ -25,12 +25,12 @@ dependencies:
   data_connection_checker: ^0.3.4
   path_provider: ^1.6.5
   path: ^1.6.4
-  flutter_bloc: ^5.0.1
+  flutter_bloc: ^6.0.1
   equatable:
   postgres: ^2.1.0
   dartz: ^0.9.1
   shared_preferences: ^0.5.8
-  injectable: ^1.0.2
+  injectable: ^0.4.0+1
   get_it: ^4.0.2
   auto_route: ^0.6.6
   flutter:
@@ -43,7 +43,7 @@ dev_dependencies:
   lint: ^1.2.0
   freezed: ^0.11.4
   mockito: ^4.1.1
-  injectable_generator: ^1.0.2
+  injectable_generator: ^0.4.0
   auto_route_generator: ^0.6.6
   build_runner: ^1.8.0
 

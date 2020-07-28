@@ -12,8 +12,7 @@ class MainAppWidget extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider<Auth_Bloc>(
-            create: (_) =>
-                serviceLocator<Auth_Bloc>()..add(const AuthEvent.appStart()),
+            create: (_) => getIt<Auth_Bloc>()..add(const AuthEvent.appStart()),
           ),
           //* Agregar mas providers aqui de ser necesario
         ],

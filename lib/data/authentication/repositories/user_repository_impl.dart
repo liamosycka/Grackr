@@ -9,7 +9,6 @@ import 'package:gracker_app/domain/core/entities/user.dart';
 import 'package:gracker_app/presentation/authentication/auth_failures.dart';
 import 'package:injectable/injectable.dart';
 
-@prod
 @LazySingleton(as: User_Repository)
 class User_Repository_Impl implements User_Repository {
   final User_Local_DataSource userLocalDataSource;

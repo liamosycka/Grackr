@@ -13,9 +13,10 @@ class SplashPage extends StatelessWidget {
         state.maybeMap(
           orElse: () {},
           // TODO Rutas
-          authenticated: (_) => ExtendedNavigator.of(context).pushTestPage(),
+          authenticated: (_) =>
+              ExtendedNavigator.of(context).popAndPush(Routes.testPage),
           unauthenticated: (_) =>
-              ExtendedNavigator.of(context).pushLandingPage(),
+              ExtendedNavigator.of(context).popAndPush(Routes.landingPage),
         );
       },
       child: _SplashPageWidget(),

@@ -6,7 +6,7 @@ import 'package:gracker_app/presentation/core/blocs/auth_event.dart';
 import 'package:gracker_app/presentation/core/blocs/auth_state.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
+@lazySingleton
 class Auth_Bloc extends Bloc<AuthEvent, AuthState> {
   final Check_If_Authenticated checkIfAuthenticated;
 
