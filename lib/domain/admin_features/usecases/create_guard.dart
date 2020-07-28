@@ -7,10 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:gracker_app/core/network/network_info.dart';
 import 'package:gracker_app/core/usecases/usecase.dart';
 import 'package:gracker_app/domain/core/entities/user.dart';
-import 'package:gracker_app/domain/guard_crud/repositories/guard_crud_repository.dart';
-import 'package:gracker_app/presentation/guard_crud/guard_crud_failures.dart';
+import 'package:gracker_app/domain/admin_features/repositories/guard_crud_repository.dart';
+import 'package:gracker_app/presentation/admin_features/admin_features_failures.dart';
+import 'package:injectable/injectable.dart';
 
-class Create_Guard implements UseCase<Guard_CRUD_Failure, Unit, Params> {
+@lazySingleton
+class Create_Guard implements UseCase<Admin_Features_Failure, Unit, Params> {
   final Guard_CRUD_Repository guard_CRUD_Repository;
   final Network_Info networkInfo;
   final DBCrypt dbCrypt;
@@ -21,19 +23,15 @@ class Create_Guard implements UseCase<Guard_CRUD_Failure, Unit, Params> {
       @required this.dbCrypt});
 
   @override
-  Future<Either<Guard_CRUD_Failure, Unit>> call(Params params) async {
-    /* Comenté esto porque Lint me estaba marcando que no se estaba usando... y efectivamente no se está usando
-    Asi que en vez de borrarlo te lo dejo para que lo revises
-    final guard = Guard(
-      name: params.name,
-      surname: params.surname,
-      employeeID: params.employeeID,
-    );*/
+  Future<Either<Admin_Features_Failure, Unit>> call(Params params) async {
     final String username = "${params.surname}_${params.employeeID}";
-    final list = List(2) as List<String>;
-    _generateStart_End_random(list);
+    //final list = List(2) as List<String>;
+    //_generateStart_End_random(list);
     final String plainPassword =
-        "$list[0]${params.surname}_${params.employeeID}$list[1]";
+        // ignore: prefer_interpolation_to_compose_strings
+        "123" + params.surname + "_" + params.employeeID;
+    //final String plainPassword =
+    //   "${list[0]}${params.surname}_${params.employeeID}${list[1]}";
     final user = User(
         username: username, plainPassword: plainPassword, permissionLevel: 0);
     if (await networkInfo.isConnected) {
@@ -42,7 +40,7 @@ class Create_Guard implements UseCase<Guard_CRUD_Failure, Unit, Params> {
       final result = await guard_CRUD_Repository.create_Guard(user, hashedPass);
       return result.fold((failure) => Left(failure), (r) => Right(r));
     } else {
-      return const Left(Guard_CRUD_Failure.noInternetConnection());
+      return const Left(Admin_Features_Failure.noInternetConnection());
     }
   }
 }

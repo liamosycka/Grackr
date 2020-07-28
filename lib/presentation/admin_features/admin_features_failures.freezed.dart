@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
-part of 'guard_crud_failures.dart';
+part of 'admin_features_failures.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -9,8 +9,8 @@ part of 'guard_crud_failures.dart';
 
 T _$identity<T>(T value) => value;
 
-class _$Guard_CRUD_FailureTearOff {
-  const _$Guard_CRUD_FailureTearOff();
+class _$Admin_Features_FailureTearOff {
+  const _$Admin_Features_FailureTearOff();
 
 // ignore: unused_element
   InvalidName invalidName({@required String failedValue}) {
@@ -45,9 +45,9 @@ class _$Guard_CRUD_FailureTearOff {
 }
 
 // ignore: unused_element
-const $Guard_CRUD_Failure = _$Guard_CRUD_FailureTearOff();
+const $Admin_Features_Failure = _$Admin_Features_FailureTearOff();
 
-mixin _$Guard_CRUD_Failure {
+mixin _$Admin_Features_Failure {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result invalidName(String failedValue),
@@ -84,19 +84,19 @@ mixin _$Guard_CRUD_Failure {
   });
 }
 
-abstract class $Guard_CRUD_FailureCopyWith<$Res> {
-  factory $Guard_CRUD_FailureCopyWith(
-          Guard_CRUD_Failure value, $Res Function(Guard_CRUD_Failure) then) =
-      _$Guard_CRUD_FailureCopyWithImpl<$Res>;
+abstract class $Admin_Features_FailureCopyWith<$Res> {
+  factory $Admin_Features_FailureCopyWith(Admin_Features_Failure value,
+          $Res Function(Admin_Features_Failure) then) =
+      _$Admin_Features_FailureCopyWithImpl<$Res>;
 }
 
-class _$Guard_CRUD_FailureCopyWithImpl<$Res>
-    implements $Guard_CRUD_FailureCopyWith<$Res> {
-  _$Guard_CRUD_FailureCopyWithImpl(this._value, this._then);
+class _$Admin_Features_FailureCopyWithImpl<$Res>
+    implements $Admin_Features_FailureCopyWith<$Res> {
+  _$Admin_Features_FailureCopyWithImpl(this._value, this._then);
 
-  final Guard_CRUD_Failure _value;
+  final Admin_Features_Failure _value;
   // ignore: unused_field
-  final $Res Function(Guard_CRUD_Failure) _then;
+  final $Res Function(Admin_Features_Failure) _then;
 }
 
 abstract class $InvalidNameCopyWith<$Res> {
@@ -107,7 +107,7 @@ abstract class $InvalidNameCopyWith<$Res> {
 }
 
 class _$InvalidNameCopyWithImpl<$Res>
-    extends _$Guard_CRUD_FailureCopyWithImpl<$Res>
+    extends _$Admin_Features_FailureCopyWithImpl<$Res>
     implements $InvalidNameCopyWith<$Res> {
   _$InvalidNameCopyWithImpl(
       InvalidName _value, $Res Function(InvalidName) _then)
@@ -136,14 +136,14 @@ class _$InvalidName with DiagnosticableTreeMixin implements InvalidName {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Guard_CRUD_Failure.invalidName(failedValue: $failedValue)';
+    return 'Admin_Features_Failure.invalidName(failedValue: $failedValue)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'Guard_CRUD_Failure.invalidName'))
+      ..add(DiagnosticsProperty('type', 'Admin_Features_Failure.invalidName'))
       ..add(DiagnosticsProperty('failedValue', failedValue));
   }
 
@@ -233,7 +233,7 @@ class _$InvalidName with DiagnosticableTreeMixin implements InvalidName {
   }
 }
 
-abstract class InvalidName implements Guard_CRUD_Failure {
+abstract class InvalidName implements Admin_Features_Failure {
   const factory InvalidName({@required String failedValue}) = _$InvalidName;
 
   String get failedValue;
@@ -248,7 +248,7 @@ abstract class $InvalidSurnameCopyWith<$Res> {
 }
 
 class _$InvalidSurnameCopyWithImpl<$Res>
-    extends _$Guard_CRUD_FailureCopyWithImpl<$Res>
+    extends _$Admin_Features_FailureCopyWithImpl<$Res>
     implements $InvalidSurnameCopyWith<$Res> {
   _$InvalidSurnameCopyWithImpl(
       InvalidSurname _value, $Res Function(InvalidSurname) _then)
@@ -277,14 +277,15 @@ class _$InvalidSurname with DiagnosticableTreeMixin implements InvalidSurname {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Guard_CRUD_Failure.invalidSurname(failedValue: $failedValue)';
+    return 'Admin_Features_Failure.invalidSurname(failedValue: $failedValue)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'Guard_CRUD_Failure.invalidSurname'))
+      ..add(
+          DiagnosticsProperty('type', 'Admin_Features_Failure.invalidSurname'))
       ..add(DiagnosticsProperty('failedValue', failedValue));
   }
 
@@ -374,7 +375,7 @@ class _$InvalidSurname with DiagnosticableTreeMixin implements InvalidSurname {
   }
 }
 
-abstract class InvalidSurname implements Guard_CRUD_Failure {
+abstract class InvalidSurname implements Admin_Features_Failure {
   const factory InvalidSurname({@required String failedValue}) =
       _$InvalidSurname;
 
@@ -390,7 +391,7 @@ abstract class $InvalidEmployeeIDCopyWith<$Res> {
 }
 
 class _$InvalidEmployeeIDCopyWithImpl<$Res>
-    extends _$Guard_CRUD_FailureCopyWithImpl<$Res>
+    extends _$Admin_Features_FailureCopyWithImpl<$Res>
     implements $InvalidEmployeeIDCopyWith<$Res> {
   _$InvalidEmployeeIDCopyWithImpl(
       InvalidEmployeeID _value, $Res Function(InvalidEmployeeID) _then)
@@ -421,14 +422,15 @@ class _$InvalidEmployeeID
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Guard_CRUD_Failure.invalidEmployeeID(failedValue: $failedValue)';
+    return 'Admin_Features_Failure.invalidEmployeeID(failedValue: $failedValue)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'Guard_CRUD_Failure.invalidEmployeeID'))
+      ..add(DiagnosticsProperty(
+          'type', 'Admin_Features_Failure.invalidEmployeeID'))
       ..add(DiagnosticsProperty('failedValue', failedValue));
   }
 
@@ -518,7 +520,7 @@ class _$InvalidEmployeeID
   }
 }
 
-abstract class InvalidEmployeeID implements Guard_CRUD_Failure {
+abstract class InvalidEmployeeID implements Admin_Features_Failure {
   const factory InvalidEmployeeID({@required String failedValue}) =
       _$InvalidEmployeeID;
 
@@ -533,7 +535,7 @@ abstract class $NoInternetConnectionCopyWith<$Res> {
 }
 
 class _$NoInternetConnectionCopyWithImpl<$Res>
-    extends _$Guard_CRUD_FailureCopyWithImpl<$Res>
+    extends _$Admin_Features_FailureCopyWithImpl<$Res>
     implements $NoInternetConnectionCopyWith<$Res> {
   _$NoInternetConnectionCopyWithImpl(
       NoInternetConnection _value, $Res Function(NoInternetConnection) _then)
@@ -550,7 +552,7 @@ class _$NoInternetConnection
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Guard_CRUD_Failure.noInternetConnection()';
+    return 'Admin_Features_Failure.noInternetConnection()';
   }
 
   @override
@@ -558,7 +560,7 @@ class _$NoInternetConnection
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty(
-          'type', 'Guard_CRUD_Failure.noInternetConnection'));
+          'type', 'Admin_Features_Failure.noInternetConnection'));
   }
 
   @override
@@ -638,7 +640,7 @@ class _$NoInternetConnection
   }
 }
 
-abstract class NoInternetConnection implements Guard_CRUD_Failure {
+abstract class NoInternetConnection implements Admin_Features_Failure {
   const factory NoInternetConnection() = _$NoInternetConnection;
 }
 
@@ -649,7 +651,7 @@ abstract class $FailedToCreateUserCopyWith<$Res> {
 }
 
 class _$FailedToCreateUserCopyWithImpl<$Res>
-    extends _$Guard_CRUD_FailureCopyWithImpl<$Res>
+    extends _$Admin_Features_FailureCopyWithImpl<$Res>
     implements $FailedToCreateUserCopyWith<$Res> {
   _$FailedToCreateUserCopyWithImpl(
       FailedToCreateUser _value, $Res Function(FailedToCreateUser) _then)
@@ -666,15 +668,15 @@ class _$FailedToCreateUser
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Guard_CRUD_Failure.failedToCreateUser()';
+    return 'Admin_Features_Failure.failedToCreateUser()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(
-          DiagnosticsProperty('type', 'Guard_CRUD_Failure.failedToCreateUser'));
+      ..add(DiagnosticsProperty(
+          'type', 'Admin_Features_Failure.failedToCreateUser'));
   }
 
   @override
@@ -754,6 +756,6 @@ class _$FailedToCreateUser
   }
 }
 
-abstract class FailedToCreateUser implements Guard_CRUD_Failure {
+abstract class FailedToCreateUser implements Admin_Features_Failure {
   const factory FailedToCreateUser() = _$FailedToCreateUser;
 }

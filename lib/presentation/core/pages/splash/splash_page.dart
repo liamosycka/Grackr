@@ -13,8 +13,10 @@ class SplashPage extends StatelessWidget {
         state.maybeMap(
           orElse: () {},
           // TODO Rutas
-          authenticated: (_) =>
-              ExtendedNavigator.of(context).popAndPush(Routes.testPage),
+
+          //TODO habria que diferenciar un state con authenticated de admin/guardia
+          //authenticated: (_) => ExtendedNavigator.of(context).pushTestPage(),
+          authenticated: (_) => ExtendedNavigator.of(context).pushAdminPage(),
           unauthenticated: (_) =>
               ExtendedNavigator.of(context).popAndPush(Routes.landingPage),
         );

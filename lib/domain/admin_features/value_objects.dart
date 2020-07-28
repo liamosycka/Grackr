@@ -3,16 +3,16 @@ import 'package:gracker_app/core/error/failures.dart';
 import 'package:gracker_app/core/value_objects.dart';
 import 'package:gracker_app/core/value_validators.dart';
 
-class Nombre_Apellido extends ValueObject<String> {
+class Name_Surname extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
-  factory Nombre_Apellido(String input) {
+  factory Name_Surname(String input) {
     assert(input != null);
-    return Nombre_Apellido._(
+    return Name_Surname._(
       validateTest1(input),
     );
   }
-  const Nombre_Apellido._(this.value);
+  const Name_Surname._(this.value);
 }
 
 class EmployeeID extends ValueObject<String> {

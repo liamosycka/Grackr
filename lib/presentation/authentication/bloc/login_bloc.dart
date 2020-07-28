@@ -42,6 +42,7 @@ class Login_Bloc extends Bloc<LoginEvent, LoginState> {
 
       yield state.copyWith(
           isSubmitting: false,
+          //TODO change name: Failrue => Failure
           authFailrueOrSuccess: optionOf(failureOrSuccess));
     });
   }
