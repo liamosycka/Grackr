@@ -6,10 +6,7 @@ import 'package:gracker_app/domain/core/entities/user.dart';
 import 'package:dartz/dartz.dart';
 import 'package:gracker_app/domain/admin_features/repositories/guard_crud_repository.dart';
 import 'package:gracker_app/presentation/admin_features/admin_features_failures.dart';
-import 'package:injectable/injectable.dart';
 
-@prod
-@LazySingleton(as: Guard_CRUD_Repository)
 class Guard_CRUD_Repository_Impl implements Guard_CRUD_Repository {
   final Guard_CRUD_Remote_DataSource guard_CRUD_RemoteDataSource;
 
@@ -22,8 +19,9 @@ class Guard_CRUD_Repository_Impl implements Guard_CRUD_Repository {
       final result = await guard_CRUD_RemoteDataSource.create_guard(
           User_Model.fromUser(user), hashedPassword);
       return Right(result);
-    } on OperationFailedException catch (_) {
-      return const Left(Admin_Features_Failure.failedToCreateUser());
+    } on OperationFailedException catch (e) {
+      return Left(
+          Admin_Features_Failure.failedToCreateUser(failedValue: e.toString()));
     }
   }
 }

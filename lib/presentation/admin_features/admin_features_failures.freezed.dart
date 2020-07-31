@@ -34,13 +34,20 @@ class _$Admin_Features_FailureTearOff {
   }
 
 // ignore: unused_element
+  FailedDomainVerification failedDomainVerification() {
+    return const FailedDomainVerification();
+  }
+
+// ignore: unused_element
   NoInternetConnection noInternetConnection() {
     return const NoInternetConnection();
   }
 
 // ignore: unused_element
-  FailedToCreateUser failedToCreateUser() {
-    return const FailedToCreateUser();
+  FailedToCreateUser failedToCreateUser({@required String failedValue}) {
+    return FailedToCreateUser(
+      failedValue: failedValue,
+    );
   }
 }
 
@@ -53,16 +60,18 @@ mixin _$Admin_Features_Failure {
     @required Result invalidName(String failedValue),
     @required Result invalidSurname(String failedValue),
     @required Result invalidEmployeeID(String failedValue),
+    @required Result failedDomainVerification(),
     @required Result noInternetConnection(),
-    @required Result failedToCreateUser(),
+    @required Result failedToCreateUser(String failedValue),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result invalidName(String failedValue),
     Result invalidSurname(String failedValue),
     Result invalidEmployeeID(String failedValue),
+    Result failedDomainVerification(),
     Result noInternetConnection(),
-    Result failedToCreateUser(),
+    Result failedToCreateUser(String failedValue),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -70,6 +79,7 @@ mixin _$Admin_Features_Failure {
     @required Result invalidName(InvalidName value),
     @required Result invalidSurname(InvalidSurname value),
     @required Result invalidEmployeeID(InvalidEmployeeID value),
+    @required Result failedDomainVerification(FailedDomainVerification value),
     @required Result noInternetConnection(NoInternetConnection value),
     @required Result failedToCreateUser(FailedToCreateUser value),
   });
@@ -78,6 +88,7 @@ mixin _$Admin_Features_Failure {
     Result invalidName(InvalidName value),
     Result invalidSurname(InvalidSurname value),
     Result invalidEmployeeID(InvalidEmployeeID value),
+    Result failedDomainVerification(FailedDomainVerification value),
     Result noInternetConnection(NoInternetConnection value),
     Result failedToCreateUser(FailedToCreateUser value),
     @required Result orElse(),
@@ -170,12 +181,14 @@ class _$InvalidName with DiagnosticableTreeMixin implements InvalidName {
     @required Result invalidName(String failedValue),
     @required Result invalidSurname(String failedValue),
     @required Result invalidEmployeeID(String failedValue),
+    @required Result failedDomainVerification(),
     @required Result noInternetConnection(),
-    @required Result failedToCreateUser(),
+    @required Result failedToCreateUser(String failedValue),
   }) {
     assert(invalidName != null);
     assert(invalidSurname != null);
     assert(invalidEmployeeID != null);
+    assert(failedDomainVerification != null);
     assert(noInternetConnection != null);
     assert(failedToCreateUser != null);
     return invalidName(failedValue);
@@ -187,8 +200,9 @@ class _$InvalidName with DiagnosticableTreeMixin implements InvalidName {
     Result invalidName(String failedValue),
     Result invalidSurname(String failedValue),
     Result invalidEmployeeID(String failedValue),
+    Result failedDomainVerification(),
     Result noInternetConnection(),
-    Result failedToCreateUser(),
+    Result failedToCreateUser(String failedValue),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -204,12 +218,14 @@ class _$InvalidName with DiagnosticableTreeMixin implements InvalidName {
     @required Result invalidName(InvalidName value),
     @required Result invalidSurname(InvalidSurname value),
     @required Result invalidEmployeeID(InvalidEmployeeID value),
+    @required Result failedDomainVerification(FailedDomainVerification value),
     @required Result noInternetConnection(NoInternetConnection value),
     @required Result failedToCreateUser(FailedToCreateUser value),
   }) {
     assert(invalidName != null);
     assert(invalidSurname != null);
     assert(invalidEmployeeID != null);
+    assert(failedDomainVerification != null);
     assert(noInternetConnection != null);
     assert(failedToCreateUser != null);
     return invalidName(this);
@@ -221,6 +237,7 @@ class _$InvalidName with DiagnosticableTreeMixin implements InvalidName {
     Result invalidName(InvalidName value),
     Result invalidSurname(InvalidSurname value),
     Result invalidEmployeeID(InvalidEmployeeID value),
+    Result failedDomainVerification(FailedDomainVerification value),
     Result noInternetConnection(NoInternetConnection value),
     Result failedToCreateUser(FailedToCreateUser value),
     @required Result orElse(),
@@ -312,12 +329,14 @@ class _$InvalidSurname with DiagnosticableTreeMixin implements InvalidSurname {
     @required Result invalidName(String failedValue),
     @required Result invalidSurname(String failedValue),
     @required Result invalidEmployeeID(String failedValue),
+    @required Result failedDomainVerification(),
     @required Result noInternetConnection(),
-    @required Result failedToCreateUser(),
+    @required Result failedToCreateUser(String failedValue),
   }) {
     assert(invalidName != null);
     assert(invalidSurname != null);
     assert(invalidEmployeeID != null);
+    assert(failedDomainVerification != null);
     assert(noInternetConnection != null);
     assert(failedToCreateUser != null);
     return invalidSurname(failedValue);
@@ -329,8 +348,9 @@ class _$InvalidSurname with DiagnosticableTreeMixin implements InvalidSurname {
     Result invalidName(String failedValue),
     Result invalidSurname(String failedValue),
     Result invalidEmployeeID(String failedValue),
+    Result failedDomainVerification(),
     Result noInternetConnection(),
-    Result failedToCreateUser(),
+    Result failedToCreateUser(String failedValue),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -346,12 +366,14 @@ class _$InvalidSurname with DiagnosticableTreeMixin implements InvalidSurname {
     @required Result invalidName(InvalidName value),
     @required Result invalidSurname(InvalidSurname value),
     @required Result invalidEmployeeID(InvalidEmployeeID value),
+    @required Result failedDomainVerification(FailedDomainVerification value),
     @required Result noInternetConnection(NoInternetConnection value),
     @required Result failedToCreateUser(FailedToCreateUser value),
   }) {
     assert(invalidName != null);
     assert(invalidSurname != null);
     assert(invalidEmployeeID != null);
+    assert(failedDomainVerification != null);
     assert(noInternetConnection != null);
     assert(failedToCreateUser != null);
     return invalidSurname(this);
@@ -363,6 +385,7 @@ class _$InvalidSurname with DiagnosticableTreeMixin implements InvalidSurname {
     Result invalidName(InvalidName value),
     Result invalidSurname(InvalidSurname value),
     Result invalidEmployeeID(InvalidEmployeeID value),
+    Result failedDomainVerification(FailedDomainVerification value),
     Result noInternetConnection(NoInternetConnection value),
     Result failedToCreateUser(FailedToCreateUser value),
     @required Result orElse(),
@@ -457,12 +480,14 @@ class _$InvalidEmployeeID
     @required Result invalidName(String failedValue),
     @required Result invalidSurname(String failedValue),
     @required Result invalidEmployeeID(String failedValue),
+    @required Result failedDomainVerification(),
     @required Result noInternetConnection(),
-    @required Result failedToCreateUser(),
+    @required Result failedToCreateUser(String failedValue),
   }) {
     assert(invalidName != null);
     assert(invalidSurname != null);
     assert(invalidEmployeeID != null);
+    assert(failedDomainVerification != null);
     assert(noInternetConnection != null);
     assert(failedToCreateUser != null);
     return invalidEmployeeID(failedValue);
@@ -474,8 +499,9 @@ class _$InvalidEmployeeID
     Result invalidName(String failedValue),
     Result invalidSurname(String failedValue),
     Result invalidEmployeeID(String failedValue),
+    Result failedDomainVerification(),
     Result noInternetConnection(),
-    Result failedToCreateUser(),
+    Result failedToCreateUser(String failedValue),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -491,12 +517,14 @@ class _$InvalidEmployeeID
     @required Result invalidName(InvalidName value),
     @required Result invalidSurname(InvalidSurname value),
     @required Result invalidEmployeeID(InvalidEmployeeID value),
+    @required Result failedDomainVerification(FailedDomainVerification value),
     @required Result noInternetConnection(NoInternetConnection value),
     @required Result failedToCreateUser(FailedToCreateUser value),
   }) {
     assert(invalidName != null);
     assert(invalidSurname != null);
     assert(invalidEmployeeID != null);
+    assert(failedDomainVerification != null);
     assert(noInternetConnection != null);
     assert(failedToCreateUser != null);
     return invalidEmployeeID(this);
@@ -508,6 +536,7 @@ class _$InvalidEmployeeID
     Result invalidName(InvalidName value),
     Result invalidSurname(InvalidSurname value),
     Result invalidEmployeeID(InvalidEmployeeID value),
+    Result failedDomainVerification(FailedDomainVerification value),
     Result noInternetConnection(NoInternetConnection value),
     Result failedToCreateUser(FailedToCreateUser value),
     @required Result orElse(),
@@ -526,6 +555,129 @@ abstract class InvalidEmployeeID implements Admin_Features_Failure {
 
   String get failedValue;
   $InvalidEmployeeIDCopyWith<InvalidEmployeeID> get copyWith;
+}
+
+abstract class $FailedDomainVerificationCopyWith<$Res> {
+  factory $FailedDomainVerificationCopyWith(FailedDomainVerification value,
+          $Res Function(FailedDomainVerification) then) =
+      _$FailedDomainVerificationCopyWithImpl<$Res>;
+}
+
+class _$FailedDomainVerificationCopyWithImpl<$Res>
+    extends _$Admin_Features_FailureCopyWithImpl<$Res>
+    implements $FailedDomainVerificationCopyWith<$Res> {
+  _$FailedDomainVerificationCopyWithImpl(FailedDomainVerification _value,
+      $Res Function(FailedDomainVerification) _then)
+      : super(_value, (v) => _then(v as FailedDomainVerification));
+
+  @override
+  FailedDomainVerification get _value =>
+      super._value as FailedDomainVerification;
+}
+
+class _$FailedDomainVerification
+    with DiagnosticableTreeMixin
+    implements FailedDomainVerification {
+  const _$FailedDomainVerification();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'Admin_Features_Failure.failedDomainVerification()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'Admin_Features_Failure.failedDomainVerification'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is FailedDomainVerification);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result invalidName(String failedValue),
+    @required Result invalidSurname(String failedValue),
+    @required Result invalidEmployeeID(String failedValue),
+    @required Result failedDomainVerification(),
+    @required Result noInternetConnection(),
+    @required Result failedToCreateUser(String failedValue),
+  }) {
+    assert(invalidName != null);
+    assert(invalidSurname != null);
+    assert(invalidEmployeeID != null);
+    assert(failedDomainVerification != null);
+    assert(noInternetConnection != null);
+    assert(failedToCreateUser != null);
+    return failedDomainVerification();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result invalidName(String failedValue),
+    Result invalidSurname(String failedValue),
+    Result invalidEmployeeID(String failedValue),
+    Result failedDomainVerification(),
+    Result noInternetConnection(),
+    Result failedToCreateUser(String failedValue),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (failedDomainVerification != null) {
+      return failedDomainVerification();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result invalidName(InvalidName value),
+    @required Result invalidSurname(InvalidSurname value),
+    @required Result invalidEmployeeID(InvalidEmployeeID value),
+    @required Result failedDomainVerification(FailedDomainVerification value),
+    @required Result noInternetConnection(NoInternetConnection value),
+    @required Result failedToCreateUser(FailedToCreateUser value),
+  }) {
+    assert(invalidName != null);
+    assert(invalidSurname != null);
+    assert(invalidEmployeeID != null);
+    assert(failedDomainVerification != null);
+    assert(noInternetConnection != null);
+    assert(failedToCreateUser != null);
+    return failedDomainVerification(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result invalidName(InvalidName value),
+    Result invalidSurname(InvalidSurname value),
+    Result invalidEmployeeID(InvalidEmployeeID value),
+    Result failedDomainVerification(FailedDomainVerification value),
+    Result noInternetConnection(NoInternetConnection value),
+    Result failedToCreateUser(FailedToCreateUser value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (failedDomainVerification != null) {
+      return failedDomainVerification(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class FailedDomainVerification implements Admin_Features_Failure {
+  const factory FailedDomainVerification() = _$FailedDomainVerification;
 }
 
 abstract class $NoInternetConnectionCopyWith<$Res> {
@@ -577,12 +729,14 @@ class _$NoInternetConnection
     @required Result invalidName(String failedValue),
     @required Result invalidSurname(String failedValue),
     @required Result invalidEmployeeID(String failedValue),
+    @required Result failedDomainVerification(),
     @required Result noInternetConnection(),
-    @required Result failedToCreateUser(),
+    @required Result failedToCreateUser(String failedValue),
   }) {
     assert(invalidName != null);
     assert(invalidSurname != null);
     assert(invalidEmployeeID != null);
+    assert(failedDomainVerification != null);
     assert(noInternetConnection != null);
     assert(failedToCreateUser != null);
     return noInternetConnection();
@@ -594,8 +748,9 @@ class _$NoInternetConnection
     Result invalidName(String failedValue),
     Result invalidSurname(String failedValue),
     Result invalidEmployeeID(String failedValue),
+    Result failedDomainVerification(),
     Result noInternetConnection(),
-    Result failedToCreateUser(),
+    Result failedToCreateUser(String failedValue),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -611,12 +766,14 @@ class _$NoInternetConnection
     @required Result invalidName(InvalidName value),
     @required Result invalidSurname(InvalidSurname value),
     @required Result invalidEmployeeID(InvalidEmployeeID value),
+    @required Result failedDomainVerification(FailedDomainVerification value),
     @required Result noInternetConnection(NoInternetConnection value),
     @required Result failedToCreateUser(FailedToCreateUser value),
   }) {
     assert(invalidName != null);
     assert(invalidSurname != null);
     assert(invalidEmployeeID != null);
+    assert(failedDomainVerification != null);
     assert(noInternetConnection != null);
     assert(failedToCreateUser != null);
     return noInternetConnection(this);
@@ -628,6 +785,7 @@ class _$NoInternetConnection
     Result invalidName(InvalidName value),
     Result invalidSurname(InvalidSurname value),
     Result invalidEmployeeID(InvalidEmployeeID value),
+    Result failedDomainVerification(FailedDomainVerification value),
     Result noInternetConnection(NoInternetConnection value),
     Result failedToCreateUser(FailedToCreateUser value),
     @required Result orElse(),
@@ -648,6 +806,7 @@ abstract class $FailedToCreateUserCopyWith<$Res> {
   factory $FailedToCreateUserCopyWith(
           FailedToCreateUser value, $Res Function(FailedToCreateUser) then) =
       _$FailedToCreateUserCopyWithImpl<$Res>;
+  $Res call({String failedValue});
 }
 
 class _$FailedToCreateUserCopyWithImpl<$Res>
@@ -659,16 +818,30 @@ class _$FailedToCreateUserCopyWithImpl<$Res>
 
   @override
   FailedToCreateUser get _value => super._value as FailedToCreateUser;
+
+  @override
+  $Res call({
+    Object failedValue = freezed,
+  }) {
+    return _then(FailedToCreateUser(
+      failedValue:
+          failedValue == freezed ? _value.failedValue : failedValue as String,
+    ));
+  }
 }
 
 class _$FailedToCreateUser
     with DiagnosticableTreeMixin
     implements FailedToCreateUser {
-  const _$FailedToCreateUser();
+  const _$FailedToCreateUser({@required this.failedValue})
+      : assert(failedValue != null);
+
+  @override
+  final String failedValue;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Admin_Features_Failure.failedToCreateUser()';
+    return 'Admin_Features_Failure.failedToCreateUser(failedValue: $failedValue)';
   }
 
   @override
@@ -676,16 +849,26 @@ class _$FailedToCreateUser
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty(
-          'type', 'Admin_Features_Failure.failedToCreateUser'));
+          'type', 'Admin_Features_Failure.failedToCreateUser'))
+      ..add(DiagnosticsProperty('failedValue', failedValue));
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is FailedToCreateUser);
+    return identical(this, other) ||
+        (other is FailedToCreateUser &&
+            (identical(other.failedValue, failedValue) ||
+                const DeepCollectionEquality()
+                    .equals(other.failedValue, failedValue)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
+
+  @override
+  $FailedToCreateUserCopyWith<FailedToCreateUser> get copyWith =>
+      _$FailedToCreateUserCopyWithImpl<FailedToCreateUser>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -693,15 +876,17 @@ class _$FailedToCreateUser
     @required Result invalidName(String failedValue),
     @required Result invalidSurname(String failedValue),
     @required Result invalidEmployeeID(String failedValue),
+    @required Result failedDomainVerification(),
     @required Result noInternetConnection(),
-    @required Result failedToCreateUser(),
+    @required Result failedToCreateUser(String failedValue),
   }) {
     assert(invalidName != null);
     assert(invalidSurname != null);
     assert(invalidEmployeeID != null);
+    assert(failedDomainVerification != null);
     assert(noInternetConnection != null);
     assert(failedToCreateUser != null);
-    return failedToCreateUser();
+    return failedToCreateUser(failedValue);
   }
 
   @override
@@ -710,13 +895,14 @@ class _$FailedToCreateUser
     Result invalidName(String failedValue),
     Result invalidSurname(String failedValue),
     Result invalidEmployeeID(String failedValue),
+    Result failedDomainVerification(),
     Result noInternetConnection(),
-    Result failedToCreateUser(),
+    Result failedToCreateUser(String failedValue),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (failedToCreateUser != null) {
-      return failedToCreateUser();
+      return failedToCreateUser(failedValue);
     }
     return orElse();
   }
@@ -727,12 +913,14 @@ class _$FailedToCreateUser
     @required Result invalidName(InvalidName value),
     @required Result invalidSurname(InvalidSurname value),
     @required Result invalidEmployeeID(InvalidEmployeeID value),
+    @required Result failedDomainVerification(FailedDomainVerification value),
     @required Result noInternetConnection(NoInternetConnection value),
     @required Result failedToCreateUser(FailedToCreateUser value),
   }) {
     assert(invalidName != null);
     assert(invalidSurname != null);
     assert(invalidEmployeeID != null);
+    assert(failedDomainVerification != null);
     assert(noInternetConnection != null);
     assert(failedToCreateUser != null);
     return failedToCreateUser(this);
@@ -744,6 +932,7 @@ class _$FailedToCreateUser
     Result invalidName(InvalidName value),
     Result invalidSurname(InvalidSurname value),
     Result invalidEmployeeID(InvalidEmployeeID value),
+    Result failedDomainVerification(FailedDomainVerification value),
     Result noInternetConnection(NoInternetConnection value),
     Result failedToCreateUser(FailedToCreateUser value),
     @required Result orElse(),
@@ -757,5 +946,9 @@ class _$FailedToCreateUser
 }
 
 abstract class FailedToCreateUser implements Admin_Features_Failure {
-  const factory FailedToCreateUser() = _$FailedToCreateUser;
+  const factory FailedToCreateUser({@required String failedValue}) =
+      _$FailedToCreateUser;
+
+  String get failedValue;
+  $FailedToCreateUserCopyWith<FailedToCreateUser> get copyWith;
 }

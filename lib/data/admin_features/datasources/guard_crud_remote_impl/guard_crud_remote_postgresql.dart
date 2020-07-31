@@ -1,24 +1,33 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:gracker_app/core/error/exceptions.dart';
 import 'package:gracker_app/data/authentication/models/user_model.dart';
 import 'package:gracker_app/data/admin_features/datasources/guard_crud_remote_datasource.dart';
-import 'package:postgres/postgres.dart';
+import 'package:gracker_app/data/core/models/postgres_connection_data.dart';
+import 'package:uuid/uuid.dart';
 
 class Guard_CRUD_Remote_PostgreSQL implements Guard_CRUD_Remote_DataSource {
-  final PostgreSQLConnection postgreSQLConnection;
+  final Postgress_Connection_Data postgress_connection_data;
 
-  Guard_CRUD_Remote_PostgreSQL({@required this.postgreSQLConnection});
+  const Guard_CRUD_Remote_PostgreSQL(
+      {@required this.postgress_connection_data});
 
   @override
   Future<Unit> create_guard(User_Model userModel, String hashedPassword) async {
+    final postgreSQLConnection =
+        postgress_connection_data.toPostgreSQLConnection();
+
     try {
       await postgreSQLConnection.open();
+      // await postgreSQLConnection.query(
+      //    "INSERT INTO users (username,pass,permissions) VALUES ('${userModel.username.getOrCrash()}', '$hashedPassword' ,${userModel.permissionLevel.toString()})");
+      // TODO: Esto es una prueba solamente. Eliminar
       await postgreSQLConnection.query(
-          "INSERT INTO users (username,pass,permissions) VALUES ('${userModel.username}', '$hashedPassword' ,0)");
-
+          "INSERT INTO udiusers (uid,username,pass,permissions) VALUES ('${Uuid().v1()}','${userModel.username.getOrCrash()}', '$hashedPassword' ,${userModel.permissionLevel.toString()})");
+    } on Exception catch (e) {
+      throw OperationFailedException(e.toString());
+    } finally {
       await postgreSQLConnection.close();
-    } on Exception catch (_) {
-      rethrow;
     }
     return unit;
   }

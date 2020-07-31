@@ -27,7 +27,7 @@ dependencies:
   path: ^1.6.4
   flutter_bloc: ^6.0.1
   equatable:
-  postgres: ^2.1.0
+  postgres: ^2.1.1
   dartz: ^0.9.1
   shared_preferences: ^0.5.8
   injectable: ^0.4.0+1
@@ -36,6 +36,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^0.1.2
+  uuid: ^2.2.0
 
 dev_dependencies:
   flutter_test:

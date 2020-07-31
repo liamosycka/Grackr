@@ -7,4 +7,6 @@ abstract class Guard_CRUD_Repository {
   //TODO Devolver una lista con 2 elementos?
   Future<Either<Admin_Features_Failure, Unit>> create_Guard(
       User user, String hashedPassword);
+
+  //Future<Either<Admin_Features_Failure, Unit>> delete_Guard(User user);
 }

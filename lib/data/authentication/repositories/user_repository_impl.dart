@@ -27,8 +27,8 @@ class User_Repository_Impl implements User_Repository {
   @override
   Future<Either<AuthFailure, User>> get_Cached_User() async {
     try {
-      final result = await userLocalDataSource.get_Cached_User();
-      return Right(result);
+      final cached_usermodel = await userLocalDataSource.get_Cached_User();
+      return Right(cached_usermodel.toUser());
     } on NoCachedAuthException catch (_) {
       return const Left(AuthFailure.noCachedUser());
     }
@@ -38,12 +38,13 @@ class User_Repository_Impl implements User_Repository {
   Future<Either<AuthFailure, String>> get_Hashed_Password_If_Exists(
       User user) async {
     try {
-      final result = await userRemoteDataSource
+      final hashedPassword = await userRemoteDataSource
           .get_Hashed_Password_If_Exists(User_Model.fromUser(user));
-      return Future.value(Right(result));
-    } on Exception catch (_) {
-      return Future.value(
-          Left(AuthFailure.noUserFoundInDB(failedValue: user.username)));
+      return Future.value(Right(hashedPassword));
+    } on Exception catch (e) {
+      return Future.value(Left(AuthFailure.noUserFoundInDB(
+          failedValue:
+              "Username: ${user.username.getOrCrash()}, Exception: ${e.toString()}")));
     }
   }
 }

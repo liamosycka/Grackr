@@ -20,4 +20,7 @@ abstract class AuthFailure with _$AuthFailure {
   /// De la clase [Get_Authenticated] cuando no se puede establecer la conexión a internet
   /// al momento de tratar de hacer login
   const factory AuthFailure.noInternetConnection() = NoInternetConnection;
+
+  const factory AuthFailure.failedDomainVerification() =
+      FailedDomainVerification;
 }

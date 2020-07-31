@@ -9,7 +9,7 @@ class UserName extends ValueObject<String> {
   factory UserName(String input) {
     assert(input != null);
     return UserName._(
-      validateTest1(input),
+      validate_UserName(input),
     );
   }
   const UserName._(this.value);
@@ -21,7 +21,7 @@ class Password extends ValueObject<String> {
   factory Password(String input) {
     assert(input != null);
     return Password._(
-      validateTest2(input),
+      validate_Password(input),
     );
   }
   const Password._(this.value);

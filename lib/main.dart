@@ -10,6 +10,7 @@ Future<void> main() async {
   //configureInjection(env: Environment.prod);
   Bloc.observer = SimpleBlocDelegate();
   runApp(MainAppWidget());
+  // TODO: Agregar el paquete https://pub.dev/packages/google_fonts :D :D :D :D <3 <3 <3
 }
 
 // TODO Remover Prints. Posiblemente mover este SimpleBlocDelegate a un archivo distinto también

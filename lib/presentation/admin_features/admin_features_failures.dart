@@ -16,9 +16,12 @@ abstract class Admin_Features_Failure with _$Admin_Features_Failure {
   const factory Admin_Features_Failure.invalidEmployeeID(
       {@required String failedValue}) = InvalidEmployeeID;
 
+  const factory Admin_Features_Failure.failedDomainVerification() =
+      FailedDomainVerification;
+
   const factory Admin_Features_Failure.noInternetConnection() =
       NoInternetConnection;
 
-  const factory Admin_Features_Failure.failedToCreateUser() =
-      FailedToCreateUser;
+  const factory Admin_Features_Failure.failedToCreateUser(
+      {@required String failedValue}) = FailedToCreateUser;
 }

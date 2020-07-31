@@ -84,9 +84,17 @@ class _LoginForm extends State<LoginForm> {
       listener: (context, LoginState state) {
         return state.authFailrueOrSuccess.fold(() => null, (either) {
           return either.fold((failure) {
+            // TODO: Temporalmente hago un fold de todos los failures para debugging.
+            // TODO: En realidad el usuario no tendria por que ver estos errores tan especificos.
+            final String errorMessage = failure.map(
+                noUserFoundInDB: (_) => "No user found in DB.",
+                noCachedUser: (_) => "No cached user.",
+                noPasswordMatch: (_) => "No password matched.",
+                noInternetConnection: (_) => "No internet connection.",
+                failedDomainVerification: (_) => "Failed domain verification.");
             Scaffold.of(context).showSnackBar(
               SnackBar(
-                  content: const Text('Error'), backgroundColor: Colors.red),
+                  content: Text(errorMessage), backgroundColor: Colors.red),
             );
           }, (_) async {
             Scaffold.of(context).showSnackBar(
@@ -98,9 +106,9 @@ class _LoginForm extends State<LoginForm> {
             //TODO Ver mejor forma de diferenciar si se loggeo como admin/guardia
             //TODO usar algun evento de authenticatedAdmin/authenticatedGuard ??
             if (_adminCheck) {
-              ExtendedNavigator.of(context).pushAdminPage();
+              ExtendedNavigator.of(context).popAndPush(Routes.adminPage);
             } else {
-              ExtendedNavigator.of(context).pushTestPage();
+              ExtendedNavigator.of(context).popAndPush(Routes.testPage);
             }
           });
         });

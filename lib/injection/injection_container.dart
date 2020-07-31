@@ -11,6 +11,7 @@ import 'package:gracker_app/data/authentication/datasources/user_local_impl/user
 import 'package:gracker_app/data/authentication/datasources/user_remote_datasource.dart';
 import 'package:gracker_app/data/authentication/datasources/user_remote_impl/user_remote_postgresql.dart';
 import 'package:gracker_app/data/authentication/repositories/user_repository_impl.dart';
+import 'package:gracker_app/data/core/models/postgres_connection_data.dart';
 import 'package:gracker_app/domain/admin_features/repositories/guard_crud_repository.dart';
 import 'package:gracker_app/domain/admin_features/usecases/create_guard.dart';
 import 'package:gracker_app/domain/authentication/repositories/user_repository.dart';
@@ -20,8 +21,6 @@ import 'package:gracker_app/presentation/admin_features/guard_crud/create_guard/
 import 'package:gracker_app/presentation/authentication/bloc/login_bloc.dart';
 import 'package:gracker_app/presentation/core/blocs/auth_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'package:postgres/postgres.dart';
 
 final GetIt getIt = GetIt.instance;
 /*
@@ -64,11 +63,11 @@ Future<void> _initFeatures() async {
       () => Guard_CRUD_Repository_Impl(guard_CRUD_RemoteDataSource: getIt()));
   //! Data Sources
   getIt.registerLazySingleton<User_Remote_DataSource>(
-      () => User_Remote_PostgreSQL(postgreSQLConnection: getIt()));
+      () => User_Remote_PostgreSQL(postgress_connection_data: getIt()));
   getIt.registerLazySingleton<User_Local_DataSource>(
       () => User_Local_SharedPreferences(sharedPreferences: getIt()));
   getIt.registerLazySingleton<Guard_CRUD_Remote_DataSource>(
-      () => Guard_CRUD_Remote_PostgreSQL(postgreSQLConnection: getIt()));
+      () => Guard_CRUD_Remote_PostgreSQL(postgress_connection_data: getIt()));
 }
 
 Future<void> _initCore() async {
@@ -81,6 +80,15 @@ Future<void> _initCore() async {
 }
 
 Future<void> _initExternal() async {
+  //
+  getIt.registerLazySingleton<Postgress_Connection_Data>(() =>
+      const Postgress_Connection_Data(
+          host: "ruby.db.elephantsql.com",
+          port: 5432,
+          database: "dbpxbgmk",
+          username: "dbpxbgmk",
+          password: "L1GhaFDYwqF5wUBpzsXF3VW0G_p1uQWv"));
+  //"ruby.db.elephantsql.com", 5432, "dbpxbgmk",        username: "dbpxbgmk", password: "L1GhaFDYwqF5wUBpzsXF3VW0G_p1uQWv"
   // External
   final sharedPreferences = await SharedPreferences.getInstance();
   getIt.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
@@ -88,10 +96,6 @@ Future<void> _initExternal() async {
   getIt.registerLazySingleton<DBCrypt>(() => dbCrypt);
 
   // TODO Postgresql Connection
-
-  getIt.registerFactory<PostgreSQLConnection>(() => PostgreSQLConnection(
-      "ruby.db.elephantsql.com", 5432, "dbpxbgmk",
-      username: "dbpxbgmk", password: "L1GhaFDYwqF5wUBpzsXF3VW0G_p1uQWv"));
   getIt.registerLazySingleton<DataConnectionChecker>(
       () => DataConnectionChecker());
 }

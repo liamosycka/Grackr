@@ -33,6 +33,11 @@ class _$AuthFailureTearOff {
   NoInternetConnection noInternetConnection() {
     return const NoInternetConnection();
   }
+
+// ignore: unused_element
+  FailedDomainVerification failedDomainVerification() {
+    return const FailedDomainVerification();
+  }
 }
 
 // ignore: unused_element
@@ -45,6 +50,7 @@ mixin _$AuthFailure {
     @required Result noCachedUser(),
     @required Result noPasswordMatch(),
     @required Result noInternetConnection(),
+    @required Result failedDomainVerification(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
@@ -52,6 +58,7 @@ mixin _$AuthFailure {
     Result noCachedUser(),
     Result noPasswordMatch(),
     Result noInternetConnection(),
+    Result failedDomainVerification(),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -60,6 +67,7 @@ mixin _$AuthFailure {
     @required Result noCachedUser(NoCachedUser value),
     @required Result noPasswordMatch(NoPasswordMatch value),
     @required Result noInternetConnection(NoInternetConnection value),
+    @required Result failedDomainVerification(FailedDomainVerification value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
@@ -67,6 +75,7 @@ mixin _$AuthFailure {
     Result noCachedUser(NoCachedUser value),
     Result noPasswordMatch(NoPasswordMatch value),
     Result noInternetConnection(NoInternetConnection value),
+    Result failedDomainVerification(FailedDomainVerification value),
     @required Result orElse(),
   });
 }
@@ -159,11 +168,13 @@ class _$NoUserFoundInDB
     @required Result noCachedUser(),
     @required Result noPasswordMatch(),
     @required Result noInternetConnection(),
+    @required Result failedDomainVerification(),
   }) {
     assert(noUserFoundInDB != null);
     assert(noCachedUser != null);
     assert(noPasswordMatch != null);
     assert(noInternetConnection != null);
+    assert(failedDomainVerification != null);
     return noUserFoundInDB(failedValue);
   }
 
@@ -174,6 +185,7 @@ class _$NoUserFoundInDB
     Result noCachedUser(),
     Result noPasswordMatch(),
     Result noInternetConnection(),
+    Result failedDomainVerification(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -190,11 +202,13 @@ class _$NoUserFoundInDB
     @required Result noCachedUser(NoCachedUser value),
     @required Result noPasswordMatch(NoPasswordMatch value),
     @required Result noInternetConnection(NoInternetConnection value),
+    @required Result failedDomainVerification(FailedDomainVerification value),
   }) {
     assert(noUserFoundInDB != null);
     assert(noCachedUser != null);
     assert(noPasswordMatch != null);
     assert(noInternetConnection != null);
+    assert(failedDomainVerification != null);
     return noUserFoundInDB(this);
   }
 
@@ -205,6 +219,7 @@ class _$NoUserFoundInDB
     Result noCachedUser(NoCachedUser value),
     Result noPasswordMatch(NoPasswordMatch value),
     Result noInternetConnection(NoInternetConnection value),
+    Result failedDomainVerification(FailedDomainVerification value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -268,11 +283,13 @@ class _$NoCachedUser with DiagnosticableTreeMixin implements NoCachedUser {
     @required Result noCachedUser(),
     @required Result noPasswordMatch(),
     @required Result noInternetConnection(),
+    @required Result failedDomainVerification(),
   }) {
     assert(noUserFoundInDB != null);
     assert(noCachedUser != null);
     assert(noPasswordMatch != null);
     assert(noInternetConnection != null);
+    assert(failedDomainVerification != null);
     return noCachedUser();
   }
 
@@ -283,6 +300,7 @@ class _$NoCachedUser with DiagnosticableTreeMixin implements NoCachedUser {
     Result noCachedUser(),
     Result noPasswordMatch(),
     Result noInternetConnection(),
+    Result failedDomainVerification(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -299,11 +317,13 @@ class _$NoCachedUser with DiagnosticableTreeMixin implements NoCachedUser {
     @required Result noCachedUser(NoCachedUser value),
     @required Result noPasswordMatch(NoPasswordMatch value),
     @required Result noInternetConnection(NoInternetConnection value),
+    @required Result failedDomainVerification(FailedDomainVerification value),
   }) {
     assert(noUserFoundInDB != null);
     assert(noCachedUser != null);
     assert(noPasswordMatch != null);
     assert(noInternetConnection != null);
+    assert(failedDomainVerification != null);
     return noCachedUser(this);
   }
 
@@ -314,6 +334,7 @@ class _$NoCachedUser with DiagnosticableTreeMixin implements NoCachedUser {
     Result noCachedUser(NoCachedUser value),
     Result noPasswordMatch(NoPasswordMatch value),
     Result noInternetConnection(NoInternetConnection value),
+    Result failedDomainVerification(FailedDomainVerification value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -376,11 +397,13 @@ class _$NoPasswordMatch
     @required Result noCachedUser(),
     @required Result noPasswordMatch(),
     @required Result noInternetConnection(),
+    @required Result failedDomainVerification(),
   }) {
     assert(noUserFoundInDB != null);
     assert(noCachedUser != null);
     assert(noPasswordMatch != null);
     assert(noInternetConnection != null);
+    assert(failedDomainVerification != null);
     return noPasswordMatch();
   }
 
@@ -391,6 +414,7 @@ class _$NoPasswordMatch
     Result noCachedUser(),
     Result noPasswordMatch(),
     Result noInternetConnection(),
+    Result failedDomainVerification(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -407,11 +431,13 @@ class _$NoPasswordMatch
     @required Result noCachedUser(NoCachedUser value),
     @required Result noPasswordMatch(NoPasswordMatch value),
     @required Result noInternetConnection(NoInternetConnection value),
+    @required Result failedDomainVerification(FailedDomainVerification value),
   }) {
     assert(noUserFoundInDB != null);
     assert(noCachedUser != null);
     assert(noPasswordMatch != null);
     assert(noInternetConnection != null);
+    assert(failedDomainVerification != null);
     return noPasswordMatch(this);
   }
 
@@ -422,6 +448,7 @@ class _$NoPasswordMatch
     Result noCachedUser(NoCachedUser value),
     Result noPasswordMatch(NoPasswordMatch value),
     Result noInternetConnection(NoInternetConnection value),
+    Result failedDomainVerification(FailedDomainVerification value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -485,11 +512,13 @@ class _$NoInternetConnection
     @required Result noCachedUser(),
     @required Result noPasswordMatch(),
     @required Result noInternetConnection(),
+    @required Result failedDomainVerification(),
   }) {
     assert(noUserFoundInDB != null);
     assert(noCachedUser != null);
     assert(noPasswordMatch != null);
     assert(noInternetConnection != null);
+    assert(failedDomainVerification != null);
     return noInternetConnection();
   }
 
@@ -500,6 +529,7 @@ class _$NoInternetConnection
     Result noCachedUser(),
     Result noPasswordMatch(),
     Result noInternetConnection(),
+    Result failedDomainVerification(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -516,11 +546,13 @@ class _$NoInternetConnection
     @required Result noCachedUser(NoCachedUser value),
     @required Result noPasswordMatch(NoPasswordMatch value),
     @required Result noInternetConnection(NoInternetConnection value),
+    @required Result failedDomainVerification(FailedDomainVerification value),
   }) {
     assert(noUserFoundInDB != null);
     assert(noCachedUser != null);
     assert(noPasswordMatch != null);
     assert(noInternetConnection != null);
+    assert(failedDomainVerification != null);
     return noInternetConnection(this);
   }
 
@@ -531,6 +563,7 @@ class _$NoInternetConnection
     Result noCachedUser(NoCachedUser value),
     Result noPasswordMatch(NoPasswordMatch value),
     Result noInternetConnection(NoInternetConnection value),
+    Result failedDomainVerification(FailedDomainVerification value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -543,4 +576,121 @@ class _$NoInternetConnection
 
 abstract class NoInternetConnection implements AuthFailure {
   const factory NoInternetConnection() = _$NoInternetConnection;
+}
+
+abstract class $FailedDomainVerificationCopyWith<$Res> {
+  factory $FailedDomainVerificationCopyWith(FailedDomainVerification value,
+          $Res Function(FailedDomainVerification) then) =
+      _$FailedDomainVerificationCopyWithImpl<$Res>;
+}
+
+class _$FailedDomainVerificationCopyWithImpl<$Res>
+    extends _$AuthFailureCopyWithImpl<$Res>
+    implements $FailedDomainVerificationCopyWith<$Res> {
+  _$FailedDomainVerificationCopyWithImpl(FailedDomainVerification _value,
+      $Res Function(FailedDomainVerification) _then)
+      : super(_value, (v) => _then(v as FailedDomainVerification));
+
+  @override
+  FailedDomainVerification get _value =>
+      super._value as FailedDomainVerification;
+}
+
+class _$FailedDomainVerification
+    with DiagnosticableTreeMixin
+    implements FailedDomainVerification {
+  const _$FailedDomainVerification();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AuthFailure.failedDomainVerification()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(
+          DiagnosticsProperty('type', 'AuthFailure.failedDomainVerification'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is FailedDomainVerification);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result noUserFoundInDB(String failedValue),
+    @required Result noCachedUser(),
+    @required Result noPasswordMatch(),
+    @required Result noInternetConnection(),
+    @required Result failedDomainVerification(),
+  }) {
+    assert(noUserFoundInDB != null);
+    assert(noCachedUser != null);
+    assert(noPasswordMatch != null);
+    assert(noInternetConnection != null);
+    assert(failedDomainVerification != null);
+    return failedDomainVerification();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result noUserFoundInDB(String failedValue),
+    Result noCachedUser(),
+    Result noPasswordMatch(),
+    Result noInternetConnection(),
+    Result failedDomainVerification(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (failedDomainVerification != null) {
+      return failedDomainVerification();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result noUserFoundInDB(NoUserFoundInDB value),
+    @required Result noCachedUser(NoCachedUser value),
+    @required Result noPasswordMatch(NoPasswordMatch value),
+    @required Result noInternetConnection(NoInternetConnection value),
+    @required Result failedDomainVerification(FailedDomainVerification value),
+  }) {
+    assert(noUserFoundInDB != null);
+    assert(noCachedUser != null);
+    assert(noPasswordMatch != null);
+    assert(noInternetConnection != null);
+    assert(failedDomainVerification != null);
+    return failedDomainVerification(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result noUserFoundInDB(NoUserFoundInDB value),
+    Result noCachedUser(NoCachedUser value),
+    Result noPasswordMatch(NoPasswordMatch value),
+    Result noInternetConnection(NoInternetConnection value),
+    Result failedDomainVerification(FailedDomainVerification value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (failedDomainVerification != null) {
+      return failedDomainVerification(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class FailedDomainVerification implements AuthFailure {
+  const factory FailedDomainVerification() = _$FailedDomainVerification;
 }

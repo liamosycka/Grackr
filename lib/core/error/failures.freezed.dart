@@ -13,15 +13,15 @@ class _$ValueFailureTearOff {
   const _$ValueFailureTearOff();
 
 // ignore: unused_element
-  Test1<T> test1<T>({@required String failedValue}) {
-    return Test1<T>(
+  ShortPassword<T> shortPassword<T>({@required String failedValue}) {
+    return ShortPassword<T>(
       failedValue: failedValue,
     );
   }
 
 // ignore: unused_element
-  Test2<T> test2<T>({@required String failedValue}) {
-    return Test2<T>(
+  InvalidUsername<T> invalidUsername<T>({@required String failedValue}) {
+    return InvalidUsername<T>(
       failedValue: failedValue,
     );
   }
@@ -42,27 +42,27 @@ mixin _$ValueFailure<T> {
 
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result test1(String failedValue),
-    @required Result test2(String failedValue),
+    @required Result shortPassword(String failedValue),
+    @required Result invalidUsername(String failedValue),
     @required Result invalidStringToInt(String failedValue),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result test1(String failedValue),
-    Result test2(String failedValue),
+    Result shortPassword(String failedValue),
+    Result invalidUsername(String failedValue),
     Result invalidStringToInt(String failedValue),
     @required Result orElse(),
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result test1(Test1<T> value),
-    @required Result test2(Test2<T> value),
+    @required Result shortPassword(ShortPassword<T> value),
+    @required Result invalidUsername(InvalidUsername<T> value),
     @required Result invalidStringToInt(InvalidStringToInt<T> value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result test1(Test1<T> value),
-    Result test2(Test2<T> value),
+    Result shortPassword(ShortPassword<T> value),
+    Result invalidUsername(InvalidUsername<T> value),
     Result invalidStringToInt(InvalidStringToInt<T> value),
     @required Result orElse(),
   });
@@ -96,56 +96,52 @@ class _$ValueFailureCopyWithImpl<T, $Res>
   }
 }
 
-abstract class $Test1CopyWith<T, $Res>
+abstract class $ShortPasswordCopyWith<T, $Res>
     implements $ValueFailureCopyWith<T, $Res> {
-  factory $Test1CopyWith(Test1<T> value, $Res Function(Test1<T>) then) =
-      _$Test1CopyWithImpl<T, $Res>;
+  factory $ShortPasswordCopyWith(
+          ShortPassword<T> value, $Res Function(ShortPassword<T>) then) =
+      _$ShortPasswordCopyWithImpl<T, $Res>;
   @override
   $Res call({String failedValue});
 }
 
-class _$Test1CopyWithImpl<T, $Res> extends _$ValueFailureCopyWithImpl<T, $Res>
-    implements $Test1CopyWith<T, $Res> {
-  _$Test1CopyWithImpl(Test1<T> _value, $Res Function(Test1<T>) _then)
-      : super(_value, (v) => _then(v as Test1<T>));
+class _$ShortPasswordCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements $ShortPasswordCopyWith<T, $Res> {
+  _$ShortPasswordCopyWithImpl(
+      ShortPassword<T> _value, $Res Function(ShortPassword<T>) _then)
+      : super(_value, (v) => _then(v as ShortPassword<T>));
 
   @override
-  Test1<T> get _value => super._value as Test1<T>;
+  ShortPassword<T> get _value => super._value as ShortPassword<T>;
 
   @override
   $Res call({
     Object failedValue = freezed,
   }) {
-    return _then(Test1<T>(
+    return _then(ShortPassword<T>(
       failedValue:
           failedValue == freezed ? _value.failedValue : failedValue as String,
     ));
   }
 }
 
-class _$Test1<T> with DiagnosticableTreeMixin implements Test1<T> {
-  const _$Test1({@required this.failedValue}) : assert(failedValue != null);
+class _$ShortPassword<T> implements ShortPassword<T> {
+  const _$ShortPassword({@required this.failedValue})
+      : assert(failedValue != null);
 
   @override
   final String failedValue;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ValueFailure<$T>.test1(failedValue: $failedValue)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'ValueFailure<$T>.test1'))
-      ..add(DiagnosticsProperty('failedValue', failedValue));
+  String toString() {
+    return 'ValueFailure<$T>.shortPassword(failedValue: $failedValue)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Test1<T> &&
+        (other is ShortPassword<T> &&
             (identical(other.failedValue, failedValue) ||
                 const DeepCollectionEquality()
                     .equals(other.failedValue, failedValue)));
@@ -156,33 +152,33 @@ class _$Test1<T> with DiagnosticableTreeMixin implements Test1<T> {
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
 
   @override
-  $Test1CopyWith<T, Test1<T>> get copyWith =>
-      _$Test1CopyWithImpl<T, Test1<T>>(this, _$identity);
+  $ShortPasswordCopyWith<T, ShortPassword<T>> get copyWith =>
+      _$ShortPasswordCopyWithImpl<T, ShortPassword<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result test1(String failedValue),
-    @required Result test2(String failedValue),
+    @required Result shortPassword(String failedValue),
+    @required Result invalidUsername(String failedValue),
     @required Result invalidStringToInt(String failedValue),
   }) {
-    assert(test1 != null);
-    assert(test2 != null);
+    assert(shortPassword != null);
+    assert(invalidUsername != null);
     assert(invalidStringToInt != null);
-    return test1(failedValue);
+    return shortPassword(failedValue);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result test1(String failedValue),
-    Result test2(String failedValue),
+    Result shortPassword(String failedValue),
+    Result invalidUsername(String failedValue),
     Result invalidStringToInt(String failedValue),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (test1 != null) {
-      return test1(failedValue);
+    if (shortPassword != null) {
+      return shortPassword(failedValue);
     }
     return orElse();
   }
@@ -190,91 +186,88 @@ class _$Test1<T> with DiagnosticableTreeMixin implements Test1<T> {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result test1(Test1<T> value),
-    @required Result test2(Test2<T> value),
+    @required Result shortPassword(ShortPassword<T> value),
+    @required Result invalidUsername(InvalidUsername<T> value),
     @required Result invalidStringToInt(InvalidStringToInt<T> value),
   }) {
-    assert(test1 != null);
-    assert(test2 != null);
+    assert(shortPassword != null);
+    assert(invalidUsername != null);
     assert(invalidStringToInt != null);
-    return test1(this);
+    return shortPassword(this);
   }
 
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result test1(Test1<T> value),
-    Result test2(Test2<T> value),
+    Result shortPassword(ShortPassword<T> value),
+    Result invalidUsername(InvalidUsername<T> value),
     Result invalidStringToInt(InvalidStringToInt<T> value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (test1 != null) {
-      return test1(this);
+    if (shortPassword != null) {
+      return shortPassword(this);
     }
     return orElse();
   }
 }
 
-abstract class Test1<T> implements ValueFailure<T> {
-  const factory Test1({@required String failedValue}) = _$Test1<T>;
+abstract class ShortPassword<T> implements ValueFailure<T> {
+  const factory ShortPassword({@required String failedValue}) =
+      _$ShortPassword<T>;
 
   @override
   String get failedValue;
   @override
-  $Test1CopyWith<T, Test1<T>> get copyWith;
+  $ShortPasswordCopyWith<T, ShortPassword<T>> get copyWith;
 }
 
-abstract class $Test2CopyWith<T, $Res>
+abstract class $InvalidUsernameCopyWith<T, $Res>
     implements $ValueFailureCopyWith<T, $Res> {
-  factory $Test2CopyWith(Test2<T> value, $Res Function(Test2<T>) then) =
-      _$Test2CopyWithImpl<T, $Res>;
+  factory $InvalidUsernameCopyWith(
+          InvalidUsername<T> value, $Res Function(InvalidUsername<T>) then) =
+      _$InvalidUsernameCopyWithImpl<T, $Res>;
   @override
   $Res call({String failedValue});
 }
 
-class _$Test2CopyWithImpl<T, $Res> extends _$ValueFailureCopyWithImpl<T, $Res>
-    implements $Test2CopyWith<T, $Res> {
-  _$Test2CopyWithImpl(Test2<T> _value, $Res Function(Test2<T>) _then)
-      : super(_value, (v) => _then(v as Test2<T>));
+class _$InvalidUsernameCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements $InvalidUsernameCopyWith<T, $Res> {
+  _$InvalidUsernameCopyWithImpl(
+      InvalidUsername<T> _value, $Res Function(InvalidUsername<T>) _then)
+      : super(_value, (v) => _then(v as InvalidUsername<T>));
 
   @override
-  Test2<T> get _value => super._value as Test2<T>;
+  InvalidUsername<T> get _value => super._value as InvalidUsername<T>;
 
   @override
   $Res call({
     Object failedValue = freezed,
   }) {
-    return _then(Test2<T>(
+    return _then(InvalidUsername<T>(
       failedValue:
           failedValue == freezed ? _value.failedValue : failedValue as String,
     ));
   }
 }
 
-class _$Test2<T> with DiagnosticableTreeMixin implements Test2<T> {
-  const _$Test2({@required this.failedValue}) : assert(failedValue != null);
+class _$InvalidUsername<T> implements InvalidUsername<T> {
+  const _$InvalidUsername({@required this.failedValue})
+      : assert(failedValue != null);
 
   @override
   final String failedValue;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ValueFailure<$T>.test2(failedValue: $failedValue)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'ValueFailure<$T>.test2'))
-      ..add(DiagnosticsProperty('failedValue', failedValue));
+  String toString() {
+    return 'ValueFailure<$T>.invalidUsername(failedValue: $failedValue)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Test2<T> &&
+        (other is InvalidUsername<T> &&
             (identical(other.failedValue, failedValue) ||
                 const DeepCollectionEquality()
                     .equals(other.failedValue, failedValue)));
@@ -285,33 +278,33 @@ class _$Test2<T> with DiagnosticableTreeMixin implements Test2<T> {
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
 
   @override
-  $Test2CopyWith<T, Test2<T>> get copyWith =>
-      _$Test2CopyWithImpl<T, Test2<T>>(this, _$identity);
+  $InvalidUsernameCopyWith<T, InvalidUsername<T>> get copyWith =>
+      _$InvalidUsernameCopyWithImpl<T, InvalidUsername<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result test1(String failedValue),
-    @required Result test2(String failedValue),
+    @required Result shortPassword(String failedValue),
+    @required Result invalidUsername(String failedValue),
     @required Result invalidStringToInt(String failedValue),
   }) {
-    assert(test1 != null);
-    assert(test2 != null);
+    assert(shortPassword != null);
+    assert(invalidUsername != null);
     assert(invalidStringToInt != null);
-    return test2(failedValue);
+    return invalidUsername(failedValue);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result test1(String failedValue),
-    Result test2(String failedValue),
+    Result shortPassword(String failedValue),
+    Result invalidUsername(String failedValue),
     Result invalidStringToInt(String failedValue),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (test2 != null) {
-      return test2(failedValue);
+    if (invalidUsername != null) {
+      return invalidUsername(failedValue);
     }
     return orElse();
   }
@@ -319,39 +312,40 @@ class _$Test2<T> with DiagnosticableTreeMixin implements Test2<T> {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result test1(Test1<T> value),
-    @required Result test2(Test2<T> value),
+    @required Result shortPassword(ShortPassword<T> value),
+    @required Result invalidUsername(InvalidUsername<T> value),
     @required Result invalidStringToInt(InvalidStringToInt<T> value),
   }) {
-    assert(test1 != null);
-    assert(test2 != null);
+    assert(shortPassword != null);
+    assert(invalidUsername != null);
     assert(invalidStringToInt != null);
-    return test2(this);
+    return invalidUsername(this);
   }
 
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result test1(Test1<T> value),
-    Result test2(Test2<T> value),
+    Result shortPassword(ShortPassword<T> value),
+    Result invalidUsername(InvalidUsername<T> value),
     Result invalidStringToInt(InvalidStringToInt<T> value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (test2 != null) {
-      return test2(this);
+    if (invalidUsername != null) {
+      return invalidUsername(this);
     }
     return orElse();
   }
 }
 
-abstract class Test2<T> implements ValueFailure<T> {
-  const factory Test2({@required String failedValue}) = _$Test2<T>;
+abstract class InvalidUsername<T> implements ValueFailure<T> {
+  const factory InvalidUsername({@required String failedValue}) =
+      _$InvalidUsername<T>;
 
   @override
   String get failedValue;
   @override
-  $Test2CopyWith<T, Test2<T>> get copyWith;
+  $InvalidUsernameCopyWith<T, InvalidUsername<T>> get copyWith;
 }
 
 abstract class $InvalidStringToIntCopyWith<T, $Res>
@@ -384,9 +378,7 @@ class _$InvalidStringToIntCopyWithImpl<T, $Res>
   }
 }
 
-class _$InvalidStringToInt<T>
-    with DiagnosticableTreeMixin
-    implements InvalidStringToInt<T> {
+class _$InvalidStringToInt<T> implements InvalidStringToInt<T> {
   const _$InvalidStringToInt({@required this.failedValue})
       : assert(failedValue != null);
 
@@ -394,16 +386,8 @@ class _$InvalidStringToInt<T>
   final String failedValue;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'ValueFailure<$T>.invalidStringToInt(failedValue: $failedValue)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'ValueFailure<$T>.invalidStringToInt'))
-      ..add(DiagnosticsProperty('failedValue', failedValue));
   }
 
   @override
@@ -427,12 +411,12 @@ class _$InvalidStringToInt<T>
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result test1(String failedValue),
-    @required Result test2(String failedValue),
+    @required Result shortPassword(String failedValue),
+    @required Result invalidUsername(String failedValue),
     @required Result invalidStringToInt(String failedValue),
   }) {
-    assert(test1 != null);
-    assert(test2 != null);
+    assert(shortPassword != null);
+    assert(invalidUsername != null);
     assert(invalidStringToInt != null);
     return invalidStringToInt(failedValue);
   }
@@ -440,8 +424,8 @@ class _$InvalidStringToInt<T>
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result test1(String failedValue),
-    Result test2(String failedValue),
+    Result shortPassword(String failedValue),
+    Result invalidUsername(String failedValue),
     Result invalidStringToInt(String failedValue),
     @required Result orElse(),
   }) {
@@ -455,12 +439,12 @@ class _$InvalidStringToInt<T>
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result test1(Test1<T> value),
-    @required Result test2(Test2<T> value),
+    @required Result shortPassword(ShortPassword<T> value),
+    @required Result invalidUsername(InvalidUsername<T> value),
     @required Result invalidStringToInt(InvalidStringToInt<T> value),
   }) {
-    assert(test1 != null);
-    assert(test2 != null);
+    assert(shortPassword != null);
+    assert(invalidUsername != null);
     assert(invalidStringToInt != null);
     return invalidStringToInt(this);
   }
@@ -468,8 +452,8 @@ class _$InvalidStringToInt<T>
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result test1(Test1<T> value),
-    Result test2(Test2<T> value),
+    Result shortPassword(ShortPassword<T> value),
+    Result invalidUsername(InvalidUsername<T> value),
     Result invalidStringToInt(InvalidStringToInt<T> value),
     @required Result orElse(),
   }) {
