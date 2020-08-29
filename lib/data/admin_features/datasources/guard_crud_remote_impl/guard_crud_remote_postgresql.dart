@@ -4,7 +4,6 @@ import 'package:gracker_app/core/error/exceptions.dart';
 import 'package:gracker_app/data/authentication/models/user_model.dart';
 import 'package:gracker_app/data/admin_features/datasources/guard_crud_remote_datasource.dart';
 import 'package:gracker_app/data/core/models/postgres_connection_data.dart';
-import 'package:uuid/uuid.dart';
 
 class Guard_CRUD_Remote_PostgreSQL implements Guard_CRUD_Remote_DataSource {
   final Postgress_Connection_Data postgress_connection_data;
@@ -19,11 +18,12 @@ class Guard_CRUD_Remote_PostgreSQL implements Guard_CRUD_Remote_DataSource {
 
     try {
       await postgreSQLConnection.open();
-      // await postgreSQLConnection.query(
-      //    "INSERT INTO users (username,pass,permissions) VALUES ('${userModel.username.getOrCrash()}', '$hashedPassword' ,${userModel.permissionLevel.toString()})");
-      // TODO: Esto es una prueba solamente. Eliminar
+
       await postgreSQLConnection.query(
-          "INSERT INTO udiusers (uid,username,pass,permissions) VALUES ('${Uuid().v1()}','${userModel.username.getOrCrash()}', '$hashedPassword' ,${userModel.permissionLevel.toString()})");
+          "INSERT INTO users (username,pass,permissions) VALUES ('${userModel.username.getOrCrash()}', '$hashedPassword' ,${userModel.permissionLevel.getOrCrash().toString()})");
+      // TODO: Esto es una prueba solamente. Eliminar
+      // await postgreSQLConnection.query(
+      //     "INSERT INTO users (username,pass,permissions) VALUES ('${userModel.username.getOrCrash()}', '$hashedPassword' ,${userModel.permissionLevel.toString()})");
     } on Exception catch (e) {
       throw OperationFailedException(e.toString());
     } finally {

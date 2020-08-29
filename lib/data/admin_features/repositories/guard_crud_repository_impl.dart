@@ -21,7 +21,8 @@ class Guard_CRUD_Repository_Impl implements Guard_CRUD_Repository {
       return Right(result);
     } on OperationFailedException catch (e) {
       return Left(
-          Admin_Features_Failure.failedToCreateUser(failedValue: e.toString()));
+        Admin_Features_Failure.failedToCreateUser(failedValue: e.toString()),
+      );
     }
   }
 }

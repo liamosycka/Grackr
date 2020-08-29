@@ -5,4 +5,5 @@ abstract class User_Local_DataSource {
   /// Throws [NoCachedAuthException] cuando no hay nada almacenado en el SharedPreferences.
   Future<User_Model> get_Cached_User();
   Future<void> cache_User(User_Model userModel);
+  Future<void> clear_Cached_User();
 }

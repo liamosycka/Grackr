@@ -8,7 +8,7 @@ class User_Model {
 
   final UserName username;
   final Password password;
-  final int permissionLevel;
+  final PermissionLevel permissionLevel;
 
   User_Model({
     this.username,
@@ -18,16 +18,18 @@ class User_Model {
 
   factory User_Model.fromJson(Map<String, dynamic> json) {
     return User_Model(
-        username: UserName(json[_USERNAME].toString()),
-        password: Password(json[_PASSWORD].toString()),
-        permissionLevel: int.parse(json[_PERMISSIONS].toString()));
+      username: UserName(json[_USERNAME].toString()),
+      password: Password(json[_PASSWORD].toString()),
+      permissionLevel:
+          PermissionLevel(int.parse(json[_PERMISSIONS].toString())),
+    );
   }
 
   Map<String, dynamic> toJson() {
     return {
       _USERNAME: username.getOrCrash(),
       _PASSWORD: password.getOrCrash(),
-      _PERMISSIONS: permissionLevel.toString()
+      _PERMISSIONS: permissionLevel.getOrCrash().toString()
     };
   }
 

@@ -5,9 +5,7 @@ import 'package:gracker_app/domain/admin_features/usecases/create_guard.dart';
 import 'package:gracker_app/domain/admin_features/value_objects.dart';
 import 'package:gracker_app/presentation/admin_features/guard_crud/create_guard/bloc/create_guard_event.dart';
 import 'package:gracker_app/presentation/admin_features/guard_crud/create_guard/bloc/create_guard_state.dart';
-import 'package:injectable/injectable.dart';
 
-@injectable
 class Create_Guard_Bloc extends Bloc<CreateGuardEvent, CreateGuardState> {
   Create_Guard createGuard;
 

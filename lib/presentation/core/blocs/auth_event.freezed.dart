@@ -18,6 +18,13 @@ class _$AuthEventTearOff {
   }
 
 // ignore: unused_element
+  LoggedIn loggedIn({PermissionLevel permissionLevel}) {
+    return LoggedIn(
+      permissionLevel: permissionLevel,
+    );
+  }
+
+// ignore: unused_element
   LoggedOut loggedOut() {
     return const LoggedOut();
   }
@@ -30,22 +37,26 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result appStart(),
+    @required Result loggedIn(PermissionLevel permissionLevel),
     @required Result loggedOut(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result appStart(),
+    Result loggedIn(PermissionLevel permissionLevel),
     Result loggedOut(),
     @required Result orElse(),
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result appStart(AppStart value),
+    @required Result loggedIn(LoggedIn value),
     @required Result loggedOut(LoggedOut value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result appStart(AppStart value),
+    Result loggedIn(LoggedIn value),
     Result loggedOut(LoggedOut value),
     @required Result orElse(),
   });
@@ -104,9 +115,11 @@ class _$AppStart with DiagnosticableTreeMixin implements AppStart {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result appStart(),
+    @required Result loggedIn(PermissionLevel permissionLevel),
     @required Result loggedOut(),
   }) {
     assert(appStart != null);
+    assert(loggedIn != null);
     assert(loggedOut != null);
     return appStart();
   }
@@ -115,6 +128,7 @@ class _$AppStart with DiagnosticableTreeMixin implements AppStart {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result appStart(),
+    Result loggedIn(PermissionLevel permissionLevel),
     Result loggedOut(),
     @required Result orElse(),
   }) {
@@ -129,9 +143,11 @@ class _$AppStart with DiagnosticableTreeMixin implements AppStart {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result appStart(AppStart value),
+    @required Result loggedIn(LoggedIn value),
     @required Result loggedOut(LoggedOut value),
   }) {
     assert(appStart != null);
+    assert(loggedIn != null);
     assert(loggedOut != null);
     return appStart(this);
   }
@@ -140,6 +156,7 @@ class _$AppStart with DiagnosticableTreeMixin implements AppStart {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result appStart(AppStart value),
+    Result loggedIn(LoggedIn value),
     Result loggedOut(LoggedOut value),
     @required Result orElse(),
   }) {
@@ -153,6 +170,133 @@ class _$AppStart with DiagnosticableTreeMixin implements AppStart {
 
 abstract class AppStart implements AuthEvent {
   const factory AppStart() = _$AppStart;
+}
+
+abstract class $LoggedInCopyWith<$Res> {
+  factory $LoggedInCopyWith(LoggedIn value, $Res Function(LoggedIn) then) =
+      _$LoggedInCopyWithImpl<$Res>;
+  $Res call({PermissionLevel permissionLevel});
+}
+
+class _$LoggedInCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
+    implements $LoggedInCopyWith<$Res> {
+  _$LoggedInCopyWithImpl(LoggedIn _value, $Res Function(LoggedIn) _then)
+      : super(_value, (v) => _then(v as LoggedIn));
+
+  @override
+  LoggedIn get _value => super._value as LoggedIn;
+
+  @override
+  $Res call({
+    Object permissionLevel = freezed,
+  }) {
+    return _then(LoggedIn(
+      permissionLevel: permissionLevel == freezed
+          ? _value.permissionLevel
+          : permissionLevel as PermissionLevel,
+    ));
+  }
+}
+
+class _$LoggedIn with DiagnosticableTreeMixin implements LoggedIn {
+  const _$LoggedIn({this.permissionLevel});
+
+  @override
+  final PermissionLevel permissionLevel;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AuthEvent.loggedIn(permissionLevel: $permissionLevel)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AuthEvent.loggedIn'))
+      ..add(DiagnosticsProperty('permissionLevel', permissionLevel));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is LoggedIn &&
+            (identical(other.permissionLevel, permissionLevel) ||
+                const DeepCollectionEquality()
+                    .equals(other.permissionLevel, permissionLevel)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(permissionLevel);
+
+  @override
+  $LoggedInCopyWith<LoggedIn> get copyWith =>
+      _$LoggedInCopyWithImpl<LoggedIn>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result appStart(),
+    @required Result loggedIn(PermissionLevel permissionLevel),
+    @required Result loggedOut(),
+  }) {
+    assert(appStart != null);
+    assert(loggedIn != null);
+    assert(loggedOut != null);
+    return loggedIn(permissionLevel);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result appStart(),
+    Result loggedIn(PermissionLevel permissionLevel),
+    Result loggedOut(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (loggedIn != null) {
+      return loggedIn(permissionLevel);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result appStart(AppStart value),
+    @required Result loggedIn(LoggedIn value),
+    @required Result loggedOut(LoggedOut value),
+  }) {
+    assert(appStart != null);
+    assert(loggedIn != null);
+    assert(loggedOut != null);
+    return loggedIn(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result appStart(AppStart value),
+    Result loggedIn(LoggedIn value),
+    Result loggedOut(LoggedOut value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (loggedIn != null) {
+      return loggedIn(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoggedIn implements AuthEvent {
+  const factory LoggedIn({PermissionLevel permissionLevel}) = _$LoggedIn;
+
+  PermissionLevel get permissionLevel;
+  $LoggedInCopyWith<LoggedIn> get copyWith;
 }
 
 abstract class $LoggedOutCopyWith<$Res> {
@@ -195,9 +339,11 @@ class _$LoggedOut with DiagnosticableTreeMixin implements LoggedOut {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result appStart(),
+    @required Result loggedIn(PermissionLevel permissionLevel),
     @required Result loggedOut(),
   }) {
     assert(appStart != null);
+    assert(loggedIn != null);
     assert(loggedOut != null);
     return loggedOut();
   }
@@ -206,6 +352,7 @@ class _$LoggedOut with DiagnosticableTreeMixin implements LoggedOut {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result appStart(),
+    Result loggedIn(PermissionLevel permissionLevel),
     Result loggedOut(),
     @required Result orElse(),
   }) {
@@ -220,9 +367,11 @@ class _$LoggedOut with DiagnosticableTreeMixin implements LoggedOut {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result appStart(AppStart value),
+    @required Result loggedIn(LoggedIn value),
     @required Result loggedOut(LoggedOut value),
   }) {
     assert(appStart != null);
+    assert(loggedIn != null);
     assert(loggedOut != null);
     return loggedOut(this);
   }
@@ -231,6 +380,7 @@ class _$LoggedOut with DiagnosticableTreeMixin implements LoggedOut {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result appStart(AppStart value),
+    Result loggedIn(LoggedIn value),
     Result loggedOut(LoggedOut value),
     @required Result orElse(),
   }) {

@@ -8,5 +8,7 @@ abstract class User_Repository {
   Future<Either<AuthFailure, User>> get_Cached_User();
 
   //TODO cambiar void por unit
-  Future<Either<AuthFailure, void>> cache_User(User user);
+  Future<Either<AuthFailure, Unit>> cache_User(User user);
+
+  Future<Either<AuthFailure, Unit>> clear_Cached_User();
 }

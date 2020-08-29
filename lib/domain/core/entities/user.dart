@@ -24,6 +24,6 @@ abstract class User with _$User {
     //@required UniqueID id,
     @required UserName username,
     @required Password password,
-    @required int permissionLevel,
+    @required PermissionLevel permissionLevel,
   }) = _User;
 }

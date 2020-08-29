@@ -7,10 +7,8 @@ import 'package:gracker_app/core/usecases/usecase.dart';
 import 'package:gracker_app/domain/authentication/repositories/user_repository.dart';
 import 'package:gracker_app/domain/authentication/value_objects.dart';
 import 'package:gracker_app/domain/core/entities/user.dart';
-import 'package:injectable/injectable.dart';
-import '../../../presentation/authentication/auth_failures.dart';
+import 'package:gracker_app/presentation/authentication/auth_failures.dart';
 
-@lazySingleton
 class Get_Authenticated implements UseCase<AuthFailure, Unit, Params> {
   final User_Repository userRepository;
   final Network_Info networkInfo;
@@ -25,12 +23,13 @@ class Get_Authenticated implements UseCase<AuthFailure, Unit, Params> {
   Future<Either<AuthFailure, Unit>> call(Params params) async {
     if (await networkInfo.isConnected) {
       // Primero se verifican los valores pasados
-      if (params.username.isValid() && params.plainPassword.isValid()) {
+      if (params.username.isValid() &&
+          params.plainPassword.isValid() &&
+          params.permissionLevel.isValid()) {
         final user = User(
             username: params.username,
             password: params.plainPassword,
             permissionLevel: params.permissionLevel);
-
         final failureOrHashedPassword =
             await userRepository.get_Hashed_Password_If_Exists(user);
 
@@ -39,7 +38,7 @@ class Get_Authenticated implements UseCase<AuthFailure, Unit, Params> {
           if (dbCrypt.checkpw(
               params.plainPassword.getOrCrash(), hashedPassword)) {
             userRepository.cache_User(user);
-            return Right(unit);
+            return const Right(unit);
           } else {
             return const Left(AuthFailure.noPasswordMatch());
           }
@@ -56,7 +55,7 @@ class Get_Authenticated implements UseCase<AuthFailure, Unit, Params> {
 class Params extends Equatable {
   final UserName username;
   final Password plainPassword;
-  final int permissionLevel;
+  final PermissionLevel permissionLevel;
 
   const Params(
       {@required this.username,

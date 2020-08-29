@@ -16,12 +16,14 @@ class _$LoginStateTearOff {
   _LoginState call(
       {@required UserName username,
       @required Password password,
+      @required PermissionLevel permissions,
       @required bool showErrorMessages,
       @required bool isSubmitting,
       @required Option<Either<AuthFailure, Unit>> authFailrueOrSuccess}) {
     return _LoginState(
       username: username,
       password: password,
+      permissions: permissions,
       showErrorMessages: showErrorMessages,
       isSubmitting: isSubmitting,
       authFailrueOrSuccess: authFailrueOrSuccess,
@@ -35,6 +37,7 @@ const $LoginState = _$LoginStateTearOff();
 mixin _$LoginState {
   UserName get username;
   Password get password;
+  PermissionLevel get permissions;
   bool get showErrorMessages;
   bool get isSubmitting;
   Option<Either<AuthFailure, Unit>> get authFailrueOrSuccess;
@@ -49,6 +52,7 @@ abstract class $LoginStateCopyWith<$Res> {
   $Res call(
       {UserName username,
       Password password,
+      PermissionLevel permissions,
       bool showErrorMessages,
       bool isSubmitting,
       Option<Either<AuthFailure, Unit>> authFailrueOrSuccess});
@@ -65,6 +69,7 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
   $Res call({
     Object username = freezed,
     Object password = freezed,
+    Object permissions = freezed,
     Object showErrorMessages = freezed,
     Object isSubmitting = freezed,
     Object authFailrueOrSuccess = freezed,
@@ -72,6 +77,9 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
     return _then(_value.copyWith(
       username: username == freezed ? _value.username : username as UserName,
       password: password == freezed ? _value.password : password as Password,
+      permissions: permissions == freezed
+          ? _value.permissions
+          : permissions as PermissionLevel,
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages as bool,
@@ -92,6 +100,7 @@ abstract class _$LoginStateCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
   $Res call(
       {UserName username,
       Password password,
+      PermissionLevel permissions,
       bool showErrorMessages,
       bool isSubmitting,
       Option<Either<AuthFailure, Unit>> authFailrueOrSuccess});
@@ -110,6 +119,7 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
   $Res call({
     Object username = freezed,
     Object password = freezed,
+    Object permissions = freezed,
     Object showErrorMessages = freezed,
     Object isSubmitting = freezed,
     Object authFailrueOrSuccess = freezed,
@@ -117,6 +127,9 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     return _then(_LoginState(
       username: username == freezed ? _value.username : username as UserName,
       password: password == freezed ? _value.password : password as Password,
+      permissions: permissions == freezed
+          ? _value.permissions
+          : permissions as PermissionLevel,
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages as bool,
@@ -133,11 +146,13 @@ class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
   const _$_LoginState(
       {@required this.username,
       @required this.password,
+      @required this.permissions,
       @required this.showErrorMessages,
       @required this.isSubmitting,
       @required this.authFailrueOrSuccess})
       : assert(username != null),
         assert(password != null),
+        assert(permissions != null),
         assert(showErrorMessages != null),
         assert(isSubmitting != null),
         assert(authFailrueOrSuccess != null);
@@ -147,6 +162,8 @@ class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
   @override
   final Password password;
   @override
+  final PermissionLevel permissions;
+  @override
   final bool showErrorMessages;
   @override
   final bool isSubmitting;
@@ -155,7 +172,7 @@ class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LoginState(username: $username, password: $password, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, authFailrueOrSuccess: $authFailrueOrSuccess)';
+    return 'LoginState(username: $username, password: $password, permissions: $permissions, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, authFailrueOrSuccess: $authFailrueOrSuccess)';
   }
 
   @override
@@ -165,6 +182,7 @@ class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
       ..add(DiagnosticsProperty('type', 'LoginState'))
       ..add(DiagnosticsProperty('username', username))
       ..add(DiagnosticsProperty('password', password))
+      ..add(DiagnosticsProperty('permissions', permissions))
       ..add(DiagnosticsProperty('showErrorMessages', showErrorMessages))
       ..add(DiagnosticsProperty('isSubmitting', isSubmitting))
       ..add(DiagnosticsProperty('authFailrueOrSuccess', authFailrueOrSuccess));
@@ -180,6 +198,9 @@ class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
             (identical(other.password, password) ||
                 const DeepCollectionEquality()
                     .equals(other.password, password)) &&
+            (identical(other.permissions, permissions) ||
+                const DeepCollectionEquality()
+                    .equals(other.permissions, permissions)) &&
             (identical(other.showErrorMessages, showErrorMessages) ||
                 const DeepCollectionEquality()
                     .equals(other.showErrorMessages, showErrorMessages)) &&
@@ -196,6 +217,7 @@ class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(username) ^
       const DeepCollectionEquality().hash(password) ^
+      const DeepCollectionEquality().hash(permissions) ^
       const DeepCollectionEquality().hash(showErrorMessages) ^
       const DeepCollectionEquality().hash(isSubmitting) ^
       const DeepCollectionEquality().hash(authFailrueOrSuccess);
@@ -209,6 +231,7 @@ abstract class _LoginState implements LoginState {
   const factory _LoginState(
           {@required UserName username,
           @required Password password,
+          @required PermissionLevel permissions,
           @required bool showErrorMessages,
           @required bool isSubmitting,
           @required Option<Either<AuthFailure, Unit>> authFailrueOrSuccess}) =
@@ -218,6 +241,8 @@ abstract class _LoginState implements LoginState {
   UserName get username;
   @override
   Password get password;
+  @override
+  PermissionLevel get permissions;
   @override
   bool get showErrorMessages;
   @override

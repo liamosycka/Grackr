@@ -19,17 +19,20 @@ abstract class LoginState with _$LoginState {
 //https://github.com/ResoCoder/finished-flutter-firebase-ddd-course/blob/master/lib/application/auth/sign_in_form/sign_in_form_state.dart
 @freezed
 abstract class LoginState with _$LoginState {
-  const factory LoginState(
-          {@required UserName username,
-          @required Password password,
-          @required bool showErrorMessages,
-          @required bool isSubmitting,
-          @required Option<Either<AuthFailure, Unit>> authFailrueOrSuccess}) =
-      _LoginState;
+  const factory LoginState({
+    @required UserName username,
+    @required Password password,
+    @required PermissionLevel permissions,
+    @required bool showErrorMessages,
+    @required bool isSubmitting,
+    @required Option<Either<AuthFailure, Unit>> authFailrueOrSuccess,
+  }) = _LoginState;
 
   factory LoginState.initial() => LoginState(
         username: UserName(''),
         password: Password(''),
+        // TODO Obtener el permiso del usuario cacheado, si lo hay ??
+        permissions: PermissionLevel(PermissionLevel.guard),
         showErrorMessages: false,
         isSubmitting: false,
         authFailrueOrSuccess: none(),

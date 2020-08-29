@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gracker_app/injection/injection_container.dart';
+import 'package:gracker_app/core/injection/injection_container.dart';
 import 'package:gracker_app/presentation/admin_features/guard_crud/create_guard/bloc/create_guard_bloc.dart';
 import 'package:gracker_app/presentation/admin_features/guard_crud/create_guard/bloc/create_guard_event.dart';
 import 'package:gracker_app/presentation/admin_features/guard_crud/create_guard/bloc/create_guard_state.dart';
@@ -61,14 +61,14 @@ class _InputForm extends State<InputForm> {
         return state.adminFeaturesFailureOrSuccess.fold(() => null, (either) {
           return either.fold((failure) {
             Scaffold.of(context).showSnackBar(
-              SnackBar(
-                content: const Text('Error'),
+              const SnackBar(
+                content: Text('Error'),
                 backgroundColor: Colors.red,
               ),
             );
           },
-              (_) => Scaffold.of(context).showSnackBar(SnackBar(
-                    content: const Text('Success'),
+              (_) => Scaffold.of(context).showSnackBar(const SnackBar(
+                    content: Text('Success'),
                     backgroundColor: Colors.green,
                   )));
         });

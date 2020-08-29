@@ -2,6 +2,7 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:dbcrypt/dbcrypt.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gracker_app/core/network/network_info.dart';
+import 'package:gracker_app/core/themes/bloc/theme_bloc.dart';
 import 'package:gracker_app/core/util/input_converter.dart';
 import 'package:gracker_app/data/admin_features/datasources/guard_crud_remote_datasource.dart';
 import 'package:gracker_app/data/admin_features/datasources/guard_crud_remote_impl/guard_crud_remote_postgresql.dart';
@@ -15,8 +16,9 @@ import 'package:gracker_app/data/core/models/postgres_connection_data.dart';
 import 'package:gracker_app/domain/admin_features/repositories/guard_crud_repository.dart';
 import 'package:gracker_app/domain/admin_features/usecases/create_guard.dart';
 import 'package:gracker_app/domain/authentication/repositories/user_repository.dart';
-import 'package:gracker_app/domain/authentication/usecases/check_if_authenticated.dart';
+import 'package:gracker_app/domain/core/usecases/check_if_authenticated.dart';
 import 'package:gracker_app/domain/authentication/usecases/get_authenticated.dart';
+import 'package:gracker_app/domain/core/usecases/log_out.dart';
 import 'package:gracker_app/presentation/admin_features/guard_crud/create_guard/bloc/create_guard_bloc.dart';
 import 'package:gracker_app/presentation/authentication/bloc/login_bloc.dart';
 import 'package:gracker_app/presentation/core/blocs/auth_bloc.dart';
@@ -28,22 +30,28 @@ final GetIt getIt = GetIt.instance;
   Singleton son persistentes. Si una Page pide una instancia de un Singleton, se devuelve siempre el mismo (Pues se cachea la primera vez que fue creado)
     Por lo general, los Blocs nunca deben ser Singletons
  */
-Future<void> init() async {
+Future<void> initGetItDependencies() async {
   // Features
-  await _initFeatures();
+  _initFeatures();
   // Core
-  await _initCore();
+  _initCore();
   // External
   await _initExternal();
 }
 
-Future<void> _initFeatures() async {
+void _initFeatures() {
   // Feature - Auth
   // Bloc
-  getIt.registerFactory<Login_Bloc>(() => Login_Bloc(
-      getAuthenticated: getIt(), inputConverter: getIt(), authBloc: getIt()));
-  getIt.registerLazySingleton<Auth_Bloc>(
-      () => Auth_Bloc(checkIfAuthenticated: getIt()));
+  getIt.registerFactory<LoginBloc>(() => LoginBloc(
+        getAuthenticated: getIt(),
+        inputConverter: getIt(),
+      ));
+  getIt.registerLazySingleton<AuthBloc>(
+    () => AuthBloc(checkIfAuthenticated: getIt(), log_out: getIt()),
+  );
+  getIt.registerLazySingleton<ThemeBloc>(
+    () => ThemeBloc(),
+  );
   /*getIt.registerFactory<MainGuardiaBloc>(
           () => MainGuardiaBloc());*/
   getIt.registerLazySingleton<Create_Guard_Bloc>(
@@ -53,6 +61,7 @@ Future<void> _initFeatures() async {
       userRepository: getIt(), dbCrypt: getIt(), networkInfo: getIt()));
   getIt.registerLazySingleton<Check_If_Authenticated>(
       () => Check_If_Authenticated(userRepository: getIt()));
+  getIt.registerLazySingleton<Log_Out>(() => Log_Out(userRepository: getIt()));
 
   getIt.registerLazySingleton<Create_Guard>(() => Create_Guard(
       guard_CRUD_Repository: getIt(), dbCrypt: getIt(), networkInfo: getIt()));
@@ -70,7 +79,7 @@ Future<void> _initFeatures() async {
       () => Guard_CRUD_Remote_PostgreSQL(postgress_connection_data: getIt()));
 }
 
-Future<void> _initCore() async {
+void _initCore() {
   // Core - Util
   getIt.registerLazySingleton<InputConverter>(() => InputConverter());
 

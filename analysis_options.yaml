@@ -10,7 +10,7 @@ analyzer:
     non_part_of_directive_in_part: ignore
     missing_return: error
     must_be_immutable: error
-    prefer_const_constructors: error
+    prefer_const_constructors: warning
     unused_import: error
     non_constant_identifier_names: ignore
     prefer_const_constructors_in_immutables: error

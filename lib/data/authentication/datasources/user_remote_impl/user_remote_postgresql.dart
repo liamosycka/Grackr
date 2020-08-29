@@ -17,7 +17,7 @@ class User_Remote_PostgreSQL implements User_Remote_DataSource {
     try {
       await postgreSQLConnection.open();
       final result = await postgreSQLConnection.mappedResultsQuery(
-          "SELECT pass FROM users WHERE username='${userModel.username.getOrCrash()}' AND permissions='${userModel.permissionLevel.toString()}';");
+          "SELECT pass FROM users WHERE username='${userModel.username.getOrCrash()}' AND permissions='${userModel.permissionLevel.getOrCrash().toString()}';");
 
       if (result.isEmpty) {
         throw DataBaseException();

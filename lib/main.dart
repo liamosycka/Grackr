@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gracker_app/injection/injection_container.dart';
+import 'package:gracker_app/core/injection/injection_container.dart';
 import 'package:gracker_app/presentation/core/main_app_widget.dart';
 import 'package:bloc/bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+
+// TODO: Agregar el paquete https://pub.dev/packages/google_fonts :D :D :D :D <3 <3 <3
+//? Admin_1234 123Admin_1234
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await init();
-  //configureInjection(env: Environment.prod);
+  //? Inicializar el storage (default) de HydratedBloc. Puede usarse uno distinto
+  HydratedBloc.storage = await HydratedStorage.build();
+  //? Inicializar las dependencias con GetIt
+  initGetItDependencies();
   Bloc.observer = SimpleBlocDelegate();
+
   runApp(MainAppWidget());
-  // TODO: Agregar el paquete https://pub.dev/packages/google_fonts :D :D :D :D <3 <3 <3
 }
 
 // TODO Remover Prints. Posiblemente mover este SimpleBlocDelegate a un archivo distinto también

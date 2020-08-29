@@ -9,9 +9,7 @@ import 'package:gracker_app/domain/authentication/value_objects.dart';
 import 'package:gracker_app/domain/core/entities/user.dart';
 import 'package:gracker_app/domain/admin_features/repositories/guard_crud_repository.dart';
 import 'package:gracker_app/presentation/admin_features/admin_features_failures.dart';
-import 'package:injectable/injectable.dart';
 
-@lazySingleton
 class Create_Guard implements UseCase<Admin_Features_Failure, Unit, Params> {
   final Guard_CRUD_Repository guard_CRUD_Repository;
   final Network_Info networkInfo;
@@ -30,16 +28,13 @@ class Create_Guard implements UseCase<Admin_Features_Failure, Unit, Params> {
       if (await networkInfo.isConnected) {
         final String username =
             "${params.surname.getOrCrash()}_${params.employeeID.getOrCrash()}";
-        //final list = List(2) as List<String>;
-        //_generateStart_End_random(list);
         final String plainPassword =
             "123${params.surname.getOrCrash()}_${params.employeeID.getOrCrash()}";
-        //final String plainPassword =
-        //   "${list[0]}${params.surname}_${params.employeeID}${list[1]}";
         final user = User(
-            username: UserName(username),
-            password: Password(plainPassword),
-            permissionLevel: 0);
+          username: UserName(username),
+          password: Password(plainPassword),
+          permissionLevel: PermissionLevel(PermissionLevel.guard),
+        );
 
         final String hashedPass =
             dbCrypt.hashpw(plainPassword, dbCrypt.gensalt());

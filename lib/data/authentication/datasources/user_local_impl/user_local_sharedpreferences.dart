@@ -4,10 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:gracker_app/core/error/exceptions.dart';
 import 'package:gracker_app/data/authentication/datasources/user_local_datasource.dart';
 import 'package:gracker_app/data/authentication/models/user_model.dart';
-import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-@LazySingleton(as: User_Local_DataSource)
 class User_Local_SharedPreferences implements User_Local_DataSource {
   final SharedPreferences sharedPreferences;
   static const String cachedUser = "cachedUser";
@@ -26,5 +24,10 @@ class User_Local_SharedPreferences implements User_Local_DataSource {
     } else {
       throw NoCachedAuthException();
     }
+  }
+
+  @override
+  Future<void> clear_Cached_User() async {
+    final result = sharedPreferences.remove(cachedUser);
   }
 }

@@ -1,24 +1,26 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gracker_app/core/routes/router.dart';
+import 'package:gracker_app/domain/authentication/value_objects.dart';
 import 'package:gracker_app/presentation/core/blocs/auth_bloc.dart';
 import 'package:gracker_app/presentation/core/blocs/auth_state.dart';
-import 'package:gracker_app/presentation/core/routes/router.gr.dart';
 
 class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocListener<Auth_Bloc, AuthState>(
+    return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         state.maybeMap(
           orElse: () {},
-          // TODO Rutas
-
-          //TODO habria que diferenciar un state con authenticated de admin/guardia
-          //authenticated: (_) => ExtendedNavigator.of(context).pushTestPage(),
-          authenticated: (_) => ExtendedNavigator.of(context).pushAdminPage(),
+          authenticated: (state) {
+            return Navigator.of(context).pushReplacementNamed(
+              state.permissionLevel.getOrCrash() == PermissionLevel.admin
+                  ? Routes.homeAdmin
+                  : Routes.homeGuard,
+            );
+          },
           unauthenticated: (_) =>
-              ExtendedNavigator.of(context).popAndPush(Routes.landingPage),
+              Navigator.of(context).pushReplacementNamed(Routes.landing),
         );
       },
       child: _SplashPageWidget(),
@@ -29,9 +31,39 @@ class SplashPage extends StatelessWidget {
 class _SplashPageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    final colorScheme = Theme.of(context).colorScheme;
+    return Scaffold(
       body: Center(
-        child: CircularProgressIndicator(),
+        child: Column(
+          children: [
+            Expanded(
+              flex: 6,
+              child: Container(
+                width: double.infinity,
+                alignment: Alignment.center,
+                child: Text(
+                  'Grackr',
+                  style: TextStyle(
+                    fontSize: 80,
+                    fontWeight: FontWeight.bold,
+                    color: colorScheme.onBackground,
+                  ),
+                ),
+              ),
+            ),
+            Flexible(
+              flex: 4,
+              child: SizedBox(
+                height: 80,
+                width: 80,
+                child: CircularProgressIndicator(
+                  backgroundColor: colorScheme.onBackground,
+                  strokeWidth: 8,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

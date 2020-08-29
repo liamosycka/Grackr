@@ -26,3 +26,19 @@ class Password extends ValueObject<String> {
   }
   const Password._(this.value);
 }
+
+class PermissionLevel extends ValueObject<int> {
+  static const int noPermissions = -1;
+  static const int guard = 0;
+  static const int admin = 1;
+
+  @override
+  final Either<ValueFailure<int>, int> value;
+
+  factory PermissionLevel(int input) {
+    return PermissionLevel._(
+      validate_PermissionLevel(input),
+    );
+  }
+  const PermissionLevel._(this.value);
+}

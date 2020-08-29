@@ -18,7 +18,7 @@ class _$AuthStateTearOff {
   }
 
 // ignore: unused_element
-  Authenticated authenticated({@required int permissionLevel}) {
+  Authenticated authenticated({@required PermissionLevel permissionLevel}) {
     return Authenticated(
       permissionLevel: permissionLevel,
     );
@@ -37,13 +37,13 @@ mixin _$AuthState {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result uninitialized(),
-    @required Result authenticated(int permissionLevel),
+    @required Result authenticated(PermissionLevel permissionLevel),
     @required Result unauthenticated(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result uninitialized(),
-    Result authenticated(int permissionLevel),
+    Result authenticated(PermissionLevel permissionLevel),
     Result unauthenticated(),
     @required Result orElse(),
   });
@@ -117,7 +117,7 @@ class _$Uninitialized with DiagnosticableTreeMixin implements Uninitialized {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result uninitialized(),
-    @required Result authenticated(int permissionLevel),
+    @required Result authenticated(PermissionLevel permissionLevel),
     @required Result unauthenticated(),
   }) {
     assert(uninitialized != null);
@@ -130,7 +130,7 @@ class _$Uninitialized with DiagnosticableTreeMixin implements Uninitialized {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result uninitialized(),
-    Result authenticated(int permissionLevel),
+    Result authenticated(PermissionLevel permissionLevel),
     Result unauthenticated(),
     @required Result orElse(),
   }) {
@@ -178,7 +178,7 @@ abstract class $AuthenticatedCopyWith<$Res> {
   factory $AuthenticatedCopyWith(
           Authenticated value, $Res Function(Authenticated) then) =
       _$AuthenticatedCopyWithImpl<$Res>;
-  $Res call({int permissionLevel});
+  $Res call({PermissionLevel permissionLevel});
 }
 
 class _$AuthenticatedCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
@@ -197,7 +197,7 @@ class _$AuthenticatedCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
     return _then(Authenticated(
       permissionLevel: permissionLevel == freezed
           ? _value.permissionLevel
-          : permissionLevel as int,
+          : permissionLevel as PermissionLevel,
     ));
   }
 }
@@ -207,7 +207,7 @@ class _$Authenticated with DiagnosticableTreeMixin implements Authenticated {
       : assert(permissionLevel != null);
 
   @override
-  final int permissionLevel;
+  final PermissionLevel permissionLevel;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -244,7 +244,7 @@ class _$Authenticated with DiagnosticableTreeMixin implements Authenticated {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result uninitialized(),
-    @required Result authenticated(int permissionLevel),
+    @required Result authenticated(PermissionLevel permissionLevel),
     @required Result unauthenticated(),
   }) {
     assert(uninitialized != null);
@@ -257,7 +257,7 @@ class _$Authenticated with DiagnosticableTreeMixin implements Authenticated {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result uninitialized(),
-    Result authenticated(int permissionLevel),
+    Result authenticated(PermissionLevel permissionLevel),
     Result unauthenticated(),
     @required Result orElse(),
   }) {
@@ -298,10 +298,10 @@ class _$Authenticated with DiagnosticableTreeMixin implements Authenticated {
 }
 
 abstract class Authenticated implements AuthState {
-  const factory Authenticated({@required int permissionLevel}) =
+  const factory Authenticated({@required PermissionLevel permissionLevel}) =
       _$Authenticated;
 
-  int get permissionLevel;
+  PermissionLevel get permissionLevel;
   $AuthenticatedCopyWith<Authenticated> get copyWith;
 }
 
@@ -349,7 +349,7 @@ class _$Unauthenticated
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result uninitialized(),
-    @required Result authenticated(int permissionLevel),
+    @required Result authenticated(PermissionLevel permissionLevel),
     @required Result unauthenticated(),
   }) {
     assert(uninitialized != null);
@@ -362,7 +362,7 @@ class _$Unauthenticated
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result uninitialized(),
-    Result authenticated(int permissionLevel),
+    Result authenticated(PermissionLevel permissionLevel),
     Result unauthenticated(),
     @required Result orElse(),
   }) {

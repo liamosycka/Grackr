@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:gracker_app/core/error/failures.dart';
 import 'package:gracker_app/core/value_transformers.dart';
+import 'package:gracker_app/domain/authentication/value_objects.dart';
 
 // Validación de username
 Either<ValueFailure<String>, String> validate_UserName(String input) {
@@ -33,5 +34,13 @@ Either<ValueFailure<String>, String> validate_Password(String input) {
     return right(input);
   } else {
     return left(ValueFailure.shortPassword(failedValue: input));
+  }
+}
+
+Either<ValueFailure<int>, int> validate_PermissionLevel(int input) {
+  if (input == PermissionLevel.admin || input == PermissionLevel.guard) {
+    return right(input);
+  } else {
+    return left(ValueFailure.invalidPermissionLevel(failedValue: input));
   }
 }

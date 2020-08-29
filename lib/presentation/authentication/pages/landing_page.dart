@@ -1,150 +1,190 @@
-import 'package:auto_route/auto_route.dart';
+import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gracker_app/injection/injection_container.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gracker_app/core/injection/injection_container.dart';
+import 'package:gracker_app/core/routes/router.dart';
+import 'package:gracker_app/core/themes/bloc/theme_bloc.dart';
+import 'package:gracker_app/core/themes/bloc/theme_state.dart';
+import 'package:gracker_app/core/themes/global_themes.dart';
+import 'package:gracker_app/domain/authentication/value_objects.dart';
 import 'package:gracker_app/presentation/authentication/bloc/login_bloc.dart';
 import 'package:gracker_app/presentation/authentication/bloc/login_state.dart';
-import 'package:gracker_app/presentation/authentication/bloc/login_event.dart';
-import 'package:gracker_app/presentation/core/routes/router.gr.dart';
+import 'package:gracker_app/presentation/authentication/pages/widgets/login_form.dart';
+import 'package:gracker_app/presentation/core/blocs/auth_bloc.dart';
+import 'package:gracker_app/presentation/core/blocs/auth_event.dart';
 
-class LandingPage extends StatefulWidget {
+class LandingPage extends StatelessWidget {
   const LandingPage({Key key}) : super(key: key);
 
   @override
-  _LandingHome createState() => _LandingHome();
-}
-
-class _LandingHome extends State<LandingPage> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login'),
+      resizeToAvoidBottomInset: true,
+      body: BlocProvider<LoginBloc>(
+        create: (_) => getIt<LoginBloc>(),
+        child: BlocListener<LoginBloc, LoginState>(
+            listener: (context, LoginState state) {
+              state.authFailrueOrSuccess.fold(
+                () {},
+                (either) => either.fold(
+                  (failure) {
+                    // TODO: Temporalmente hago un fold de todos los failures para debugging.
+                    // TODO: En realidad el usuario no tendria por que ver estos errores tan especificos.
+                    final String errorMessage = failure.map(
+                      noUserFoundInDB: (_) => "No user found in DB.",
+                      noCachedUser: (_) => "No cached user.",
+                      noPasswordMatch: (_) => "No password matched.",
+                      noInternetConnection: (_) => "No internet connection.",
+                      failedDomainVerification: (_) =>
+                          "Failed domain verification.",
+                    );
+                    // TODO Reemplazar FlushbarHelper defaults por uno modificado
+                    // TODO para que vaya bien con el diseño de la app
+                    FlushbarHelper.createError(message: errorMessage)
+                        .show(context);
+                  },
+                  (_) async {
+                    FlushbarHelper.createSuccess(message: 'Successful login.')
+                        .show(context);
+                    await Future.delayed(const Duration(seconds: 1));
+                    final currentPermissions = state.permissions;
+                    BlocProvider.of<AuthBloc>(context).add(AuthEvent.loggedIn(
+                        permissionLevel: currentPermissions));
+                    if (currentPermissions.getOrCrash() ==
+                        PermissionLevel.admin) {
+                      Navigator.of(context).popUntil((route) => route.isFirst);
+                      Navigator.of(context)
+                          .pushReplacementNamed(Routes.homeAdmin);
+                    } else {
+                      Navigator.of(context)
+                          .pushReplacementNamed(Routes.homeGuard);
+                    }
+                  },
+                ),
+              );
+            },
+            child: const _LoginLayout()),
       ),
-      body: BlocProvider(
-        create: (_) => getIt<Login_Bloc>(),
-        //return LoginBloc(authBloc: BlocProvider.of<AuthBloc>(context), loginState: Provider.of<LoginStateRepo>(context, listen: false));
-        //return LoginBloc(authBloc: BlocProvider.of<AuthBloc>(context));
-
-        child: mainContent(context),
-      ),
-    );
-  }
-
-  Widget mainContent(BuildContext context) {
-    return Stack(
-      children: <Widget>[landingBackground(), LoginForm()],
-    );
-  }
-
-  Widget landingBackground() {
-    return Container(
-      decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: NetworkImage(
-                  "https://i.pinimg.com/originals/d0/9e/b0/d09eb0166a350b5aabda3395e9f786d4.jpg"),
-              fit: BoxFit.cover)),
     );
   }
 }
 
-class LoginForm extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() => _LoginForm();
-}
-
-class _LoginForm extends State<LoginForm> {
-  final _textControllerUser = TextEditingController();
-  final _textControllerPass = TextEditingController();
-  bool _adminCheck = false;
-
-  @override
-  void dispose() {
-    _textControllerUser.dispose();
-    _textControllerPass.dispose();
-    super.dispose();
-  }
+class _LoginLayout extends StatelessWidget {
+  const _LoginLayout({
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    void _loginSubmit() {
-      BlocProvider.of<Login_Bloc>(context).add(LoginEvent.submit(
-          username: _textControllerUser.text,
-          plainPassword: _textControllerPass.text,
-          adminCheck: _adminCheck));
-    }
-
-    void _adminSwitch(bool newValue) {
-      setState(() {
-        _adminCheck = newValue;
-      });
-    }
-
-    return BlocListener<Login_Bloc, LoginState>(
-      listener: (context, LoginState state) {
-        return state.authFailrueOrSuccess.fold(() => null, (either) {
-          return either.fold((failure) {
-            // TODO: Temporalmente hago un fold de todos los failures para debugging.
-            // TODO: En realidad el usuario no tendria por que ver estos errores tan especificos.
-            final String errorMessage = failure.map(
-                noUserFoundInDB: (_) => "No user found in DB.",
-                noCachedUser: (_) => "No cached user.",
-                noPasswordMatch: (_) => "No password matched.",
-                noInternetConnection: (_) => "No internet connection.",
-                failedDomainVerification: (_) => "Failed domain verification.");
-            Scaffold.of(context).showSnackBar(
-              SnackBar(
-                  content: Text(errorMessage), backgroundColor: Colors.red),
-            );
-          }, (_) async {
-            Scaffold.of(context).showSnackBar(
-              SnackBar(
-                  content: const Text('Success'),
-                  backgroundColor: Colors.green),
-            );
-            await Future.delayed(const Duration(seconds: 3));
-            //TODO Ver mejor forma de diferenciar si se loggeo como admin/guardia
-            //TODO usar algun evento de authenticatedAdmin/authenticatedGuard ??
-            if (_adminCheck) {
-              ExtendedNavigator.of(context).popAndPush(Routes.adminPage);
-            } else {
-              ExtendedNavigator.of(context).popAndPush(Routes.testPage);
-            }
-          });
-        });
-      },
-      child: BlocBuilder<Login_Bloc, LoginState>(
-        builder: (context, LoginState state) {
-          return Form(
-            child: Column(
-              children: [
-                TextFormField(
-                  decoration: const InputDecoration(labelText: 'Username'),
-                  controller: _textControllerUser,
-                ),
-                TextFormField(
-                  decoration: const InputDecoration(labelText: 'Password'),
-                  controller: _textControllerPass,
-                  obscureText: true,
-                ),
-                RaisedButton(
-                  onPressed: state.isSubmitting ? null : _loginSubmit,
-                  child: const Text('Login'),
-                ),
-                Switch(
-                  value: _adminCheck,
-                  onChanged: state.isSubmitting ? null : _adminSwitch,
-                  activeColor: Colors.blue,
-                ),
-                Container(
-                    child: state.isSubmitting
-                        ? const CircularProgressIndicator()
-                        : null),
-              ],
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    return Stack(
+      children: <Widget>[
+        const _BackgroundCircle(),
+        Column(
+          children: [
+            const Flexible(
+              flex: 58,
+              child: _BackgroundLogo(),
             ),
-          );
-        },
+            const Spacer(
+              flex: 4,
+            ),
+            Flexible(
+              flex: 38,
+              child: SingleChildScrollView(
+                padding: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
+                child: FormArea(),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class _BackgroundLogo extends StatelessWidget {
+  const _BackgroundLogo({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    return Container(
+      height: screenHeight * 0.58,
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (context, state) => AspectRatio(
+          aspectRatio: 1,
+          child: state.appTheme == AppTheme.Admin
+              ? SvgPicture.asset(
+                  'assets/admin_login_logo.svg',
+                  alignment: Alignment.bottomCenter,
+                )
+              : SvgPicture.asset(
+                  'assets/guard_login_logo.svg',
+                  alignment: Alignment.bottomCenter,
+                ),
+        ),
       ),
+    );
+  }
+}
+
+class _BackgroundCircle extends StatelessWidget {
+  const _BackgroundCircle({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final colorScheme = Theme.of(context).colorScheme;
+    return ClipPath(
+      clipper: ClipCustomCircle(),
+      child: Container(
+        color: colorScheme.onBackground,
+        height: screenHeight,
+      ),
+    );
+  }
+}
+
+class ClipCustomCircle extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final Path path = Path(); // use for shape your container
+
+    final circleHalfPosition = size.height * 0.6;
+    final circleTopPosition = size.height * 0.4;
+
+    path.lineTo(0.0, circleHalfPosition);
+    path.quadraticBezierTo(
+        size.width * 0.5, circleTopPosition, size.width, circleHalfPosition);
+    path.lineTo(size.width, size.height);
+    path.lineTo(0.0, size.height);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return true;
+  }
+}
+
+class FormArea extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.15),
+      child: const LoginForm(),
     );
   }
 }

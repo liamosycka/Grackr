@@ -9,13 +9,18 @@ import 'package:gracker_app/presentation/core/blocs/auth_event.dart';
 import 'package:gracker_app/presentation/core/blocs/auth_state.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-class AdminPage extends StatelessWidget {
-  const AdminPage({Key key}) : super(key: key);
+class GuardPage extends StatefulWidget {
+  const GuardPage({Key key}) : super(key: key);
+  @override
+  _GuardPageState createState() => _GuardPageState();
+}
+
+class _GuardPageState extends State<GuardPage> {
   @override
   Widget build(BuildContext context) {
     final colorSheme = Theme.of(context).colorScheme;
-    final screenHeight = MediaQuery.of(context).size.height;
 
+    final screenHeight = MediaQuery.of(context).size.height;
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         state.maybeMap(
@@ -344,16 +349,15 @@ class _TopBar extends StatelessWidget {
         Expanded(
           child: Center(
             child: IconButton(
-              icon: Icon(
-                MdiIcons.shieldAccountOutline,
-                size: 30,
-                color: colorSheme.onBackground,
-              ),
-              onPressed: () {
-                BlocProvider.of<AuthBloc>(context)
-                    .add(const AuthEvent.loggedOut());
-              },
-            ),
+                icon: Icon(
+                  MdiIcons.shieldAccountOutline,
+                  size: 30,
+                  color: colorSheme.onBackground,
+                ),
+                onPressed: () {
+                  BlocProvider.of<AuthBloc>(context)
+                      .add(const AuthEvent.loggedOut());
+                }),
           ),
         ),
       ],

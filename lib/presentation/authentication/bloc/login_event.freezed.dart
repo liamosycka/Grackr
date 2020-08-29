@@ -13,16 +13,35 @@ class _$LoginEventTearOff {
   const _$LoginEventTearOff();
 
 // ignore: unused_element
-  Submit submit(
+  SubmittedLogin submittedLogin(
       {@required String username,
       @required String plainPassword,
-      @required bool adminCheck,
-      bool permissions}) {
-    return Submit(
+      @required bool adminPermissions}) {
+    return SubmittedLogin(
       username: username,
       plainPassword: plainPassword,
-      adminCheck: adminCheck,
-      permissions: permissions,
+      adminPermissions: adminPermissions,
+    );
+  }
+
+// ignore: unused_element
+  UsernameChanged usernameChanged(String usernameStr) {
+    return UsernameChanged(
+      usernameStr,
+    );
+  }
+
+// ignore: unused_element
+  PasswordChanged passwordChanged(String passwordStr) {
+    return PasswordChanged(
+      passwordStr,
+    );
+  }
+
+// ignore: unused_element
+  PermissionsChanged permissionsChanged({@required bool adminPermissions}) {
+    return PermissionsChanged(
+      adminPermissions: adminPermissions,
     );
   }
 }
@@ -31,45 +50,45 @@ class _$LoginEventTearOff {
 const $LoginEvent = _$LoginEventTearOff();
 
 mixin _$LoginEvent {
-  String get username;
-  String get plainPassword;
-  bool get adminCheck;
-  bool get permissions;
-
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required
-        Result submit(String username, String plainPassword, bool adminCheck,
-            bool permissions),
+        Result submittedLogin(
+            String username, String plainPassword, bool adminPermissions),
+    @required Result usernameChanged(String usernameStr),
+    @required Result passwordChanged(String passwordStr),
+    @required Result permissionsChanged(bool adminPermissions),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result submit(String username, String plainPassword, bool adminCheck,
-        bool permissions),
+    Result submittedLogin(
+        String username, String plainPassword, bool adminPermissions),
+    Result usernameChanged(String usernameStr),
+    Result passwordChanged(String passwordStr),
+    Result permissionsChanged(bool adminPermissions),
     @required Result orElse(),
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result submit(Submit value),
+    @required Result submittedLogin(SubmittedLogin value),
+    @required Result usernameChanged(UsernameChanged value),
+    @required Result passwordChanged(PasswordChanged value),
+    @required Result permissionsChanged(PermissionsChanged value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result submit(Submit value),
+    Result submittedLogin(SubmittedLogin value),
+    Result usernameChanged(UsernameChanged value),
+    Result passwordChanged(PasswordChanged value),
+    Result permissionsChanged(PermissionsChanged value),
     @required Result orElse(),
   });
-
-  $LoginEventCopyWith<LoginEvent> get copyWith;
 }
 
 abstract class $LoginEventCopyWith<$Res> {
   factory $LoginEventCopyWith(
           LoginEvent value, $Res Function(LoginEvent) then) =
       _$LoginEventCopyWithImpl<$Res>;
-  $Res call(
-      {String username,
-      String plainPassword,
-      bool adminCheck,
-      bool permissions});
 }
 
 class _$LoginEventCopyWithImpl<$Res> implements $LoginEventCopyWith<$Res> {
@@ -78,117 +97,86 @@ class _$LoginEventCopyWithImpl<$Res> implements $LoginEventCopyWith<$Res> {
   final LoginEvent _value;
   // ignore: unused_field
   final $Res Function(LoginEvent) _then;
+}
+
+abstract class $SubmittedLoginCopyWith<$Res> {
+  factory $SubmittedLoginCopyWith(
+          SubmittedLogin value, $Res Function(SubmittedLogin) then) =
+      _$SubmittedLoginCopyWithImpl<$Res>;
+  $Res call({String username, String plainPassword, bool adminPermissions});
+}
+
+class _$SubmittedLoginCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
+    implements $SubmittedLoginCopyWith<$Res> {
+  _$SubmittedLoginCopyWithImpl(
+      SubmittedLogin _value, $Res Function(SubmittedLogin) _then)
+      : super(_value, (v) => _then(v as SubmittedLogin));
+
+  @override
+  SubmittedLogin get _value => super._value as SubmittedLogin;
 
   @override
   $Res call({
     Object username = freezed,
     Object plainPassword = freezed,
-    Object adminCheck = freezed,
-    Object permissions = freezed,
+    Object adminPermissions = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(SubmittedLogin(
       username: username == freezed ? _value.username : username as String,
       plainPassword: plainPassword == freezed
           ? _value.plainPassword
           : plainPassword as String,
-      adminCheck:
-          adminCheck == freezed ? _value.adminCheck : adminCheck as bool,
-      permissions:
-          permissions == freezed ? _value.permissions : permissions as bool,
+      adminPermissions: adminPermissions == freezed
+          ? _value.adminPermissions
+          : adminPermissions as bool,
     ));
   }
 }
 
-abstract class $SubmitCopyWith<$Res> implements $LoginEventCopyWith<$Res> {
-  factory $SubmitCopyWith(Submit value, $Res Function(Submit) then) =
-      _$SubmitCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {String username,
-      String plainPassword,
-      bool adminCheck,
-      bool permissions});
-}
-
-class _$SubmitCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
-    implements $SubmitCopyWith<$Res> {
-  _$SubmitCopyWithImpl(Submit _value, $Res Function(Submit) _then)
-      : super(_value, (v) => _then(v as Submit));
-
-  @override
-  Submit get _value => super._value as Submit;
-
-  @override
-  $Res call({
-    Object username = freezed,
-    Object plainPassword = freezed,
-    Object adminCheck = freezed,
-    Object permissions = freezed,
-  }) {
-    return _then(Submit(
-      username: username == freezed ? _value.username : username as String,
-      plainPassword: plainPassword == freezed
-          ? _value.plainPassword
-          : plainPassword as String,
-      adminCheck:
-          adminCheck == freezed ? _value.adminCheck : adminCheck as bool,
-      permissions:
-          permissions == freezed ? _value.permissions : permissions as bool,
-    ));
-  }
-}
-
-class _$Submit with DiagnosticableTreeMixin implements Submit {
-  const _$Submit(
+class _$SubmittedLogin with DiagnosticableTreeMixin implements SubmittedLogin {
+  const _$SubmittedLogin(
       {@required this.username,
       @required this.plainPassword,
-      @required this.adminCheck,
-      this.permissions})
+      @required this.adminPermissions})
       : assert(username != null),
         assert(plainPassword != null),
-        assert(adminCheck != null);
+        assert(adminPermissions != null);
 
   @override
   final String username;
   @override
   final String plainPassword;
   @override
-  final bool adminCheck;
-  @override
-  final bool permissions;
+  final bool adminPermissions;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LoginEvent.submit(username: $username, plainPassword: $plainPassword, adminCheck: $adminCheck, permissions: $permissions)';
+    return 'LoginEvent.submittedLogin(username: $username, plainPassword: $plainPassword, adminPermissions: $adminPermissions)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'LoginEvent.submit'))
+      ..add(DiagnosticsProperty('type', 'LoginEvent.submittedLogin'))
       ..add(DiagnosticsProperty('username', username))
       ..add(DiagnosticsProperty('plainPassword', plainPassword))
-      ..add(DiagnosticsProperty('adminCheck', adminCheck))
-      ..add(DiagnosticsProperty('permissions', permissions));
+      ..add(DiagnosticsProperty('adminPermissions', adminPermissions));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Submit &&
+        (other is SubmittedLogin &&
             (identical(other.username, username) ||
                 const DeepCollectionEquality()
                     .equals(other.username, username)) &&
             (identical(other.plainPassword, plainPassword) ||
                 const DeepCollectionEquality()
                     .equals(other.plainPassword, plainPassword)) &&
-            (identical(other.adminCheck, adminCheck) ||
+            (identical(other.adminPermissions, adminPermissions) ||
                 const DeepCollectionEquality()
-                    .equals(other.adminCheck, adminCheck)) &&
-            (identical(other.permissions, permissions) ||
-                const DeepCollectionEquality()
-                    .equals(other.permissions, permissions)));
+                    .equals(other.adminPermissions, adminPermissions)));
   }
 
   @override
@@ -196,34 +184,42 @@ class _$Submit with DiagnosticableTreeMixin implements Submit {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(username) ^
       const DeepCollectionEquality().hash(plainPassword) ^
-      const DeepCollectionEquality().hash(adminCheck) ^
-      const DeepCollectionEquality().hash(permissions);
+      const DeepCollectionEquality().hash(adminPermissions);
 
   @override
-  $SubmitCopyWith<Submit> get copyWith =>
-      _$SubmitCopyWithImpl<Submit>(this, _$identity);
+  $SubmittedLoginCopyWith<SubmittedLogin> get copyWith =>
+      _$SubmittedLoginCopyWithImpl<SubmittedLogin>(this, _$identity);
 
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required
-        Result submit(String username, String plainPassword, bool adminCheck,
-            bool permissions),
+        Result submittedLogin(
+            String username, String plainPassword, bool adminPermissions),
+    @required Result usernameChanged(String usernameStr),
+    @required Result passwordChanged(String passwordStr),
+    @required Result permissionsChanged(bool adminPermissions),
   }) {
-    assert(submit != null);
-    return submit(username, plainPassword, adminCheck, permissions);
+    assert(submittedLogin != null);
+    assert(usernameChanged != null);
+    assert(passwordChanged != null);
+    assert(permissionsChanged != null);
+    return submittedLogin(username, plainPassword, adminPermissions);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result submit(String username, String plainPassword, bool adminCheck,
-        bool permissions),
+    Result submittedLogin(
+        String username, String plainPassword, bool adminPermissions),
+    Result usernameChanged(String usernameStr),
+    Result passwordChanged(String passwordStr),
+    Result permissionsChanged(bool adminPermissions),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (submit != null) {
-      return submit(username, plainPassword, adminCheck, permissions);
+    if (submittedLogin != null) {
+      return submittedLogin(username, plainPassword, adminPermissions);
     }
     return orElse();
   }
@@ -231,41 +227,460 @@ class _$Submit with DiagnosticableTreeMixin implements Submit {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result submit(Submit value),
+    @required Result submittedLogin(SubmittedLogin value),
+    @required Result usernameChanged(UsernameChanged value),
+    @required Result passwordChanged(PasswordChanged value),
+    @required Result permissionsChanged(PermissionsChanged value),
   }) {
-    assert(submit != null);
-    return submit(this);
+    assert(submittedLogin != null);
+    assert(usernameChanged != null);
+    assert(passwordChanged != null);
+    assert(permissionsChanged != null);
+    return submittedLogin(this);
   }
 
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result submit(Submit value),
+    Result submittedLogin(SubmittedLogin value),
+    Result usernameChanged(UsernameChanged value),
+    Result passwordChanged(PasswordChanged value),
+    Result permissionsChanged(PermissionsChanged value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (submit != null) {
-      return submit(this);
+    if (submittedLogin != null) {
+      return submittedLogin(this);
     }
     return orElse();
   }
 }
 
-abstract class Submit implements LoginEvent {
-  const factory Submit(
+abstract class SubmittedLogin implements LoginEvent {
+  const factory SubmittedLogin(
       {@required String username,
       @required String plainPassword,
-      @required bool adminCheck,
-      bool permissions}) = _$Submit;
+      @required bool adminPermissions}) = _$SubmittedLogin;
+
+  String get username;
+  String get plainPassword;
+  bool get adminPermissions;
+  $SubmittedLoginCopyWith<SubmittedLogin> get copyWith;
+}
+
+abstract class $UsernameChangedCopyWith<$Res> {
+  factory $UsernameChangedCopyWith(
+          UsernameChanged value, $Res Function(UsernameChanged) then) =
+      _$UsernameChangedCopyWithImpl<$Res>;
+  $Res call({String usernameStr});
+}
+
+class _$UsernameChangedCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
+    implements $UsernameChangedCopyWith<$Res> {
+  _$UsernameChangedCopyWithImpl(
+      UsernameChanged _value, $Res Function(UsernameChanged) _then)
+      : super(_value, (v) => _then(v as UsernameChanged));
 
   @override
-  String get username;
+  UsernameChanged get _value => super._value as UsernameChanged;
+
   @override
-  String get plainPassword;
+  $Res call({
+    Object usernameStr = freezed,
+  }) {
+    return _then(UsernameChanged(
+      usernameStr == freezed ? _value.usernameStr : usernameStr as String,
+    ));
+  }
+}
+
+class _$UsernameChanged
+    with DiagnosticableTreeMixin
+    implements UsernameChanged {
+  const _$UsernameChanged(this.usernameStr) : assert(usernameStr != null);
+
   @override
-  bool get adminCheck;
+  final String usernameStr;
+
   @override
-  bool get permissions;
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'LoginEvent.usernameChanged(usernameStr: $usernameStr)';
+  }
+
   @override
-  $SubmitCopyWith<Submit> get copyWith;
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LoginEvent.usernameChanged'))
+      ..add(DiagnosticsProperty('usernameStr', usernameStr));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UsernameChanged &&
+            (identical(other.usernameStr, usernameStr) ||
+                const DeepCollectionEquality()
+                    .equals(other.usernameStr, usernameStr)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(usernameStr);
+
+  @override
+  $UsernameChangedCopyWith<UsernameChanged> get copyWith =>
+      _$UsernameChangedCopyWithImpl<UsernameChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required
+        Result submittedLogin(
+            String username, String plainPassword, bool adminPermissions),
+    @required Result usernameChanged(String usernameStr),
+    @required Result passwordChanged(String passwordStr),
+    @required Result permissionsChanged(bool adminPermissions),
+  }) {
+    assert(submittedLogin != null);
+    assert(usernameChanged != null);
+    assert(passwordChanged != null);
+    assert(permissionsChanged != null);
+    return usernameChanged(usernameStr);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result submittedLogin(
+        String username, String plainPassword, bool adminPermissions),
+    Result usernameChanged(String usernameStr),
+    Result passwordChanged(String passwordStr),
+    Result permissionsChanged(bool adminPermissions),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (usernameChanged != null) {
+      return usernameChanged(usernameStr);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result submittedLogin(SubmittedLogin value),
+    @required Result usernameChanged(UsernameChanged value),
+    @required Result passwordChanged(PasswordChanged value),
+    @required Result permissionsChanged(PermissionsChanged value),
+  }) {
+    assert(submittedLogin != null);
+    assert(usernameChanged != null);
+    assert(passwordChanged != null);
+    assert(permissionsChanged != null);
+    return usernameChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result submittedLogin(SubmittedLogin value),
+    Result usernameChanged(UsernameChanged value),
+    Result passwordChanged(PasswordChanged value),
+    Result permissionsChanged(PermissionsChanged value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (usernameChanged != null) {
+      return usernameChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UsernameChanged implements LoginEvent {
+  const factory UsernameChanged(String usernameStr) = _$UsernameChanged;
+
+  String get usernameStr;
+  $UsernameChangedCopyWith<UsernameChanged> get copyWith;
+}
+
+abstract class $PasswordChangedCopyWith<$Res> {
+  factory $PasswordChangedCopyWith(
+          PasswordChanged value, $Res Function(PasswordChanged) then) =
+      _$PasswordChangedCopyWithImpl<$Res>;
+  $Res call({String passwordStr});
+}
+
+class _$PasswordChangedCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
+    implements $PasswordChangedCopyWith<$Res> {
+  _$PasswordChangedCopyWithImpl(
+      PasswordChanged _value, $Res Function(PasswordChanged) _then)
+      : super(_value, (v) => _then(v as PasswordChanged));
+
+  @override
+  PasswordChanged get _value => super._value as PasswordChanged;
+
+  @override
+  $Res call({
+    Object passwordStr = freezed,
+  }) {
+    return _then(PasswordChanged(
+      passwordStr == freezed ? _value.passwordStr : passwordStr as String,
+    ));
+  }
+}
+
+class _$PasswordChanged
+    with DiagnosticableTreeMixin
+    implements PasswordChanged {
+  const _$PasswordChanged(this.passwordStr) : assert(passwordStr != null);
+
+  @override
+  final String passwordStr;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'LoginEvent.passwordChanged(passwordStr: $passwordStr)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LoginEvent.passwordChanged'))
+      ..add(DiagnosticsProperty('passwordStr', passwordStr));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is PasswordChanged &&
+            (identical(other.passwordStr, passwordStr) ||
+                const DeepCollectionEquality()
+                    .equals(other.passwordStr, passwordStr)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(passwordStr);
+
+  @override
+  $PasswordChangedCopyWith<PasswordChanged> get copyWith =>
+      _$PasswordChangedCopyWithImpl<PasswordChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required
+        Result submittedLogin(
+            String username, String plainPassword, bool adminPermissions),
+    @required Result usernameChanged(String usernameStr),
+    @required Result passwordChanged(String passwordStr),
+    @required Result permissionsChanged(bool adminPermissions),
+  }) {
+    assert(submittedLogin != null);
+    assert(usernameChanged != null);
+    assert(passwordChanged != null);
+    assert(permissionsChanged != null);
+    return passwordChanged(passwordStr);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result submittedLogin(
+        String username, String plainPassword, bool adminPermissions),
+    Result usernameChanged(String usernameStr),
+    Result passwordChanged(String passwordStr),
+    Result permissionsChanged(bool adminPermissions),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (passwordChanged != null) {
+      return passwordChanged(passwordStr);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result submittedLogin(SubmittedLogin value),
+    @required Result usernameChanged(UsernameChanged value),
+    @required Result passwordChanged(PasswordChanged value),
+    @required Result permissionsChanged(PermissionsChanged value),
+  }) {
+    assert(submittedLogin != null);
+    assert(usernameChanged != null);
+    assert(passwordChanged != null);
+    assert(permissionsChanged != null);
+    return passwordChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result submittedLogin(SubmittedLogin value),
+    Result usernameChanged(UsernameChanged value),
+    Result passwordChanged(PasswordChanged value),
+    Result permissionsChanged(PermissionsChanged value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (passwordChanged != null) {
+      return passwordChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PasswordChanged implements LoginEvent {
+  const factory PasswordChanged(String passwordStr) = _$PasswordChanged;
+
+  String get passwordStr;
+  $PasswordChangedCopyWith<PasswordChanged> get copyWith;
+}
+
+abstract class $PermissionsChangedCopyWith<$Res> {
+  factory $PermissionsChangedCopyWith(
+          PermissionsChanged value, $Res Function(PermissionsChanged) then) =
+      _$PermissionsChangedCopyWithImpl<$Res>;
+  $Res call({bool adminPermissions});
+}
+
+class _$PermissionsChangedCopyWithImpl<$Res>
+    extends _$LoginEventCopyWithImpl<$Res>
+    implements $PermissionsChangedCopyWith<$Res> {
+  _$PermissionsChangedCopyWithImpl(
+      PermissionsChanged _value, $Res Function(PermissionsChanged) _then)
+      : super(_value, (v) => _then(v as PermissionsChanged));
+
+  @override
+  PermissionsChanged get _value => super._value as PermissionsChanged;
+
+  @override
+  $Res call({
+    Object adminPermissions = freezed,
+  }) {
+    return _then(PermissionsChanged(
+      adminPermissions: adminPermissions == freezed
+          ? _value.adminPermissions
+          : adminPermissions as bool,
+    ));
+  }
+}
+
+class _$PermissionsChanged
+    with DiagnosticableTreeMixin
+    implements PermissionsChanged {
+  const _$PermissionsChanged({@required this.adminPermissions})
+      : assert(adminPermissions != null);
+
+  @override
+  final bool adminPermissions;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'LoginEvent.permissionsChanged(adminPermissions: $adminPermissions)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LoginEvent.permissionsChanged'))
+      ..add(DiagnosticsProperty('adminPermissions', adminPermissions));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is PermissionsChanged &&
+            (identical(other.adminPermissions, adminPermissions) ||
+                const DeepCollectionEquality()
+                    .equals(other.adminPermissions, adminPermissions)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(adminPermissions);
+
+  @override
+  $PermissionsChangedCopyWith<PermissionsChanged> get copyWith =>
+      _$PermissionsChangedCopyWithImpl<PermissionsChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required
+        Result submittedLogin(
+            String username, String plainPassword, bool adminPermissions),
+    @required Result usernameChanged(String usernameStr),
+    @required Result passwordChanged(String passwordStr),
+    @required Result permissionsChanged(bool adminPermissions),
+  }) {
+    assert(submittedLogin != null);
+    assert(usernameChanged != null);
+    assert(passwordChanged != null);
+    assert(permissionsChanged != null);
+    return permissionsChanged(adminPermissions);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result submittedLogin(
+        String username, String plainPassword, bool adminPermissions),
+    Result usernameChanged(String usernameStr),
+    Result passwordChanged(String passwordStr),
+    Result permissionsChanged(bool adminPermissions),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (permissionsChanged != null) {
+      return permissionsChanged(adminPermissions);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result submittedLogin(SubmittedLogin value),
+    @required Result usernameChanged(UsernameChanged value),
+    @required Result passwordChanged(PasswordChanged value),
+    @required Result permissionsChanged(PermissionsChanged value),
+  }) {
+    assert(submittedLogin != null);
+    assert(usernameChanged != null);
+    assert(passwordChanged != null);
+    assert(permissionsChanged != null);
+    return permissionsChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result submittedLogin(SubmittedLogin value),
+    Result usernameChanged(UsernameChanged value),
+    Result passwordChanged(PasswordChanged value),
+    Result permissionsChanged(PermissionsChanged value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (permissionsChanged != null) {
+      return permissionsChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PermissionsChanged implements LoginEvent {
+  const factory PermissionsChanged({@required bool adminPermissions}) =
+      _$PermissionsChanged;
+
+  bool get adminPermissions;
+  $PermissionsChangedCopyWith<PermissionsChanged> get copyWith;
 }

@@ -27,6 +27,14 @@ class _$ValueFailureTearOff {
   }
 
 // ignore: unused_element
+  InvalidPermissionLevel<T> invalidPermissionLevel<T>(
+      {@required int failedValue}) {
+    return InvalidPermissionLevel<T>(
+      failedValue: failedValue,
+    );
+  }
+
+// ignore: unused_element
   InvalidStringToInt<T> invalidStringToInt<T>({@required String failedValue}) {
     return InvalidStringToInt<T>(
       failedValue: failedValue,
@@ -38,18 +46,18 @@ class _$ValueFailureTearOff {
 const $ValueFailure = _$ValueFailureTearOff();
 
 mixin _$ValueFailure<T> {
-  String get failedValue;
-
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result shortPassword(String failedValue),
     @required Result invalidUsername(String failedValue),
+    @required Result invalidPermissionLevel(int failedValue),
     @required Result invalidStringToInt(String failedValue),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result shortPassword(String failedValue),
     Result invalidUsername(String failedValue),
+    Result invalidPermissionLevel(int failedValue),
     Result invalidStringToInt(String failedValue),
     @required Result orElse(),
   });
@@ -57,24 +65,23 @@ mixin _$ValueFailure<T> {
   Result map<Result extends Object>({
     @required Result shortPassword(ShortPassword<T> value),
     @required Result invalidUsername(InvalidUsername<T> value),
+    @required Result invalidPermissionLevel(InvalidPermissionLevel<T> value),
     @required Result invalidStringToInt(InvalidStringToInt<T> value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result shortPassword(ShortPassword<T> value),
     Result invalidUsername(InvalidUsername<T> value),
+    Result invalidPermissionLevel(InvalidPermissionLevel<T> value),
     Result invalidStringToInt(InvalidStringToInt<T> value),
     @required Result orElse(),
   });
-
-  $ValueFailureCopyWith<T, ValueFailure<T>> get copyWith;
 }
 
 abstract class $ValueFailureCopyWith<T, $Res> {
   factory $ValueFailureCopyWith(
           ValueFailure<T> value, $Res Function(ValueFailure<T>) then) =
       _$ValueFailureCopyWithImpl<T, $Res>;
-  $Res call({String failedValue});
 }
 
 class _$ValueFailureCopyWithImpl<T, $Res>
@@ -84,24 +91,12 @@ class _$ValueFailureCopyWithImpl<T, $Res>
   final ValueFailure<T> _value;
   // ignore: unused_field
   final $Res Function(ValueFailure<T>) _then;
-
-  @override
-  $Res call({
-    Object failedValue = freezed,
-  }) {
-    return _then(_value.copyWith(
-      failedValue:
-          failedValue == freezed ? _value.failedValue : failedValue as String,
-    ));
-  }
 }
 
-abstract class $ShortPasswordCopyWith<T, $Res>
-    implements $ValueFailureCopyWith<T, $Res> {
+abstract class $ShortPasswordCopyWith<T, $Res> {
   factory $ShortPasswordCopyWith(
           ShortPassword<T> value, $Res Function(ShortPassword<T>) then) =
       _$ShortPasswordCopyWithImpl<T, $Res>;
-  @override
   $Res call({String failedValue});
 }
 
@@ -160,10 +155,12 @@ class _$ShortPassword<T> implements ShortPassword<T> {
   Result when<Result extends Object>({
     @required Result shortPassword(String failedValue),
     @required Result invalidUsername(String failedValue),
+    @required Result invalidPermissionLevel(int failedValue),
     @required Result invalidStringToInt(String failedValue),
   }) {
     assert(shortPassword != null);
     assert(invalidUsername != null);
+    assert(invalidPermissionLevel != null);
     assert(invalidStringToInt != null);
     return shortPassword(failedValue);
   }
@@ -173,6 +170,7 @@ class _$ShortPassword<T> implements ShortPassword<T> {
   Result maybeWhen<Result extends Object>({
     Result shortPassword(String failedValue),
     Result invalidUsername(String failedValue),
+    Result invalidPermissionLevel(int failedValue),
     Result invalidStringToInt(String failedValue),
     @required Result orElse(),
   }) {
@@ -188,10 +186,12 @@ class _$ShortPassword<T> implements ShortPassword<T> {
   Result map<Result extends Object>({
     @required Result shortPassword(ShortPassword<T> value),
     @required Result invalidUsername(InvalidUsername<T> value),
+    @required Result invalidPermissionLevel(InvalidPermissionLevel<T> value),
     @required Result invalidStringToInt(InvalidStringToInt<T> value),
   }) {
     assert(shortPassword != null);
     assert(invalidUsername != null);
+    assert(invalidPermissionLevel != null);
     assert(invalidStringToInt != null);
     return shortPassword(this);
   }
@@ -201,6 +201,7 @@ class _$ShortPassword<T> implements ShortPassword<T> {
   Result maybeMap<Result extends Object>({
     Result shortPassword(ShortPassword<T> value),
     Result invalidUsername(InvalidUsername<T> value),
+    Result invalidPermissionLevel(InvalidPermissionLevel<T> value),
     Result invalidStringToInt(InvalidStringToInt<T> value),
     @required Result orElse(),
   }) {
@@ -216,18 +217,14 @@ abstract class ShortPassword<T> implements ValueFailure<T> {
   const factory ShortPassword({@required String failedValue}) =
       _$ShortPassword<T>;
 
-  @override
   String get failedValue;
-  @override
   $ShortPasswordCopyWith<T, ShortPassword<T>> get copyWith;
 }
 
-abstract class $InvalidUsernameCopyWith<T, $Res>
-    implements $ValueFailureCopyWith<T, $Res> {
+abstract class $InvalidUsernameCopyWith<T, $Res> {
   factory $InvalidUsernameCopyWith(
           InvalidUsername<T> value, $Res Function(InvalidUsername<T>) then) =
       _$InvalidUsernameCopyWithImpl<T, $Res>;
-  @override
   $Res call({String failedValue});
 }
 
@@ -286,10 +283,12 @@ class _$InvalidUsername<T> implements InvalidUsername<T> {
   Result when<Result extends Object>({
     @required Result shortPassword(String failedValue),
     @required Result invalidUsername(String failedValue),
+    @required Result invalidPermissionLevel(int failedValue),
     @required Result invalidStringToInt(String failedValue),
   }) {
     assert(shortPassword != null);
     assert(invalidUsername != null);
+    assert(invalidPermissionLevel != null);
     assert(invalidStringToInt != null);
     return invalidUsername(failedValue);
   }
@@ -299,6 +298,7 @@ class _$InvalidUsername<T> implements InvalidUsername<T> {
   Result maybeWhen<Result extends Object>({
     Result shortPassword(String failedValue),
     Result invalidUsername(String failedValue),
+    Result invalidPermissionLevel(int failedValue),
     Result invalidStringToInt(String failedValue),
     @required Result orElse(),
   }) {
@@ -314,10 +314,12 @@ class _$InvalidUsername<T> implements InvalidUsername<T> {
   Result map<Result extends Object>({
     @required Result shortPassword(ShortPassword<T> value),
     @required Result invalidUsername(InvalidUsername<T> value),
+    @required Result invalidPermissionLevel(InvalidPermissionLevel<T> value),
     @required Result invalidStringToInt(InvalidStringToInt<T> value),
   }) {
     assert(shortPassword != null);
     assert(invalidUsername != null);
+    assert(invalidPermissionLevel != null);
     assert(invalidStringToInt != null);
     return invalidUsername(this);
   }
@@ -327,6 +329,7 @@ class _$InvalidUsername<T> implements InvalidUsername<T> {
   Result maybeMap<Result extends Object>({
     Result shortPassword(ShortPassword<T> value),
     Result invalidUsername(InvalidUsername<T> value),
+    Result invalidPermissionLevel(InvalidPermissionLevel<T> value),
     Result invalidStringToInt(InvalidStringToInt<T> value),
     @required Result orElse(),
   }) {
@@ -342,18 +345,144 @@ abstract class InvalidUsername<T> implements ValueFailure<T> {
   const factory InvalidUsername({@required String failedValue}) =
       _$InvalidUsername<T>;
 
-  @override
   String get failedValue;
-  @override
   $InvalidUsernameCopyWith<T, InvalidUsername<T>> get copyWith;
 }
 
-abstract class $InvalidStringToIntCopyWith<T, $Res>
-    implements $ValueFailureCopyWith<T, $Res> {
+abstract class $InvalidPermissionLevelCopyWith<T, $Res> {
+  factory $InvalidPermissionLevelCopyWith(InvalidPermissionLevel<T> value,
+          $Res Function(InvalidPermissionLevel<T>) then) =
+      _$InvalidPermissionLevelCopyWithImpl<T, $Res>;
+  $Res call({int failedValue});
+}
+
+class _$InvalidPermissionLevelCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements $InvalidPermissionLevelCopyWith<T, $Res> {
+  _$InvalidPermissionLevelCopyWithImpl(InvalidPermissionLevel<T> _value,
+      $Res Function(InvalidPermissionLevel<T>) _then)
+      : super(_value, (v) => _then(v as InvalidPermissionLevel<T>));
+
+  @override
+  InvalidPermissionLevel<T> get _value =>
+      super._value as InvalidPermissionLevel<T>;
+
+  @override
+  $Res call({
+    Object failedValue = freezed,
+  }) {
+    return _then(InvalidPermissionLevel<T>(
+      failedValue:
+          failedValue == freezed ? _value.failedValue : failedValue as int,
+    ));
+  }
+}
+
+class _$InvalidPermissionLevel<T> implements InvalidPermissionLevel<T> {
+  const _$InvalidPermissionLevel({@required this.failedValue})
+      : assert(failedValue != null);
+
+  @override
+  final int failedValue;
+
+  @override
+  String toString() {
+    return 'ValueFailure<$T>.invalidPermissionLevel(failedValue: $failedValue)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is InvalidPermissionLevel<T> &&
+            (identical(other.failedValue, failedValue) ||
+                const DeepCollectionEquality()
+                    .equals(other.failedValue, failedValue)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
+
+  @override
+  $InvalidPermissionLevelCopyWith<T, InvalidPermissionLevel<T>> get copyWith =>
+      _$InvalidPermissionLevelCopyWithImpl<T, InvalidPermissionLevel<T>>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result shortPassword(String failedValue),
+    @required Result invalidUsername(String failedValue),
+    @required Result invalidPermissionLevel(int failedValue),
+    @required Result invalidStringToInt(String failedValue),
+  }) {
+    assert(shortPassword != null);
+    assert(invalidUsername != null);
+    assert(invalidPermissionLevel != null);
+    assert(invalidStringToInt != null);
+    return invalidPermissionLevel(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result shortPassword(String failedValue),
+    Result invalidUsername(String failedValue),
+    Result invalidPermissionLevel(int failedValue),
+    Result invalidStringToInt(String failedValue),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (invalidPermissionLevel != null) {
+      return invalidPermissionLevel(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result shortPassword(ShortPassword<T> value),
+    @required Result invalidUsername(InvalidUsername<T> value),
+    @required Result invalidPermissionLevel(InvalidPermissionLevel<T> value),
+    @required Result invalidStringToInt(InvalidStringToInt<T> value),
+  }) {
+    assert(shortPassword != null);
+    assert(invalidUsername != null);
+    assert(invalidPermissionLevel != null);
+    assert(invalidStringToInt != null);
+    return invalidPermissionLevel(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result shortPassword(ShortPassword<T> value),
+    Result invalidUsername(InvalidUsername<T> value),
+    Result invalidPermissionLevel(InvalidPermissionLevel<T> value),
+    Result invalidStringToInt(InvalidStringToInt<T> value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (invalidPermissionLevel != null) {
+      return invalidPermissionLevel(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InvalidPermissionLevel<T> implements ValueFailure<T> {
+  const factory InvalidPermissionLevel({@required int failedValue}) =
+      _$InvalidPermissionLevel<T>;
+
+  int get failedValue;
+  $InvalidPermissionLevelCopyWith<T, InvalidPermissionLevel<T>> get copyWith;
+}
+
+abstract class $InvalidStringToIntCopyWith<T, $Res> {
   factory $InvalidStringToIntCopyWith(InvalidStringToInt<T> value,
           $Res Function(InvalidStringToInt<T>) then) =
       _$InvalidStringToIntCopyWithImpl<T, $Res>;
-  @override
   $Res call({String failedValue});
 }
 
@@ -413,10 +542,12 @@ class _$InvalidStringToInt<T> implements InvalidStringToInt<T> {
   Result when<Result extends Object>({
     @required Result shortPassword(String failedValue),
     @required Result invalidUsername(String failedValue),
+    @required Result invalidPermissionLevel(int failedValue),
     @required Result invalidStringToInt(String failedValue),
   }) {
     assert(shortPassword != null);
     assert(invalidUsername != null);
+    assert(invalidPermissionLevel != null);
     assert(invalidStringToInt != null);
     return invalidStringToInt(failedValue);
   }
@@ -426,6 +557,7 @@ class _$InvalidStringToInt<T> implements InvalidStringToInt<T> {
   Result maybeWhen<Result extends Object>({
     Result shortPassword(String failedValue),
     Result invalidUsername(String failedValue),
+    Result invalidPermissionLevel(int failedValue),
     Result invalidStringToInt(String failedValue),
     @required Result orElse(),
   }) {
@@ -441,10 +573,12 @@ class _$InvalidStringToInt<T> implements InvalidStringToInt<T> {
   Result map<Result extends Object>({
     @required Result shortPassword(ShortPassword<T> value),
     @required Result invalidUsername(InvalidUsername<T> value),
+    @required Result invalidPermissionLevel(InvalidPermissionLevel<T> value),
     @required Result invalidStringToInt(InvalidStringToInt<T> value),
   }) {
     assert(shortPassword != null);
     assert(invalidUsername != null);
+    assert(invalidPermissionLevel != null);
     assert(invalidStringToInt != null);
     return invalidStringToInt(this);
   }
@@ -454,6 +588,7 @@ class _$InvalidStringToInt<T> implements InvalidStringToInt<T> {
   Result maybeMap<Result extends Object>({
     Result shortPassword(ShortPassword<T> value),
     Result invalidUsername(InvalidUsername<T> value),
+    Result invalidPermissionLevel(InvalidPermissionLevel<T> value),
     Result invalidStringToInt(InvalidStringToInt<T> value),
     @required Result orElse(),
   }) {
@@ -469,8 +604,6 @@ abstract class InvalidStringToInt<T> implements ValueFailure<T> {
   const factory InvalidStringToInt({@required String failedValue}) =
       _$InvalidStringToInt<T>;
 
-  @override
   String get failedValue;
-  @override
   $InvalidStringToIntCopyWith<T, InvalidStringToInt<T>> get copyWith;
 }

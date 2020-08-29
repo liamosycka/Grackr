@@ -4,7 +4,7 @@ class TestPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Text("Guardia"),
+      child: Text("Test Page"),
     );
   }
 }
