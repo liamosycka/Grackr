@@ -22,6 +22,8 @@ class Palette {
     end: Alignment.bottomCenter,
     colors: [Hexcolor('48E5C2'), Hexcolor('57D89A')],
   );
+
+  static Color subtitle = Hexcolor('696969');
 }
 
 ThemeData mapAppTheme(AppTheme appTheme) {

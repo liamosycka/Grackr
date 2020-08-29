@@ -5,9 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gracker_app/core/routes/router.dart';
 import 'package:gracker_app/core/themes/global_themes.dart';
 import 'package:gracker_app/presentation/core/blocs/auth_bloc.dart';
-import 'package:gracker_app/presentation/core/blocs/auth_event.dart';
 import 'package:gracker_app/presentation/core/blocs/auth_state.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:gracker_app/presentation/core/pages/widgets/main_card.dart';
+import 'package:gracker_app/presentation/core/pages/widgets/top_bar.dart';
 
 class GuardPage extends StatefulWidget {
   const GuardPage({Key key}) : super(key: key);
@@ -37,11 +37,11 @@ class _GuardPageState extends State<GuardPage> {
               Column(
                 children: const [
                   Flexible(
-                    child: _TopBar(),
+                    child: TopBar(),
                   ),
                   Flexible(
                     flex: 9,
-                    child: _MainScreen(),
+                    child: MainCard(child: _EntriesList()),
                   ),
                 ],
               ),
@@ -92,32 +92,6 @@ class _MainButton extends StatelessWidget {
   }
 }
 
-class _MainScreen extends StatelessWidget {
-  const _MainScreen({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final colorSheme = Theme.of(context).colorScheme;
-    return LayoutBuilder(
-      builder: (context, constraints) => Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(constraints.maxHeight * 0.05),
-          ),
-          color: colorSheme.onBackground,
-        ),
-        padding: EdgeInsets.symmetric(
-          horizontal: constraints.maxWidth * 0.05,
-          vertical: constraints.maxHeight * 0.03,
-        ),
-        child: const _EntriesList(),
-      ),
-    );
-  }
-}
-
 class _EntriesList extends StatelessWidget {
   const _EntriesList({
     Key key,
@@ -147,43 +121,46 @@ class _EntriesList extends StatelessWidget {
           color: Colors.transparent,
         ),
         Expanded(
-          child: ListView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 4),
-            itemExtent: 80,
-            itemBuilder: (context, index) {
-              // TODO quitar este bool
-              final bool tempIsIngreso = index % 2 == 1;
-              return Container(
-                margin: const EdgeInsets.only(bottom: 20),
-                decoration: BoxDecoration(
-                  gradient: tempIsIngreso ? Palette.success : Palette.failure,
-                  borderRadius: BorderRadius.circular(18),
-                  boxShadow: kElevationToShadow[1],
-                ),
-                child: Row(
-                  children: tempIsIngreso
-                      ? [
-                          Expanded(
-                            flex: 13,
-                            child: _EntriesCard(
-                                colorSheme: colorSheme,
-                                tempIsIngreso: tempIsIngreso),
-                          ),
-                          const Spacer()
-                        ]
-                      : [
-                          const Spacer(),
-                          Expanded(
-                            flex: 13,
-                            child: _EntriesCard(
-                                colorSheme: colorSheme,
-                                tempIsIngreso: tempIsIngreso),
-                          ),
-                        ],
-                ),
-              );
-            },
-            itemCount: 16,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(18),
+            child: ListView.builder(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              itemExtent: 80,
+              itemBuilder: (context, index) {
+                // TODO quitar este bool
+                final bool tempIsIngreso = index % 2 == 1;
+                return Container(
+                  margin: const EdgeInsets.only(bottom: 20),
+                  decoration: BoxDecoration(
+                    gradient: tempIsIngreso ? Palette.success : Palette.failure,
+                    borderRadius: BorderRadius.circular(18),
+                    boxShadow: kElevationToShadow[1],
+                  ),
+                  child: Row(
+                    children: tempIsIngreso
+                        ? [
+                            Expanded(
+                              flex: 13,
+                              child: _EntriesCard(
+                                  colorSheme: colorSheme,
+                                  tempIsIngreso: tempIsIngreso),
+                            ),
+                            const Spacer()
+                          ]
+                        : [
+                            const Spacer(),
+                            Expanded(
+                              flex: 13,
+                              child: _EntriesCard(
+                                  colorSheme: colorSheme,
+                                  tempIsIngreso: tempIsIngreso),
+                            ),
+                          ],
+                  ),
+                );
+              },
+              itemCount: 16,
+            ),
           ),
         ),
       ],
@@ -304,60 +281,6 @@ class _EntryTimeColumn extends StatelessWidget {
               fontSize: 14,
               fontWeight: FontWeight.w400,
             ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _TopBar extends StatelessWidget {
-  const _TopBar({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final colorSheme = Theme.of(context).colorScheme;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Expanded(
-          child: Center(
-            child: IconButton(
-              icon: Icon(
-                MdiIcons.tune,
-                size: 30,
-                color: colorSheme.onBackground,
-              ),
-              onPressed: () {},
-            ),
-          ),
-        ),
-        Expanded(
-          flex: 3,
-          child: Center(
-            child: Text(
-              'Grackr',
-              style: TextStyle(
-                  color: colorSheme.onBackground,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-        ),
-        Expanded(
-          child: Center(
-            child: IconButton(
-                icon: Icon(
-                  MdiIcons.shieldAccountOutline,
-                  size: 30,
-                  color: colorSheme.onBackground,
-                ),
-                onPressed: () {
-                  BlocProvider.of<AuthBloc>(context)
-                      .add(const AuthEvent.loggedOut());
-                }),
           ),
         ),
       ],
