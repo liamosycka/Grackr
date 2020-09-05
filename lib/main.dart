@@ -8,12 +8,12 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 // TODO: Agregar el paquete https://pub.dev/packages/google_fonts :D :D :D :D <3 <3 <3
 //? Admin_1234 123Admin_1234
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //? Inicializar el storage (default) de HydratedBloc. Puede usarse uno distinto
   HydratedBloc.storage = await HydratedStorage.build();
   //? Inicializar las dependencias con GetIt
-  initGetItDependencies();
+  await initGetItDependencies();
   Bloc.observer = SimpleBlocDelegate();
 
   runApp(MainAppWidget());

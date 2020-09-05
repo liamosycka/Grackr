@@ -32,14 +32,14 @@ final GetIt getIt = GetIt.instance;
  */
 Future<void> initGetItDependencies() async {
   // Features
-  _initFeatures();
+  await _initFeatures();
   // Core
-  _initCore();
+  await _initCore();
   // External
   await _initExternal();
 }
 
-void _initFeatures() {
+Future<void> _initFeatures() async {
   // Feature - Auth
   // Bloc
   getIt.registerFactory<LoginBloc>(() => LoginBloc(
@@ -47,15 +47,18 @@ void _initFeatures() {
         inputConverter: getIt(),
       ));
   getIt.registerLazySingleton<AuthBloc>(
-    () => AuthBloc(checkIfAuthenticated: getIt(), log_out: getIt()),
+    () => AuthBloc(
+      checkIfAuthenticated: getIt(),
+      log_out: getIt(),
+    ),
   );
   getIt.registerLazySingleton<ThemeBloc>(
     () => ThemeBloc(),
   );
   /*getIt.registerFactory<MainGuardiaBloc>(
           () => MainGuardiaBloc());*/
-  getIt.registerLazySingleton<Create_Guard_Bloc>(
-      () => Create_Guard_Bloc(createGuard: getIt()));
+  getIt.registerLazySingleton<CreateGuardBloc>(
+      () => CreateGuardBloc(createGuard: getIt()));
   //! UseCases
   getIt.registerLazySingleton<Get_Authenticated>(() => Get_Authenticated(
       userRepository: getIt(), dbCrypt: getIt(), networkInfo: getIt()));
@@ -79,7 +82,7 @@ void _initFeatures() {
       () => Guard_CRUD_Remote_PostgreSQL(postgress_connection_data: getIt()));
 }
 
-void _initCore() {
+Future<void> _initCore() async {
   // Core - Util
   getIt.registerLazySingleton<InputConverter>(() => InputConverter());
 

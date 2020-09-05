@@ -17,7 +17,9 @@ class Guard_CRUD_Repository_Impl implements Guard_CRUD_Repository {
       User user, String hashedPassword) async {
     try {
       final result = await guard_CRUD_RemoteDataSource.create_guard(
-          User_Model.fromUser(user), hashedPassword);
+        User_Model.fromUser(user),
+        hashedPassword,
+      );
       return Right(result);
     } on OperationFailedException catch (e) {
       return Left(

@@ -15,10 +15,11 @@ class Create_Guard implements UseCase<Admin_Features_Failure, Unit, Params> {
   final Network_Info networkInfo;
   final DBCrypt dbCrypt;
 
-  Create_Guard(
-      {@required this.guard_CRUD_Repository,
-      @required this.networkInfo,
-      @required this.dbCrypt});
+  Create_Guard({
+    @required this.guard_CRUD_Repository,
+    @required this.networkInfo,
+    @required this.dbCrypt,
+  });
 
   @override
   Future<Either<Admin_Features_Failure, Unit>> call(Params params) async {
@@ -26,6 +27,7 @@ class Create_Guard implements UseCase<Admin_Features_Failure, Unit, Params> {
         params.surname.isValid() &&
         params.employeeID.isValid()) {
       if (await networkInfo.isConnected) {
+        // TODO rework
         final String username =
             "${params.surname.getOrCrash()}_${params.employeeID.getOrCrash()}";
         final String plainPassword =
@@ -38,10 +40,14 @@ class Create_Guard implements UseCase<Admin_Features_Failure, Unit, Params> {
 
         final String hashedPass =
             dbCrypt.hashpw(plainPassword, dbCrypt.gensalt());
+
         final failureOrSuccess =
             await guard_CRUD_Repository.create_Guard(user, hashedPass);
+
         return failureOrSuccess.fold(
-            (failure) => Left(failure), (r) => Right(r));
+          (failure) => Left(failure),
+          (r) => Right(r),
+        );
       } else {
         return const Left(Admin_Features_Failure.noInternetConnection());
       }

@@ -19,8 +19,7 @@ class _CreateGuardState extends State<CreateGuardPage> {
         title: const Text('Cargar Guardia'),
       ),
       body: BlocProvider(
-          create: (_) => getIt<Create_Guard_Bloc>(),
-          child: mainContent(context)),
+          create: (_) => getIt<CreateGuardBloc>(), child: mainContent(context)),
     );
   }
 
@@ -50,13 +49,16 @@ class _InputForm extends State<InputForm> {
   @override
   Widget build(BuildContext context) {
     void _guardInfoSubmit() {
-      BlocProvider.of<Create_Guard_Bloc>(context).add(CreateGuardEvent.submit(
+      BlocProvider.of<CreateGuardBloc>(context).add(
+        CreateGuardEvent.submit(
           name: _textControllerName.text,
           surname: _textControllerSurname.text,
-          employeeID: _textControllerEmployeeID.text));
+          employeeID: _textControllerEmployeeID.text,
+        ),
+      );
     }
 
-    return BlocListener<Create_Guard_Bloc, CreateGuardState>(
+    return BlocListener<CreateGuardBloc, CreateGuardState>(
       listener: (context, CreateGuardState state) {
         return state.adminFeaturesFailureOrSuccess.fold(() => null, (either) {
           return either.fold((failure) {
@@ -73,7 +75,7 @@ class _InputForm extends State<InputForm> {
                   )));
         });
       },
-      child: BlocBuilder<Create_Guard_Bloc, CreateGuardState>(
+      child: BlocBuilder<CreateGuardBloc, CreateGuardState>(
         builder: (context, CreateGuardState state) {
           return Form(
             child: Padding(

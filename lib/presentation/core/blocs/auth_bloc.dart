@@ -16,10 +16,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     @required this.checkIfAuthenticated,
   }) : super(const AuthState.uninitialized());
 
-/* Ya no es necesario con la nueva version de Bloc, pues se coloca en el super ^
-  @override
-  AuthState get initialState => const AuthState.uninitialized();
-*/
   @override
   Stream<AuthState> mapEventToState(AuthEvent event) async* {
     yield* event.map(

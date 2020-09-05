@@ -74,7 +74,7 @@ class __OptionsGridState extends State<_OptionsGrid> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Divider(color: Colors.transparent),
+        const Divider(color: Colors.transparent),
         Expanded(
           child: ClipRRect(
             borderRadius: BorderRadius.circular(25),
@@ -127,45 +127,69 @@ class __OptionsGridState extends State<_OptionsGrid> {
 
   void _initCardsList() {
     cardsList = [
-      const _CardContent(
+      _CardContent(
         icon: Icons.search,
         title: 'Buscar',
         subtitle: 'por empleado',
+        onTap: (context) {
+          print('Hola soy un boton UwU');
+        },
       ),
-      const _CardContent(
+      _CardContent(
         icon: Icons.person_pin,
         title: 'Reportes',
         subtitle: 'recientes',
+        onTap: (context) {
+          print('Hola soy un boton UwU');
+        },
       ),
-      const _CardContent(
+      _CardContent(
         icon: Icons.timeline,
         title: 'Estadísticas',
         subtitle: 'por empleado',
+        onTap: (context) {
+          print('Hola soy un boton UwU');
+        },
       ),
-      const _CardContent(
+      _CardContent(
         icon: Icons.ac_unit,
         title: 'Algo',
         subtitle: 'super interesante',
+        onTap: (context) {
+          print('Hola soy un boton UwU');
+        },
       ),
-      const _CardContent(
+      _CardContent(
         icon: Icons.person_add,
         title: 'Crear',
         subtitle: 'un empleado',
+        onTap: (context) {
+          Navigator.of(context).pushNamed(Routes.createGuard);
+        },
       ),
-      const _CardContent(
+      _CardContent(
         icon: Icons.delete_forever,
         title: 'Eliminar',
         subtitle: 'un empleado',
+        onTap: (context) {
+          print('Hola soy un boton UwU');
+        },
       ),
-      const _CardContent(
+      _CardContent(
         icon: MdiIcons.accountSearch,
         title: 'Buscar',
         subtitle: 'por empleado',
+        onTap: (context) {
+          print('Hola soy un boton UwU');
+        },
       ),
-      const _CardContent(
+      _CardContent(
         icon: MdiIcons.accountSearch,
         title: 'Buscar',
         subtitle: 'por empleado',
+        onTap: (context) {
+          print('Hola soy un boton UwU');
+        },
       ),
     ];
   }
@@ -175,69 +199,77 @@ class _CardContent extends StatelessWidget {
   final IconData icon;
   final String title;
   final String subtitle;
+  final void Function(BuildContext context) onTap;
   const _CardContent({
     Key key,
     @required this.icon,
     @required this.title,
     @required this.subtitle,
+    @required this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          flex: 2,
-          child: FittedBox(
-            child: Icon(icon),
+    return InkWell(
+      onTap: () {
+        onTap(context);
+      },
+      child: Column(
+        children: [
+          Expanded(
+            flex: 2,
+            child: FittedBox(
+              child: Icon(icon),
+            ),
           ),
-        ),
-        Expanded(
-          flex: 1,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                flex: 3,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Flexible(
-                        child: FittedBox(
-                      fit: BoxFit.fill,
-                      child: Text(
-                        title,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
+          Expanded(
+            flex: 1,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Flexible(
+                          child: FittedBox(
+                        fit: BoxFit.fill,
+                        child: Text(
+                          title,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                          ),
                         ),
-                      ),
-                    )),
-                    Flexible(
-                        child: FittedBox(
-                      fit: BoxFit.fill,
-                      child: Text(
-                        subtitle,
-                        style: TextStyle(
-                          color: Palette.subtitle,
-                          fontSize: 14,
+                      )),
+                      Flexible(
+                          child: FittedBox(
+                        fit: BoxFit.fill,
+                        child: Text(
+                          subtitle,
+                          style: TextStyle(
+                            color: Palette.subtitle,
+                            fontSize: 14,
+                          ),
                         ),
-                      ),
-                    )),
-                  ],
+                      )),
+                    ],
+                  ),
                 ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Align(
+                const Expanded(
+                  flex: 1,
+                  child: Align(
                     alignment: Alignment.centerRight,
-                    child: const Icon(Icons.chevron_right)),
-              ),
-            ],
+                    child: Icon(Icons.chevron_right),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
