@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gracker_app/core/routes/test_page.dart';
-import 'package:gracker_app/presentation/admin_features/guard_crud/pages/create_guard_page.dart';
+import 'package:gracker_app/presentation/admin_features/administracion_empleados/crear_empleado_page.dart';
+import 'package:gracker_app/presentation/admin_features/administracion_empleados/pages/admin_empleados_page.dart';
+import 'package:gracker_app/presentation/admin_features/administracion_empleados/pages/admin_empleados_page.dart';
 import 'package:gracker_app/presentation/admin_features/pages/admin_page.dart';
 import 'package:gracker_app/presentation/authentication/pages/landing_page.dart';
 import 'package:gracker_app/presentation/core/pages/splash/splash_page.dart';
@@ -10,6 +12,7 @@ class Routes {
   static const String homeGuard = 'homeGuard';
   static const String homeAdmin = 'homeAdmin';
   static const String createGuard = 'createGuard';
+  static const String adminEmpleados = 'adminEmpleados';
   static const String landing = 'landing';
   static const String splash = 'splash';
   static const String test = 'test';
@@ -36,7 +39,10 @@ class Router {
         route = MaterialPageRoute(builder: (_) => const GuardPage());
         break;
       case Routes.createGuard:
-        route = MaterialPageRoute(builder: (_) => const CreateGuardPage());
+        route = MaterialPageRoute(builder: (_) => const CrearEmpleadoPage());
+        break;
+      case Routes.adminEmpleados:
+        route = MaterialPageRoute(builder: (_) => const AdminEmpleadosPage());
         break;
       case Routes.test:
         route = MaterialPageRoute(builder: (_) => TestPage());

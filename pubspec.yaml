@@ -81,6 +81,9 @@ flutter:
         - asset: fonts/AbingdonBoldItalic-9wDL.ttf
         - asset: fonts/AbingdonBold-6K3D.ttf
         - asset: fonts/Abingdon-6KqD.otf
+    - family:  MyFlutterApp
+      fonts:
+       - asset: fonts/MyFlutterApp.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

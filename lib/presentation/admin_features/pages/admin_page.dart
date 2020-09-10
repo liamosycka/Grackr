@@ -4,8 +4,9 @@ import 'package:gracker_app/core/routes/router.dart';
 import 'package:gracker_app/core/themes/global_themes.dart';
 import 'package:gracker_app/presentation/core/blocs/auth_bloc.dart';
 import 'package:gracker_app/presentation/core/blocs/auth_state.dart';
-import 'package:gracker_app/presentation/core/pages/widgets/main_card.dart';
-import 'package:gracker_app/presentation/core/pages/widgets/top_bar.dart';
+import 'package:gracker_app/presentation/core/pages/widgets/backdrop/backdrop_bar.dart';
+import 'package:gracker_app/presentation/core/pages/widgets/backdrop/backdrop_scaffold.dart';
+
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class AdminPage extends StatelessWidget {
@@ -24,20 +25,15 @@ class AdminPage extends StatelessWidget {
           },
         );
       },
-      child: SafeArea(
-        child: Scaffold(
-          body: Column(
-            children: const [
-              Flexible(
-                child: TopBar(),
-              ),
-              Flexible(
-                flex: 9,
-                child: MainCard(child: _OptionsGrid()),
-              ),
-            ],
-          ),
+      child: const BackdropScaffold(
+        backdropBar: BackdropBar(
+          title: 'Grackr',
+          leadingIcon: MdiIcons.tune,
+          actionIcon: MdiIcons.shieldAccountOutline,
         ),
+        frontPanelTitle: 'Acciones',
+        frontPanelChild: _OptionsGrid(),
+        children: [],
       ),
     );
   }
@@ -66,15 +62,6 @@ class __OptionsGridState extends State<_OptionsGrid> {
     final colorScheme = Theme.of(context).colorScheme;
     return Column(
       children: [
-        Text(
-          'Acciones',
-          style: TextStyle(
-            color: colorScheme.background,
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const Divider(color: Colors.transparent),
         Expanded(
           child: ClipRRect(
             borderRadius: BorderRadius.circular(25),
@@ -103,21 +90,6 @@ class __OptionsGridState extends State<_OptionsGrid> {
                   ),
                 ),
               ),
-              // itemBuilder: (context, index) => ClipRRect(
-              //   borderRadius: BorderRadius.circular(25),
-              //   child: Container(
-              //     padding: const EdgeInsets.symmetric(
-              //       vertical: 10,
-              //       horizontal: 15,
-              //     ),
-              //     decoration: BoxDecoration(
-              //       color: colorScheme.secondaryVariant,
-              //       boxShadow: kElevationToShadow[3],
-              //     ),
-              //     alignment: Alignment.center,
-              //     child: cardsList[index],
-              //   ),
-              // ),
             ),
           ),
         ),
@@ -129,10 +101,10 @@ class __OptionsGridState extends State<_OptionsGrid> {
     cardsList = [
       _CardContent(
         icon: Icons.search,
-        title: 'Buscar',
-        subtitle: 'por empleado',
+        title: 'Administrar',
+        subtitle: 'empleados',
         onTap: (context) {
-          print('Hola soy un boton UwU');
+          Navigator.of(context).pushNamed(Routes.adminEmpleados);
         },
       ),
       _CardContent(
@@ -140,7 +112,7 @@ class __OptionsGridState extends State<_OptionsGrid> {
         title: 'Reportes',
         subtitle: 'recientes',
         onTap: (context) {
-          print('Hola soy un boton UwU');
+          Navigator.of(context).pushNamed(Routes.test);
         },
       ),
       _CardContent(
@@ -235,10 +207,10 @@ class _CardContent extends StatelessWidget {
                     children: [
                       Flexible(
                           child: FittedBox(
-                        fit: BoxFit.fill,
+                        fit: BoxFit.contain,
                         child: Text(
                           title,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 16,
                           ),

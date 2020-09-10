@@ -4,7 +4,7 @@ class MainCard extends StatelessWidget {
   final Widget child;
   const MainCard({
     Key key,
-    @required this.child,
+    this.child,
   }) : super(key: key);
 
   @override

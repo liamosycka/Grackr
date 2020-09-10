@@ -37,7 +37,9 @@ class _GuardPageState extends State<GuardPage> {
               Column(
                 children: const [
                   Flexible(
-                    child: TopBar(),
+                    child: TopBar(
+                      showActionButton: true,
+                    ),
                   ),
                   Flexible(
                     flex: 9,

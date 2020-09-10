@@ -11,6 +11,7 @@ enum AppTheme {
   // PurpleDark,
 }
 
+// ignore: avoid_classes_with_only_static_members
 class Palette {
   static Gradient failure = LinearGradient(
     begin: Alignment.topCenter,
@@ -24,6 +25,18 @@ class Palette {
   );
 
   static Color subtitle = Hexcolor('696969');
+}
+
+class FontValues {
+  static const double h1 = 32;
+  static const double h2 = 25;
+  static const double h3 = 20;
+  static const double h4 = 16;
+  static const double large = 39;
+  static const double huge = 48;
+
+  static const FontWeight bold = FontWeight.w600;
+  static const FontWeight bolder = FontWeight.bold;
 }
 
 ThemeData mapAppTheme(AppTheme appTheme) {
