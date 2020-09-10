@@ -27,8 +27,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         final failureOrUser = await checkIfAuthenticated.call(cia.Params());
         yield failureOrUser.fold(
           (_) => const AuthState.unauthenticated(),
-          (user) =>
-              AuthState.authenticated(permissionLevel: user.permissionLevel),
+          (user) {
+            print(user.username.getOrCrash());
+            print(user.password.getOrCrash());
+            return AuthState.authenticated(
+                permissionLevel: user.permissionLevel);
+          },
         );
       },
       loggedOut: (e) async* {

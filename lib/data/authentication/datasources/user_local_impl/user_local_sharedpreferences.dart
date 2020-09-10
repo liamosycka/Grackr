@@ -20,6 +20,8 @@ class User_Local_SharedPreferences implements User_Local_DataSource {
   Future<User_Model> get_Cached_User() async {
     final result = sharedPreferences.getString(cachedUser);
     if (result != null) {
+      print(
+          '${User_Model.fromJson(json.decode(result) as Map<String, dynamic>).username}');
       return User_Model.fromJson(json.decode(result) as Map<String, dynamic>);
     } else {
       throw NoCachedAuthException();

@@ -21,7 +21,7 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   TextEditingController _textControllerUser;
   TextEditingController _textControllerPass;
-  bool _adminPermissions;
+  int _currentPermissions;
 
   @override
   void initState() {
@@ -34,9 +34,8 @@ class _LoginFormState extends State<LoginForm> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     // TODO obtener el nviel de permisos actual de una forma más... mejor :)
-    _adminPermissions =
-        BlocProvider.of<LoginBloc>(context).state.permissions.getOrCrash() ==
-            PermissionLevel.admin;
+    _currentPermissions =
+        BlocProvider.of<LoginBloc>(context).state.permissions.getOrCrash();
   }
 
   @override
@@ -56,24 +55,32 @@ class _LoginFormState extends State<LoginForm> {
         LoginEvent.submittedLogin(
           username: _textControllerUser.text,
           plainPassword: _textControllerPass.text,
-          adminPermissions: _adminPermissions,
+          permissions: _currentPermissions,
         ),
       );
     }
 
-    void _permissionSwitch() {
+    void _permissionSwitchGuardia() {
       setState(() {
-        _adminPermissions = !_adminPermissions;
+        _currentPermissions = PermissionLevel.guard;
         context.bloc<LoginBloc>().add(
-            LoginEvent.permissionsChanged(adminPermissions: _adminPermissions));
+            LoginEvent.permissionsChanged(permissions: _currentPermissions));
 
-        _adminPermissions
-            ? context
-                .bloc<ThemeBloc>()
-                .add(const ThemeEvent.changed(theme: AppTheme.Admin))
-            : context
-                .bloc<ThemeBloc>()
-                .add(const ThemeEvent.changed(theme: AppTheme.Guard));
+        context
+            .bloc<ThemeBloc>()
+            .add(const ThemeEvent.changed(theme: AppTheme.Guard));
+      });
+    }
+
+    void _permissionSwitchAdmin() {
+      setState(() {
+        _currentPermissions = PermissionLevel.admin;
+        context.bloc<LoginBloc>().add(
+            LoginEvent.permissionsChanged(permissions: _currentPermissions));
+
+        context
+            .bloc<ThemeBloc>()
+            .add(const ThemeEvent.changed(theme: AppTheme.Admin));
       });
     }
 
@@ -108,18 +115,22 @@ class _LoginFormState extends State<LoginForm> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         _IconButton(
-                          isPressed: !_adminPermissions,
+                          isPressed:
+                              _currentPermissions == PermissionLevel.guard,
                           buttonLabel: 'Guardia',
-                          onPressed: state.isSubmitting || !_adminPermissions
+                          onPressed: state.isSubmitting ||
+                                  _currentPermissions == PermissionLevel.guard
                               ? () {}
-                              : _permissionSwitch,
+                              : _permissionSwitchGuardia,
                         ),
                         _IconButton(
-                          isPressed: _adminPermissions,
+                          isPressed:
+                              _currentPermissions == PermissionLevel.admin,
                           buttonLabel: 'Admin',
-                          onPressed: state.isSubmitting || _adminPermissions
+                          onPressed: state.isSubmitting ||
+                                  _currentPermissions == PermissionLevel.admin
                               ? () {}
-                              : _permissionSwitch,
+                              : _permissionSwitchAdmin,
                         ),
                       ],
                     ),

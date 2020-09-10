@@ -30,14 +30,11 @@ class LoginBloc extends HydratedBloc<LoginEvent, LoginState> {
           authFailrueOrSuccess: none(),
         );
 
-        // TODO: Sacar el pasaje de bool a int de aqui
-        final permissionLevel =
-            e.adminPermissions ? PermissionLevel.admin : PermissionLevel.guard;
         final failureOrSuccess = await getAuthenticated.call(
           Params(
             username: UserName(e.username),
             plainPassword: Password(e.plainPassword),
-            permissionLevel: PermissionLevel(permissionLevel),
+            permissionLevel: PermissionLevel(e.permissions),
           ),
         );
 
@@ -62,7 +59,7 @@ class LoginBloc extends HydratedBloc<LoginEvent, LoginState> {
       permissionsChanged: (PermissionsChanged e) async* {
         yield state.copyWith(
           permissions: PermissionLevel(
-            e.adminPermissions ? PermissionLevel.admin : PermissionLevel.guard,
+            e.permissions,
           ),
           authFailrueOrSuccess: none(),
         );

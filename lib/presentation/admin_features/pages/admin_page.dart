@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gracker_app/core/routes/router.dart';
 import 'package:gracker_app/core/themes/global_themes.dart';
 import 'package:gracker_app/presentation/core/blocs/auth_bloc.dart';
+import 'package:gracker_app/presentation/core/blocs/auth_event.dart';
 import 'package:gracker_app/presentation/core/blocs/auth_state.dart';
 import 'package:gracker_app/presentation/core/pages/widgets/backdrop/backdrop_bar.dart';
 import 'package:gracker_app/presentation/core/pages/widgets/backdrop/backdrop_scaffold.dart';
@@ -25,11 +26,14 @@ class AdminPage extends StatelessWidget {
           },
         );
       },
-      child: const BackdropScaffold(
+      child: BackdropScaffold(
         backdropBar: BackdropBar(
           title: 'Grackr',
           leadingIcon: MdiIcons.tune,
           actionIcon: MdiIcons.shieldAccountOutline,
+          actionOnTap: () {
+            BlocProvider.of<AuthBloc>(context).add(AuthEvent.loggedOut());
+          },
         ),
         frontPanelTitle: 'Acciones',
         frontPanelChild: _OptionsGrid(),

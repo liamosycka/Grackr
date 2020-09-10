@@ -9,12 +9,12 @@ abstract class LoginEvent with _$LoginEvent {
   const factory LoginEvent.submittedLogin({
     @required String username,
     @required String plainPassword,
-    @required bool adminPermissions,
+    @required int permissions,
   }) = SubmittedLogin;
   const factory LoginEvent.usernameChanged(String usernameStr) =
       UsernameChanged;
   const factory LoginEvent.passwordChanged(String passwordStr) =
       PasswordChanged;
-  const factory LoginEvent.permissionsChanged(
-      {@required bool adminPermissions}) = PermissionsChanged;
+  const factory LoginEvent.permissionsChanged({@required int permissions}) =
+      PermissionsChanged;
 }

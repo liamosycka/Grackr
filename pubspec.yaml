@@ -27,9 +27,9 @@ dependencies:
   path: ^1.6.4
   flutter_bloc: ^6.0.1
   equatable: null
-  postgres: ^2.1.1
+  postgres: ^2.2.0
   dartz: ^0.9.1
-  shared_preferences: ^0.5.8
+  shared_preferences: ^0.5.10
   get_it: ^4.0.4
   flutter:
     sdk: flutter
