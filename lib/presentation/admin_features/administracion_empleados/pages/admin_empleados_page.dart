@@ -49,14 +49,13 @@ class _AdminEmpleadosPageState extends State<AdminEmpleadosPage>
       backdropControllerValue: 0,
       frontPanelTitle: 'Resultados',
       frontPanelChild: const _EmpleadosList(),
-      frontPanelCollapsedChild: Text('JAJAJAA'),
       children: _createChildrenList(),
     );
   }
 
   List<BackdropChild> _createChildrenList() {
     return [
-      BackdropTextField(
+      const BackdropTextField(
         label: 'Filtrar aqui',
       ),
     ];
@@ -92,7 +91,7 @@ class _EmpleadosList extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Ralph Edwards',
                         style: TextStyle(fontSize: FontValues.h3),
                       ),

@@ -45,7 +45,7 @@ class AdminPage extends StatelessWidget {
         ),
         frontPanelTitle: 'Acciones',
         frontPanelChild: const _OptionsGrid(),
-        children: [],
+        children: const [],
       ),
     );
   }
@@ -62,8 +62,8 @@ class LogOutDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Center(
-          child: const Text(
+      title: const Center(
+          child: Text(
         '¿Seguro que quiere cerrar la sesión?',
         textAlign: TextAlign.center,
       )),
@@ -189,7 +189,7 @@ class _OptionsGridState extends State<_OptionsGrid> {
         title: 'Estadísticas',
         subtitle: 'por empleado',
         onTap: (context) {
-          print('Hola soy un boton UwU');
+          // print('Hola soy un boton UwU');
         },
       ),
       _CardContent(
@@ -213,7 +213,7 @@ class _OptionsGridState extends State<_OptionsGrid> {
         title: 'Eliminar',
         subtitle: 'un empleado',
         onTap: (context) {
-          print('Hola soy un boton UwU');
+          // print('Hola soy un boton UwU');
         },
       ),
       _CardContent(
@@ -221,7 +221,7 @@ class _OptionsGridState extends State<_OptionsGrid> {
         title: 'Buscar',
         subtitle: 'por empleado',
         onTap: (context) {
-          print('Hola soy un boton UwU');
+          // print('Hola soy un boton UwU');
         },
       ),
       _CardContent(
@@ -229,7 +229,7 @@ class _OptionsGridState extends State<_OptionsGrid> {
         title: 'Buscar',
         subtitle: 'por empleado',
         onTap: (context) {
-          print('Hola soy un boton UwU');
+          // print('Hola soy un boton UwU');
         },
       ),
     ];

@@ -23,7 +23,7 @@ class CrearEmpleadoPage extends StatelessWidget {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: const [
               Expanded(
                 child: Align(
                   alignment: Alignment.centerLeft,
@@ -40,7 +40,7 @@ class CrearEmpleadoPage extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: const [
               Expanded(
                 child: Align(
                   alignment: Alignment.centerLeft,
@@ -57,7 +57,7 @@ class CrearEmpleadoPage extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: const [
               Expanded(
                 child: Align(
                   alignment: Alignment.centerLeft,
@@ -72,10 +72,10 @@ class CrearEmpleadoPage extends StatelessWidget {
               ),
             ],
           ),
-          Divider(),
+          const Divider(),
         ],
       ),
-      children: [
+      children: const [
         BackdropTextField(
           label: 'Nombre',
         ),
