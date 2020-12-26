@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gracker_app/presentation/admin_features/administracion_empleados/pages/admin_empleados_page.dart';
+//import 'package:gracker_app/presentation/admin_features/administracion_empleados/pages/admin_empleados_page.dart';
 import 'package:gracker_app/presentation/admin_features/pages/admin_page.dart';
 
 class TestPage extends StatefulWidget {
@@ -26,13 +26,13 @@ class _TestPageState extends State<TestPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Test'),
+        title: const Text('Test'),
         actions: [
           IconButton(
-            icon: Icon(Icons.ac_unit),
+            icon: const Icon(Icons.ac_unit),
             onPressed: () {
               pageController.animateToPage(1,
-                  duration: Duration(seconds: 1), curve: Curves.easeIn);
+                  duration: const Duration(seconds: 1), curve: Curves.easeIn);
             },
           ),
         ],
@@ -42,9 +42,9 @@ class _TestPageState extends State<TestPage> {
         child: PageView(
           controller: pageController,
           scrollDirection: Axis.horizontal,
-          children: [
+          children: const [
             AdminPage(),
-            AdminEmpleadosPage(),
+            // AdminEmpleadosPage(),
           ],
         ),
       ),

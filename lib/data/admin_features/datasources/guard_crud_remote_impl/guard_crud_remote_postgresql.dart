@@ -2,10 +2,10 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:gracker_app/core/error/exceptions.dart';
 import 'package:gracker_app/data/authentication/models/user_model.dart';
-import 'package:gracker_app/data/admin_features/datasources/guard_crud_remote_datasource.dart';
+import 'package:gracker_app/data/admin_features/datasources/i_guard_remote_datasource.dart';
 import 'package:gracker_app/data/core/models/postgres_connection_data.dart';
 
-class Guard_CRUD_Remote_PostgreSQL implements Guard_CRUD_Remote_DataSource {
+class Guard_CRUD_Remote_PostgreSQL implements IGuardRemoteDataSource {
   final Postgress_Connection_Data postgress_connection_data;
 
   const Guard_CRUD_Remote_PostgreSQL(

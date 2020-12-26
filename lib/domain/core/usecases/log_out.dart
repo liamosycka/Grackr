@@ -2,11 +2,11 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:dartz/dartz.dart';
 import 'package:gracker_app/core/usecases/usecase.dart';
-import 'package:gracker_app/domain/authentication/repositories/user_repository.dart';
+import 'package:gracker_app/domain/authentication/repositories/i_user_repository.dart';
 import 'package:gracker_app/presentation/authentication/auth_failures.dart';
 
 class Log_Out extends UseCase<AuthFailure, Unit, Params> {
-  final User_Repository userRepository;
+  final IUserRepository userRepository;
   Log_Out({@required this.userRepository});
 
   @override

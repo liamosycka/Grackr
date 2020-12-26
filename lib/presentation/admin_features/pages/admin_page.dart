@@ -14,10 +14,11 @@ class AdminPage extends StatelessWidget {
   const AdminPage({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final colorSheme = Theme.of(context).colorScheme;
+    final colorScheme = Theme.of(context).colorScheme;
     final screenHeight = MediaQuery.of(context).size.height;
 
     return BlocListener<AuthBloc, AuthState>(
+      //? Log out
       listener: (context, state) {
         state.maybeMap(
           orElse: () {},
@@ -32,13 +33,77 @@ class AdminPage extends StatelessWidget {
           leadingIcon: MdiIcons.tune,
           actionIcon: MdiIcons.shieldAccountOutline,
           actionOnTap: () {
-            BlocProvider.of<AuthBloc>(context).add(AuthEvent.loggedOut());
+            showDialog(
+              context: context,
+              builder: (context) => LogOutDialog(colorScheme: colorScheme),
+            );
+            // BlocProvider.of<AuthBloc>(context).add(const AuthEvent.loggedOut());
+          },
+          leadingOnTap: () {
+            Navigator.of(context).maybePop();
           },
         ),
         frontPanelTitle: 'Acciones',
-        frontPanelChild: _OptionsGrid(),
+        frontPanelChild: const _OptionsGrid(),
         children: [],
       ),
+    );
+  }
+}
+
+class LogOutDialog extends StatelessWidget {
+  const LogOutDialog({
+    Key key,
+    @required this.colorScheme,
+  }) : super(key: key);
+
+  final ColorScheme colorScheme;
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Center(
+          child: const Text(
+        '¿Seguro que quiere cerrar la sesión?',
+        textAlign: TextAlign.center,
+      )),
+      backgroundColor: colorScheme.onBackground,
+      titleTextStyle: TextStyle(
+        color: colorScheme.background,
+        fontWeight: FontValues.bold,
+        fontSize: FontValues.h3,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      actions: [
+        FlatButton(
+          onPressed: () {
+            Navigator.of(context).maybePop();
+          },
+          child: Text(
+            'No',
+            style: TextStyle(
+              color: colorScheme.primary,
+              fontWeight: FontValues.bold,
+              fontSize: FontValues.h4,
+            ),
+          ),
+        ),
+        FlatButton(
+          onPressed: () {
+            BlocProvider.of<AuthBloc>(context).add(const AuthEvent.loggedOut());
+          },
+          child: Text(
+            'Si',
+            style: TextStyle(
+              color: colorScheme.primary,
+              fontWeight: FontValues.bold,
+              fontSize: FontValues.h4,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -49,10 +114,10 @@ class _OptionsGrid extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  __OptionsGridState createState() => __OptionsGridState();
+  _OptionsGridState createState() => _OptionsGridState();
 }
 
-class __OptionsGridState extends State<_OptionsGrid> {
+class _OptionsGridState extends State<_OptionsGrid> {
   List<_CardContent> cardsList;
 
   @override
@@ -132,7 +197,7 @@ class __OptionsGridState extends State<_OptionsGrid> {
         title: 'Algo',
         subtitle: 'super interesante',
         onTap: (context) {
-          print('Hola soy un boton UwU');
+          Navigator.of(context).pushNamed(Routes.test2);
         },
       ),
       _CardContent(

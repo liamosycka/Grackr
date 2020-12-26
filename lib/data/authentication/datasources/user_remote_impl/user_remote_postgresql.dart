@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gracker_app/core/error/exceptions.dart';
-import 'package:gracker_app/data/authentication/datasources/user_remote_datasource.dart';
+import 'package:gracker_app/data/authentication/datasources/i_user_remote_datasource.dart';
 import 'package:gracker_app/data/authentication/models/user_model.dart';
 import 'package:gracker_app/data/core/models/postgres_connection_data.dart';
 
-class User_Remote_PostgreSQL implements User_Remote_DataSource {
+class User_Remote_PostgreSQL implements IUserRemoteDataSource {
   final Postgress_Connection_Data postgress_connection_data;
 
   const User_Remote_PostgreSQL({@required this.postgress_connection_data});

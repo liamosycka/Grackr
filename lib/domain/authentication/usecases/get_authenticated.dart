@@ -4,13 +4,13 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:gracker_app/core/network/network_info.dart';
 import 'package:gracker_app/core/usecases/usecase.dart';
-import 'package:gracker_app/domain/authentication/repositories/user_repository.dart';
+import 'package:gracker_app/domain/authentication/repositories/i_user_repository.dart';
 import 'package:gracker_app/domain/authentication/value_objects.dart';
 import 'package:gracker_app/domain/core/entities/user.dart';
 import 'package:gracker_app/presentation/authentication/auth_failures.dart';
 
 class Get_Authenticated implements UseCase<AuthFailure, Unit, Params> {
-  final User_Repository userRepository;
+  final IUserRepository userRepository;
   final Network_Info networkInfo;
   final DBCrypt dbCrypt;
 

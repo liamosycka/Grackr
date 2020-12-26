@@ -4,18 +4,18 @@ import 'package:get_it/get_it.dart';
 import 'package:gracker_app/core/network/network_info.dart';
 import 'package:gracker_app/core/themes/bloc/theme_bloc.dart';
 import 'package:gracker_app/core/util/input_converter.dart';
-import 'package:gracker_app/data/admin_features/datasources/guard_crud_remote_datasource.dart';
+import 'package:gracker_app/data/admin_features/datasources/i_guard_remote_datasource.dart';
 import 'package:gracker_app/data/admin_features/datasources/guard_crud_remote_impl/guard_crud_remote_postgresql.dart';
-import 'package:gracker_app/data/admin_features/repositories/guard_crud_repository_impl.dart';
-import 'package:gracker_app/data/authentication/datasources/user_local_datasource.dart';
+import 'package:gracker_app/data/admin_features/repositories/guard_repository_impl.dart';
+import 'package:gracker_app/data/authentication/datasources/i_user_local_datasource.dart';
 import 'package:gracker_app/data/authentication/datasources/user_local_impl/user_local_sharedpreferences.dart';
-import 'package:gracker_app/data/authentication/datasources/user_remote_datasource.dart';
+import 'package:gracker_app/data/authentication/datasources/i_user_remote_datasource.dart';
 import 'package:gracker_app/data/authentication/datasources/user_remote_impl/user_remote_postgresql.dart';
 import 'package:gracker_app/data/authentication/repositories/user_repository_impl.dart';
 import 'package:gracker_app/data/core/models/postgres_connection_data.dart';
-import 'package:gracker_app/domain/admin_features/repositories/guard_crud_repository.dart';
+import 'package:gracker_app/domain/admin_features/repositories/i_guard_repository.dart';
 import 'package:gracker_app/domain/admin_features/usecases/create_guard.dart';
-import 'package:gracker_app/domain/authentication/repositories/user_repository.dart';
+import 'package:gracker_app/domain/authentication/repositories/i_user_repository.dart';
 import 'package:gracker_app/domain/core/usecases/check_if_authenticated.dart';
 import 'package:gracker_app/domain/authentication/usecases/get_authenticated.dart';
 import 'package:gracker_app/domain/core/usecases/log_out.dart';
@@ -69,16 +69,16 @@ Future<void> _initFeatures() async {
   getIt.registerLazySingleton<Create_Guard>(() => Create_Guard(
       guard_CRUD_Repository: getIt(), dbCrypt: getIt(), networkInfo: getIt()));
   //! Repository
-  getIt.registerLazySingleton<User_Repository>(() => User_Repository_Impl(
+  getIt.registerLazySingleton<IUserRepository>(() => User_Repository_Impl(
       userRemoteDataSource: getIt(), userLocalDataSource: getIt()));
-  getIt.registerLazySingleton<Guard_CRUD_Repository>(
+  getIt.registerLazySingleton<IGuardRepository>(
       () => Guard_CRUD_Repository_Impl(guard_CRUD_RemoteDataSource: getIt()));
   //! Data Sources
-  getIt.registerLazySingleton<User_Remote_DataSource>(
+  getIt.registerLazySingleton<IUserRemoteDataSource>(
       () => User_Remote_PostgreSQL(postgress_connection_data: getIt()));
-  getIt.registerLazySingleton<User_Local_DataSource>(
+  getIt.registerLazySingleton<IUserLocalDataSource>(
       () => User_Local_SharedPreferences(sharedPreferences: getIt()));
-  getIt.registerLazySingleton<Guard_CRUD_Remote_DataSource>(
+  getIt.registerLazySingleton<IGuardRemoteDataSource>(
       () => Guard_CRUD_Remote_PostgreSQL(postgress_connection_data: getIt()));
 }
 

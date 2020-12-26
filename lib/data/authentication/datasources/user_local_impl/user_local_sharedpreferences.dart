@@ -2,11 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:gracker_app/core/error/exceptions.dart';
-import 'package:gracker_app/data/authentication/datasources/user_local_datasource.dart';
+import 'package:gracker_app/data/authentication/datasources/i_user_local_datasource.dart';
 import 'package:gracker_app/data/authentication/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class User_Local_SharedPreferences implements User_Local_DataSource {
+class User_Local_SharedPreferences implements IUserLocalDataSource {
   final SharedPreferences sharedPreferences;
   static const String cachedUser = "cachedUser";
 

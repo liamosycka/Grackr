@@ -1,16 +1,16 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:gracker_app/core/error/exceptions.dart';
-import 'package:gracker_app/data/authentication/datasources/user_local_datasource.dart';
-import 'package:gracker_app/data/authentication/datasources/user_remote_datasource.dart';
+import 'package:gracker_app/data/authentication/datasources/i_user_local_datasource.dart';
+import 'package:gracker_app/data/authentication/datasources/i_user_remote_datasource.dart';
 import 'package:gracker_app/data/authentication/models/user_model.dart';
-import 'package:gracker_app/domain/authentication/repositories/user_repository.dart';
+import 'package:gracker_app/domain/authentication/repositories/i_user_repository.dart';
 import 'package:gracker_app/domain/core/entities/user.dart';
 import 'package:gracker_app/presentation/authentication/auth_failures.dart';
 
-class User_Repository_Impl implements User_Repository {
-  final User_Local_DataSource userLocalDataSource;
-  final User_Remote_DataSource userRemoteDataSource;
+class User_Repository_Impl implements IUserRepository {
+  final IUserLocalDataSource userLocalDataSource;
+  final IUserRemoteDataSource userRemoteDataSource;
 
   User_Repository_Impl({
     @required this.userLocalDataSource,

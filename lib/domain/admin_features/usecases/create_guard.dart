@@ -7,11 +7,11 @@ import 'package:gracker_app/core/usecases/usecase.dart';
 import 'package:gracker_app/domain/admin_features/value_objects.dart';
 import 'package:gracker_app/domain/authentication/value_objects.dart';
 import 'package:gracker_app/domain/core/entities/user.dart';
-import 'package:gracker_app/domain/admin_features/repositories/guard_crud_repository.dart';
+import 'package:gracker_app/domain/admin_features/repositories/i_guard_repository.dart';
 import 'package:gracker_app/presentation/admin_features/admin_features_failures.dart';
 
 class Create_Guard implements UseCase<Admin_Features_Failure, Unit, Params> {
-  final Guard_CRUD_Repository guard_CRUD_Repository;
+  final IGuardRepository guard_CRUD_Repository;
   final Network_Info networkInfo;
   final DBCrypt dbCrypt;
 

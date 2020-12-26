@@ -53,7 +53,7 @@ class _BackdropTextFieldState extends State<BackdropTextField> {
         ),
         filled: true,
         fillColor: Palette.subtitle.withOpacity(0.25),
-        border: OutlineInputBorder(
+        border: const OutlineInputBorder(
           borderRadius: BorderRadius.zero,
           borderSide: BorderSide.none,
         ),

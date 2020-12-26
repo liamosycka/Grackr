@@ -28,8 +28,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         yield failureOrUser.fold(
           (_) => const AuthState.unauthenticated(),
           (user) {
-            print(user.username.getOrCrash());
-            print(user.password.getOrCrash());
+            // print(user.username.getOrCrash());
+            // print(user.password.getOrCrash());
             return AuthState.authenticated(
                 permissionLevel: user.permissionLevel);
           },

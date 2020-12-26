@@ -3,6 +3,8 @@ import 'package:gracker_app/presentation/core/pages/widgets/backdrop/backdrop_ba
 import 'package:gracker_app/presentation/core/pages/widgets/backdrop/backdrop_children.dart';
 import 'package:gracker_app/presentation/core/pages/widgets/backdrop/front_panel.dart';
 
+import 'backdrop_transitions.dart';
+
 class BackdropScaffold extends StatefulWidget {
   static const double appHorizontalPaddingRatio = 1 / 16;
   static const double appVerticalPaddingRatio = 1 / 64;
@@ -82,42 +84,46 @@ class _BackdropScaffoldState extends State<BackdropScaffold>
                 BackdropBar.height;
             return Column(
               children: [
-                BackdropBar(
-                  appPadding: EdgeInsets.symmetric(
-                    horizontal: constraints.maxWidth *
-                        BackdropScaffold.appHorizontalPaddingRatio,
-                    vertical: constraints.maxHeight *
-                        BackdropScaffold.appVerticalPaddingRatio,
+                BackdropOpacityTransition(
+                  child: BackdropBar(
+                    appPadding: EdgeInsets.symmetric(
+                      horizontal: constraints.maxWidth *
+                          BackdropScaffold.appHorizontalPaddingRatio,
+                      vertical: constraints.maxHeight *
+                          BackdropScaffold.appVerticalPaddingRatio,
+                    ),
+                    title: widget.backdropBar.title,
+                    leadingIcon: widget.backdropBar.leadingIcon,
+                    leadingOnTap: widget.backdropBar.leadingOnTap,
+                    actionIcon: widget.backdropBar.actionIcon,
+                    actionOnTap: widget.backdropBar.actionOnTap,
                   ),
-                  title: widget.backdropBar.title,
-                  leadingIcon: widget.backdropBar.leadingIcon,
-                  leadingOnTap: widget.backdropBar.leadingOnTap,
-                  actionIcon: widget.backdropBar.actionIcon,
-                  actionOnTap: widget.backdropBar.actionOnTap,
                 ),
                 Expanded(
                   child: Stack(
                     children: [
-                      Container(
-                        // color: colorScheme.primary,
-                        constraints:
-                            BoxConstraints(maxHeight: childrenListMaxSize),
-                        color: colorScheme.background,
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          padding: EdgeInsets.symmetric(
-                            horizontal: constraints.maxWidth *
-                                BackdropScaffold.appHorizontalPaddingRatio,
+                      BackdropOpacityTransition(
+                        child: Container(
+                          // color: colorScheme.primary,
+                          constraints:
+                              BoxConstraints(maxHeight: childrenListMaxSize),
+                          color: colorScheme.background,
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            padding: EdgeInsets.symmetric(
+                              horizontal: constraints.maxWidth *
+                                  BackdropScaffold.appHorizontalPaddingRatio,
+                            ),
+                            itemBuilder: (context, index) => Container(
+                              height: BackdropScaffold.childrenExtent,
+                              margin: EdgeInsets.only(
+                                  bottom: BackdropScaffold.childrenMargin),
+                              child: widget.children[index],
+                            ),
+                            itemCount: widget.children.length,
+                            itemExtent: BackdropScaffold.childrenExtent +
+                                BackdropScaffold.childrenMargin,
                           ),
-                          itemBuilder: (context, index) => Container(
-                            height: BackdropScaffold.childrenExtent,
-                            margin: EdgeInsets.only(
-                                bottom: BackdropScaffold.childrenMargin),
-                            child: widget.children[index],
-                          ),
-                          itemCount: widget.children.length,
-                          itemExtent: BackdropScaffold.childrenExtent +
-                              BackdropScaffold.childrenMargin,
                         ),
                       ),
                       FrontPanel(

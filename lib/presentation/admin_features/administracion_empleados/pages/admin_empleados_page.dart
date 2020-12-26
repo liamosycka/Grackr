@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gracker_app/core/routes/router.dart';
 import 'package:gracker_app/core/themes/global_themes.dart';
 import 'package:gracker_app/core/themes/my_flutter_app_icons.dart';
 import 'package:gracker_app/presentation/core/pages/widgets/backdrop/backdrop_bar.dart';
@@ -30,6 +31,8 @@ class _AdminEmpleadosPageState extends State<AdminEmpleadosPage>
 
   @override
   Widget build(BuildContext context) {
+    //print('Compeltederere: ${animation.isCompleted}');
+    //print('Modal: ${ModalRoute.of(context).animation}');
     return BackdropScaffold(
       backdropBar: BackdropBar(
         title: 'Administrar empleados',
@@ -39,6 +42,7 @@ class _AdminEmpleadosPageState extends State<AdminEmpleadosPage>
         },
         actionIcon: Icons.person_add,
         actionOnTap: () {
+          Navigator.of(context).pushNamed(Routes.createGuard);
           //backdropController.fling(velocity: isPanelVisible ? -1.0 : 1.0);
         },
       ),

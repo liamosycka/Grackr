@@ -27,9 +27,9 @@ class BackdropBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     // final algo = Container();
-    return Container(
+    final child = Container(
       padding: appPadding,
-      height: height,
+      height: BackdropBar.height,
       color: colorScheme.background,
       child: SizedBox.expand(
         child: Row(
@@ -38,7 +38,7 @@ class BackdropBar extends StatelessWidget {
           children: [
             _ButtonContainer(
               isLeading: true,
-              separationPaddingRatio: separationPaddingRatio,
+              separationPaddingRatio: BackdropBar.separationPaddingRatio,
               onTap: leadingOnTap,
               child: leadingIcon != null
                   ? Icon(
@@ -51,7 +51,7 @@ class BackdropBar extends StatelessWidget {
             _StringTitleContainer(title: title),
             _ButtonContainer(
               isLeading: false,
-              separationPaddingRatio: separationPaddingRatio,
+              separationPaddingRatio: BackdropBar.separationPaddingRatio,
               onTap: actionOnTap,
               child: actionIcon != null
                   ? Icon(
@@ -65,6 +65,23 @@ class BackdropBar extends StatelessWidget {
         ),
       ),
     );
+    //print('Modal route adentro: ${ModalRoute.of(context).animation != null}');
+    // return ModalRoute.of(context).animation != null
+    //     ? AnimatedBuilder(
+    //         animation: ModalRoute.of(context).animation,
+    //         builder: (context, snapshot) {
+    //           return FadeTransition(
+    //             opacity: Tween<double>(
+    //               begin: 0.0,
+    //               end: 1.0,
+    //             ).animate(CurvedAnimation(
+    //                 parent: ModalRoute.of(context).animation,
+    //                 curve: const Interval(0.5, 1.0))),
+    //             child: child,
+    //           );
+    //         })
+    //     : child;
+    return child;
   }
 }
 
