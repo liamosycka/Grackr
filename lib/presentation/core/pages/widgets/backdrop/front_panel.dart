@@ -15,7 +15,8 @@ class FrontPanel extends StatefulWidget {
       this.child,
       this.appPadding = EdgeInsets.zero,
       this.title = 'No Title',
-      this.collapsedChild})
+      this.collapsedChild,
+      @required this.isAdaptive})
       : super(key: key);
 
   final AnimationController backdropController;
@@ -26,6 +27,7 @@ class FrontPanel extends StatefulWidget {
   final String title;
   final Widget child;
   final Widget collapsedChild;
+  final bool isAdaptive;
 
   @override
   _FrontPanelState createState() => _FrontPanelState();
@@ -52,6 +54,7 @@ class _FrontPanelState extends State<FrontPanel> {
 
   @override
   Widget build(BuildContext context) {
+    final double height = widget.constraints.biggest.height;
     final colorScheme = Theme.of(context).colorScheme;
     return PositionedTransition(
       rect: getPanelAnimation(widget.constraints),
@@ -80,7 +83,20 @@ class _FrontPanelState extends State<FrontPanel> {
                         const Divider(
                           color: Colors.transparent,
                         ),
-                        Expanded(child: widget.child),
+                        Expanded(
+                          child: widget.child,
+                          //? Debug coloring
+                          // child: Container(
+                          //   decoration: BoxDecoration(
+                          //     gradient: LinearGradient(
+                          //       colors: [Colors.red, Colors.green, Colors.blue],
+                          //       begin: Alignment.topCenter,
+                          //       end: Alignment.bottomCenter,
+                          //     ),
+                          //   ),
+                          //   child: widget.child,
+                          // ),
+                        ),
                       ],
                     ),
             ),
@@ -101,8 +117,14 @@ class _FrontPanelState extends State<FrontPanel> {
     return RelativeRectTween(
       // begin: RelativeRect.fromLTRB(
       //     0, widget.childrenListSize, 0, frontPanelHeight),
-      begin: RelativeRect.fromLTRB(0, currentSpacing, 0,
-          !isExpanded && isCollapsedMin ? 0 : -height + currentSpacing),
+      begin: RelativeRect.fromLTRB(
+        0,
+        currentSpacing,
+        0,
+        (!isExpanded && isCollapsedMin) || !widget.isAdaptive
+            ? 0
+            : -height + currentSpacing,
+      ),
       end: const RelativeRect.fromLTRB(0.0, 0.0, 0.0, 0.0),
     ).animate(
       CurvedAnimation(

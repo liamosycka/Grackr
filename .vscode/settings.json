@@ -1,0 +1,16 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true,
+        "lib\\presentation\\authentication/auth_failures.freezed.dart": true,
+        "**/auth_failures.freezed.dart": true
+    },
+    "explorerExclude.backup": null
+}

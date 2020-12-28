@@ -21,6 +21,7 @@ class BackdropScaffold extends StatefulWidget {
     this.frontPanelTitle = 'No Title',
     this.frontPanelCollapsedChild,
     this.backdropControllerValue,
+    this.isAdaptiveFrontPanel = false,
   })  : assert(frontPanelChild != null),
         assert(
             (backdropController == null) || (backdropControllerValue == null)),
@@ -33,6 +34,7 @@ class BackdropScaffold extends StatefulWidget {
   final String frontPanelTitle;
   final Widget frontPanelChild;
   final Widget frontPanelCollapsedChild;
+  final bool isAdaptiveFrontPanel;
 
   @override
   _BackdropScaffoldState createState() => _BackdropScaffoldState();
@@ -129,8 +131,8 @@ class _BackdropScaffoldState extends State<BackdropScaffold>
                       FrontPanel(
                         title: widget.frontPanelTitle,
                         constraints: constraints.copyWith(
-                            maxHeight:
-                                constraints.maxHeight - BackdropBar.height),
+                          maxHeight: constraints.maxHeight - BackdropBar.height,
+                        ),
                         childrenListSize: childrenListSize,
                         minFrontPanelHeight:
                             BackdropScaffold.minFrontPanelHeight,
@@ -143,6 +145,7 @@ class _BackdropScaffoldState extends State<BackdropScaffold>
                         ),
                         collapsedChild: widget.frontPanelCollapsedChild,
                         child: widget.frontPanelChild,
+                        isAdaptive: widget.isAdaptiveFrontPanel,
                       ),
                     ],
                   ),

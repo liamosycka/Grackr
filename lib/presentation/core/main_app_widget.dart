@@ -6,6 +6,7 @@ import 'package:gracker_app/core/themes/bloc/theme_bloc.dart';
 import 'package:gracker_app/core/themes/bloc/theme_state.dart';
 import 'package:gracker_app/presentation/core/blocs/auth_bloc.dart';
 import 'package:gracker_app/presentation/core/blocs/auth_event.dart';
+import 'package:gracker_app/core/routes/router.dart' as my_router;
 
 class MainAppWidget extends StatelessWidget {
   final GlobalKey<NavigatorState> navKey = GlobalKey();
@@ -43,7 +44,7 @@ class _ThemedMaterialApp extends StatelessWidget {
           debugShowCheckedModeBanner:
               false, // Para no mostrar el banner de debug
           theme: state.themeData,
-          onGenerateRoute: Router.onGenerateRoute,
+          onGenerateRoute: my_router.Router.onGenerateRoute,
           initialRoute: Routes.splash,
         );
       },

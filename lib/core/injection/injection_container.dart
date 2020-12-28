@@ -72,7 +72,7 @@ Future<void> _initFeatures() async {
   getIt.registerLazySingleton<IUserRepository>(() => User_Repository_Impl(
       userRemoteDataSource: getIt(), userLocalDataSource: getIt()));
   getIt.registerLazySingleton<IGuardRepository>(
-      () => Guard_CRUD_Repository_Impl(guard_CRUD_RemoteDataSource: getIt()));
+      () => GuardRepositoryImpl(guardRemoteDataSource: getIt()));
   //! Data Sources
   getIt.registerLazySingleton<IUserRemoteDataSource>(
       () => User_Remote_PostgreSQL(postgress_connection_data: getIt()));

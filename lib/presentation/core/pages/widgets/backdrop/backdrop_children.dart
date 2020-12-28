@@ -4,9 +4,11 @@ import 'package:gracker_app/core/themes/global_themes.dart';
 abstract class BackdropChild extends Widget {}
 
 class BackdropTextField extends StatefulWidget implements BackdropChild {
-  const BackdropTextField({Key key, this.label}) : super(key: key);
+  const BackdropTextField({Key key, this.label, this.textEditingController})
+      : super(key: key);
 
   final String label;
+  final TextEditingController textEditingController;
 
   @override
   State<StatefulWidget> createState() => _BackdropTextFieldState();
@@ -17,6 +19,8 @@ class _BackdropTextFieldState extends State<BackdropTextField> {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     return TextField(
+      keyboardType: TextInputType.text,
+      controller: widget.textEditingController,
       style: TextStyle(
         color: colorScheme.onBackground,
         fontSize: FontValues.h3,
@@ -30,7 +34,7 @@ class _BackdropTextFieldState extends State<BackdropTextField> {
           Icons.search,
           color: colorScheme.onBackground,
         ),
-        floatingLabelBehavior: FloatingLabelBehavior.never,
+        floatingLabelBehavior: FloatingLabelBehavior.auto,
         contentPadding:
             const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
         focusedBorder: OutlineInputBorder(
@@ -49,7 +53,7 @@ class _BackdropTextFieldState extends State<BackdropTextField> {
         labelText: widget.label ?? '',
         labelStyle: TextStyle(
           color: colorScheme.onBackground,
-          fontSize: FontValues.h3,
+          fontSize: FontValues.h4,
         ),
         filled: true,
         fillColor: Palette.subtitle.withOpacity(0.25),

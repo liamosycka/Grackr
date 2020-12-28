@@ -14,40 +14,40 @@ description: A Guard tracking app.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.8.0 <3.0.0"
+  sdk: ">=2.10.0 <3.0.0"
 
 dependencies:
-  provider: ^4.0.4
+  provider: ^4.3.2+3
   dbcrypt: ^1.0.0
   # Para identificar conexiones a redes (Datos moviles, Wifi, etc) Pero no puede detectar si hay servicio de Internet
-  connectivity: 0.4.8+2
+  connectivity: ^2.0.2
   # Para poder identificar si hay servicio de internet
   data_connection_checker: ^0.3.4
-  path_provider: ^1.6.5
-  path: ^1.6.4
-  flutter_bloc: ^6.0.1
-  equatable: null
+  path_provider: ^1.6.24
+  path: ^1.7.0
+  flutter_bloc: ^6.1.1
+  equatable: ^1.2.5
   postgres: ^2.2.0
-  dartz: ^0.9.1
-  shared_preferences: ^0.5.10
+  dartz: ^0.9.2
+  shared_preferences: ^0.5.12+4
   get_it: ^4.0.4
   flutter:
     sdk: flutter
-  cupertino_icons: ^0.1.2
-  uuid: ^2.2.0
-  hydrated_bloc: ^6.0.1
+  cupertino_icons: null
+  uuid: ^2.2.2
+  hydrated_bloc: ^6.1.0
   hexcolor: null
   flutter_svg: null
-  flushbar: null
-  material_design_icons_flutter: null
-  google_fonts: ^1.1.0
+  flushbar: 1.10.4
+  material_design_icons_flutter: 4.0.5755
+  google_fonts: ^1.1.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  lint: ^1.2.0
-  freezed: ^0.11.4
-  mockito: ^4.1.1
+  lint: ^1.3.0
+  freezed: ^0.12.6
+  mockito: ^4.1.3
   build_runner: null
 
 # For information on the generic Dart part of this file, see the

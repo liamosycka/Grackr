@@ -16,15 +16,15 @@ class Palette {
   static Gradient failure = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
-    colors: [Hexcolor('D93466'), Hexcolor('ED254E')],
+    colors: [HexColor('D93466'), HexColor('ED254E')],
   );
   static Gradient success = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
-    colors: [Hexcolor('48E5C2'), Hexcolor('57D89A')],
+    colors: [HexColor('48E5C2'), HexColor('57D89A')],
   );
 
-  static Color subtitle = Hexcolor('696969');
+  static Color subtitle = HexColor('696969');
 }
 
 class FontValues {
@@ -129,14 +129,14 @@ ColorScheme _purpleScheme(Brightness brightness) {
 }
 
 ColorScheme _guardScheme(Brightness brightness) {
-  final primaryColor = Hexcolor('246EB9'); // Azul
-  final primaryColorDark = Hexcolor('246EB9');
-  final accent = Hexcolor('246EB9');
-  final accentDark = Hexcolor('246EB9');
-  final primaryVariant = Hexcolor('246EB9');
-  final secondaryVariant = Hexcolor('EFE9ED'); // grey-ish
-  final background = Hexcolor('333333'); // Negro
-  final backgroundDark = Hexcolor('F7F0F5'); // Blanco
+  final primaryColor = HexColor('246EB9'); // Azul
+  final primaryColorDark = HexColor('246EB9');
+  final accent = HexColor('246EB9');
+  final accentDark = HexColor('246EB9');
+  final primaryVariant = HexColor('246EB9');
+  final secondaryVariant = HexColor('EFE9ED'); // grey-ish
+  final background = HexColor('333333'); // Negro
+  final backgroundDark = HexColor('F7F0F5'); // Blanco
   return schemeCreator(
     primaryColor,
     primaryColorDark,
@@ -151,17 +151,17 @@ ColorScheme _guardScheme(Brightness brightness) {
 }
 
 ColorScheme _adminScheme(Brightness brightness) {
-  final primaryColor = Hexcolor('912765'); // Rojo thingy?
-  final primaryColorDark = Hexcolor('912765');
-  final accent = Hexcolor('912765');
-  final accentDark = Hexcolor('912765');
-  final primaryVariant = Hexcolor('912765');
-  // final secondaryVariant = Hexcolor('F7F0F5'); // grey-ish
-  // final background = Hexcolor('333333'); // Negro
-  // final backgroundDark = Hexcolor('EFE9ED'); // Blanco
-  final secondaryVariant = Hexcolor('EFE9ED'); // grey-ish
-  final background = Hexcolor('333333'); // Negro
-  final backgroundDark = Hexcolor('F7F0F5'); // Blanco
+  final primaryColor = HexColor('912765'); // Rojo thingy?
+  final primaryColorDark = HexColor('912765');
+  final accent = HexColor('912765');
+  final accentDark = HexColor('912765');
+  final primaryVariant = HexColor('912765');
+  // final secondaryVariant = HexColor('F7F0F5'); // grey-ish
+  // final background = HexColor('333333'); // Negro
+  // final backgroundDark = HexColor('EFE9ED'); // Blanco
+  final secondaryVariant = HexColor('EFE9ED'); // grey-ish
+  final background = HexColor('333333'); // Negro
+  final backgroundDark = HexColor('F7F0F5'); // Blanco
   return schemeCreator(
     primaryColor,
     primaryColorDark,
@@ -202,7 +202,7 @@ ColorScheme schemeCreator(
 
     background: isDark ? backgroundDark : background,
     onBackground: isDark ? background : backgroundDark,
-    error: Hexcolor('ED254E'),
+    error: HexColor('ED254E'),
     onError: Colors.white,
     brightness: brightness,
   );

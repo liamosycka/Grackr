@@ -9,6 +9,8 @@ class BackdropOpacityTransition extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final transitionAnimation = ModalRoute.of(context).animation;
+    final transitionSecondaryAnimation =
+        ModalRoute.of(context).secondaryAnimation;
     return transitionAnimation != null
         ? AnimatedBuilder(
             animation: transitionAnimation,
@@ -17,16 +19,40 @@ class BackdropOpacityTransition extends StatelessWidget {
                 opacity: Tween<double>(
                   begin: 0.0,
                   end: 1.0,
-                ).animate(CurvedAnimation(
+                ).animate(
+                  CurvedAnimation(
                     parent: transitionAnimation,
                     curve: const Interval(
                       0.5,
                       1.0,
                       curve: Curves.easeInOut,
-                    ))),
-                child: child,
+                    ),
+                  ),
+                ),
+                child: AnimatedBuilder(
+                  animation: transitionSecondaryAnimation,
+                  builder: (context, snapshot) {
+                    return FadeTransition(
+                      opacity: Tween<double>(
+                        begin: 1.0,
+                        end: 0.0,
+                      ).animate(
+                        CurvedAnimation(
+                          parent: transitionSecondaryAnimation,
+                          curve: const Interval(
+                            0.5,
+                            1.0,
+                            curve: Curves.easeInOut,
+                          ),
+                        ),
+                      ),
+                      child: child,
+                    );
+                  },
+                ),
               );
-            })
+            },
+          )
         : child;
   }
 }

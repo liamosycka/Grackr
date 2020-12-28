@@ -7,16 +7,16 @@ import 'package:dartz/dartz.dart';
 import 'package:gracker_app/domain/admin_features/repositories/i_guard_repository.dart';
 import 'package:gracker_app/presentation/admin_features/admin_features_failures.dart';
 
-class Guard_CRUD_Repository_Impl implements IGuardRepository {
-  final IGuardRemoteDataSource guard_CRUD_RemoteDataSource;
+class GuardRepositoryImpl implements IGuardRepository {
+  final IGuardRemoteDataSource guardRemoteDataSource;
 
-  Guard_CRUD_Repository_Impl({@required this.guard_CRUD_RemoteDataSource});
+  GuardRepositoryImpl({@required this.guardRemoteDataSource});
 
   @override
   Future<Either<Admin_Features_Failure, Unit>> create_Guard(
       User user, String hashedPassword) async {
     try {
-      final result = await guard_CRUD_RemoteDataSource.create_guard(
+      final result = await guardRemoteDataSource.create_guard(
         User_Model.fromUser(user),
         hashedPassword,
       );

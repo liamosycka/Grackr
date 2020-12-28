@@ -16,16 +16,24 @@ class AdminEmpleadosPage extends StatefulWidget {
 class _AdminEmpleadosPageState extends State<AdminEmpleadosPage>
     with SingleTickerProviderStateMixin {
   TextEditingController textFilterController;
+  AnimationController backdropController;
+  bool isPanelVisible;
 
   @override
   void initState() {
     super.initState();
+    backdropController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 1000),
+    );
+    isPanelVisible = true;
     textFilterController = TextEditingController();
   }
 
   @override
   void dispose() {
     textFilterController.dispose();
+    backdropController.dispose();
     super.dispose();
   }
 
@@ -43,12 +51,15 @@ class _AdminEmpleadosPageState extends State<AdminEmpleadosPage>
         actionIcon: Icons.person_add,
         actionOnTap: () {
           Navigator.of(context).pushNamed(Routes.createGuard);
-          //backdropController.fling(velocity: isPanelVisible ? -1.0 : 1.0);
+          // backdropController.fling(velocity: isPanelVisible ? -1.0 : 1.0);
+          // isPanelVisible = !isPanelVisible;
         },
       ),
-      backdropControllerValue: 0,
+      backdropController: backdropController,
+      //backdropControllerValue: 0,
       frontPanelTitle: 'Resultados',
       frontPanelChild: const _EmpleadosList(),
+      frontPanelCollapsedChild: Text('Hola'),
       children: _createChildrenList(),
     );
   }

@@ -65,22 +65,6 @@ class BackdropBar extends StatelessWidget {
         ),
       ),
     );
-    //print('Modal route adentro: ${ModalRoute.of(context).animation != null}');
-    // return ModalRoute.of(context).animation != null
-    //     ? AnimatedBuilder(
-    //         animation: ModalRoute.of(context).animation,
-    //         builder: (context, snapshot) {
-    //           return FadeTransition(
-    //             opacity: Tween<double>(
-    //               begin: 0.0,
-    //               end: 1.0,
-    //             ).animate(CurvedAnimation(
-    //                 parent: ModalRoute.of(context).animation,
-    //                 curve: const Interval(0.5, 1.0))),
-    //             child: child,
-    //           );
-    //         })
-    //     : child;
     return child;
   }
 }
@@ -106,7 +90,7 @@ class _StringTitleContainer extends StatelessWidget {
             title,
             style: TextStyle(
               color: colorScheme.onBackground,
-              fontSize: FontValues.h1,
+              fontSize: FontValues.h2,
               fontWeight: FontValues.bold,
             ),
           ),
