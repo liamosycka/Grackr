@@ -282,12 +282,12 @@ class __CustomTextLoginFieldState extends State<_CustomTextLoginField> {
         autocorrect: false,
         onChanged: (newValue) {
           widget.isUsername
-              ? context
-                  .bloc<LoginBloc>()
-                  .add(LoginEvent.usernameChanged(newValue))
-              : context
-                  .bloc<LoginBloc>()
-                  .add(LoginEvent.passwordChanged(newValue));
+              ? context.bloc<LoginBloc>().add(
+                    LoginEvent.usernameChanged(newValue),
+                  )
+              : context.bloc<LoginBloc>().add(
+                    LoginEvent.passwordChanged(newValue),
+                  );
         },
         validator: (_) {
           return widget.isUsername

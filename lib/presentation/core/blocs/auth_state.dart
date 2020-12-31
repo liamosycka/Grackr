@@ -11,6 +11,7 @@ part 'auth_state.freezed.dart';
 abstract class AuthState with _$AuthState {
   const factory AuthState.uninitialized() = Uninitialized;
   const factory AuthState.authenticated(
-      {@required PermissionLevel permissionLevel}) = Authenticated;
+      {@required PermissionLevel permissionLevel,
+      @required UserName username}) = Authenticated;
   const factory AuthState.unauthenticated() = Unauthenticated;
 }

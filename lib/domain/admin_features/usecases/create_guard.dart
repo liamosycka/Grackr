@@ -4,6 +4,8 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:gracker_app/core/network/network_info.dart';
 import 'package:gracker_app/core/usecases/usecase.dart';
+import 'package:gracker_app/core/value_transformers.dart';
+import 'package:gracker_app/domain/admin_features/entities/employee.dart';
 import 'package:gracker_app/domain/admin_features/value_objects.dart';
 import 'package:gracker_app/domain/authentication/value_objects.dart';
 import 'package:gracker_app/domain/core/entities/user.dart';
@@ -11,73 +13,75 @@ import 'package:gracker_app/domain/admin_features/repositories/i_guard_repositor
 import 'package:gracker_app/presentation/admin_features/admin_features_failures.dart';
 
 class Create_Guard implements UseCase<Admin_Features_Failure, Unit, Params> {
-  final IGuardRepository guard_CRUD_Repository;
+  final IGuardRepository guardRepository;
   final Network_Info networkInfo;
   final DBCrypt dbCrypt;
 
   Create_Guard({
-    @required this.guard_CRUD_Repository,
+    @required this.guardRepository,
     @required this.networkInfo,
     @required this.dbCrypt,
   });
 
   @override
   Future<Either<Admin_Features_Failure, Unit>> call(Params params) async {
-    if (params.name.isValid() &&
-        params.surname.isValid() &&
-        params.employeeID.isValid()) {
-      if (await networkInfo.isConnected) {
-        // TODO rework
-        final String username =
-            "${params.surname.getOrCrash()}_${params.employeeID.getOrCrash()}";
-        final String plainPassword =
-            "123${params.surname.getOrCrash()}_${params.employeeID.getOrCrash()}";
+    if (await networkInfo.isConnected) {
+      final UserName username = transformIntoUsername(
+        params.surname.getOrCrash(),
+        params.employeeID.getOrCrash(),
+      );
+      final Password password = transformIntoPassword(
+        params.surname.getOrCrash(),
+      );
+
+      if (username.isValid() && password.isValid()) {
         final user = User(
-          username: UserName(username),
-          password: Password(plainPassword),
-          permissionLevel: PermissionLevel(PermissionLevel.guard),
+          username: username,
+          password: password,
+          permissionLevel: params.permissionLevel,
         );
 
-        final String hashedPass =
-            dbCrypt.hashpw(plainPassword, dbCrypt.gensalt());
+        final employee = Employee(
+          name: params.name,
+          surname: params.surname,
+          employeeID: params.employeeID,
+        );
 
-        final failureOrSuccess =
-            await guard_CRUD_Repository.create_Guard(user, hashedPass);
+        final String hashedPass = dbCrypt.hashpw(
+          password.getOrCrash(),
+          dbCrypt.gensalt(),
+        );
+
+        final failureOrSuccess = await guardRepository.create_Guard(
+            user, employee, hashedPass, params.creatorUsername);
 
         return failureOrSuccess.fold(
           (failure) => Left(failure),
           (r) => Right(r),
         );
       } else {
-        return const Left(Admin_Features_Failure.noInternetConnection());
+        return const Left(Admin_Features_Failure.failedDomainVerification());
       }
     } else {
-      return const Left(Admin_Features_Failure.failedDomainVerification());
+      return const Left(Admin_Features_Failure.noInternetConnection());
     }
   }
 }
-
-/*
-void _generateStart_End_random(List<String> list) {
-  String startPass = "";
-  String endPass = "";
-  for (var i = 0; i <= 4; i++) {
-    // ignore: use_string_buffers
-    startPass += Random().nextInt(100).toString();
-    // ignore: use_string_buffers
-    endPass += Random().nextInt(100).toString();
-  }
-  list[0] = startPass;
-  list[1] = endPass;
-}*/
 
 class Params extends Equatable {
   final Name_Surname name;
   final Name_Surname surname;
   final EmployeeID employeeID;
+  final PermissionLevel permissionLevel;
+  final UserName creatorUsername;
 
-  const Params(
-      {@required this.name, @required this.surname, @required this.employeeID});
+  const Params({
+    @required this.permissionLevel,
+    @required this.creatorUsername,
+    @required this.name,
+    @required this.surname,
+    @required this.employeeID,
+  });
 
   @override
   List<Object> get props => [name, surname, employeeID];

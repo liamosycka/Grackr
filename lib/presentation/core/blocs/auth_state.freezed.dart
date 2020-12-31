@@ -18,9 +18,12 @@ class _$AuthStateTearOff {
   }
 
 // ignore: unused_element
-  Authenticated authenticated({@required PermissionLevel permissionLevel}) {
+  Authenticated authenticated(
+      {@required PermissionLevel permissionLevel,
+      @required UserName username}) {
     return Authenticated(
       permissionLevel: permissionLevel,
+      username: username,
     );
   }
 
@@ -37,13 +40,15 @@ mixin _$AuthState {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result uninitialized(),
-    @required Result authenticated(PermissionLevel permissionLevel),
+    @required
+        Result authenticated(
+            PermissionLevel permissionLevel, UserName username),
     @required Result unauthenticated(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result uninitialized(),
-    Result authenticated(PermissionLevel permissionLevel),
+    Result authenticated(PermissionLevel permissionLevel, UserName username),
     Result unauthenticated(),
     @required Result orElse(),
   });
@@ -117,7 +122,9 @@ class _$Uninitialized with DiagnosticableTreeMixin implements Uninitialized {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result uninitialized(),
-    @required Result authenticated(PermissionLevel permissionLevel),
+    @required
+        Result authenticated(
+            PermissionLevel permissionLevel, UserName username),
     @required Result unauthenticated(),
   }) {
     assert(uninitialized != null);
@@ -130,7 +137,7 @@ class _$Uninitialized with DiagnosticableTreeMixin implements Uninitialized {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result uninitialized(),
-    Result authenticated(PermissionLevel permissionLevel),
+    Result authenticated(PermissionLevel permissionLevel, UserName username),
     Result unauthenticated(),
     @required Result orElse(),
   }) {
@@ -178,7 +185,7 @@ abstract class $AuthenticatedCopyWith<$Res> {
   factory $AuthenticatedCopyWith(
           Authenticated value, $Res Function(Authenticated) then) =
       _$AuthenticatedCopyWithImpl<$Res>;
-  $Res call({PermissionLevel permissionLevel});
+  $Res call({PermissionLevel permissionLevel, UserName username});
 }
 
 class _$AuthenticatedCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
@@ -193,25 +200,31 @@ class _$AuthenticatedCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object permissionLevel = freezed,
+    Object username = freezed,
   }) {
     return _then(Authenticated(
       permissionLevel: permissionLevel == freezed
           ? _value.permissionLevel
           : permissionLevel as PermissionLevel,
+      username: username == freezed ? _value.username : username as UserName,
     ));
   }
 }
 
 class _$Authenticated with DiagnosticableTreeMixin implements Authenticated {
-  const _$Authenticated({@required this.permissionLevel})
-      : assert(permissionLevel != null);
+  const _$Authenticated(
+      {@required this.permissionLevel, @required this.username})
+      : assert(permissionLevel != null),
+        assert(username != null);
 
   @override
   final PermissionLevel permissionLevel;
+  @override
+  final UserName username;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AuthState.authenticated(permissionLevel: $permissionLevel)';
+    return 'AuthState.authenticated(permissionLevel: $permissionLevel, username: $username)';
   }
 
   @override
@@ -219,7 +232,8 @@ class _$Authenticated with DiagnosticableTreeMixin implements Authenticated {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'AuthState.authenticated'))
-      ..add(DiagnosticsProperty('permissionLevel', permissionLevel));
+      ..add(DiagnosticsProperty('permissionLevel', permissionLevel))
+      ..add(DiagnosticsProperty('username', username));
   }
 
   @override
@@ -228,13 +242,17 @@ class _$Authenticated with DiagnosticableTreeMixin implements Authenticated {
         (other is Authenticated &&
             (identical(other.permissionLevel, permissionLevel) ||
                 const DeepCollectionEquality()
-                    .equals(other.permissionLevel, permissionLevel)));
+                    .equals(other.permissionLevel, permissionLevel)) &&
+            (identical(other.username, username) ||
+                const DeepCollectionEquality()
+                    .equals(other.username, username)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(permissionLevel);
+      const DeepCollectionEquality().hash(permissionLevel) ^
+      const DeepCollectionEquality().hash(username);
 
   @override
   $AuthenticatedCopyWith<Authenticated> get copyWith =>
@@ -244,26 +262,28 @@ class _$Authenticated with DiagnosticableTreeMixin implements Authenticated {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result uninitialized(),
-    @required Result authenticated(PermissionLevel permissionLevel),
+    @required
+        Result authenticated(
+            PermissionLevel permissionLevel, UserName username),
     @required Result unauthenticated(),
   }) {
     assert(uninitialized != null);
     assert(authenticated != null);
     assert(unauthenticated != null);
-    return authenticated(permissionLevel);
+    return authenticated(permissionLevel, username);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result uninitialized(),
-    Result authenticated(PermissionLevel permissionLevel),
+    Result authenticated(PermissionLevel permissionLevel, UserName username),
     Result unauthenticated(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (authenticated != null) {
-      return authenticated(permissionLevel);
+      return authenticated(permissionLevel, username);
     }
     return orElse();
   }
@@ -298,10 +318,12 @@ class _$Authenticated with DiagnosticableTreeMixin implements Authenticated {
 }
 
 abstract class Authenticated implements AuthState {
-  const factory Authenticated({@required PermissionLevel permissionLevel}) =
-      _$Authenticated;
+  const factory Authenticated(
+      {@required PermissionLevel permissionLevel,
+      @required UserName username}) = _$Authenticated;
 
   PermissionLevel get permissionLevel;
+  UserName get username;
   $AuthenticatedCopyWith<Authenticated> get copyWith;
 }
 
@@ -349,7 +371,9 @@ class _$Unauthenticated
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result uninitialized(),
-    @required Result authenticated(PermissionLevel permissionLevel),
+    @required
+        Result authenticated(
+            PermissionLevel permissionLevel, UserName username),
     @required Result unauthenticated(),
   }) {
     assert(uninitialized != null);
@@ -362,7 +386,7 @@ class _$Unauthenticated
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result uninitialized(),
-    Result authenticated(PermissionLevel permissionLevel),
+    Result authenticated(PermissionLevel permissionLevel, UserName username),
     Result unauthenticated(),
     @required Result orElse(),
   }) {

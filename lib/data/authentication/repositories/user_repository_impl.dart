@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gracker_app/core/error/exceptions.dart';
 import 'package:gracker_app/data/authentication/datasources/i_user_local_datasource.dart';
 import 'package:gracker_app/data/authentication/datasources/i_user_remote_datasource.dart';
-import 'package:gracker_app/data/authentication/models/user_model.dart';
+import 'package:gracker_app/data/authentication/models/user_dto.dart';
 import 'package:gracker_app/domain/authentication/repositories/i_user_repository.dart';
 import 'package:gracker_app/domain/core/entities/user.dart';
 import 'package:gracker_app/presentation/authentication/auth_failures.dart';
@@ -19,7 +19,7 @@ class User_Repository_Impl implements IUserRepository {
 
   @override
   Future<Either<AuthFailure, Unit>> cache_User(User user) async {
-    userLocalDataSource.cache_User(User_Model.fromUser(user));
+    userLocalDataSource.cache_User(UserDto.fromUser(user));
     return const Right(unit);
   }
 
@@ -38,7 +38,7 @@ class User_Repository_Impl implements IUserRepository {
       User user) async {
     try {
       final hashedPassword = await userRemoteDataSource
-          .get_Hashed_Password_If_Exists(User_Model.fromUser(user));
+          .get_Hashed_Password_If_Exists(UserDto.fromUser(user));
       return Right(hashedPassword);
     } on Exception catch (e) {
       return Left(

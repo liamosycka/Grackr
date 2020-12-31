@@ -22,6 +22,7 @@ class BackdropScaffold extends StatefulWidget {
     this.frontPanelCollapsedChild,
     this.backdropControllerValue,
     this.isAdaptiveFrontPanel = false,
+    this.frontActionChild,
   })  : assert(frontPanelChild != null),
         assert(
             (backdropController == null) || (backdropControllerValue == null)),
@@ -35,6 +36,7 @@ class BackdropScaffold extends StatefulWidget {
   final Widget frontPanelChild;
   final Widget frontPanelCollapsedChild;
   final bool isAdaptiveFrontPanel;
+  final Widget frontActionChild;
 
   @override
   _BackdropScaffoldState createState() => _BackdropScaffoldState();
@@ -147,6 +149,10 @@ class _BackdropScaffoldState extends State<BackdropScaffold>
                         child: widget.frontPanelChild,
                         isAdaptive: widget.isAdaptiveFrontPanel,
                       ),
+                      _FrontAction(
+                        frontActionChild: widget.frontActionChild,
+                        constraints: constraints,
+                      ),
                     ],
                   ),
                 ),
@@ -154,6 +160,31 @@ class _BackdropScaffoldState extends State<BackdropScaffold>
             );
           },
         ),
+      ),
+    );
+  }
+}
+
+class _FrontAction extends StatelessWidget {
+  const _FrontAction({
+    Key key,
+    @required this.frontActionChild,
+    @required this.constraints,
+  }) : super(key: key);
+
+  final Widget frontActionChild;
+  final BoxConstraints constraints;
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Padding(
+        padding: EdgeInsets.only(
+          bottom: constraints.biggest.height *
+              BackdropScaffold.appHorizontalPaddingRatio,
+        ),
+        child: frontActionChild,
       ),
     );
   }

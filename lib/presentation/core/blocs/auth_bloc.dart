@@ -21,17 +21,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     yield* event.map(
       appStart: (e) async* {
         // TODO Remove Future.delayed
-        await Future.delayed(const Duration(seconds: 3));
-        // await Future.delayed(const Duration(hours: 1));
+        await Future.delayed(const Duration(seconds: 2));
 
         final failureOrUser = await checkIfAuthenticated.call(cia.Params());
         yield failureOrUser.fold(
           (_) => const AuthState.unauthenticated(),
           (user) {
-            // print(user.username.getOrCrash());
-            // print(user.password.getOrCrash());
             return AuthState.authenticated(
-                permissionLevel: user.permissionLevel);
+              permissionLevel: user.permissionLevel,
+              username: user.username,
+            );
           },
         );
       },
@@ -43,7 +42,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         );
       },
       loggedIn: (e) async* {
-        yield AuthState.authenticated(permissionLevel: e.permissionLevel);
+        yield AuthState.authenticated(
+          permissionLevel: e.permissionLevel,
+          username: e.username,
+        );
       },
     );
   }

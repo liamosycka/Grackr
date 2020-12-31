@@ -6,16 +6,19 @@ part 'failures.freezed.dart';
 
 @freezed
 abstract class ValueFailure<T> with _$ValueFailure<T> {
-  const factory ValueFailure.shortPassword({@required String failedValue}) =
+  const factory ValueFailure.shortPassword({@required T failedValue}) =
       ShortPassword<T>;
-  const factory ValueFailure.invalidUsername({@required String failedValue}) =
+  const factory ValueFailure.invalidUsername({@required T failedValue}) =
       InvalidUsername<T>;
-  const factory ValueFailure.invalidPermissionLevel(
-      {@required int failedValue}) = InvalidPermissionLevel<T>;
+  const factory ValueFailure.invalidPermissionLevel({@required T failedValue}) =
+      InvalidPermissionLevel<T>;
 
   /// De la clase [InputConverter] Failure que sucede en la clase InputConverter
   /// al momento de querer convertir un string a int que contiene al menos una
   /// ocurrencia no numérica
-  const factory ValueFailure.invalidStringToInt(
-      {@required String failedValue}) = InvalidStringToInt<T>;
+  const factory ValueFailure.invalidStringToInt({@required T failedValue}) =
+      InvalidStringToInt<T>;
+
+  const factory ValueFailure.transformationFailed({@required T failedValue}) =
+      TransformationFailed<T>;
 }

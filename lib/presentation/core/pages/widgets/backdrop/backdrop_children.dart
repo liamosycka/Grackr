@@ -4,11 +4,13 @@ import 'package:gracker_app/core/themes/global_themes.dart';
 abstract class BackdropChild extends Widget {}
 
 class BackdropTextField extends StatefulWidget implements BackdropChild {
-  const BackdropTextField({Key key, this.label, this.textEditingController})
+  const BackdropTextField(
+      {Key key, this.label, this.textEditingController, this.onChanged})
       : super(key: key);
 
   final String label;
   final TextEditingController textEditingController;
+  final void Function(String, TextEditingController) onChanged;
 
   @override
   State<StatefulWidget> createState() => _BackdropTextFieldState();
@@ -63,6 +65,9 @@ class _BackdropTextFieldState extends State<BackdropTextField> {
         ),
       ),
       autocorrect: false,
+      onChanged: (newValue) {
+        widget.onChanged(newValue, widget.textEditingController);
+      },
     );
   }
 }

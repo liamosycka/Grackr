@@ -46,7 +46,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   lint: ^1.3.0
-  freezed: ^0.12.6
+  freezed: ^0.11.6
   mockito: ^4.1.3
   build_runner: null
 

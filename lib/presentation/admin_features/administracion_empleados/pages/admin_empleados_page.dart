@@ -24,7 +24,7 @@ class _AdminEmpleadosPageState extends State<AdminEmpleadosPage>
     super.initState();
     backdropController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 1000),
     );
     isPanelVisible = true;
     textFilterController = TextEditingController();
@@ -59,7 +59,6 @@ class _AdminEmpleadosPageState extends State<AdminEmpleadosPage>
       //backdropControllerValue: 0,
       frontPanelTitle: 'Resultados',
       frontPanelChild: const _EmpleadosList(),
-      frontPanelCollapsedChild: Text('Hola'),
       children: _createChildrenList(),
     );
   }

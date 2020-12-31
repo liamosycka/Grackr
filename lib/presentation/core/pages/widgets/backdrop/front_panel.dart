@@ -57,7 +57,7 @@ class _FrontPanelState extends State<FrontPanel> {
     final double height = widget.constraints.biggest.height;
     final colorScheme = Theme.of(context).colorScheme;
     return PositionedTransition(
-      rect: getPanelAnimation(widget.constraints),
+      rect: _getPanelAnimation(widget.constraints),
       child: ClipRRect(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(widget.constraints.biggest.width *
@@ -76,13 +76,7 @@ class _FrontPanelState extends State<FrontPanel> {
                   : Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          widget.title,
-                          style: const TextStyle(fontSize: FontValues.h4),
-                        ),
-                        const Divider(
-                          color: Colors.transparent,
-                        ),
+                        FrontPanelSection(title: widget.title),
                         Expanded(
                           child: widget.child,
                           //? Debug coloring
@@ -106,7 +100,7 @@ class _FrontPanelState extends State<FrontPanel> {
     );
   }
 
-  Animation<RelativeRect> getPanelAnimation(BoxConstraints constraints) {
+  Animation<RelativeRect> _getPanelAnimation(BoxConstraints constraints) {
     final double height = constraints.biggest.height;
     final double minHeight = widget.minFrontPanelHeight;
     setState(() {
@@ -131,6 +125,48 @@ class _FrontPanelState extends State<FrontPanel> {
         parent: widget.backdropController,
         curve: Curves.easeInCubic,
       ),
+    );
+  }
+}
+
+class FrontPanelTitle extends StatelessWidget {
+  const FrontPanelTitle({
+    Key key,
+    @required this.title,
+  }) : super(key: key);
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      title,
+      style: const TextStyle(fontSize: FontValues.h4),
+    );
+  }
+}
+
+class FrontPanelDivider extends StatelessWidget {
+  const FrontPanelDivider({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Divider(
+      color: Palette.subtitle,
+    );
+  }
+}
+
+class FrontPanelSection extends StatelessWidget {
+  const FrontPanelSection({Key key, @required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 15),
+      child: FrontPanelTitle(title: title),
     );
   }
 }

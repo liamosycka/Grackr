@@ -21,6 +21,10 @@ class _$CreateGuardStateTearOff {
       @required
           EmployeeID employeeID,
       @required
+          PermissionLevel employeePermissions,
+      @required
+          Option<UserName> currentUser,
+      @required
           bool showErrorMessages,
       @required
           bool isSubmitting,
@@ -31,6 +35,8 @@ class _$CreateGuardStateTearOff {
       name: name,
       surname: surname,
       employeeID: employeeID,
+      employeePermissions: employeePermissions,
+      currentUser: currentUser,
       showErrorMessages: showErrorMessages,
       isSubmitting: isSubmitting,
       adminFeaturesFailureOrSuccess: adminFeaturesFailureOrSuccess,
@@ -45,6 +51,8 @@ mixin _$CreateGuardState {
   Name_Surname get name;
   Name_Surname get surname;
   EmployeeID get employeeID;
+  PermissionLevel get employeePermissions;
+  Option<UserName> get currentUser;
   bool get showErrorMessages;
   bool get isSubmitting;
   Option<Either<Admin_Features_Failure, Unit>>
@@ -61,6 +69,8 @@ abstract class $CreateGuardStateCopyWith<$Res> {
       {Name_Surname name,
       Name_Surname surname,
       EmployeeID employeeID,
+      PermissionLevel employeePermissions,
+      Option<UserName> currentUser,
       bool showErrorMessages,
       bool isSubmitting,
       Option<Either<Admin_Features_Failure, Unit>>
@@ -80,6 +90,8 @@ class _$CreateGuardStateCopyWithImpl<$Res>
     Object name = freezed,
     Object surname = freezed,
     Object employeeID = freezed,
+    Object employeePermissions = freezed,
+    Object currentUser = freezed,
     Object showErrorMessages = freezed,
     Object isSubmitting = freezed,
     Object adminFeaturesFailureOrSuccess = freezed,
@@ -89,6 +101,12 @@ class _$CreateGuardStateCopyWithImpl<$Res>
       surname: surname == freezed ? _value.surname : surname as Name_Surname,
       employeeID:
           employeeID == freezed ? _value.employeeID : employeeID as EmployeeID,
+      employeePermissions: employeePermissions == freezed
+          ? _value.employeePermissions
+          : employeePermissions as PermissionLevel,
+      currentUser: currentUser == freezed
+          ? _value.currentUser
+          : currentUser as Option<UserName>,
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages as bool,
@@ -112,6 +130,8 @@ abstract class _$CreateGuardStateCopyWith<$Res>
       {Name_Surname name,
       Name_Surname surname,
       EmployeeID employeeID,
+      PermissionLevel employeePermissions,
+      Option<UserName> currentUser,
       bool showErrorMessages,
       bool isSubmitting,
       Option<Either<Admin_Features_Failure, Unit>>
@@ -133,6 +153,8 @@ class __$CreateGuardStateCopyWithImpl<$Res>
     Object name = freezed,
     Object surname = freezed,
     Object employeeID = freezed,
+    Object employeePermissions = freezed,
+    Object currentUser = freezed,
     Object showErrorMessages = freezed,
     Object isSubmitting = freezed,
     Object adminFeaturesFailureOrSuccess = freezed,
@@ -142,6 +164,12 @@ class __$CreateGuardStateCopyWithImpl<$Res>
       surname: surname == freezed ? _value.surname : surname as Name_Surname,
       employeeID:
           employeeID == freezed ? _value.employeeID : employeeID as EmployeeID,
+      employeePermissions: employeePermissions == freezed
+          ? _value.employeePermissions
+          : employeePermissions as PermissionLevel,
+      currentUser: currentUser == freezed
+          ? _value.currentUser
+          : currentUser as Option<UserName>,
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages as bool,
@@ -162,12 +190,16 @@ class _$_CreateGuardState
       {@required this.name,
       @required this.surname,
       @required this.employeeID,
+      @required this.employeePermissions,
+      @required this.currentUser,
       @required this.showErrorMessages,
       @required this.isSubmitting,
       @required this.adminFeaturesFailureOrSuccess})
       : assert(name != null),
         assert(surname != null),
         assert(employeeID != null),
+        assert(employeePermissions != null),
+        assert(currentUser != null),
         assert(showErrorMessages != null),
         assert(isSubmitting != null),
         assert(adminFeaturesFailureOrSuccess != null);
@@ -179,6 +211,10 @@ class _$_CreateGuardState
   @override
   final EmployeeID employeeID;
   @override
+  final PermissionLevel employeePermissions;
+  @override
+  final Option<UserName> currentUser;
+  @override
   final bool showErrorMessages;
   @override
   final bool isSubmitting;
@@ -188,7 +224,7 @@ class _$_CreateGuardState
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CreateGuardState(name: $name, surname: $surname, employeeID: $employeeID, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, adminFeaturesFailureOrSuccess: $adminFeaturesFailureOrSuccess)';
+    return 'CreateGuardState(name: $name, surname: $surname, employeeID: $employeeID, employeePermissions: $employeePermissions, currentUser: $currentUser, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, adminFeaturesFailureOrSuccess: $adminFeaturesFailureOrSuccess)';
   }
 
   @override
@@ -199,6 +235,8 @@ class _$_CreateGuardState
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('surname', surname))
       ..add(DiagnosticsProperty('employeeID', employeeID))
+      ..add(DiagnosticsProperty('employeePermissions', employeePermissions))
+      ..add(DiagnosticsProperty('currentUser', currentUser))
       ..add(DiagnosticsProperty('showErrorMessages', showErrorMessages))
       ..add(DiagnosticsProperty('isSubmitting', isSubmitting))
       ..add(DiagnosticsProperty(
@@ -217,6 +255,12 @@ class _$_CreateGuardState
             (identical(other.employeeID, employeeID) ||
                 const DeepCollectionEquality()
                     .equals(other.employeeID, employeeID)) &&
+            (identical(other.employeePermissions, employeePermissions) ||
+                const DeepCollectionEquality()
+                    .equals(other.employeePermissions, employeePermissions)) &&
+            (identical(other.currentUser, currentUser) ||
+                const DeepCollectionEquality()
+                    .equals(other.currentUser, currentUser)) &&
             (identical(other.showErrorMessages, showErrorMessages) ||
                 const DeepCollectionEquality()
                     .equals(other.showErrorMessages, showErrorMessages)) &&
@@ -236,6 +280,8 @@ class _$_CreateGuardState
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(surname) ^
       const DeepCollectionEquality().hash(employeeID) ^
+      const DeepCollectionEquality().hash(employeePermissions) ^
+      const DeepCollectionEquality().hash(currentUser) ^
       const DeepCollectionEquality().hash(showErrorMessages) ^
       const DeepCollectionEquality().hash(isSubmitting) ^
       const DeepCollectionEquality().hash(adminFeaturesFailureOrSuccess);
@@ -254,6 +300,10 @@ abstract class _CreateGuardState implements CreateGuardState {
       @required
           EmployeeID employeeID,
       @required
+          PermissionLevel employeePermissions,
+      @required
+          Option<UserName> currentUser,
+      @required
           bool showErrorMessages,
       @required
           bool isSubmitting,
@@ -267,6 +317,10 @@ abstract class _CreateGuardState implements CreateGuardState {
   Name_Surname get surname;
   @override
   EmployeeID get employeeID;
+  @override
+  PermissionLevel get employeePermissions;
+  @override
+  Option<UserName> get currentUser;
   @override
   bool get showErrorMessages;
   @override

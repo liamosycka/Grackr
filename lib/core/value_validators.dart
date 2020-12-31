@@ -11,7 +11,7 @@ Either<ValueFailure<String>, String> validate_UserName(String input) {
       r"^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$";
   if (RegExp(emailRegex).hasMatch(input)) {*/
   if (input.length >= 4) {
-    return right(Value_Transformer.transform_String(input));
+    return right(transformUpperLetterString(input));
   } else {
     return left(ValueFailure.invalidUsername(failedValue: input));
   }

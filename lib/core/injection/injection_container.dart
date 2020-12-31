@@ -19,7 +19,7 @@ import 'package:gracker_app/domain/authentication/repositories/i_user_repository
 import 'package:gracker_app/domain/core/usecases/check_if_authenticated.dart';
 import 'package:gracker_app/domain/authentication/usecases/get_authenticated.dart';
 import 'package:gracker_app/domain/core/usecases/log_out.dart';
-import 'package:gracker_app/presentation/admin_features/guard_crud/create_guard/bloc/create_guard_bloc.dart';
+import 'package:gracker_app/presentation/admin_features/create_guard/bloc/create_guard_bloc.dart';
 import 'package:gracker_app/presentation/authentication/bloc/login_bloc.dart';
 import 'package:gracker_app/presentation/core/blocs/auth_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -57,7 +57,7 @@ Future<void> _initFeatures() async {
   );
   /*getIt.registerFactory<MainGuardiaBloc>(
           () => MainGuardiaBloc());*/
-  getIt.registerLazySingleton<CreateGuardBloc>(
+  getIt.registerFactory<CreateGuardBloc>(
       () => CreateGuardBloc(createGuard: getIt()));
   //! UseCases
   getIt.registerLazySingleton<Get_Authenticated>(() => Get_Authenticated(
@@ -67,7 +67,7 @@ Future<void> _initFeatures() async {
   getIt.registerLazySingleton<Log_Out>(() => Log_Out(userRepository: getIt()));
 
   getIt.registerLazySingleton<Create_Guard>(() => Create_Guard(
-      guard_CRUD_Repository: getIt(), dbCrypt: getIt(), networkInfo: getIt()));
+      guardRepository: getIt(), dbCrypt: getIt(), networkInfo: getIt()));
   //! Repository
   getIt.registerLazySingleton<IUserRepository>(() => User_Repository_Impl(
       userRemoteDataSource: getIt(), userLocalDataSource: getIt()));
@@ -79,7 +79,7 @@ Future<void> _initFeatures() async {
   getIt.registerLazySingleton<IUserLocalDataSource>(
       () => User_Local_SharedPreferences(sharedPreferences: getIt()));
   getIt.registerLazySingleton<IGuardRemoteDataSource>(
-      () => Guard_CRUD_Remote_PostgreSQL(postgress_connection_data: getIt()));
+      () => GuardRemotePostgreSQL(postgress_connection_data: getIt()));
 }
 
 Future<void> _initCore() async {
@@ -93,13 +93,15 @@ Future<void> _initCore() async {
 
 Future<void> _initExternal() async {
   //
-  getIt.registerLazySingleton<Postgress_Connection_Data>(() =>
-      const Postgress_Connection_Data(
-          host: "ruby.db.elephantsql.com",
-          port: 5432,
-          database: "dbpxbgmk",
-          username: "dbpxbgmk",
-          password: "L1GhaFDYwqF5wUBpzsXF3VW0G_p1uQWv"));
+  getIt.registerLazySingleton<Postgress_Connection_Data>(
+    () => const Postgress_Connection_Data(
+      host: "ruby.db.elephantsql.com",
+      port: 5432,
+      database: "dbpxbgmk",
+      username: "dbpxbgmk",
+      password: "L1GhaFDYwqF5wUBpzsXF3VW0G_p1uQWv",
+    ),
+  );
   //"ruby.db.elephantsql.com", 5432, "dbpxbgmk",        username: "dbpxbgmk", password: "L1GhaFDYwqF5wUBpzsXF3VW0G_p1uQWv"
   // External
   final sharedPreferences = await SharedPreferences.getInstance();

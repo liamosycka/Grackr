@@ -15,6 +15,7 @@ void main() async {
   HydratedBloc.storage = await HydratedStorage.build();
   //? Inicializar las dependencias con GetIt
   await initGetItDependencies();
+  //! DEBUG
   Bloc.observer = SimpleBlocDelegate();
 
   runApp(MainAppWidget());

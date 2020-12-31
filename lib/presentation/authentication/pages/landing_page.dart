@@ -47,10 +47,16 @@ class LandingPage extends StatelessWidget {
                   (_) async {
                     FlushbarHelper.createSuccess(message: 'Successful login.')
                         .show(context);
+                    // TODO: Quitar Future.delayed
                     await Future.delayed(const Duration(seconds: 1));
                     final currentPermissions = state.permissions;
-                    BlocProvider.of<AuthBloc>(context).add(AuthEvent.loggedIn(
-                        permissionLevel: currentPermissions));
+                    final currentUsername = state.username;
+                    BlocProvider.of<AuthBloc>(context).add(
+                      AuthEvent.loggedIn(
+                        permissionLevel: currentPermissions,
+                        username: currentUsername,
+                      ),
+                    );
                     if (currentPermissions.getOrCrash() ==
                         PermissionLevel.admin) {
                       Navigator.of(context).popUntil((route) => route.isFirst);
