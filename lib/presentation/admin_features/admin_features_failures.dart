@@ -24,4 +24,15 @@ abstract class Admin_Features_Failure with _$Admin_Features_Failure {
 
   const factory Admin_Features_Failure.failedToCreateUser(
       {@required String failedValue}) = FailedToCreateUser;
+
+  const factory Admin_Features_Failure.failedToObtainUsers(
+      {@required String failedValue}) = FailedToObtainUsers;
+
+  const factory Admin_Features_Failure.failedToDeleteUser(
+      {@required String failedValue}) = FailedToDeleteUser;
+
+  const factory Admin_Features_Failure.failedToObtainInfo(
+      {@required String failedValue}) = FailedToObtainInfo;
+
+  const factory Admin_Features_Failure.noUsersFound() = NoUsersFound;
 }

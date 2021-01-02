@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:gracker_app/core/routes/route_buiders.dart';
 import 'package:gracker_app/core/routes/test_page.dart';
 import 'package:gracker_app/core/routes/test_second_page.dart';
-import 'package:gracker_app/presentation/admin_features/administracion_empleados/pages/admin_empleados_page.dart';
-import 'package:gracker_app/presentation/admin_features/create_guard/pages/crear_empleado_page.dart';
+import 'package:gracker_app/presentation/admin_features/admin_employees/misc/employee_preview_primitive.dart';
+import 'package:gracker_app/presentation/admin_features/admin_employees/pages/admin_employees_page.dart';
+import 'package:gracker_app/presentation/admin_features/create_employee/pages/create_employee_page.dart';
+import 'package:gracker_app/presentation/admin_features/inspect_employee/pages/inspect_employee_page.dart';
 import 'package:gracker_app/presentation/admin_features/pages/admin_page.dart';
 import 'package:gracker_app/presentation/authentication/pages/landing_page.dart';
 import 'package:gracker_app/presentation/core/pages/splash/splash_page.dart';
@@ -12,8 +14,9 @@ import 'package:gracker_app/presentation/guard_features/pages/guard_page.dart';
 class Routes {
   static const String homeGuard = 'homeGuard';
   static const String homeAdmin = 'homeAdmin';
-  static const String createGuard = 'createGuard';
-  static const String adminEmpleados = 'adminEmpleados';
+  static const String adminEmployees = 'adminEmployees';
+  static const String createEmployee = 'createEmployee';
+  static const String inspectEmployee = 'inspectEmployee';
   static const String landing = 'landing';
   static const String splash = 'splash';
   static const String test = 'test';
@@ -45,20 +48,32 @@ class Router {
       case Routes.homeGuard:
         route = MaterialPageRoute(builder: (_) => const GuardPage());
         break;
-      case Routes.createGuard:
+      case Routes.createEmployee:
         route = BackdropSlideRouteBuilder(
           false,
-          page: const CrearEmpleadoPage(),
+          page: const CreateEmployeePage(),
           milliseconds: 500,
         );
         break;
-      case Routes.adminEmpleados:
+      case Routes.adminEmployees:
         // route = MaterialPageRoute(builder: (_) => const AdminEmpleadosPage());
-        route = BackdropSlideRouteBuilder(
+        route = BackdropSlideAndStayRouteBuilder(
           false,
-          page: const AdminEmpleadosPage(),
+          page: const AdminEmployeesPage(),
           milliseconds: 500,
         );
+        break;
+      case Routes.inspectEmployee:
+        // route = MaterialPageRoute(builder: (_) => const AdminEmpleadosPage());
+        if (args is EmployeePreviewPrimitive) {
+          route = BackdropSlideUpwardsRouteBuilder(
+            false,
+            page: InspectEmployeePage(
+              preview: args,
+            ),
+            milliseconds: 800,
+          );
+        }
         break;
       case Routes.test:
         route = MaterialPageRoute(builder: (_) => TestPage());

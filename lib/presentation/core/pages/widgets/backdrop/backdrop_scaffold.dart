@@ -8,7 +8,7 @@ import 'backdrop_transitions.dart';
 class BackdropScaffold extends StatefulWidget {
   static const double appHorizontalPaddingRatio = 1 / 16;
   static const double appVerticalPaddingRatio = 1 / 64;
-  static double childrenExtent = (BackdropBar.height - 20).abs();
+  static double childrenExtent = (BackdropBar.height - 25).abs();
   static double childrenMargin = BackdropBar.height * 0.2;
   static double minFrontPanelHeight = BackdropBar.height.abs();
 

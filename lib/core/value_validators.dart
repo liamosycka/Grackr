@@ -38,7 +38,9 @@ Either<ValueFailure<String>, String> validate_Password(String input) {
 }
 
 Either<ValueFailure<int>, int> validate_PermissionLevel(int input) {
-  if (input == PermissionLevel.admin || input == PermissionLevel.guard) {
+  if (input == PermissionLevel.admin ||
+      input == PermissionLevel.guard ||
+      input == PermissionLevel.noPermissions) {
     return right(input);
   } else {
     return left(ValueFailure.invalidPermissionLevel(failedValue: input));

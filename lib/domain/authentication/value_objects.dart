@@ -32,6 +32,19 @@ class PermissionLevel extends ValueObject<int> {
   static const int guard = 0;
   static const int admin = 1;
 
+  static String mapPermissionToString(int permission) {
+    var string = 'Rol no identificado';
+    switch (permission) {
+      case guard:
+        string = 'Guardia';
+        break;
+      case admin:
+        string = 'Admin';
+        break;
+    }
+    return string;
+  }
+
   @override
   final Either<ValueFailure<int>, int> value;
 

@@ -68,7 +68,7 @@ class _OptionsGridState extends State<OptionsGrid> {
         title: 'Administrar',
         subtitle: 'empleados',
         onTap: (context) {
-          Navigator.of(context).pushNamed(Routes.adminEmpleados);
+          Navigator.of(context).pushNamed(Routes.adminEmployees);
         },
       ),
       _CardContent(
@@ -100,7 +100,7 @@ class _OptionsGridState extends State<OptionsGrid> {
         title: 'Crear',
         subtitle: 'un empleado',
         onTap: (context) {
-          Navigator.of(context).pushNamed(Routes.createGuard);
+          Navigator.of(context).pushNamed(Routes.createEmployee);
         },
       ),
       _CardContent(

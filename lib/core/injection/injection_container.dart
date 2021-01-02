@@ -14,12 +14,17 @@ import 'package:gracker_app/data/authentication/datasources/user_remote_impl/use
 import 'package:gracker_app/data/authentication/repositories/user_repository_impl.dart';
 import 'package:gracker_app/data/core/models/postgres_connection_data.dart';
 import 'package:gracker_app/domain/admin_features/repositories/i_guard_repository.dart';
-import 'package:gracker_app/domain/admin_features/usecases/create_guard.dart';
+import 'package:gracker_app/domain/admin_features/usecases/create_employee.dart';
+import 'package:gracker_app/domain/admin_features/usecases/delete_employee.dart';
+import 'package:gracker_app/domain/admin_features/usecases/get_all_employee_previews.dart';
+import 'package:gracker_app/domain/admin_features/usecases/get_employee_info.dart';
 import 'package:gracker_app/domain/authentication/repositories/i_user_repository.dart';
 import 'package:gracker_app/domain/core/usecases/check_if_authenticated.dart';
 import 'package:gracker_app/domain/authentication/usecases/get_authenticated.dart';
 import 'package:gracker_app/domain/core/usecases/log_out.dart';
-import 'package:gracker_app/presentation/admin_features/create_guard/bloc/create_guard_bloc.dart';
+import 'package:gracker_app/presentation/admin_features/admin_employees/bloc/admin_employees_bloc.dart';
+import 'package:gracker_app/presentation/admin_features/create_employee/bloc/create_guard_bloc.dart';
+import 'package:gracker_app/presentation/admin_features/inspect_employee/bloc/inspect_employee_bloc.dart';
 import 'package:gracker_app/presentation/authentication/bloc/login_bloc.dart';
 import 'package:gracker_app/presentation/core/blocs/auth_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -55,10 +60,17 @@ Future<void> _initFeatures() async {
   getIt.registerLazySingleton<ThemeBloc>(
     () => ThemeBloc(),
   );
-  /*getIt.registerFactory<MainGuardiaBloc>(
-          () => MainGuardiaBloc());*/
-  getIt.registerFactory<CreateGuardBloc>(
-      () => CreateGuardBloc(createGuard: getIt()));
+
+  getIt.registerFactory<CreateEmployeeBloc>(
+    () => CreateEmployeeBloc(createGuard: getIt()),
+  );
+  getIt.registerFactory<AdminEmployeesBloc>(
+    () => AdminEmployeesBloc(getAllGuardPreviews: getIt()),
+  );
+  getIt.registerFactory<InspectEmployeeBloc>(
+    () =>
+        InspectEmployeeBloc(deleteEmployee: getIt(), getEmployeeInfo: getIt()),
+  );
   //! UseCases
   getIt.registerLazySingleton<Get_Authenticated>(() => Get_Authenticated(
       userRepository: getIt(), dbCrypt: getIt(), networkInfo: getIt()));
@@ -66,20 +78,30 @@ Future<void> _initFeatures() async {
       () => Check_If_Authenticated(userRepository: getIt()));
   getIt.registerLazySingleton<Log_Out>(() => Log_Out(userRepository: getIt()));
 
-  getIt.registerLazySingleton<Create_Guard>(() => Create_Guard(
-      guardRepository: getIt(), dbCrypt: getIt(), networkInfo: getIt()));
+  getIt.registerLazySingleton<Create_Employee>(() => Create_Employee(
+      employeeRepository: getIt(), dbCrypt: getIt(), networkInfo: getIt()));
+
+  getIt.registerLazySingleton<Delete_Employee>(
+      () => Delete_Employee(employeeRepository: getIt(), networkInfo: getIt()));
+
+  getIt.registerLazySingleton<Get_All_Employee_Previews>(() =>
+      Get_All_Employee_Previews(
+          employeeRepository: getIt(), networkInfo: getIt()));
+
+  getIt.registerLazySingleton<Get_Employee_Info>(() =>
+      Get_Employee_Info(employeeRepository: getIt(), networkInfo: getIt()));
   //! Repository
   getIt.registerLazySingleton<IUserRepository>(() => User_Repository_Impl(
       userRemoteDataSource: getIt(), userLocalDataSource: getIt()));
-  getIt.registerLazySingleton<IGuardRepository>(
-      () => GuardRepositoryImpl(guardRemoteDataSource: getIt()));
+  getIt.registerLazySingleton<IEmployeeRepository>(
+      () => GuardRepositoryImpl(employeeRemoteDataSource: getIt()));
   //! Data Sources
   getIt.registerLazySingleton<IUserRemoteDataSource>(
       () => User_Remote_PostgreSQL(postgress_connection_data: getIt()));
   getIt.registerLazySingleton<IUserLocalDataSource>(
       () => User_Local_SharedPreferences(sharedPreferences: getIt()));
-  getIt.registerLazySingleton<IGuardRemoteDataSource>(
-      () => GuardRemotePostgreSQL(postgress_connection_data: getIt()));
+  getIt.registerLazySingleton<IEmployeeRemoteDataSource>(
+      () => EmployeeRemotePostgreSQL(postgress_connection_data: getIt()));
 }
 
 Future<void> _initCore() async {
