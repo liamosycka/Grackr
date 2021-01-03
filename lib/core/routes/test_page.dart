@@ -41,7 +41,6 @@ class _TestPageState extends State<TestPage> {
         padding: const EdgeInsets.all(50),
         child: PageView(
           controller: pageController,
-          scrollDirection: Axis.horizontal,
           children: const [
             AdminPage(),
             // AdminEmpleadosPage(),

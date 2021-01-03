@@ -9,7 +9,7 @@ import 'package:gracker_app/domain/admin_features/entities/employee.dart';
 import 'package:gracker_app/domain/admin_features/value_objects.dart';
 import 'package:gracker_app/domain/authentication/value_objects.dart';
 import 'package:gracker_app/domain/core/entities/user.dart';
-import 'package:gracker_app/domain/admin_features/repositories/i_guard_repository.dart';
+import 'package:gracker_app/domain/admin_features/repositories/i_employee_repository.dart';
 import 'package:gracker_app/presentation/admin_features/admin_features_failures.dart';
 
 class Create_Employee implements UseCase<Admin_Features_Failure, Unit, Params> {

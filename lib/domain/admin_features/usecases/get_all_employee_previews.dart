@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gracker_app/core/network/network_info.dart';
 import 'package:gracker_app/core/usecases/usecase.dart';
 import 'package:gracker_app/domain/admin_features/entities/employee_preview.dart';
-import 'package:gracker_app/domain/admin_features/repositories/i_guard_repository.dart';
+import 'package:gracker_app/domain/admin_features/repositories/i_employee_repository.dart';
 import 'package:gracker_app/presentation/admin_features/admin_features_failures.dart';
 
 class Get_All_Employee_Previews

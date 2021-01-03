@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gracker_app/core/error/exceptions.dart';
 import 'package:gracker_app/data/admin_features/models/employee_dto.dart';
 import 'package:gracker_app/data/authentication/models/user_dto.dart';
-import 'package:gracker_app/data/admin_features/datasources/i_guard_remote_datasource.dart';
+import 'package:gracker_app/data/admin_features/datasources/i_employee_remote_datasource.dart';
 import 'package:gracker_app/domain/admin_features/entities/employee.dart';
 import 'package:gracker_app/domain/admin_features/entities/employee_info.dart';
 import 'package:gracker_app/domain/admin_features/entities/employee_preview.dart';
@@ -10,13 +10,13 @@ import 'package:gracker_app/domain/admin_features/value_objects.dart';
 import 'package:gracker_app/domain/authentication/value_objects.dart';
 import 'package:gracker_app/domain/core/entities/user.dart';
 import 'package:dartz/dartz.dart';
-import 'package:gracker_app/domain/admin_features/repositories/i_guard_repository.dart';
+import 'package:gracker_app/domain/admin_features/repositories/i_employee_repository.dart';
 import 'package:gracker_app/presentation/admin_features/admin_features_failures.dart';
 
-class GuardRepositoryImpl implements IEmployeeRepository {
+class EmployeeRepositoryImpl implements IEmployeeRepository {
   final IEmployeeRemoteDataSource employeeRemoteDataSource;
 
-  GuardRepositoryImpl({@required this.employeeRemoteDataSource});
+  EmployeeRepositoryImpl({@required this.employeeRemoteDataSource});
 
   @override
   Future<Either<Admin_Features_Failure, Unit>> createEmployee(

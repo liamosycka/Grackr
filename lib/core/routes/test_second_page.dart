@@ -61,7 +61,6 @@ class __ViewsState extends State<_Views> {
           dragStartBehavior: DragStartBehavior.down,
           physics: const NeverScrollableScrollPhysics(),
           controller: pageController,
-          scrollDirection: Axis.horizontal,
           children: const [
             AdminPage(),
             //AdminEmpleadosPage(),
