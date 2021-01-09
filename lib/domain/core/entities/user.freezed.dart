@@ -15,11 +15,9 @@ class _$UserTearOff {
 // ignore: unused_element
   _User call(
       {@required UserName username,
-      @required Password password,
       @required PermissionLevel permissionLevel}) {
     return _User(
       username: username,
-      password: password,
       permissionLevel: permissionLevel,
     );
   }
@@ -30,7 +28,6 @@ const $User = _$UserTearOff();
 
 mixin _$User {
   UserName get username;
-  Password get password;
   PermissionLevel get permissionLevel;
 
   $UserCopyWith<User> get copyWith;
@@ -39,8 +36,7 @@ mixin _$User {
 abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res>;
-  $Res call(
-      {UserName username, Password password, PermissionLevel permissionLevel});
+  $Res call({UserName username, PermissionLevel permissionLevel});
 }
 
 class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
@@ -53,12 +49,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
   @override
   $Res call({
     Object username = freezed,
-    Object password = freezed,
     Object permissionLevel = freezed,
   }) {
     return _then(_value.copyWith(
       username: username == freezed ? _value.username : username as UserName,
-      password: password == freezed ? _value.password : password as Password,
       permissionLevel: permissionLevel == freezed
           ? _value.permissionLevel
           : permissionLevel as PermissionLevel,
@@ -70,8 +64,7 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   factory _$UserCopyWith(_User value, $Res Function(_User) then) =
       __$UserCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {UserName username, Password password, PermissionLevel permissionLevel});
+  $Res call({UserName username, PermissionLevel permissionLevel});
 }
 
 class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
@@ -85,12 +78,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
   @override
   $Res call({
     Object username = freezed,
-    Object password = freezed,
     Object permissionLevel = freezed,
   }) {
     return _then(_User(
       username: username == freezed ? _value.username : username as UserName,
-      password: password == freezed ? _value.password : password as Password,
       permissionLevel: permissionLevel == freezed
           ? _value.permissionLevel
           : permissionLevel as PermissionLevel,
@@ -99,24 +90,18 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 }
 
 class _$_User implements _User {
-  const _$_User(
-      {@required this.username,
-      @required this.password,
-      @required this.permissionLevel})
+  const _$_User({@required this.username, @required this.permissionLevel})
       : assert(username != null),
-        assert(password != null),
         assert(permissionLevel != null);
 
   @override
   final UserName username;
   @override
-  final Password password;
-  @override
   final PermissionLevel permissionLevel;
 
   @override
   String toString() {
-    return 'User(username: $username, password: $password, permissionLevel: $permissionLevel)';
+    return 'User(username: $username, permissionLevel: $permissionLevel)';
   }
 
   @override
@@ -126,9 +111,6 @@ class _$_User implements _User {
             (identical(other.username, username) ||
                 const DeepCollectionEquality()
                     .equals(other.username, username)) &&
-            (identical(other.password, password) ||
-                const DeepCollectionEquality()
-                    .equals(other.password, password)) &&
             (identical(other.permissionLevel, permissionLevel) ||
                 const DeepCollectionEquality()
                     .equals(other.permissionLevel, permissionLevel)));
@@ -138,7 +120,6 @@ class _$_User implements _User {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(username) ^
-      const DeepCollectionEquality().hash(password) ^
       const DeepCollectionEquality().hash(permissionLevel);
 
   @override
@@ -149,13 +130,10 @@ class _$_User implements _User {
 abstract class _User implements User {
   const factory _User(
       {@required UserName username,
-      @required Password password,
       @required PermissionLevel permissionLevel}) = _$_User;
 
   @override
   UserName get username;
-  @override
-  Password get password;
   @override
   PermissionLevel get permissionLevel;
   @override

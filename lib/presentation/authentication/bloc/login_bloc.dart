@@ -6,6 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:gracker_app/domain/authentication/usecases/get_authenticated.dart';
 import 'package:gracker_app/domain/authentication/value_objects.dart';
+import 'package:gracker_app/presentation/authentication/auth_failures.dart';
 import 'package:gracker_app/presentation/authentication/bloc/login_event.dart';
 import 'package:gracker_app/presentation/authentication/bloc/login_state.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -25,35 +26,47 @@ class LoginBloc extends HydratedBloc<LoginEvent, LoginState> {
   Stream<LoginState> mapEventToState(LoginEvent event) async* {
     yield* event.map(
       submittedLogin: (SubmittedLogin e) async* {
-        yield state.copyWith(
-          isSubmitting: true,
-          authFailrueOrSuccess: none(),
-        );
+        final isUsernameValid = state.username.isValid();
+        final isPasswordValid = state.password.isValid();
+        final isPermissionValid = state.permissions.isValid();
 
-        final failureOrSuccess = await getAuthenticated.call(
-          Params(
-            username: UserName(e.username),
-            plainPassword: Password(e.plainPassword),
-            permissionLevel: PermissionLevel(e.permissions),
-          ),
-        );
+        Either<AuthFailure, Unit> failureOrSuccess;
+
+        if (isUsernameValid && isPasswordValid && isPermissionValid) {
+          yield state.copyWith(
+            isSubmitting: true,
+          );
+
+          failureOrSuccess = await getAuthenticated.call(
+            Params(
+              username: state.username,
+              plainPassword: state.password,
+              permissionLevel: state.permissions,
+            ),
+          );
+        } else {
+          failureOrSuccess = const Left(AuthFailure.failedDomainVerification());
+        }
 
         yield state.copyWith(
           isSubmitting: false,
           showErrorMessages: true,
           authFailrueOrSuccess: optionOf(failureOrSuccess),
         );
+        yield state.copyWith(
+          isSubmitting: false,
+          showErrorMessages: true,
+          authFailrueOrSuccess: none(),
+        );
       },
       usernameChanged: (UsernameChanged e) async* {
         yield state.copyWith(
           username: UserName(e.usernameStr),
-          authFailrueOrSuccess: none(),
         );
       },
       passwordChanged: (PasswordChanged e) async* {
         yield state.copyWith(
           password: Password(e.passwordStr),
-          authFailrueOrSuccess: none(),
         );
       },
       permissionsChanged: (PermissionsChanged e) async* {
@@ -61,7 +74,6 @@ class LoginBloc extends HydratedBloc<LoginEvent, LoginState> {
           permissions: PermissionLevel(
             e.permissions,
           ),
-          authFailrueOrSuccess: none(),
         );
       },
     );

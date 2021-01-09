@@ -1,42 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:gracker_app/domain/authentication/value_objects.dart';
 import 'package:gracker_app/domain/core/entities/user.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'user_dto.g.dart';
+
+@JsonSerializable()
 class UserDto {
-  static const String _USERNAME = 'username';
-  static const String _PASSWORD = 'plainPassword';
-  static const String _PERMISSIONS = 'permissionLevel';
-
   final String username;
+  @JsonKey(ignore: true)
   final String password;
   final int permissionLevel;
+  final String accessToken;
+  final String refreshToken;
 
   UserDto({
     @required this.username,
-    @required this.password,
+    this.password = '',
     @required this.permissionLevel,
+    this.accessToken = '',
+    this.refreshToken = '',
   });
 
-  factory UserDto.fromJson(Map<String, dynamic> json) {
-    return UserDto(
-      username: json[_USERNAME].toString(),
-      password: json[_PASSWORD].toString(),
-      permissionLevel: int.parse(json[_PERMISSIONS].toString()),
-    );
-  }
+  factory UserDto.fromJson(Map<String, dynamic> json) =>
+      _$UserDtoFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    return {
-      _USERNAME: username,
-      _PASSWORD: password,
-      _PERMISSIONS: permissionLevel.toString()
-    };
+  Map<String, dynamic> toJson() => _$UserDtoToJson(this);
+
+  factory UserDto.fromUserAndPassword(User user, Password password) {
+    return UserDto(
+      username: user.username.getOrCrash(),
+      password: password.getOrCrash(),
+      permissionLevel: user.permissionLevel.getOrCrash(),
+    );
   }
 
   factory UserDto.fromUser(User user) {
     return UserDto(
       username: user.username.getOrCrash(),
-      password: user.password.getOrCrash(),
       permissionLevel: user.permissionLevel.getOrCrash(),
     );
   }
@@ -44,7 +45,6 @@ class UserDto {
   User toUser() {
     return User(
       username: UserName(username),
-      password: Password(password),
       permissionLevel: PermissionLevel(permissionLevel),
     );
   }

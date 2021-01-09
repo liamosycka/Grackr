@@ -52,11 +52,7 @@ class _LoginFormState extends State<LoginForm> {
     final colorScheme = Theme.of(context).colorScheme;
     void _loginSubmit() {
       BlocProvider.of<LoginBloc>(context).add(
-        LoginEvent.submittedLogin(
-          username: _textControllerUser.text,
-          plainPassword: _textControllerPass.text,
-          permissions: _currentPermissions,
-        ),
+        const LoginEvent.submittedLogin(),
       );
     }
 

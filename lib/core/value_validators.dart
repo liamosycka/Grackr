@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:gracker_app/core/error/failures.dart';
-import 'package:gracker_app/core/value_transformers.dart';
 import 'package:gracker_app/domain/authentication/value_objects.dart';
 
 // Validación de username
@@ -11,7 +10,9 @@ Either<ValueFailure<String>, String> validate_UserName(String input) {
       r"^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$";
   if (RegExp(emailRegex).hasMatch(input)) {*/
   if (input.length >= 4) {
-    return right(transformUpperLetterString(input));
+    // TODO: Volver a normalizar input
+    // return right(transformUpperLetterString(input));
+    return right(input);
   } else {
     return left(ValueFailure.invalidUsername(failedValue: input));
   }

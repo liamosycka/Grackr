@@ -8,26 +8,27 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class User_Local_SharedPreferences implements IUserLocalDataSource {
   final SharedPreferences sharedPreferences;
-  static const String cachedUser = "cachedUser";
+  static const String _cachedUser = "cachedUser";
 
   User_Local_SharedPreferences({@required this.sharedPreferences});
+
   @override
-  Future<void> cache_User(UserDto userDto) async {
-    sharedPreferences.setString(cachedUser, json.encode(userDto.toJson()));
+  Future<void> cacheUser(UserDto userDto) async {
+    sharedPreferences.setString(_cachedUser, json.encode(userDto.toJson()));
   }
 
   @override
-  Future<UserDto> get_Cached_User() async {
-    final result = sharedPreferences.getString(cachedUser);
-    if (result != null) {
-      return UserDto.fromJson(json.decode(result) as Map<String, dynamic>);
+  Future<UserDto> getCachedUser() async {
+    final resultJson = sharedPreferences.getString(_cachedUser);
+    if (resultJson != null) {
+      return UserDto.fromJson(json.decode(resultJson) as Map<String, dynamic>);
     } else {
       throw NoCachedAuthException();
     }
   }
 
   @override
-  Future<void> clear_Cached_User() async {
-    final result = sharedPreferences.remove(cachedUser);
+  Future<void> clearCachedUser() async {
+    sharedPreferences.remove(_cachedUser);
   }
 }

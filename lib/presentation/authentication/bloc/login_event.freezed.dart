@@ -13,15 +13,8 @@ class _$LoginEventTearOff {
   const _$LoginEventTearOff();
 
 // ignore: unused_element
-  SubmittedLogin submittedLogin(
-      {@required String username,
-      @required String plainPassword,
-      @required int permissions}) {
-    return SubmittedLogin(
-      username: username,
-      plainPassword: plainPassword,
-      permissions: permissions,
-    );
+  SubmittedLogin submittedLogin() {
+    return const SubmittedLogin();
   }
 
 // ignore: unused_element
@@ -52,17 +45,14 @@ const $LoginEvent = _$LoginEventTearOff();
 mixin _$LoginEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required
-        Result submittedLogin(
-            String username, String plainPassword, int permissions),
+    @required Result submittedLogin(),
     @required Result usernameChanged(String usernameStr),
     @required Result passwordChanged(String passwordStr),
     @required Result permissionsChanged(int permissions),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result submittedLogin(
-        String username, String plainPassword, int permissions),
+    Result submittedLogin(),
     Result usernameChanged(String usernameStr),
     Result passwordChanged(String passwordStr),
     Result permissionsChanged(int permissions),
@@ -103,7 +93,6 @@ abstract class $SubmittedLoginCopyWith<$Res> {
   factory $SubmittedLoginCopyWith(
           SubmittedLogin value, $Res Function(SubmittedLogin) then) =
       _$SubmittedLoginCopyWithImpl<$Res>;
-  $Res call({String username, String plainPassword, int permissions});
 }
 
 class _$SubmittedLoginCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
@@ -114,87 +103,34 @@ class _$SubmittedLoginCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
 
   @override
   SubmittedLogin get _value => super._value as SubmittedLogin;
-
-  @override
-  $Res call({
-    Object username = freezed,
-    Object plainPassword = freezed,
-    Object permissions = freezed,
-  }) {
-    return _then(SubmittedLogin(
-      username: username == freezed ? _value.username : username as String,
-      plainPassword: plainPassword == freezed
-          ? _value.plainPassword
-          : plainPassword as String,
-      permissions:
-          permissions == freezed ? _value.permissions : permissions as int,
-    ));
-  }
 }
 
 class _$SubmittedLogin with DiagnosticableTreeMixin implements SubmittedLogin {
-  const _$SubmittedLogin(
-      {@required this.username,
-      @required this.plainPassword,
-      @required this.permissions})
-      : assert(username != null),
-        assert(plainPassword != null),
-        assert(permissions != null);
-
-  @override
-  final String username;
-  @override
-  final String plainPassword;
-  @override
-  final int permissions;
+  const _$SubmittedLogin();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LoginEvent.submittedLogin(username: $username, plainPassword: $plainPassword, permissions: $permissions)';
+    return 'LoginEvent.submittedLogin()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'LoginEvent.submittedLogin'))
-      ..add(DiagnosticsProperty('username', username))
-      ..add(DiagnosticsProperty('plainPassword', plainPassword))
-      ..add(DiagnosticsProperty('permissions', permissions));
+    properties..add(DiagnosticsProperty('type', 'LoginEvent.submittedLogin'));
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is SubmittedLogin &&
-            (identical(other.username, username) ||
-                const DeepCollectionEquality()
-                    .equals(other.username, username)) &&
-            (identical(other.plainPassword, plainPassword) ||
-                const DeepCollectionEquality()
-                    .equals(other.plainPassword, plainPassword)) &&
-            (identical(other.permissions, permissions) ||
-                const DeepCollectionEquality()
-                    .equals(other.permissions, permissions)));
+    return identical(this, other) || (other is SubmittedLogin);
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(username) ^
-      const DeepCollectionEquality().hash(plainPassword) ^
-      const DeepCollectionEquality().hash(permissions);
-
-  @override
-  $SubmittedLoginCopyWith<SubmittedLogin> get copyWith =>
-      _$SubmittedLoginCopyWithImpl<SubmittedLogin>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required
-        Result submittedLogin(
-            String username, String plainPassword, int permissions),
+    @required Result submittedLogin(),
     @required Result usernameChanged(String usernameStr),
     @required Result passwordChanged(String passwordStr),
     @required Result permissionsChanged(int permissions),
@@ -203,14 +139,13 @@ class _$SubmittedLogin with DiagnosticableTreeMixin implements SubmittedLogin {
     assert(usernameChanged != null);
     assert(passwordChanged != null);
     assert(permissionsChanged != null);
-    return submittedLogin(username, plainPassword, permissions);
+    return submittedLogin();
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result submittedLogin(
-        String username, String plainPassword, int permissions),
+    Result submittedLogin(),
     Result usernameChanged(String usernameStr),
     Result passwordChanged(String passwordStr),
     Result permissionsChanged(int permissions),
@@ -218,7 +153,7 @@ class _$SubmittedLogin with DiagnosticableTreeMixin implements SubmittedLogin {
   }) {
     assert(orElse != null);
     if (submittedLogin != null) {
-      return submittedLogin(username, plainPassword, permissions);
+      return submittedLogin();
     }
     return orElse();
   }
@@ -256,15 +191,7 @@ class _$SubmittedLogin with DiagnosticableTreeMixin implements SubmittedLogin {
 }
 
 abstract class SubmittedLogin implements LoginEvent {
-  const factory SubmittedLogin(
-      {@required String username,
-      @required String plainPassword,
-      @required int permissions}) = _$SubmittedLogin;
-
-  String get username;
-  String get plainPassword;
-  int get permissions;
-  $SubmittedLoginCopyWith<SubmittedLogin> get copyWith;
+  const factory SubmittedLogin() = _$SubmittedLogin;
 }
 
 abstract class $UsernameChangedCopyWith<$Res> {
@@ -334,9 +261,7 @@ class _$UsernameChanged
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required
-        Result submittedLogin(
-            String username, String plainPassword, int permissions),
+    @required Result submittedLogin(),
     @required Result usernameChanged(String usernameStr),
     @required Result passwordChanged(String passwordStr),
     @required Result permissionsChanged(int permissions),
@@ -351,8 +276,7 @@ class _$UsernameChanged
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result submittedLogin(
-        String username, String plainPassword, int permissions),
+    Result submittedLogin(),
     Result usernameChanged(String usernameStr),
     Result passwordChanged(String passwordStr),
     Result permissionsChanged(int permissions),
@@ -471,9 +395,7 @@ class _$PasswordChanged
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required
-        Result submittedLogin(
-            String username, String plainPassword, int permissions),
+    @required Result submittedLogin(),
     @required Result usernameChanged(String usernameStr),
     @required Result passwordChanged(String passwordStr),
     @required Result permissionsChanged(int permissions),
@@ -488,8 +410,7 @@ class _$PasswordChanged
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result submittedLogin(
-        String username, String plainPassword, int permissions),
+    Result submittedLogin(),
     Result usernameChanged(String usernameStr),
     Result passwordChanged(String passwordStr),
     Result permissionsChanged(int permissions),
@@ -611,9 +532,7 @@ class _$PermissionsChanged
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required
-        Result submittedLogin(
-            String username, String plainPassword, int permissions),
+    @required Result submittedLogin(),
     @required Result usernameChanged(String usernameStr),
     @required Result passwordChanged(String passwordStr),
     @required Result permissionsChanged(int permissions),
@@ -628,8 +547,7 @@ class _$PermissionsChanged
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result submittedLogin(
-        String username, String plainPassword, int permissions),
+    Result submittedLogin(),
     Result usernameChanged(String usernameStr),
     Result passwordChanged(String passwordStr),
     Result permissionsChanged(int permissions),

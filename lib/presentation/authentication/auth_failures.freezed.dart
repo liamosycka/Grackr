@@ -13,8 +13,8 @@ class _$AuthFailureTearOff {
   const _$AuthFailureTearOff();
 
 // ignore: unused_element
-  NoUserFoundInDB noUserFoundInDB({@required String failedValue}) {
-    return NoUserFoundInDB(
+  AuthenticationFailed authenticationFailed({@required String failedValue}) {
+    return AuthenticationFailed(
       failedValue: failedValue,
     );
   }
@@ -46,7 +46,7 @@ const $AuthFailure = _$AuthFailureTearOff();
 mixin _$AuthFailure {
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result noUserFoundInDB(String failedValue),
+    @required Result authenticationFailed(String failedValue),
     @required Result noCachedUser(),
     @required Result noPasswordMatch(),
     @required Result noInternetConnection(),
@@ -54,7 +54,7 @@ mixin _$AuthFailure {
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result noUserFoundInDB(String failedValue),
+    Result authenticationFailed(String failedValue),
     Result noCachedUser(),
     Result noPasswordMatch(),
     Result noInternetConnection(),
@@ -63,7 +63,7 @@ mixin _$AuthFailure {
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result noUserFoundInDB(NoUserFoundInDB value),
+    @required Result authenticationFailed(AuthenticationFailed value),
     @required Result noCachedUser(NoCachedUser value),
     @required Result noPasswordMatch(NoPasswordMatch value),
     @required Result noInternetConnection(NoInternetConnection value),
@@ -71,7 +71,7 @@ mixin _$AuthFailure {
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result noUserFoundInDB(NoUserFoundInDB value),
+    Result authenticationFailed(AuthenticationFailed value),
     Result noCachedUser(NoCachedUser value),
     Result noPasswordMatch(NoPasswordMatch value),
     Result noInternetConnection(NoInternetConnection value),
@@ -94,38 +94,38 @@ class _$AuthFailureCopyWithImpl<$Res> implements $AuthFailureCopyWith<$Res> {
   final $Res Function(AuthFailure) _then;
 }
 
-abstract class $NoUserFoundInDBCopyWith<$Res> {
-  factory $NoUserFoundInDBCopyWith(
-          NoUserFoundInDB value, $Res Function(NoUserFoundInDB) then) =
-      _$NoUserFoundInDBCopyWithImpl<$Res>;
+abstract class $AuthenticationFailedCopyWith<$Res> {
+  factory $AuthenticationFailedCopyWith(AuthenticationFailed value,
+          $Res Function(AuthenticationFailed) then) =
+      _$AuthenticationFailedCopyWithImpl<$Res>;
   $Res call({String failedValue});
 }
 
-class _$NoUserFoundInDBCopyWithImpl<$Res>
+class _$AuthenticationFailedCopyWithImpl<$Res>
     extends _$AuthFailureCopyWithImpl<$Res>
-    implements $NoUserFoundInDBCopyWith<$Res> {
-  _$NoUserFoundInDBCopyWithImpl(
-      NoUserFoundInDB _value, $Res Function(NoUserFoundInDB) _then)
-      : super(_value, (v) => _then(v as NoUserFoundInDB));
+    implements $AuthenticationFailedCopyWith<$Res> {
+  _$AuthenticationFailedCopyWithImpl(
+      AuthenticationFailed _value, $Res Function(AuthenticationFailed) _then)
+      : super(_value, (v) => _then(v as AuthenticationFailed));
 
   @override
-  NoUserFoundInDB get _value => super._value as NoUserFoundInDB;
+  AuthenticationFailed get _value => super._value as AuthenticationFailed;
 
   @override
   $Res call({
     Object failedValue = freezed,
   }) {
-    return _then(NoUserFoundInDB(
+    return _then(AuthenticationFailed(
       failedValue:
           failedValue == freezed ? _value.failedValue : failedValue as String,
     ));
   }
 }
 
-class _$NoUserFoundInDB
+class _$AuthenticationFailed
     with DiagnosticableTreeMixin
-    implements NoUserFoundInDB {
-  const _$NoUserFoundInDB({@required this.failedValue})
+    implements AuthenticationFailed {
+  const _$AuthenticationFailed({@required this.failedValue})
       : assert(failedValue != null);
 
   @override
@@ -133,21 +133,21 @@ class _$NoUserFoundInDB
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AuthFailure.noUserFoundInDB(failedValue: $failedValue)';
+    return 'AuthFailure.authenticationFailed(failedValue: $failedValue)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'AuthFailure.noUserFoundInDB'))
+      ..add(DiagnosticsProperty('type', 'AuthFailure.authenticationFailed'))
       ..add(DiagnosticsProperty('failedValue', failedValue));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is NoUserFoundInDB &&
+        (other is AuthenticationFailed &&
             (identical(other.failedValue, failedValue) ||
                 const DeepCollectionEquality()
                     .equals(other.failedValue, failedValue)));
@@ -158,30 +158,31 @@ class _$NoUserFoundInDB
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
 
   @override
-  $NoUserFoundInDBCopyWith<NoUserFoundInDB> get copyWith =>
-      _$NoUserFoundInDBCopyWithImpl<NoUserFoundInDB>(this, _$identity);
+  $AuthenticationFailedCopyWith<AuthenticationFailed> get copyWith =>
+      _$AuthenticationFailedCopyWithImpl<AuthenticationFailed>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result noUserFoundInDB(String failedValue),
+    @required Result authenticationFailed(String failedValue),
     @required Result noCachedUser(),
     @required Result noPasswordMatch(),
     @required Result noInternetConnection(),
     @required Result failedDomainVerification(),
   }) {
-    assert(noUserFoundInDB != null);
+    assert(authenticationFailed != null);
     assert(noCachedUser != null);
     assert(noPasswordMatch != null);
     assert(noInternetConnection != null);
     assert(failedDomainVerification != null);
-    return noUserFoundInDB(failedValue);
+    return authenticationFailed(failedValue);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result noUserFoundInDB(String failedValue),
+    Result authenticationFailed(String failedValue),
     Result noCachedUser(),
     Result noPasswordMatch(),
     Result noInternetConnection(),
@@ -189,8 +190,8 @@ class _$NoUserFoundInDB
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (noUserFoundInDB != null) {
-      return noUserFoundInDB(failedValue);
+    if (authenticationFailed != null) {
+      return authenticationFailed(failedValue);
     }
     return orElse();
   }
@@ -198,24 +199,24 @@ class _$NoUserFoundInDB
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result noUserFoundInDB(NoUserFoundInDB value),
+    @required Result authenticationFailed(AuthenticationFailed value),
     @required Result noCachedUser(NoCachedUser value),
     @required Result noPasswordMatch(NoPasswordMatch value),
     @required Result noInternetConnection(NoInternetConnection value),
     @required Result failedDomainVerification(FailedDomainVerification value),
   }) {
-    assert(noUserFoundInDB != null);
+    assert(authenticationFailed != null);
     assert(noCachedUser != null);
     assert(noPasswordMatch != null);
     assert(noInternetConnection != null);
     assert(failedDomainVerification != null);
-    return noUserFoundInDB(this);
+    return authenticationFailed(this);
   }
 
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result noUserFoundInDB(NoUserFoundInDB value),
+    Result authenticationFailed(AuthenticationFailed value),
     Result noCachedUser(NoCachedUser value),
     Result noPasswordMatch(NoPasswordMatch value),
     Result noInternetConnection(NoInternetConnection value),
@@ -223,19 +224,19 @@ class _$NoUserFoundInDB
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (noUserFoundInDB != null) {
-      return noUserFoundInDB(this);
+    if (authenticationFailed != null) {
+      return authenticationFailed(this);
     }
     return orElse();
   }
 }
 
-abstract class NoUserFoundInDB implements AuthFailure {
-  const factory NoUserFoundInDB({@required String failedValue}) =
-      _$NoUserFoundInDB;
+abstract class AuthenticationFailed implements AuthFailure {
+  const factory AuthenticationFailed({@required String failedValue}) =
+      _$AuthenticationFailed;
 
   String get failedValue;
-  $NoUserFoundInDBCopyWith<NoUserFoundInDB> get copyWith;
+  $AuthenticationFailedCopyWith<AuthenticationFailed> get copyWith;
 }
 
 abstract class $NoCachedUserCopyWith<$Res> {
@@ -279,13 +280,13 @@ class _$NoCachedUser with DiagnosticableTreeMixin implements NoCachedUser {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result noUserFoundInDB(String failedValue),
+    @required Result authenticationFailed(String failedValue),
     @required Result noCachedUser(),
     @required Result noPasswordMatch(),
     @required Result noInternetConnection(),
     @required Result failedDomainVerification(),
   }) {
-    assert(noUserFoundInDB != null);
+    assert(authenticationFailed != null);
     assert(noCachedUser != null);
     assert(noPasswordMatch != null);
     assert(noInternetConnection != null);
@@ -296,7 +297,7 @@ class _$NoCachedUser with DiagnosticableTreeMixin implements NoCachedUser {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result noUserFoundInDB(String failedValue),
+    Result authenticationFailed(String failedValue),
     Result noCachedUser(),
     Result noPasswordMatch(),
     Result noInternetConnection(),
@@ -313,13 +314,13 @@ class _$NoCachedUser with DiagnosticableTreeMixin implements NoCachedUser {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result noUserFoundInDB(NoUserFoundInDB value),
+    @required Result authenticationFailed(AuthenticationFailed value),
     @required Result noCachedUser(NoCachedUser value),
     @required Result noPasswordMatch(NoPasswordMatch value),
     @required Result noInternetConnection(NoInternetConnection value),
     @required Result failedDomainVerification(FailedDomainVerification value),
   }) {
-    assert(noUserFoundInDB != null);
+    assert(authenticationFailed != null);
     assert(noCachedUser != null);
     assert(noPasswordMatch != null);
     assert(noInternetConnection != null);
@@ -330,7 +331,7 @@ class _$NoCachedUser with DiagnosticableTreeMixin implements NoCachedUser {
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result noUserFoundInDB(NoUserFoundInDB value),
+    Result authenticationFailed(AuthenticationFailed value),
     Result noCachedUser(NoCachedUser value),
     Result noPasswordMatch(NoPasswordMatch value),
     Result noInternetConnection(NoInternetConnection value),
@@ -393,13 +394,13 @@ class _$NoPasswordMatch
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result noUserFoundInDB(String failedValue),
+    @required Result authenticationFailed(String failedValue),
     @required Result noCachedUser(),
     @required Result noPasswordMatch(),
     @required Result noInternetConnection(),
     @required Result failedDomainVerification(),
   }) {
-    assert(noUserFoundInDB != null);
+    assert(authenticationFailed != null);
     assert(noCachedUser != null);
     assert(noPasswordMatch != null);
     assert(noInternetConnection != null);
@@ -410,7 +411,7 @@ class _$NoPasswordMatch
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result noUserFoundInDB(String failedValue),
+    Result authenticationFailed(String failedValue),
     Result noCachedUser(),
     Result noPasswordMatch(),
     Result noInternetConnection(),
@@ -427,13 +428,13 @@ class _$NoPasswordMatch
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result noUserFoundInDB(NoUserFoundInDB value),
+    @required Result authenticationFailed(AuthenticationFailed value),
     @required Result noCachedUser(NoCachedUser value),
     @required Result noPasswordMatch(NoPasswordMatch value),
     @required Result noInternetConnection(NoInternetConnection value),
     @required Result failedDomainVerification(FailedDomainVerification value),
   }) {
-    assert(noUserFoundInDB != null);
+    assert(authenticationFailed != null);
     assert(noCachedUser != null);
     assert(noPasswordMatch != null);
     assert(noInternetConnection != null);
@@ -444,7 +445,7 @@ class _$NoPasswordMatch
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result noUserFoundInDB(NoUserFoundInDB value),
+    Result authenticationFailed(AuthenticationFailed value),
     Result noCachedUser(NoCachedUser value),
     Result noPasswordMatch(NoPasswordMatch value),
     Result noInternetConnection(NoInternetConnection value),
@@ -508,13 +509,13 @@ class _$NoInternetConnection
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result noUserFoundInDB(String failedValue),
+    @required Result authenticationFailed(String failedValue),
     @required Result noCachedUser(),
     @required Result noPasswordMatch(),
     @required Result noInternetConnection(),
     @required Result failedDomainVerification(),
   }) {
-    assert(noUserFoundInDB != null);
+    assert(authenticationFailed != null);
     assert(noCachedUser != null);
     assert(noPasswordMatch != null);
     assert(noInternetConnection != null);
@@ -525,7 +526,7 @@ class _$NoInternetConnection
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result noUserFoundInDB(String failedValue),
+    Result authenticationFailed(String failedValue),
     Result noCachedUser(),
     Result noPasswordMatch(),
     Result noInternetConnection(),
@@ -542,13 +543,13 @@ class _$NoInternetConnection
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result noUserFoundInDB(NoUserFoundInDB value),
+    @required Result authenticationFailed(AuthenticationFailed value),
     @required Result noCachedUser(NoCachedUser value),
     @required Result noPasswordMatch(NoPasswordMatch value),
     @required Result noInternetConnection(NoInternetConnection value),
     @required Result failedDomainVerification(FailedDomainVerification value),
   }) {
-    assert(noUserFoundInDB != null);
+    assert(authenticationFailed != null);
     assert(noCachedUser != null);
     assert(noPasswordMatch != null);
     assert(noInternetConnection != null);
@@ -559,7 +560,7 @@ class _$NoInternetConnection
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result noUserFoundInDB(NoUserFoundInDB value),
+    Result authenticationFailed(AuthenticationFailed value),
     Result noCachedUser(NoCachedUser value),
     Result noPasswordMatch(NoPasswordMatch value),
     Result noInternetConnection(NoInternetConnection value),
@@ -625,13 +626,13 @@ class _$FailedDomainVerification
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result noUserFoundInDB(String failedValue),
+    @required Result authenticationFailed(String failedValue),
     @required Result noCachedUser(),
     @required Result noPasswordMatch(),
     @required Result noInternetConnection(),
     @required Result failedDomainVerification(),
   }) {
-    assert(noUserFoundInDB != null);
+    assert(authenticationFailed != null);
     assert(noCachedUser != null);
     assert(noPasswordMatch != null);
     assert(noInternetConnection != null);
@@ -642,7 +643,7 @@ class _$FailedDomainVerification
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result noUserFoundInDB(String failedValue),
+    Result authenticationFailed(String failedValue),
     Result noCachedUser(),
     Result noPasswordMatch(),
     Result noInternetConnection(),
@@ -659,13 +660,13 @@ class _$FailedDomainVerification
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result noUserFoundInDB(NoUserFoundInDB value),
+    @required Result authenticationFailed(AuthenticationFailed value),
     @required Result noCachedUser(NoCachedUser value),
     @required Result noPasswordMatch(NoPasswordMatch value),
     @required Result noInternetConnection(NoInternetConnection value),
     @required Result failedDomainVerification(FailedDomainVerification value),
   }) {
-    assert(noUserFoundInDB != null);
+    assert(authenticationFailed != null);
     assert(noCachedUser != null);
     assert(noPasswordMatch != null);
     assert(noInternetConnection != null);
@@ -676,7 +677,7 @@ class _$FailedDomainVerification
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result noUserFoundInDB(NoUserFoundInDB value),
+    Result authenticationFailed(AuthenticationFailed value),
     Result noCachedUser(NoCachedUser value),
     Result noPasswordMatch(NoPasswordMatch value),
     Result noInternetConnection(NoInternetConnection value),

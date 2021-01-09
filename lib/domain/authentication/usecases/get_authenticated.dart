@@ -22,34 +22,55 @@ class Get_Authenticated implements UseCase<AuthFailure, Unit, Params> {
   @override
   Future<Either<AuthFailure, Unit>> call(Params params) async {
     if (await networkInfo.isConnected) {
-      // Primero se verifican los valores pasados
-      if (params.username.isValid() &&
-          params.plainPassword.isValid() &&
-          params.permissionLevel.isValid()) {
-        final user = User(
-            username: params.username,
-            password: params.plainPassword,
-            permissionLevel: params.permissionLevel);
-        final failureOrHashedPassword =
-            await userRepository.get_Hashed_Password_If_Exists(user);
+      final user = User(
+        username: params.username,
+        permissionLevel: params.permissionLevel,
+      );
 
-        return failureOrHashedPassword.fold((failure) => Left(failure),
-            (hashedPassword) {
-          if (dbCrypt.checkpw(
-              params.plainPassword.getOrCrash(), hashedPassword)) {
-            userRepository.cache_User(user);
-            return const Right(unit);
-          } else {
-            return const Left(AuthFailure.noPasswordMatch());
-          }
-        });
-      } else {
-        return const Left(AuthFailure.failedDomainVerification());
-      }
+      final failureOrSuccess = await userRepository.authenticate(
+        user,
+        params.plainPassword,
+      );
+
+      return failureOrSuccess.fold(
+        (failure) => Left(failure),
+        (_) => const Right(unit),
+      );
     } else {
       return const Left(AuthFailure.noInternetConnection());
     }
   }
+  // @override
+  // Future<Either<AuthFailure, Unit>> call(Params params) async {
+  //   if (await networkInfo.isConnected) {
+  //     // Primero se verifican los valores pasados
+  //     if (params.username.isValid() &&
+  //         params.plainPassword.isValid() &&
+  //         params.permissionLevel.isValid()) {
+  //       final user = User(
+  //           username: params.username,
+  //           password: params.plainPassword,
+  //           permissionLevel: params.permissionLevel);
+  //       final failureOrHashedPassword =
+  //           await userRepository.get_Hashed_Password_If_Exists(user);
+
+  //       return failureOrHashedPassword.fold((failure) => Left(failure),
+  //           (hashedPassword) {
+  //         if (dbCrypt.checkpw(
+  //             params.plainPassword.getOrCrash(), hashedPassword)) {
+  //           userRepository.cache_User(user);
+  //           return const Right(unit);
+  //         } else {
+  //           return const Left(AuthFailure.noPasswordMatch());
+  //         }
+  //       });
+  //     } else {
+  //       return const Left(AuthFailure.failedDomainVerification());
+  //     }
+  //   } else {
+  //     return const Left(AuthFailure.noInternetConnection());
+  //   }
+  // }
 }
 
 class Params extends Equatable {

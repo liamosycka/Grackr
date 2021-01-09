@@ -4,14 +4,15 @@ import 'package:get_it/get_it.dart';
 import 'package:gracker_app/core/network/network_info.dart';
 import 'package:gracker_app/core/themes/bloc/theme_bloc.dart';
 import 'package:gracker_app/core/util/input_converter.dart';
+import 'package:gracker_app/data/admin_features/datasources/employee_remote_impl/employee_remote_postgresql.dart';
 import 'package:gracker_app/data/admin_features/datasources/i_employee_remote_datasource.dart';
-import 'package:gracker_app/data/admin_features/datasources/guard_crud_remote_impl/employee_remote_postgresql.dart';
 import 'package:gracker_app/data/admin_features/repositories/employee_repository_impl.dart';
 import 'package:gracker_app/data/authentication/datasources/i_user_local_datasource.dart';
 import 'package:gracker_app/data/authentication/datasources/user_local_impl/user_local_sharedpreferences.dart';
 import 'package:gracker_app/data/authentication/datasources/i_user_remote_datasource.dart';
-import 'package:gracker_app/data/authentication/datasources/user_remote_impl/user_remote_postgresql.dart';
+import 'package:gracker_app/data/authentication/datasources/user_remote_impl/user_remote_grapi.dart';
 import 'package:gracker_app/data/authentication/repositories/user_repository_impl.dart';
+import 'package:gracker_app/data/core/models/jwt_manager.dart';
 import 'package:gracker_app/data/core/models/postgres_connection_data.dart';
 import 'package:gracker_app/domain/admin_features/repositories/i_employee_repository.dart';
 import 'package:gracker_app/domain/admin_features/usecases/create_employee.dart';
@@ -94,10 +95,14 @@ Future<void> _initFeatures() async {
   getIt.registerLazySingleton<IUserRepository>(() => User_Repository_Impl(
       userRemoteDataSource: getIt(), userLocalDataSource: getIt()));
   getIt.registerLazySingleton<IEmployeeRepository>(
-      () => GuardRepositoryImpl(employeeRemoteDataSource: getIt()));
+      () => EmployeeRepositoryImpl(employeeRemoteDataSource: getIt()));
   //! Data Sources
   getIt.registerLazySingleton<IUserRemoteDataSource>(
-      () => User_Remote_PostgreSQL(postgress_connection_data: getIt()));
+    () => UserRemoteGrAPI(
+      baseUrl: 'https://grackr-api.herokuapp.com/api/users/',
+      jwtManager: getIt(),
+    ),
+  );
   getIt.registerLazySingleton<IUserLocalDataSource>(
       () => User_Local_SharedPreferences(sharedPreferences: getIt()));
   getIt.registerLazySingleton<IEmployeeRemoteDataSource>(
@@ -111,6 +116,13 @@ Future<void> _initCore() async {
   // Core - Network
   getIt.registerLazySingleton<Network_Info>(
       () => NetworkInfoImpl(dataConnectionChecker: getIt()));
+
+  getIt.registerLazySingleton<JWTManager>(
+    () => JWTManager(
+      sharedPreferences: getIt(),
+      tokenProviderEndpoint: 'https://grackr-api.herokuapp.com/api/token/',
+    ),
+  );
 }
 
 Future<void> _initExternal() async {

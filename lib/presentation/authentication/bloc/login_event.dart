@@ -6,11 +6,7 @@ part 'login_event.freezed.dart';
 //asd
 @freezed
 abstract class LoginEvent with _$LoginEvent {
-  const factory LoginEvent.submittedLogin({
-    @required String username,
-    @required String plainPassword,
-    @required int permissions,
-  }) = SubmittedLogin;
+  const factory LoginEvent.submittedLogin() = SubmittedLogin;
   const factory LoginEvent.usernameChanged(String usernameStr) =
       UsernameChanged;
   const factory LoginEvent.passwordChanged(String passwordStr) =

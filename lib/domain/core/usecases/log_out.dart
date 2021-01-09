@@ -11,8 +11,9 @@ class Log_Out extends UseCase<AuthFailure, Unit, Params> {
 
   @override
   Future<Either<AuthFailure, Unit>> call(Params params) async {
-    final failureOrSuccess = await userRepository.clear_Cached_User();
+    final failureOrSuccess = await userRepository.clearCachedUser();
     return failureOrSuccess.fold(
+      // TODO: Crear un failure mas especifico
       (failure) => const Left(AuthFailure.noCachedUser()),
       (_) => const Right(unit),
     );

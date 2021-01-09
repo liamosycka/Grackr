@@ -5,6 +5,7 @@ import 'package:gracker_app/data/authentication/datasources/i_user_local_datasou
 import 'package:gracker_app/data/authentication/datasources/i_user_remote_datasource.dart';
 import 'package:gracker_app/data/authentication/models/user_dto.dart';
 import 'package:gracker_app/domain/authentication/repositories/i_user_repository.dart';
+import 'package:gracker_app/domain/authentication/value_objects.dart';
 import 'package:gracker_app/domain/core/entities/user.dart';
 import 'package:gracker_app/presentation/authentication/auth_failures.dart';
 
@@ -17,16 +18,20 @@ class User_Repository_Impl implements IUserRepository {
     @required this.userRemoteDataSource,
   });
 
-  @override
-  Future<Either<AuthFailure, Unit>> cache_User(User user) async {
-    userLocalDataSource.cache_User(UserDto.fromUser(user));
-    return const Right(unit);
+  Future<Either<AuthFailure, Unit>> _cache_User(User user) async {
+    try {
+      userLocalDataSource.cacheUser(UserDto.fromUser(user));
+      return const Right(unit);
+    } on NoCachedAuthException catch (_) {
+      // TODO: Failure mas especifico
+      return const Left(AuthFailure.noCachedUser());
+    }
   }
 
   @override
-  Future<Either<AuthFailure, User>> get_Cached_User() async {
+  Future<Either<AuthFailure, User>> getCachedUser() async {
     try {
-      final cached_usermodel = await userLocalDataSource.get_Cached_User();
+      final cached_usermodel = await userLocalDataSource.getCachedUser();
       return Right(cached_usermodel.toUser());
     } on NoCachedAuthException catch (_) {
       return const Left(AuthFailure.noCachedUser());
@@ -34,15 +39,28 @@ class User_Repository_Impl implements IUserRepository {
   }
 
   @override
-  Future<Either<AuthFailure, String>> get_Hashed_Password_If_Exists(
-      User user) async {
+  Future<Either<AuthFailure, Unit>> clearCachedUser() async {
     try {
-      final hashedPassword = await userRemoteDataSource
-          .get_Hashed_Password_If_Exists(UserDto.fromUser(user));
-      return Right(hashedPassword);
+      await userLocalDataSource.clearCachedUser();
+      return const Right(unit);
+    } on Exception catch (_) {
+      // TODO: Failure mas especifico
+      return const Left(AuthFailure.noCachedUser());
+    }
+  }
+
+  @override
+  Future<Either<AuthFailure, Unit>> authenticate(
+    User user,
+    Password plainPassword,
+  ) async {
+    try {
+      final userWithTokens = await userRemoteDataSource
+          .authenticate(UserDto.fromUserAndPassword(user, plainPassword));
+      return const Right(unit);
     } on Exception catch (e) {
       return Left(
-        AuthFailure.noUserFoundInDB(
+        AuthFailure.authenticationFailed(
             failedValue:
                 "Username: ${user.username.getOrCrash()}, Exception: ${e.toString()}"),
       );
@@ -50,12 +68,31 @@ class User_Repository_Impl implements IUserRepository {
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> clear_Cached_User() async {
+  Future<Either<AuthFailure, Unit>> getUsers() async {
     try {
-      await userLocalDataSource.clear_Cached_User();
+      await userRemoteDataSource.getUsers();
       return const Right(unit);
-    } on Exception catch (_) {
-      return const Left(AuthFailure.noCachedUser());
+    } on Exception catch (e) {
+      return Left(
+        AuthFailure.authenticationFailed(
+            failedValue: " Exception: ${e.toString()}"),
+      );
     }
   }
 }
+
+// @override
+// Future<Either<AuthFailure, String>> get_Hashed_Password_If_Exists(
+//     User user) async {
+//   try {
+//     final hashedPassword = await userRemoteDataSource
+//         .get_Hashed_Password_If_Exists(UserDto.fromUser(user));
+//     return Right(hashedPassword);
+//   } on Exception catch (e) {
+//     return Left(
+//       AuthFailure.noUserFoundInDB(
+//           failedValue:
+//               "Username: ${user.username.getOrCrash()}, Exception: ${e.toString()}"),
+//     );
+//   }
+// }

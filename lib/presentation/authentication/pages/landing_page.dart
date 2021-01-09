@@ -24,6 +24,8 @@ class LandingPage extends StatelessWidget {
       body: BlocProvider<LoginBloc>(
         create: (_) => getIt<LoginBloc>(),
         child: BlocListener<LoginBloc, LoginState>(
+            listenWhen: (previous, current) =>
+                previous.authFailrueOrSuccess != current.authFailrueOrSuccess,
             listener: (context, LoginState state) {
               state.authFailrueOrSuccess.fold(
                 () {},
@@ -32,7 +34,7 @@ class LandingPage extends StatelessWidget {
                     // TODO: Temporalmente hago un fold de todos los failures para debugging.
                     // TODO: En realidad el usuario no tendria por que ver estos errores tan especificos.
                     final String errorMessage = failure.map(
-                      noUserFoundInDB: (_) => "No user found in DB.",
+                      authenticationFailed: (_) => "Authentication failed.",
                       noCachedUser: (_) => "No cached user.",
                       noPasswordMatch: (_) => "No password matched.",
                       noInternetConnection: (_) => "No internet connection.",

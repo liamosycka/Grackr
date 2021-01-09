@@ -37,7 +37,6 @@ class Create_Employee implements UseCase<Admin_Features_Failure, Unit, Params> {
       if (username.isValid() && password.isValid()) {
         final user = User(
           username: username,
-          password: password,
           permissionLevel: params.permissionLevel,
         );
 

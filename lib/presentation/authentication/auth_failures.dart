@@ -7,8 +7,8 @@ part 'auth_failures.freezed.dart';
 abstract class AuthFailure with _$AuthFailure {
   /// De la clase [User_Repository_Impl] cuando no hay un [User] almacenado
   /// en la DB con ese 'username'.
-  const factory AuthFailure.noUserFoundInDB({@required String failedValue}) =
-      NoUserFoundInDB;
+  const factory AuthFailure.authenticationFailed(
+      {@required String failedValue}) = AuthenticationFailed;
 
   /// De la clase [User_Repository_Impl] cuando no hay un [User] cacheado
   const factory AuthFailure.noCachedUser() = NoCachedUser;

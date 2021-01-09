@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-//import 'package:gracker_app/presentation/admin_features/administracion_empleados/pages/admin_empleados_page.dart';
-import 'package:gracker_app/presentation/admin_features/pages/admin_page.dart';
+import 'package:gracker_app/core/injection/injection_container.dart';
+import 'package:gracker_app/domain/authentication/repositories/i_user_repository.dart';
 
 class TestPage extends StatefulWidget {
   @override
@@ -37,14 +37,18 @@ class _TestPageState extends State<TestPage> {
           ),
         ],
       ),
-      body: Container(
-        padding: const EdgeInsets.all(50),
-        child: PageView(
-          controller: pageController,
-          children: const [
-            AdminPage(),
-            // AdminEmpleadosPage(),
-          ],
+      body: Center(
+        child: Container(
+          color: Colors.blue,
+          height: 80,
+          width: 120,
+          child: FlatButton(
+            onPressed: () async {
+              // grapi.User_Remote_GrAPI.test();
+              getIt<IUserRepository>().getUsers();
+            },
+            child: Text('PRUEBAME JAJAJA'),
+          ),
         ),
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:gracker_app/core/error/exceptions.dart';
 import 'package:gracker_app/data/authentication/datasources/i_user_remote_datasource.dart';
@@ -9,25 +10,37 @@ class User_Remote_PostgreSQL implements IUserRemoteDataSource {
 
   const User_Remote_PostgreSQL({@required this.postgress_connection_data});
 
+  // @override
+  // Future<String> get_Hashed_Password_If_Exists(UserDto userDto) async {
+  //   final postgreSQLConnection =
+  //       postgress_connection_data.toPostgreSQLConnection();
+
+  //   try {
+  //     await postgreSQLConnection.open();
+  //     final result = await postgreSQLConnection.mappedResultsQuery(
+  //         "SELECT pass FROM users WHERE username='${userDto.username}' AND permissions='${userDto.permissionLevel.toString()}';");
+
+  //     if (result.isEmpty) {
+  //       throw DataBaseException();
+  //     } else {
+  //       return (result.removeAt(0).remove("users").remove("pass")).toString();
+  //     }
+  //   } on Exception catch (_) {
+  //     rethrow;
+  //   } finally {
+  //     await postgreSQLConnection.close();
+  //   }
+  // }
+
   @override
-  Future<String> get_Hashed_Password_If_Exists(UserDto userDto) async {
-    final postgreSQLConnection =
-        postgress_connection_data.toPostgreSQLConnection();
+  Future<Unit> authenticate(UserDto userDto) {
+    // TODO: implement authenticate
+    throw UnimplementedError();
+  }
 
-    try {
-      await postgreSQLConnection.open();
-      final result = await postgreSQLConnection.mappedResultsQuery(
-          "SELECT pass FROM users WHERE username='${userDto.username}' AND permissions='${userDto.permissionLevel.toString()}';");
-
-      if (result.isEmpty) {
-        throw DataBaseException();
-      } else {
-        return (result.removeAt(0).remove("users").remove("pass")).toString();
-      }
-    } on Exception catch (_) {
-      rethrow;
-    } finally {
-      await postgreSQLConnection.close();
-    }
+  @override
+  Future<Unit> getUsers() {
+    // TODO: implement getUsers
+    throw UnimplementedError();
   }
 }

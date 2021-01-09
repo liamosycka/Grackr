@@ -12,7 +12,7 @@ class Check_If_Authenticated extends UseCase<AuthFailure, User, Params> {
 
   @override
   Future<Either<AuthFailure, User>> call(Params params) async {
-    final failureOrUser = await userRepository.get_Cached_User();
+    final failureOrUser = await userRepository.getCachedUser();
     return failureOrUser.fold(
       (failure) => Left(failure),
       (user) => Right(user),
