@@ -29,7 +29,7 @@ class _$CreateEmployeeStateTearOff {
       @required
           bool isSubmitting,
       @required
-          Option<Either<Admin_Features_Failure, Unit>>
+          Option<Either<AdminFeaturesFailure, Unit>>
               adminFeaturesFailureOrSuccess}) {
     return _CreateGuardState(
       name: name,
@@ -55,8 +55,7 @@ mixin _$CreateEmployeeState {
   Option<UserName> get currentUser;
   bool get showErrorMessages;
   bool get isSubmitting;
-  Option<Either<Admin_Features_Failure, Unit>>
-      get adminFeaturesFailureOrSuccess;
+  Option<Either<AdminFeaturesFailure, Unit>> get adminFeaturesFailureOrSuccess;
 
   $CreateEmployeeStateCopyWith<CreateEmployeeState> get copyWith;
 }
@@ -73,7 +72,7 @@ abstract class $CreateEmployeeStateCopyWith<$Res> {
       Option<UserName> currentUser,
       bool showErrorMessages,
       bool isSubmitting,
-      Option<Either<Admin_Features_Failure, Unit>>
+      Option<Either<AdminFeaturesFailure, Unit>>
           adminFeaturesFailureOrSuccess});
 }
 
@@ -115,7 +114,7 @@ class _$CreateEmployeeStateCopyWithImpl<$Res>
       adminFeaturesFailureOrSuccess: adminFeaturesFailureOrSuccess == freezed
           ? _value.adminFeaturesFailureOrSuccess
           : adminFeaturesFailureOrSuccess
-              as Option<Either<Admin_Features_Failure, Unit>>,
+              as Option<Either<AdminFeaturesFailure, Unit>>,
     ));
   }
 }
@@ -134,7 +133,7 @@ abstract class _$CreateGuardStateCopyWith<$Res>
       Option<UserName> currentUser,
       bool showErrorMessages,
       bool isSubmitting,
-      Option<Either<Admin_Features_Failure, Unit>>
+      Option<Either<AdminFeaturesFailure, Unit>>
           adminFeaturesFailureOrSuccess});
 }
 
@@ -178,7 +177,7 @@ class __$CreateGuardStateCopyWithImpl<$Res>
       adminFeaturesFailureOrSuccess: adminFeaturesFailureOrSuccess == freezed
           ? _value.adminFeaturesFailureOrSuccess
           : adminFeaturesFailureOrSuccess
-              as Option<Either<Admin_Features_Failure, Unit>>,
+              as Option<Either<AdminFeaturesFailure, Unit>>,
     ));
   }
 }
@@ -219,7 +218,7 @@ class _$_CreateGuardState
   @override
   final bool isSubmitting;
   @override
-  final Option<Either<Admin_Features_Failure, Unit>>
+  final Option<Either<AdminFeaturesFailure, Unit>>
       adminFeaturesFailureOrSuccess;
 
   @override
@@ -308,7 +307,7 @@ abstract class _CreateGuardState implements CreateEmployeeState {
       @required
           bool isSubmitting,
       @required
-          Option<Either<Admin_Features_Failure, Unit>>
+          Option<Either<AdminFeaturesFailure, Unit>>
               adminFeaturesFailureOrSuccess}) = _$_CreateGuardState;
 
   @override
@@ -326,8 +325,7 @@ abstract class _CreateGuardState implements CreateEmployeeState {
   @override
   bool get isSubmitting;
   @override
-  Option<Either<Admin_Features_Failure, Unit>>
-      get adminFeaturesFailureOrSuccess;
+  Option<Either<AdminFeaturesFailure, Unit>> get adminFeaturesFailureOrSuccess;
   @override
   _$CreateGuardStateCopyWith<_CreateGuardState> get copyWith;
 }

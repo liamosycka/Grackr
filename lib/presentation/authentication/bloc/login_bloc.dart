@@ -1,25 +1,21 @@
 import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:gracker_app/core/util/input_converter.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:gracker_app/domain/authentication/usecases/get_authenticated.dart';
 import 'package:gracker_app/domain/authentication/value_objects.dart';
-import 'package:gracker_app/presentation/authentication/auth_failures.dart';
+import 'package:gracker_app/domain/authentication/auth_failures.dart';
 import 'package:gracker_app/presentation/authentication/bloc/login_event.dart';
 import 'package:gracker_app/presentation/authentication/bloc/login_state.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 class LoginBloc extends HydratedBloc<LoginEvent, LoginState> {
   Get_Authenticated getAuthenticated;
-  InputConverter inputConverter;
 
   LoginBloc({
     @required this.getAuthenticated,
-    @required this.inputConverter,
   })  : assert(getAuthenticated != null),
-        assert(inputConverter != null),
         super(LoginState.initial());
 
   @override
@@ -47,16 +43,20 @@ class LoginBloc extends HydratedBloc<LoginEvent, LoginState> {
         } else {
           failureOrSuccess = const Left(AuthFailure.failedDomainVerification());
         }
+        //? Esto se hace para 'bloquear' la pantalla tras haber sido autenticado
+        //? De esta forma el usuario no puede interactuar mientras se realiza
+        //? la transición de pantallas
+        final submittingCondition = failureOrSuccess.isRight();
 
         yield state.copyWith(
-          isSubmitting: false,
+          isSubmitting: submittingCondition,
           showErrorMessages: true,
-          authFailrueOrSuccess: optionOf(failureOrSuccess),
+          authFailureOrSuccess: optionOf(failureOrSuccess),
         );
         yield state.copyWith(
-          isSubmitting: false,
+          isSubmitting: submittingCondition,
           showErrorMessages: true,
-          authFailrueOrSuccess: none(),
+          authFailureOrSuccess: none(),
         );
       },
       usernameChanged: (UsernameChanged e) async* {

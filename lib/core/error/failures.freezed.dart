@@ -13,37 +13,23 @@ class _$ValueFailureTearOff {
   const _$ValueFailureTearOff();
 
 // ignore: unused_element
-  ShortPassword<T> shortPassword<T>({@required T failedValue}) {
-    return ShortPassword<T>(
+  _ShortPassword<T> shortPassword<T>({@required T failedValue}) {
+    return _ShortPassword<T>(
       failedValue: failedValue,
     );
   }
 
 // ignore: unused_element
-  InvalidUsername<T> invalidUsername<T>({@required T failedValue}) {
-    return InvalidUsername<T>(
+  _InvalidUsername<T> invalidUsername<T>({@required T failedValue}) {
+    return _InvalidUsername<T>(
       failedValue: failedValue,
     );
   }
 
 // ignore: unused_element
-  InvalidPermissionLevel<T> invalidPermissionLevel<T>(
+  _InvalidPermissionLevel<T> invalidPermissionLevel<T>(
       {@required T failedValue}) {
-    return InvalidPermissionLevel<T>(
-      failedValue: failedValue,
-    );
-  }
-
-// ignore: unused_element
-  InvalidStringToInt<T> invalidStringToInt<T>({@required T failedValue}) {
-    return InvalidStringToInt<T>(
-      failedValue: failedValue,
-    );
-  }
-
-// ignore: unused_element
-  TransformationFailed<T> transformationFailed<T>({@required T failedValue}) {
-    return TransformationFailed<T>(
+    return _InvalidPermissionLevel<T>(
       failedValue: failedValue,
     );
   }
@@ -60,33 +46,25 @@ mixin _$ValueFailure<T> {
     @required Result shortPassword(T failedValue),
     @required Result invalidUsername(T failedValue),
     @required Result invalidPermissionLevel(T failedValue),
-    @required Result invalidStringToInt(T failedValue),
-    @required Result transformationFailed(T failedValue),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result shortPassword(T failedValue),
     Result invalidUsername(T failedValue),
     Result invalidPermissionLevel(T failedValue),
-    Result invalidStringToInt(T failedValue),
-    Result transformationFailed(T failedValue),
     @required Result orElse(),
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result shortPassword(ShortPassword<T> value),
-    @required Result invalidUsername(InvalidUsername<T> value),
-    @required Result invalidPermissionLevel(InvalidPermissionLevel<T> value),
-    @required Result invalidStringToInt(InvalidStringToInt<T> value),
-    @required Result transformationFailed(TransformationFailed<T> value),
+    @required Result shortPassword(_ShortPassword<T> value),
+    @required Result invalidUsername(_InvalidUsername<T> value),
+    @required Result invalidPermissionLevel(_InvalidPermissionLevel<T> value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result shortPassword(ShortPassword<T> value),
-    Result invalidUsername(InvalidUsername<T> value),
-    Result invalidPermissionLevel(InvalidPermissionLevel<T> value),
-    Result invalidStringToInt(InvalidStringToInt<T> value),
-    Result transformationFailed(TransformationFailed<T> value),
+    Result shortPassword(_ShortPassword<T> value),
+    Result invalidUsername(_InvalidUsername<T> value),
+    Result invalidPermissionLevel(_InvalidPermissionLevel<T> value),
     @required Result orElse(),
   });
 
@@ -119,38 +97,38 @@ class _$ValueFailureCopyWithImpl<T, $Res>
   }
 }
 
-abstract class $ShortPasswordCopyWith<T, $Res>
+abstract class _$ShortPasswordCopyWith<T, $Res>
     implements $ValueFailureCopyWith<T, $Res> {
-  factory $ShortPasswordCopyWith(
-          ShortPassword<T> value, $Res Function(ShortPassword<T>) then) =
-      _$ShortPasswordCopyWithImpl<T, $Res>;
+  factory _$ShortPasswordCopyWith(
+          _ShortPassword<T> value, $Res Function(_ShortPassword<T>) then) =
+      __$ShortPasswordCopyWithImpl<T, $Res>;
   @override
   $Res call({T failedValue});
 }
 
-class _$ShortPasswordCopyWithImpl<T, $Res>
+class __$ShortPasswordCopyWithImpl<T, $Res>
     extends _$ValueFailureCopyWithImpl<T, $Res>
-    implements $ShortPasswordCopyWith<T, $Res> {
-  _$ShortPasswordCopyWithImpl(
-      ShortPassword<T> _value, $Res Function(ShortPassword<T>) _then)
-      : super(_value, (v) => _then(v as ShortPassword<T>));
+    implements _$ShortPasswordCopyWith<T, $Res> {
+  __$ShortPasswordCopyWithImpl(
+      _ShortPassword<T> _value, $Res Function(_ShortPassword<T>) _then)
+      : super(_value, (v) => _then(v as _ShortPassword<T>));
 
   @override
-  ShortPassword<T> get _value => super._value as ShortPassword<T>;
+  _ShortPassword<T> get _value => super._value as _ShortPassword<T>;
 
   @override
   $Res call({
     Object failedValue = freezed,
   }) {
-    return _then(ShortPassword<T>(
+    return _then(_ShortPassword<T>(
       failedValue:
           failedValue == freezed ? _value.failedValue : failedValue as T,
     ));
   }
 }
 
-class _$ShortPassword<T> implements ShortPassword<T> {
-  const _$ShortPassword({@required this.failedValue})
+class _$_ShortPassword<T> implements _ShortPassword<T> {
+  const _$_ShortPassword({@required this.failedValue})
       : assert(failedValue != null);
 
   @override
@@ -164,7 +142,7 @@ class _$ShortPassword<T> implements ShortPassword<T> {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ShortPassword<T> &&
+        (other is _ShortPassword<T> &&
             (identical(other.failedValue, failedValue) ||
                 const DeepCollectionEquality()
                     .equals(other.failedValue, failedValue)));
@@ -175,8 +153,8 @@ class _$ShortPassword<T> implements ShortPassword<T> {
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
 
   @override
-  $ShortPasswordCopyWith<T, ShortPassword<T>> get copyWith =>
-      _$ShortPasswordCopyWithImpl<T, ShortPassword<T>>(this, _$identity);
+  _$ShortPasswordCopyWith<T, _ShortPassword<T>> get copyWith =>
+      __$ShortPasswordCopyWithImpl<T, _ShortPassword<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -184,14 +162,10 @@ class _$ShortPassword<T> implements ShortPassword<T> {
     @required Result shortPassword(T failedValue),
     @required Result invalidUsername(T failedValue),
     @required Result invalidPermissionLevel(T failedValue),
-    @required Result invalidStringToInt(T failedValue),
-    @required Result transformationFailed(T failedValue),
   }) {
     assert(shortPassword != null);
     assert(invalidUsername != null);
     assert(invalidPermissionLevel != null);
-    assert(invalidStringToInt != null);
-    assert(transformationFailed != null);
     return shortPassword(failedValue);
   }
 
@@ -201,8 +175,6 @@ class _$ShortPassword<T> implements ShortPassword<T> {
     Result shortPassword(T failedValue),
     Result invalidUsername(T failedValue),
     Result invalidPermissionLevel(T failedValue),
-    Result invalidStringToInt(T failedValue),
-    Result transformationFailed(T failedValue),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -215,28 +187,22 @@ class _$ShortPassword<T> implements ShortPassword<T> {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result shortPassword(ShortPassword<T> value),
-    @required Result invalidUsername(InvalidUsername<T> value),
-    @required Result invalidPermissionLevel(InvalidPermissionLevel<T> value),
-    @required Result invalidStringToInt(InvalidStringToInt<T> value),
-    @required Result transformationFailed(TransformationFailed<T> value),
+    @required Result shortPassword(_ShortPassword<T> value),
+    @required Result invalidUsername(_InvalidUsername<T> value),
+    @required Result invalidPermissionLevel(_InvalidPermissionLevel<T> value),
   }) {
     assert(shortPassword != null);
     assert(invalidUsername != null);
     assert(invalidPermissionLevel != null);
-    assert(invalidStringToInt != null);
-    assert(transformationFailed != null);
     return shortPassword(this);
   }
 
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result shortPassword(ShortPassword<T> value),
-    Result invalidUsername(InvalidUsername<T> value),
-    Result invalidPermissionLevel(InvalidPermissionLevel<T> value),
-    Result invalidStringToInt(InvalidStringToInt<T> value),
-    Result transformationFailed(TransformationFailed<T> value),
+    Result shortPassword(_ShortPassword<T> value),
+    Result invalidUsername(_InvalidUsername<T> value),
+    Result invalidPermissionLevel(_InvalidPermissionLevel<T> value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -247,47 +213,47 @@ class _$ShortPassword<T> implements ShortPassword<T> {
   }
 }
 
-abstract class ShortPassword<T> implements ValueFailure<T> {
-  const factory ShortPassword({@required T failedValue}) = _$ShortPassword<T>;
+abstract class _ShortPassword<T> implements ValueFailure<T> {
+  const factory _ShortPassword({@required T failedValue}) = _$_ShortPassword<T>;
 
   @override
   T get failedValue;
   @override
-  $ShortPasswordCopyWith<T, ShortPassword<T>> get copyWith;
+  _$ShortPasswordCopyWith<T, _ShortPassword<T>> get copyWith;
 }
 
-abstract class $InvalidUsernameCopyWith<T, $Res>
+abstract class _$InvalidUsernameCopyWith<T, $Res>
     implements $ValueFailureCopyWith<T, $Res> {
-  factory $InvalidUsernameCopyWith(
-          InvalidUsername<T> value, $Res Function(InvalidUsername<T>) then) =
-      _$InvalidUsernameCopyWithImpl<T, $Res>;
+  factory _$InvalidUsernameCopyWith(
+          _InvalidUsername<T> value, $Res Function(_InvalidUsername<T>) then) =
+      __$InvalidUsernameCopyWithImpl<T, $Res>;
   @override
   $Res call({T failedValue});
 }
 
-class _$InvalidUsernameCopyWithImpl<T, $Res>
+class __$InvalidUsernameCopyWithImpl<T, $Res>
     extends _$ValueFailureCopyWithImpl<T, $Res>
-    implements $InvalidUsernameCopyWith<T, $Res> {
-  _$InvalidUsernameCopyWithImpl(
-      InvalidUsername<T> _value, $Res Function(InvalidUsername<T>) _then)
-      : super(_value, (v) => _then(v as InvalidUsername<T>));
+    implements _$InvalidUsernameCopyWith<T, $Res> {
+  __$InvalidUsernameCopyWithImpl(
+      _InvalidUsername<T> _value, $Res Function(_InvalidUsername<T>) _then)
+      : super(_value, (v) => _then(v as _InvalidUsername<T>));
 
   @override
-  InvalidUsername<T> get _value => super._value as InvalidUsername<T>;
+  _InvalidUsername<T> get _value => super._value as _InvalidUsername<T>;
 
   @override
   $Res call({
     Object failedValue = freezed,
   }) {
-    return _then(InvalidUsername<T>(
+    return _then(_InvalidUsername<T>(
       failedValue:
           failedValue == freezed ? _value.failedValue : failedValue as T,
     ));
   }
 }
 
-class _$InvalidUsername<T> implements InvalidUsername<T> {
-  const _$InvalidUsername({@required this.failedValue})
+class _$_InvalidUsername<T> implements _InvalidUsername<T> {
+  const _$_InvalidUsername({@required this.failedValue})
       : assert(failedValue != null);
 
   @override
@@ -301,7 +267,7 @@ class _$InvalidUsername<T> implements InvalidUsername<T> {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is InvalidUsername<T> &&
+        (other is _InvalidUsername<T> &&
             (identical(other.failedValue, failedValue) ||
                 const DeepCollectionEquality()
                     .equals(other.failedValue, failedValue)));
@@ -312,8 +278,8 @@ class _$InvalidUsername<T> implements InvalidUsername<T> {
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
 
   @override
-  $InvalidUsernameCopyWith<T, InvalidUsername<T>> get copyWith =>
-      _$InvalidUsernameCopyWithImpl<T, InvalidUsername<T>>(this, _$identity);
+  _$InvalidUsernameCopyWith<T, _InvalidUsername<T>> get copyWith =>
+      __$InvalidUsernameCopyWithImpl<T, _InvalidUsername<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -321,14 +287,10 @@ class _$InvalidUsername<T> implements InvalidUsername<T> {
     @required Result shortPassword(T failedValue),
     @required Result invalidUsername(T failedValue),
     @required Result invalidPermissionLevel(T failedValue),
-    @required Result invalidStringToInt(T failedValue),
-    @required Result transformationFailed(T failedValue),
   }) {
     assert(shortPassword != null);
     assert(invalidUsername != null);
     assert(invalidPermissionLevel != null);
-    assert(invalidStringToInt != null);
-    assert(transformationFailed != null);
     return invalidUsername(failedValue);
   }
 
@@ -338,8 +300,6 @@ class _$InvalidUsername<T> implements InvalidUsername<T> {
     Result shortPassword(T failedValue),
     Result invalidUsername(T failedValue),
     Result invalidPermissionLevel(T failedValue),
-    Result invalidStringToInt(T failedValue),
-    Result transformationFailed(T failedValue),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -352,28 +312,22 @@ class _$InvalidUsername<T> implements InvalidUsername<T> {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result shortPassword(ShortPassword<T> value),
-    @required Result invalidUsername(InvalidUsername<T> value),
-    @required Result invalidPermissionLevel(InvalidPermissionLevel<T> value),
-    @required Result invalidStringToInt(InvalidStringToInt<T> value),
-    @required Result transformationFailed(TransformationFailed<T> value),
+    @required Result shortPassword(_ShortPassword<T> value),
+    @required Result invalidUsername(_InvalidUsername<T> value),
+    @required Result invalidPermissionLevel(_InvalidPermissionLevel<T> value),
   }) {
     assert(shortPassword != null);
     assert(invalidUsername != null);
     assert(invalidPermissionLevel != null);
-    assert(invalidStringToInt != null);
-    assert(transformationFailed != null);
     return invalidUsername(this);
   }
 
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result shortPassword(ShortPassword<T> value),
-    Result invalidUsername(InvalidUsername<T> value),
-    Result invalidPermissionLevel(InvalidPermissionLevel<T> value),
-    Result invalidStringToInt(InvalidStringToInt<T> value),
-    Result transformationFailed(TransformationFailed<T> value),
+    Result shortPassword(_ShortPassword<T> value),
+    Result invalidUsername(_InvalidUsername<T> value),
+    Result invalidPermissionLevel(_InvalidPermissionLevel<T> value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -384,49 +338,49 @@ class _$InvalidUsername<T> implements InvalidUsername<T> {
   }
 }
 
-abstract class InvalidUsername<T> implements ValueFailure<T> {
-  const factory InvalidUsername({@required T failedValue}) =
-      _$InvalidUsername<T>;
+abstract class _InvalidUsername<T> implements ValueFailure<T> {
+  const factory _InvalidUsername({@required T failedValue}) =
+      _$_InvalidUsername<T>;
 
   @override
   T get failedValue;
   @override
-  $InvalidUsernameCopyWith<T, InvalidUsername<T>> get copyWith;
+  _$InvalidUsernameCopyWith<T, _InvalidUsername<T>> get copyWith;
 }
 
-abstract class $InvalidPermissionLevelCopyWith<T, $Res>
+abstract class _$InvalidPermissionLevelCopyWith<T, $Res>
     implements $ValueFailureCopyWith<T, $Res> {
-  factory $InvalidPermissionLevelCopyWith(InvalidPermissionLevel<T> value,
-          $Res Function(InvalidPermissionLevel<T>) then) =
-      _$InvalidPermissionLevelCopyWithImpl<T, $Res>;
+  factory _$InvalidPermissionLevelCopyWith(_InvalidPermissionLevel<T> value,
+          $Res Function(_InvalidPermissionLevel<T>) then) =
+      __$InvalidPermissionLevelCopyWithImpl<T, $Res>;
   @override
   $Res call({T failedValue});
 }
 
-class _$InvalidPermissionLevelCopyWithImpl<T, $Res>
+class __$InvalidPermissionLevelCopyWithImpl<T, $Res>
     extends _$ValueFailureCopyWithImpl<T, $Res>
-    implements $InvalidPermissionLevelCopyWith<T, $Res> {
-  _$InvalidPermissionLevelCopyWithImpl(InvalidPermissionLevel<T> _value,
-      $Res Function(InvalidPermissionLevel<T>) _then)
-      : super(_value, (v) => _then(v as InvalidPermissionLevel<T>));
+    implements _$InvalidPermissionLevelCopyWith<T, $Res> {
+  __$InvalidPermissionLevelCopyWithImpl(_InvalidPermissionLevel<T> _value,
+      $Res Function(_InvalidPermissionLevel<T>) _then)
+      : super(_value, (v) => _then(v as _InvalidPermissionLevel<T>));
 
   @override
-  InvalidPermissionLevel<T> get _value =>
-      super._value as InvalidPermissionLevel<T>;
+  _InvalidPermissionLevel<T> get _value =>
+      super._value as _InvalidPermissionLevel<T>;
 
   @override
   $Res call({
     Object failedValue = freezed,
   }) {
-    return _then(InvalidPermissionLevel<T>(
+    return _then(_InvalidPermissionLevel<T>(
       failedValue:
           failedValue == freezed ? _value.failedValue : failedValue as T,
     ));
   }
 }
 
-class _$InvalidPermissionLevel<T> implements InvalidPermissionLevel<T> {
-  const _$InvalidPermissionLevel({@required this.failedValue})
+class _$_InvalidPermissionLevel<T> implements _InvalidPermissionLevel<T> {
+  const _$_InvalidPermissionLevel({@required this.failedValue})
       : assert(failedValue != null);
 
   @override
@@ -440,7 +394,7 @@ class _$InvalidPermissionLevel<T> implements InvalidPermissionLevel<T> {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is InvalidPermissionLevel<T> &&
+        (other is _InvalidPermissionLevel<T> &&
             (identical(other.failedValue, failedValue) ||
                 const DeepCollectionEquality()
                     .equals(other.failedValue, failedValue)));
@@ -451,9 +405,10 @@ class _$InvalidPermissionLevel<T> implements InvalidPermissionLevel<T> {
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
 
   @override
-  $InvalidPermissionLevelCopyWith<T, InvalidPermissionLevel<T>> get copyWith =>
-      _$InvalidPermissionLevelCopyWithImpl<T, InvalidPermissionLevel<T>>(
-          this, _$identity);
+  _$InvalidPermissionLevelCopyWith<T, _InvalidPermissionLevel<T>>
+      get copyWith =>
+          __$InvalidPermissionLevelCopyWithImpl<T, _InvalidPermissionLevel<T>>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -461,14 +416,10 @@ class _$InvalidPermissionLevel<T> implements InvalidPermissionLevel<T> {
     @required Result shortPassword(T failedValue),
     @required Result invalidUsername(T failedValue),
     @required Result invalidPermissionLevel(T failedValue),
-    @required Result invalidStringToInt(T failedValue),
-    @required Result transformationFailed(T failedValue),
   }) {
     assert(shortPassword != null);
     assert(invalidUsername != null);
     assert(invalidPermissionLevel != null);
-    assert(invalidStringToInt != null);
-    assert(transformationFailed != null);
     return invalidPermissionLevel(failedValue);
   }
 
@@ -478,8 +429,6 @@ class _$InvalidPermissionLevel<T> implements InvalidPermissionLevel<T> {
     Result shortPassword(T failedValue),
     Result invalidUsername(T failedValue),
     Result invalidPermissionLevel(T failedValue),
-    Result invalidStringToInt(T failedValue),
-    Result transformationFailed(T failedValue),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -492,28 +441,22 @@ class _$InvalidPermissionLevel<T> implements InvalidPermissionLevel<T> {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result shortPassword(ShortPassword<T> value),
-    @required Result invalidUsername(InvalidUsername<T> value),
-    @required Result invalidPermissionLevel(InvalidPermissionLevel<T> value),
-    @required Result invalidStringToInt(InvalidStringToInt<T> value),
-    @required Result transformationFailed(TransformationFailed<T> value),
+    @required Result shortPassword(_ShortPassword<T> value),
+    @required Result invalidUsername(_InvalidUsername<T> value),
+    @required Result invalidPermissionLevel(_InvalidPermissionLevel<T> value),
   }) {
     assert(shortPassword != null);
     assert(invalidUsername != null);
     assert(invalidPermissionLevel != null);
-    assert(invalidStringToInt != null);
-    assert(transformationFailed != null);
     return invalidPermissionLevel(this);
   }
 
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result shortPassword(ShortPassword<T> value),
-    Result invalidUsername(InvalidUsername<T> value),
-    Result invalidPermissionLevel(InvalidPermissionLevel<T> value),
-    Result invalidStringToInt(InvalidStringToInt<T> value),
-    Result transformationFailed(TransformationFailed<T> value),
+    Result shortPassword(_ShortPassword<T> value),
+    Result invalidUsername(_InvalidUsername<T> value),
+    Result invalidPermissionLevel(_InvalidPermissionLevel<T> value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -524,48 +467,124 @@ class _$InvalidPermissionLevel<T> implements InvalidPermissionLevel<T> {
   }
 }
 
-abstract class InvalidPermissionLevel<T> implements ValueFailure<T> {
-  const factory InvalidPermissionLevel({@required T failedValue}) =
-      _$InvalidPermissionLevel<T>;
+abstract class _InvalidPermissionLevel<T> implements ValueFailure<T> {
+  const factory _InvalidPermissionLevel({@required T failedValue}) =
+      _$_InvalidPermissionLevel<T>;
 
   @override
   T get failedValue;
   @override
-  $InvalidPermissionLevelCopyWith<T, InvalidPermissionLevel<T>> get copyWith;
+  _$InvalidPermissionLevelCopyWith<T, _InvalidPermissionLevel<T>> get copyWith;
 }
 
-abstract class $InvalidStringToIntCopyWith<T, $Res>
-    implements $ValueFailureCopyWith<T, $Res> {
-  factory $InvalidStringToIntCopyWith(InvalidStringToInt<T> value,
-          $Res Function(InvalidStringToInt<T>) then) =
-      _$InvalidStringToIntCopyWithImpl<T, $Res>;
-  @override
+class _$TransformationFailureTearOff {
+  const _$TransformationFailureTearOff();
+
+// ignore: unused_element
+  _InvalidStringToInt<T> invalidStringToInt<T>({@required T failedValue}) {
+    return _InvalidStringToInt<T>(
+      failedValue: failedValue,
+    );
+  }
+
+// ignore: unused_element
+  _TransformationFailed<T> transformationFailed<T>({@required T failedValue}) {
+    return _TransformationFailed<T>(
+      failedValue: failedValue,
+    );
+  }
+}
+
+// ignore: unused_element
+const $TransformationFailure = _$TransformationFailureTearOff();
+
+mixin _$TransformationFailure<T> {
+  T get failedValue;
+
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result invalidStringToInt(T failedValue),
+    @required Result transformationFailed(T failedValue),
+  });
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result invalidStringToInt(T failedValue),
+    Result transformationFailed(T failedValue),
+    @required Result orElse(),
+  });
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result invalidStringToInt(_InvalidStringToInt<T> value),
+    @required Result transformationFailed(_TransformationFailed<T> value),
+  });
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result invalidStringToInt(_InvalidStringToInt<T> value),
+    Result transformationFailed(_TransformationFailed<T> value),
+    @required Result orElse(),
+  });
+
+  $TransformationFailureCopyWith<T, TransformationFailure<T>> get copyWith;
+}
+
+abstract class $TransformationFailureCopyWith<T, $Res> {
+  factory $TransformationFailureCopyWith(TransformationFailure<T> value,
+          $Res Function(TransformationFailure<T>) then) =
+      _$TransformationFailureCopyWithImpl<T, $Res>;
   $Res call({T failedValue});
 }
 
-class _$InvalidStringToIntCopyWithImpl<T, $Res>
-    extends _$ValueFailureCopyWithImpl<T, $Res>
-    implements $InvalidStringToIntCopyWith<T, $Res> {
-  _$InvalidStringToIntCopyWithImpl(
-      InvalidStringToInt<T> _value, $Res Function(InvalidStringToInt<T>) _then)
-      : super(_value, (v) => _then(v as InvalidStringToInt<T>));
+class _$TransformationFailureCopyWithImpl<T, $Res>
+    implements $TransformationFailureCopyWith<T, $Res> {
+  _$TransformationFailureCopyWithImpl(this._value, this._then);
 
-  @override
-  InvalidStringToInt<T> get _value => super._value as InvalidStringToInt<T>;
+  final TransformationFailure<T> _value;
+  // ignore: unused_field
+  final $Res Function(TransformationFailure<T>) _then;
 
   @override
   $Res call({
     Object failedValue = freezed,
   }) {
-    return _then(InvalidStringToInt<T>(
+    return _then(_value.copyWith(
       failedValue:
           failedValue == freezed ? _value.failedValue : failedValue as T,
     ));
   }
 }
 
-class _$InvalidStringToInt<T> implements InvalidStringToInt<T> {
-  const _$InvalidStringToInt({@required this.failedValue})
+abstract class _$InvalidStringToIntCopyWith<T, $Res>
+    implements $TransformationFailureCopyWith<T, $Res> {
+  factory _$InvalidStringToIntCopyWith(_InvalidStringToInt<T> value,
+          $Res Function(_InvalidStringToInt<T>) then) =
+      __$InvalidStringToIntCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T failedValue});
+}
+
+class __$InvalidStringToIntCopyWithImpl<T, $Res>
+    extends _$TransformationFailureCopyWithImpl<T, $Res>
+    implements _$InvalidStringToIntCopyWith<T, $Res> {
+  __$InvalidStringToIntCopyWithImpl(_InvalidStringToInt<T> _value,
+      $Res Function(_InvalidStringToInt<T>) _then)
+      : super(_value, (v) => _then(v as _InvalidStringToInt<T>));
+
+  @override
+  _InvalidStringToInt<T> get _value => super._value as _InvalidStringToInt<T>;
+
+  @override
+  $Res call({
+    Object failedValue = freezed,
+  }) {
+    return _then(_InvalidStringToInt<T>(
+      failedValue:
+          failedValue == freezed ? _value.failedValue : failedValue as T,
+    ));
+  }
+}
+
+class _$_InvalidStringToInt<T> implements _InvalidStringToInt<T> {
+  const _$_InvalidStringToInt({@required this.failedValue})
       : assert(failedValue != null);
 
   @override
@@ -573,13 +592,13 @@ class _$InvalidStringToInt<T> implements InvalidStringToInt<T> {
 
   @override
   String toString() {
-    return 'ValueFailure<$T>.invalidStringToInt(failedValue: $failedValue)';
+    return 'TransformationFailure<$T>.invalidStringToInt(failedValue: $failedValue)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is InvalidStringToInt<T> &&
+        (other is _InvalidStringToInt<T> &&
             (identical(other.failedValue, failedValue) ||
                 const DeepCollectionEquality()
                     .equals(other.failedValue, failedValue)));
@@ -590,22 +609,16 @@ class _$InvalidStringToInt<T> implements InvalidStringToInt<T> {
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
 
   @override
-  $InvalidStringToIntCopyWith<T, InvalidStringToInt<T>> get copyWith =>
-      _$InvalidStringToIntCopyWithImpl<T, InvalidStringToInt<T>>(
+  _$InvalidStringToIntCopyWith<T, _InvalidStringToInt<T>> get copyWith =>
+      __$InvalidStringToIntCopyWithImpl<T, _InvalidStringToInt<T>>(
           this, _$identity);
 
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result shortPassword(T failedValue),
-    @required Result invalidUsername(T failedValue),
-    @required Result invalidPermissionLevel(T failedValue),
     @required Result invalidStringToInt(T failedValue),
     @required Result transformationFailed(T failedValue),
   }) {
-    assert(shortPassword != null);
-    assert(invalidUsername != null);
-    assert(invalidPermissionLevel != null);
     assert(invalidStringToInt != null);
     assert(transformationFailed != null);
     return invalidStringToInt(failedValue);
@@ -614,9 +627,6 @@ class _$InvalidStringToInt<T> implements InvalidStringToInt<T> {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result shortPassword(T failedValue),
-    Result invalidUsername(T failedValue),
-    Result invalidPermissionLevel(T failedValue),
     Result invalidStringToInt(T failedValue),
     Result transformationFailed(T failedValue),
     @required Result orElse(),
@@ -631,15 +641,9 @@ class _$InvalidStringToInt<T> implements InvalidStringToInt<T> {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result shortPassword(ShortPassword<T> value),
-    @required Result invalidUsername(InvalidUsername<T> value),
-    @required Result invalidPermissionLevel(InvalidPermissionLevel<T> value),
-    @required Result invalidStringToInt(InvalidStringToInt<T> value),
-    @required Result transformationFailed(TransformationFailed<T> value),
+    @required Result invalidStringToInt(_InvalidStringToInt<T> value),
+    @required Result transformationFailed(_TransformationFailed<T> value),
   }) {
-    assert(shortPassword != null);
-    assert(invalidUsername != null);
-    assert(invalidPermissionLevel != null);
     assert(invalidStringToInt != null);
     assert(transformationFailed != null);
     return invalidStringToInt(this);
@@ -648,11 +652,8 @@ class _$InvalidStringToInt<T> implements InvalidStringToInt<T> {
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result shortPassword(ShortPassword<T> value),
-    Result invalidUsername(InvalidUsername<T> value),
-    Result invalidPermissionLevel(InvalidPermissionLevel<T> value),
-    Result invalidStringToInt(InvalidStringToInt<T> value),
-    Result transformationFailed(TransformationFailed<T> value),
+    Result invalidStringToInt(_InvalidStringToInt<T> value),
+    Result transformationFailed(_TransformationFailed<T> value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -663,48 +664,49 @@ class _$InvalidStringToInt<T> implements InvalidStringToInt<T> {
   }
 }
 
-abstract class InvalidStringToInt<T> implements ValueFailure<T> {
-  const factory InvalidStringToInt({@required T failedValue}) =
-      _$InvalidStringToInt<T>;
+abstract class _InvalidStringToInt<T> implements TransformationFailure<T> {
+  const factory _InvalidStringToInt({@required T failedValue}) =
+      _$_InvalidStringToInt<T>;
 
   @override
   T get failedValue;
   @override
-  $InvalidStringToIntCopyWith<T, InvalidStringToInt<T>> get copyWith;
+  _$InvalidStringToIntCopyWith<T, _InvalidStringToInt<T>> get copyWith;
 }
 
-abstract class $TransformationFailedCopyWith<T, $Res>
-    implements $ValueFailureCopyWith<T, $Res> {
-  factory $TransformationFailedCopyWith(TransformationFailed<T> value,
-          $Res Function(TransformationFailed<T>) then) =
-      _$TransformationFailedCopyWithImpl<T, $Res>;
+abstract class _$TransformationFailedCopyWith<T, $Res>
+    implements $TransformationFailureCopyWith<T, $Res> {
+  factory _$TransformationFailedCopyWith(_TransformationFailed<T> value,
+          $Res Function(_TransformationFailed<T>) then) =
+      __$TransformationFailedCopyWithImpl<T, $Res>;
   @override
   $Res call({T failedValue});
 }
 
-class _$TransformationFailedCopyWithImpl<T, $Res>
-    extends _$ValueFailureCopyWithImpl<T, $Res>
-    implements $TransformationFailedCopyWith<T, $Res> {
-  _$TransformationFailedCopyWithImpl(TransformationFailed<T> _value,
-      $Res Function(TransformationFailed<T>) _then)
-      : super(_value, (v) => _then(v as TransformationFailed<T>));
+class __$TransformationFailedCopyWithImpl<T, $Res>
+    extends _$TransformationFailureCopyWithImpl<T, $Res>
+    implements _$TransformationFailedCopyWith<T, $Res> {
+  __$TransformationFailedCopyWithImpl(_TransformationFailed<T> _value,
+      $Res Function(_TransformationFailed<T>) _then)
+      : super(_value, (v) => _then(v as _TransformationFailed<T>));
 
   @override
-  TransformationFailed<T> get _value => super._value as TransformationFailed<T>;
+  _TransformationFailed<T> get _value =>
+      super._value as _TransformationFailed<T>;
 
   @override
   $Res call({
     Object failedValue = freezed,
   }) {
-    return _then(TransformationFailed<T>(
+    return _then(_TransformationFailed<T>(
       failedValue:
           failedValue == freezed ? _value.failedValue : failedValue as T,
     ));
   }
 }
 
-class _$TransformationFailed<T> implements TransformationFailed<T> {
-  const _$TransformationFailed({@required this.failedValue})
+class _$_TransformationFailed<T> implements _TransformationFailed<T> {
+  const _$_TransformationFailed({@required this.failedValue})
       : assert(failedValue != null);
 
   @override
@@ -712,13 +714,13 @@ class _$TransformationFailed<T> implements TransformationFailed<T> {
 
   @override
   String toString() {
-    return 'ValueFailure<$T>.transformationFailed(failedValue: $failedValue)';
+    return 'TransformationFailure<$T>.transformationFailed(failedValue: $failedValue)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is TransformationFailed<T> &&
+        (other is _TransformationFailed<T> &&
             (identical(other.failedValue, failedValue) ||
                 const DeepCollectionEquality()
                     .equals(other.failedValue, failedValue)));
@@ -729,22 +731,16 @@ class _$TransformationFailed<T> implements TransformationFailed<T> {
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
 
   @override
-  $TransformationFailedCopyWith<T, TransformationFailed<T>> get copyWith =>
-      _$TransformationFailedCopyWithImpl<T, TransformationFailed<T>>(
+  _$TransformationFailedCopyWith<T, _TransformationFailed<T>> get copyWith =>
+      __$TransformationFailedCopyWithImpl<T, _TransformationFailed<T>>(
           this, _$identity);
 
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result shortPassword(T failedValue),
-    @required Result invalidUsername(T failedValue),
-    @required Result invalidPermissionLevel(T failedValue),
     @required Result invalidStringToInt(T failedValue),
     @required Result transformationFailed(T failedValue),
   }) {
-    assert(shortPassword != null);
-    assert(invalidUsername != null);
-    assert(invalidPermissionLevel != null);
     assert(invalidStringToInt != null);
     assert(transformationFailed != null);
     return transformationFailed(failedValue);
@@ -753,9 +749,6 @@ class _$TransformationFailed<T> implements TransformationFailed<T> {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result shortPassword(T failedValue),
-    Result invalidUsername(T failedValue),
-    Result invalidPermissionLevel(T failedValue),
     Result invalidStringToInt(T failedValue),
     Result transformationFailed(T failedValue),
     @required Result orElse(),
@@ -770,15 +763,9 @@ class _$TransformationFailed<T> implements TransformationFailed<T> {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result shortPassword(ShortPassword<T> value),
-    @required Result invalidUsername(InvalidUsername<T> value),
-    @required Result invalidPermissionLevel(InvalidPermissionLevel<T> value),
-    @required Result invalidStringToInt(InvalidStringToInt<T> value),
-    @required Result transformationFailed(TransformationFailed<T> value),
+    @required Result invalidStringToInt(_InvalidStringToInt<T> value),
+    @required Result transformationFailed(_TransformationFailed<T> value),
   }) {
-    assert(shortPassword != null);
-    assert(invalidUsername != null);
-    assert(invalidPermissionLevel != null);
     assert(invalidStringToInt != null);
     assert(transformationFailed != null);
     return transformationFailed(this);
@@ -787,11 +774,8 @@ class _$TransformationFailed<T> implements TransformationFailed<T> {
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result shortPassword(ShortPassword<T> value),
-    Result invalidUsername(InvalidUsername<T> value),
-    Result invalidPermissionLevel(InvalidPermissionLevel<T> value),
-    Result invalidStringToInt(InvalidStringToInt<T> value),
-    Result transformationFailed(TransformationFailed<T> value),
+    Result invalidStringToInt(_InvalidStringToInt<T> value),
+    Result transformationFailed(_TransformationFailed<T> value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -802,12 +786,12 @@ class _$TransformationFailed<T> implements TransformationFailed<T> {
   }
 }
 
-abstract class TransformationFailed<T> implements ValueFailure<T> {
-  const factory TransformationFailed({@required T failedValue}) =
-      _$TransformationFailed<T>;
+abstract class _TransformationFailed<T> implements TransformationFailure<T> {
+  const factory _TransformationFailed({@required T failedValue}) =
+      _$_TransformationFailed<T>;
 
   @override
   T get failedValue;
   @override
-  $TransformationFailedCopyWith<T, TransformationFailed<T>> get copyWith;
+  _$TransformationFailedCopyWith<T, _TransformationFailed<T>> get copyWith;
 }

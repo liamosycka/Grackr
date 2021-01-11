@@ -9,7 +9,7 @@ class UserName extends ValueObject<String> {
   factory UserName(String input) {
     assert(input != null);
     return UserName._(
-      validate_UserName(input),
+      validateUserName(input),
     );
   }
   const UserName._(this.value);
@@ -21,7 +21,7 @@ class Password extends ValueObject<String> {
   factory Password(String input) {
     assert(input != null);
     return Password._(
-      validate_Password(input),
+      validatePassword(input),
     );
   }
   const Password._(this.value);
@@ -29,8 +29,8 @@ class Password extends ValueObject<String> {
 
 class PermissionLevel extends ValueObject<int> {
   static const int noPermissions = -1;
-  static const int guard = 0;
   static const int admin = 1;
+  static const int guard = 2;
 
   static String mapPermissionToString(int permission) {
     var string = 'Rol no identificado';
@@ -50,7 +50,7 @@ class PermissionLevel extends ValueObject<int> {
 
   factory PermissionLevel(int input) {
     return PermissionLevel._(
-      validate_PermissionLevel(input),
+      validatePermissionLevel(input),
     );
   }
   const PermissionLevel._(this.value);

@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:gracker_app/domain/admin_features/value_objects.dart';
 import 'package:gracker_app/domain/authentication/value_objects.dart';
-import 'package:gracker_app/presentation/admin_features/admin_features_failures.dart';
+import 'package:gracker_app/domain/admin_features/admin_features_failures.dart';
 
 part 'create_guard_state.freezed.dart';
 
@@ -18,7 +18,7 @@ abstract class CreateEmployeeState with _$CreateEmployeeState {
     @required bool showErrorMessages,
     @required bool isSubmitting,
     @required
-        Option<Either<Admin_Features_Failure, Unit>>
+        Option<Either<AdminFeaturesFailure, Unit>>
             adminFeaturesFailureOrSuccess,
   }) = _CreateGuardState;
 

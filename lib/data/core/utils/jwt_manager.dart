@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:gracker_app/core/error/exceptions.dart';
+import 'package:gracker_app/core/error/errors.dart';
 import 'package:http/http.dart' as http;
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,7 +26,7 @@ class JWTManager {
   static const String refreshEndpoint = 'refresh/';
   static const String verifyEndpoint = 'verify/';
 
-  Future<Unit> authenticateFromUserAndPassword({
+  Future<Map<String, dynamic>> authenticateFromUserAndPassword({
     @required String username,
     @required String password,
   }) async {
@@ -41,12 +41,12 @@ class JWTManager {
         final accessToken = jsonBody["access"] as String;
         final refreshToken = jsonBody["refresh"] as String;
         _cacheAndUpdateTokens(access: accessToken, refresh: refreshToken);
+        return JwtDecoder.decode(refreshToken);
       } else {
         throw JWTException(
             explanation:
                 'Error autenticando el usuario. Status: ${response.statusCode}');
       }
-      return unit;
     } on Exception {
       rethrow;
     }
@@ -97,6 +97,41 @@ class JWTManager {
   }) async {
     // TODO: implement put
     throw UnimplementedError();
+  }
+
+  Future<bool> verifyTokenLocally() async {
+    try {
+      JwtDecoder.isExpired(await _getRefreshToken());
+      return true;
+    } on JWTRefreshTokenExpired {
+      return false;
+    }
+  }
+
+  Future<bool> verifyTokenRemotely() async {
+    String rToken;
+    try {
+      try {
+        rToken = await _getRefreshToken();
+      } on JWTRefreshTokenExpired {
+        return false;
+      }
+      final http.Response response = await http.post(
+        '$tokenProviderEndpoint$verifyEndpoint',
+        headers: {HttpHeaders.contentTypeHeader: ContentType.json.mimeType},
+        body: json.encode({"token": rToken}),
+      );
+      return response.statusCode == HttpStatus.ok;
+    } on Exception {
+      return false;
+    }
+  }
+
+  void clearTokens() {
+    sharedPreferences.remove(_accessKey);
+    sharedPreferences.remove(_refreshKey);
+    _accessToken = none();
+    _refreshToken = none();
   }
 
   Future<Unit> _cacheAndUpdateTokens({String access, String refresh}) async {

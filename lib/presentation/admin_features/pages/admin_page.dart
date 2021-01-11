@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gracker_app/core/routes/router.dart';
 import 'package:gracker_app/core/themes/global_themes.dart';
 import 'package:gracker_app/presentation/admin_features/pages/widgets/options_grid.dart';
 import 'package:gracker_app/presentation/core/blocs/auth_bloc.dart';
 import 'package:gracker_app/presentation/core/blocs/auth_event.dart';
-import 'package:gracker_app/presentation/core/blocs/auth_state.dart';
 import 'package:gracker_app/presentation/core/pages/widgets/backdrop/backdrop_bar.dart';
 import 'package:gracker_app/presentation/core/pages/widgets/backdrop/backdrop_scaffold.dart';
 
@@ -18,36 +16,25 @@ class AdminPage extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    return BlocListener<AuthBloc, AuthState>(
-      //? Log out
-      listener: (context, state) {
-        state.maybeMap(
-          orElse: () {},
-          unauthenticated: (state) {
-            Navigator.of(context).pushReplacementNamed(Routes.landing);
-          },
-        );
-      },
-      child: BackdropScaffold(
-        backdropBar: BackdropBar(
-          title: 'Grackr',
-          leadingIcon: MdiIcons.tune,
-          actionIcon: MdiIcons.shieldAccountOutline,
-          actionOnTap: () {
-            showDialog(
-              context: context,
-              builder: (context) => _LogOutDialog(colorScheme: colorScheme),
-            );
-            // BlocProvider.of<AuthBloc>(context).add(const AuthEvent.loggedOut());
-          },
-          leadingOnTap: () {
-            Navigator.of(context).maybePop();
-          },
-        ),
-        frontPanelTitle: 'Acciones',
-        frontPanelChild: const OptionsGrid(),
-        children: const [],
+    return BackdropScaffold(
+      backdropBar: BackdropBar(
+        title: 'Grackr',
+        leadingIcon: MdiIcons.tune,
+        actionIcon: MdiIcons.shieldAccountOutline,
+        actionOnTap: () {
+          showDialog(
+            context: context,
+            builder: (context) => _LogOutDialog(colorScheme: colorScheme),
+          );
+          // BlocProvider.of<AuthBloc>(context).add(const AuthEvent.loggedOut());
+        },
+        leadingOnTap: () {
+          Navigator.of(context).maybePop();
+        },
       ),
+      frontPanelTitle: 'Acciones',
+      frontPanelChild: const OptionsGrid(),
+      children: const [],
     );
   }
 }

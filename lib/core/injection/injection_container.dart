@@ -1,10 +1,8 @@
 import 'package:data_connection_checker/data_connection_checker.dart';
-import 'package:dbcrypt/dbcrypt.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gracker_app/core/network/network_info.dart';
 import 'package:gracker_app/core/themes/bloc/theme_bloc.dart';
-import 'package:gracker_app/core/util/input_converter.dart';
-import 'package:gracker_app/data/admin_features/datasources/employee_remote_impl/employee_remote_postgresql.dart';
+import 'package:gracker_app/data/admin_features/datasources/employee_remote_impl/employee_remote_grapi.dart';
 import 'package:gracker_app/data/admin_features/datasources/i_employee_remote_datasource.dart';
 import 'package:gracker_app/data/admin_features/repositories/employee_repository_impl.dart';
 import 'package:gracker_app/data/authentication/datasources/i_user_local_datasource.dart';
@@ -12,8 +10,7 @@ import 'package:gracker_app/data/authentication/datasources/user_local_impl/user
 import 'package:gracker_app/data/authentication/datasources/i_user_remote_datasource.dart';
 import 'package:gracker_app/data/authentication/datasources/user_remote_impl/user_remote_grapi.dart';
 import 'package:gracker_app/data/authentication/repositories/user_repository_impl.dart';
-import 'package:gracker_app/data/core/models/jwt_manager.dart';
-import 'package:gracker_app/data/core/models/postgres_connection_data.dart';
+import 'package:gracker_app/data/core/utils/jwt_manager.dart';
 import 'package:gracker_app/domain/admin_features/repositories/i_employee_repository.dart';
 import 'package:gracker_app/domain/admin_features/usecases/create_employee.dart';
 import 'package:gracker_app/domain/admin_features/usecases/delete_employee.dart';
@@ -38,20 +35,22 @@ final GetIt getIt = GetIt.instance;
  */
 Future<void> initGetItDependencies() async {
   // Features
-  await _initFeatures();
+  await _initBlocs();
+  await _initUseCases();
+  await _initRepositories();
+  await _initDataSources();
   // Core
   await _initCore();
   // External
   await _initExternal();
 }
 
-Future<void> _initFeatures() async {
-  // Feature - Auth
-  // Bloc
-  getIt.registerFactory<LoginBloc>(() => LoginBloc(
-        getAuthenticated: getIt(),
-        inputConverter: getIt(),
-      ));
+Future<void> _initBlocs() async {
+  getIt.registerFactory<LoginBloc>(
+    () => LoginBloc(
+      getAuthenticated: getIt(),
+    ),
+  );
   getIt.registerLazySingleton<AuthBloc>(
     () => AuthBloc(
       checkIfAuthenticated: getIt(),
@@ -61,42 +60,83 @@ Future<void> _initFeatures() async {
   getIt.registerLazySingleton<ThemeBloc>(
     () => ThemeBloc(),
   );
-
   getIt.registerFactory<CreateEmployeeBloc>(
-    () => CreateEmployeeBloc(createGuard: getIt()),
+    () => CreateEmployeeBloc(
+      createGuard: getIt(),
+    ),
   );
   getIt.registerFactory<AdminEmployeesBloc>(
-    () => AdminEmployeesBloc(getAllGuardPreviews: getIt()),
+    () => AdminEmployeesBloc(
+      getAllGuardPreviews: getIt(),
+    ),
   );
   getIt.registerFactory<InspectEmployeeBloc>(
-    () =>
-        InspectEmployeeBloc(deleteEmployee: getIt(), getEmployeeInfo: getIt()),
+    () => InspectEmployeeBloc(
+      deleteEmployee: getIt(),
+      getEmployeeInfo: getIt(),
+    ),
   );
-  //! UseCases
-  getIt.registerLazySingleton<Get_Authenticated>(() => Get_Authenticated(
-      userRepository: getIt(), dbCrypt: getIt(), networkInfo: getIt()));
+}
+
+Future<void> _initUseCases() async {
+  getIt.registerLazySingleton<Get_Authenticated>(
+    () => Get_Authenticated(
+      userRepository: getIt(),
+      networkInfo: getIt(),
+    ),
+  );
   getIt.registerLazySingleton<Check_If_Authenticated>(
-      () => Check_If_Authenticated(userRepository: getIt()));
-  getIt.registerLazySingleton<Log_Out>(() => Log_Out(userRepository: getIt()));
-
-  getIt.registerLazySingleton<Create_Employee>(() => Create_Employee(
-      employeeRepository: getIt(), dbCrypt: getIt(), networkInfo: getIt()));
-
+    () => Check_If_Authenticated(
+      userRepository: getIt(),
+    ),
+  );
+  getIt.registerLazySingleton<Log_Out>(
+    () => Log_Out(
+      userRepository: getIt(),
+    ),
+  );
+  getIt.registerLazySingleton<Create_Employee>(
+    () => Create_Employee(
+      employeeRepository: getIt(),
+      networkInfo: getIt(),
+    ),
+  );
   getIt.registerLazySingleton<Delete_Employee>(
-      () => Delete_Employee(employeeRepository: getIt(), networkInfo: getIt()));
+    () => Delete_Employee(
+      employeeRepository: getIt(),
+      networkInfo: getIt(),
+    ),
+  );
+  getIt.registerLazySingleton<Get_All_Employee_Previews>(
+    () => Get_All_Employee_Previews(
+      employeeRepository: getIt(),
+      networkInfo: getIt(),
+    ),
+  );
 
-  getIt.registerLazySingleton<Get_All_Employee_Previews>(() =>
-      Get_All_Employee_Previews(
-          employeeRepository: getIt(), networkInfo: getIt()));
+  getIt.registerLazySingleton<Get_Employee_Info>(
+    () => Get_Employee_Info(
+      employeeRepository: getIt(),
+      networkInfo: getIt(),
+    ),
+  );
+}
 
-  getIt.registerLazySingleton<Get_Employee_Info>(() =>
-      Get_Employee_Info(employeeRepository: getIt(), networkInfo: getIt()));
-  //! Repository
-  getIt.registerLazySingleton<IUserRepository>(() => User_Repository_Impl(
-      userRemoteDataSource: getIt(), userLocalDataSource: getIt()));
+Future<void> _initRepositories() async {
+  getIt.registerLazySingleton<IUserRepository>(
+    () => User_Repository_Impl(
+      userRemoteDataSource: getIt(),
+      userLocalDataSource: getIt(),
+    ),
+  );
   getIt.registerLazySingleton<IEmployeeRepository>(
-      () => EmployeeRepositoryImpl(employeeRemoteDataSource: getIt()));
-  //! Data Sources
+    () => EmployeeRepositoryImpl(
+      employeeRemoteDataSource: getIt(),
+    ),
+  );
+}
+
+Future<void> _initDataSources() async {
   getIt.registerLazySingleton<IUserRemoteDataSource>(
     () => UserRemoteGrAPI(
       baseUrl: 'https://grackr-api.herokuapp.com/api/users/',
@@ -104,46 +144,47 @@ Future<void> _initFeatures() async {
     ),
   );
   getIt.registerLazySingleton<IUserLocalDataSource>(
-      () => User_Local_SharedPreferences(sharedPreferences: getIt()));
+    () => User_Local_SharedPreferences(
+      sharedPreferences: getIt(),
+      jwtManager: getIt(),
+    ),
+  );
   getIt.registerLazySingleton<IEmployeeRemoteDataSource>(
-      () => EmployeeRemotePostgreSQL(postgress_connection_data: getIt()));
+    () => EmployeeRemoteGrAPI(),
+  );
 }
 
 Future<void> _initCore() async {
-  // Core - Util
-  getIt.registerLazySingleton<InputConverter>(() => InputConverter());
-
   // Core - Network
   getIt.registerLazySingleton<Network_Info>(
-      () => NetworkInfoImpl(dataConnectionChecker: getIt()));
-
+    () => NetworkInfoImpl(
+      dataConnectionChecker: getIt(),
+    ),
+  );
   getIt.registerLazySingleton<JWTManager>(
     () => JWTManager(
       sharedPreferences: getIt(),
       tokenProviderEndpoint: 'https://grackr-api.herokuapp.com/api/token/',
     ),
   );
+  // getIt.registerLazySingleton<Postgress_Connection_Data>(
+  //   () => const Postgress_Connection_Data(
+  //     host: "ruby.db.elephantsql.com",
+  //     port: 5432,
+  //     database: "dbpxbgmk",
+  //     username: "dbpxbgmk",
+  //     password: "L1GhaFDYwqF5wUBpzsXF3VW0G_p1uQWv",
+  //   ),
+  // );
 }
 
 Future<void> _initExternal() async {
-  //
-  getIt.registerLazySingleton<Postgress_Connection_Data>(
-    () => const Postgress_Connection_Data(
-      host: "ruby.db.elephantsql.com",
-      port: 5432,
-      database: "dbpxbgmk",
-      username: "dbpxbgmk",
-      password: "L1GhaFDYwqF5wUBpzsXF3VW0G_p1uQWv",
-    ),
-  );
-  //"ruby.db.elephantsql.com", 5432, "dbpxbgmk",        username: "dbpxbgmk", password: "L1GhaFDYwqF5wUBpzsXF3VW0G_p1uQWv"
-  // External
   final sharedPreferences = await SharedPreferences.getInstance();
-  getIt.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
-  final dbCrypt = DBCrypt();
-  getIt.registerLazySingleton<DBCrypt>(() => dbCrypt);
+  getIt.registerLazySingleton<SharedPreferences>(
+    () => sharedPreferences,
+  );
 
-  // TODO Postgresql Connection
   getIt.registerLazySingleton<DataConnectionChecker>(
-      () => DataConnectionChecker());
+    () => DataConnectionChecker(),
+  );
 }

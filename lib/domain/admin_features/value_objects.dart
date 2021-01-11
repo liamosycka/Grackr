@@ -11,7 +11,7 @@ class Name_Surname extends ValueObject<String> {
   factory Name_Surname(String input) {
     assert(input != null);
     return Name_Surname._(
-      validate_UserName(input),
+      validateUserName(input),
     );
   }
   const Name_Surname._(this.value);
@@ -23,7 +23,7 @@ class EmployeeID extends ValueObject<String> {
   factory EmployeeID(String input) {
     assert(input != null);
     return EmployeeID._(
-      validate_EmployeeID(input),
+      validateEmployeeID(input),
     );
   }
   const EmployeeID._(this.value);

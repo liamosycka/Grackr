@@ -5,9 +5,9 @@ import 'package:gracker_app/core/network/network_info.dart';
 import 'package:gracker_app/core/usecases/usecase.dart';
 import 'package:gracker_app/domain/admin_features/value_objects.dart';
 import 'package:gracker_app/domain/admin_features/repositories/i_employee_repository.dart';
-import 'package:gracker_app/presentation/admin_features/admin_features_failures.dart';
+import 'package:gracker_app/domain/admin_features/admin_features_failures.dart';
 
-class Delete_Employee implements UseCase<Admin_Features_Failure, Unit, Params> {
+class Delete_Employee implements UseCase<AdminFeaturesFailure, Unit, Params> {
   final IEmployeeRepository employeeRepository;
   final Network_Info networkInfo;
 
@@ -17,7 +17,7 @@ class Delete_Employee implements UseCase<Admin_Features_Failure, Unit, Params> {
   });
 
   @override
-  Future<Either<Admin_Features_Failure, Unit>> call(Params params) async {
+  Future<Either<AdminFeaturesFailure, Unit>> call(Params params) async {
     if (await networkInfo.isConnected) {
       final failureOrSuccess =
           await employeeRepository.deleteEmployee(params.employeeID);
@@ -27,7 +27,7 @@ class Delete_Employee implements UseCase<Admin_Features_Failure, Unit, Params> {
         (r) => Right(r),
       );
     } else {
-      return const Left(Admin_Features_Failure.noInternetConnection());
+      return const Left(AdminFeaturesFailure.noInternetConnection());
     }
   }
 }

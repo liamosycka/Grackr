@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gracker_app/core/injection/injection_container.dart';
-import 'package:gracker_app/core/routes/router.dart';
 import 'package:gracker_app/core/themes/bloc/theme_bloc.dart';
 import 'package:gracker_app/core/themes/bloc/theme_state.dart';
 import 'package:gracker_app/core/themes/global_themes.dart';
-import 'package:gracker_app/domain/authentication/value_objects.dart';
 import 'package:gracker_app/presentation/authentication/bloc/login_bloc.dart';
 import 'package:gracker_app/presentation/authentication/bloc/login_state.dart';
 import 'package:gracker_app/presentation/authentication/pages/widgets/login_form.dart';
@@ -25,21 +23,18 @@ class LandingPage extends StatelessWidget {
         create: (_) => getIt<LoginBloc>(),
         child: BlocListener<LoginBloc, LoginState>(
             listenWhen: (previous, current) =>
-                previous.authFailrueOrSuccess != current.authFailrueOrSuccess,
+                previous.authFailureOrSuccess != current.authFailureOrSuccess,
             listener: (context, LoginState state) {
-              state.authFailrueOrSuccess.fold(
+              state.authFailureOrSuccess.fold(
                 () {},
                 (either) => either.fold(
                   (failure) {
-                    // TODO: Temporalmente hago un fold de todos los failures para debugging.
-                    // TODO: En realidad el usuario no tendria por que ver estos errores tan especificos.
-                    final String errorMessage = failure.map(
-                      authenticationFailed: (_) => "Authentication failed.",
-                      noCachedUser: (_) => "No cached user.",
-                      noPasswordMatch: (_) => "No password matched.",
-                      noInternetConnection: (_) => "No internet connection.",
+                    final String errorMessage = failure.maybeMap(
+                      orElse: () => 'Error al iniciar sesión.',
+                      noInternetConnection: (_) =>
+                          "No hay conexión a internet.",
                       failedDomainVerification: (_) =>
-                          "Failed domain verification.",
+                          "Los datos ingresados son inválidos.",
                     );
                     // TODO Reemplazar FlushbarHelper defaults por uno modificado
                     // TODO para que vaya bien con el diseño de la app
@@ -47,27 +42,20 @@ class LandingPage extends StatelessWidget {
                         .show(context);
                   },
                   (_) async {
-                    FlushbarHelper.createSuccess(message: 'Successful login.')
-                        .show(context);
-                    // TODO: Quitar Future.delayed
-                    await Future.delayed(const Duration(seconds: 1));
-                    final currentPermissions = state.permissions;
-                    final currentUsername = state.username;
-                    BlocProvider.of<AuthBloc>(context).add(
-                      AuthEvent.loggedIn(
-                        permissionLevel: currentPermissions,
-                        username: currentUsername,
-                      ),
+                    FlushbarHelper.createSuccess(
+                            message:
+                                'Bienvenido, ${state.username.getOrCrash()}')
+                        .show(context)
+                        .then(
+                      (_) {
+                        BlocProvider.of<AuthBloc>(context).add(
+                          AuthEvent.loggedIn(
+                            permissionLevel: state.permissions,
+                            username: state.username,
+                          ),
+                        );
+                      },
                     );
-                    if (currentPermissions.getOrCrash() ==
-                        PermissionLevel.admin) {
-                      Navigator.of(context).popUntil((route) => route.isFirst);
-                      Navigator.of(context)
-                          .pushReplacementNamed(Routes.homeAdmin);
-                    } else {
-                      Navigator.of(context)
-                          .pushReplacementNamed(Routes.homeGuard);
-                    }
                   },
                 ),
               );

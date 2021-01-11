@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gracker_app/domain/admin_features/entities/employee_preview.dart';
 import 'package:gracker_app/domain/admin_features/usecases/get_all_employee_previews.dart';
-import 'package:gracker_app/presentation/admin_features/admin_features_failures.dart';
+import 'package:gracker_app/domain/admin_features/admin_features_failures.dart';
 
 part 'admin_employees_state.dart';
 part 'admin_employees_event.dart';

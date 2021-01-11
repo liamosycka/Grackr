@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:gracker_app/domain/authentication/value_objects.dart';
-import 'package:gracker_app/presentation/authentication/auth_failures.dart';
+import 'package:gracker_app/domain/authentication/auth_failures.dart';
 
 part 'login_state.freezed.dart';
 /*
@@ -25,17 +25,17 @@ abstract class LoginState with _$LoginState {
     @required PermissionLevel permissions,
     @required bool showErrorMessages,
     @required bool isSubmitting,
-    @required Option<Either<AuthFailure, Unit>> authFailrueOrSuccess,
+    @required Option<Either<AuthFailure, Unit>> authFailureOrSuccess,
   }) = _LoginState;
 
   factory LoginState.initial() => LoginState(
         username: UserName(''),
         password: Password(''),
-        // TODO Obtener el permiso del usuario cacheado, si lo hay ??
+        //? Esto se sobreescribe inmediatamente a traves de HydratedBloc
         permissions: PermissionLevel(PermissionLevel.guard),
         showErrorMessages: false,
         isSubmitting: false,
-        authFailrueOrSuccess: none(),
+        authFailureOrSuccess: none(),
       );
 }
 //a

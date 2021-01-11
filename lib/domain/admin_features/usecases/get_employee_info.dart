@@ -6,10 +6,10 @@ import 'package:gracker_app/core/usecases/usecase.dart';
 import 'package:gracker_app/domain/admin_features/entities/employee_info.dart';
 import 'package:gracker_app/domain/admin_features/repositories/i_employee_repository.dart';
 import 'package:gracker_app/domain/admin_features/value_objects.dart';
-import 'package:gracker_app/presentation/admin_features/admin_features_failures.dart';
+import 'package:gracker_app/domain/admin_features/admin_features_failures.dart';
 
 class Get_Employee_Info
-    implements UseCase<Admin_Features_Failure, EmployeeInfo, Params> {
+    implements UseCase<AdminFeaturesFailure, EmployeeInfo, Params> {
   final IEmployeeRepository employeeRepository;
   final Network_Info networkInfo;
 
@@ -19,8 +19,7 @@ class Get_Employee_Info
   });
 
   @override
-  Future<Either<Admin_Features_Failure, EmployeeInfo>> call(
-      Params params) async {
+  Future<Either<AdminFeaturesFailure, EmployeeInfo>> call(Params params) async {
     if (await networkInfo.isConnected) {
       final failureOrInfo =
           await employeeRepository.getEmployeeInfo(params.employeeID);
@@ -29,7 +28,7 @@ class Get_Employee_Info
         (info) => Right(info),
       );
     } else {
-      return const Left(Admin_Features_Failure.noInternetConnection());
+      return const Left(AdminFeaturesFailure.noInternetConnection());
     }
   }
 }

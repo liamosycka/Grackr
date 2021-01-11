@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gracker_app/domain/admin_features/usecases/create_employee.dart';
 import 'package:gracker_app/domain/admin_features/value_objects.dart';
 import 'package:gracker_app/domain/authentication/value_objects.dart';
-import 'package:gracker_app/presentation/admin_features/admin_features_failures.dart';
+import 'package:gracker_app/domain/admin_features/admin_features_failures.dart';
 import 'package:gracker_app/presentation/admin_features/create_employee/bloc/create_guard_event.dart';
 import 'package:gracker_app/presentation/admin_features/create_employee/bloc/create_guard_state.dart';
 
@@ -35,7 +35,7 @@ class CreateEmployeeBloc
             return username.isValid();
           },
         );
-        Either<Admin_Features_Failure, Unit> failureOrSuccess;
+        Either<AdminFeaturesFailure, Unit> failureOrSuccess;
         if (isNameValid &&
             isSurnameValid &&
             isIDValid &&
@@ -56,7 +56,7 @@ class CreateEmployeeBloc
           );
         } else {
           failureOrSuccess =
-              const Left(Admin_Features_Failure.failedDomainVerification());
+              const Left(AdminFeaturesFailure.failedDomainVerification());
         }
         // TODO: Quitar
         // yield state.copyWith(

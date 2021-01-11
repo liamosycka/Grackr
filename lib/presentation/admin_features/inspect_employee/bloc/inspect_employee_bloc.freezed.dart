@@ -14,18 +14,12 @@ class _$InspectEmployeeStateTearOff {
 
 // ignore: unused_element
   _InspectEmployeeState call(
-      {@required
-          EmployeeID employeeID,
-      @required
-          UserName username,
-      @required
-          Option<DateTime> creationDateTime,
-      @required
-          UserName creatorUsername,
-      @required
-          bool isLoading,
-      @required
-          Option<Either<Admin_Features_Failure, Unit>> failureOrSuccess}) {
+      {@required EmployeeID employeeID,
+      @required UserName username,
+      @required Option<DateTime> creationDateTime,
+      @required UserName creatorUsername,
+      @required bool isLoading,
+      @required Option<Either<AdminFeaturesFailure, Unit>> failureOrSuccess}) {
     return _InspectEmployeeState(
       employeeID: employeeID,
       username: username,
@@ -46,7 +40,7 @@ mixin _$InspectEmployeeState {
   Option<DateTime> get creationDateTime;
   UserName get creatorUsername;
   bool get isLoading;
-  Option<Either<Admin_Features_Failure, Unit>> get failureOrSuccess;
+  Option<Either<AdminFeaturesFailure, Unit>> get failureOrSuccess;
 
   $InspectEmployeeStateCopyWith<InspectEmployeeState> get copyWith;
 }
@@ -61,7 +55,7 @@ abstract class $InspectEmployeeStateCopyWith<$Res> {
       Option<DateTime> creationDateTime,
       UserName creatorUsername,
       bool isLoading,
-      Option<Either<Admin_Features_Failure, Unit>> failureOrSuccess});
+      Option<Either<AdminFeaturesFailure, Unit>> failureOrSuccess});
 }
 
 class _$InspectEmployeeStateCopyWithImpl<$Res>
@@ -94,7 +88,7 @@ class _$InspectEmployeeStateCopyWithImpl<$Res>
       isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
       failureOrSuccess: failureOrSuccess == freezed
           ? _value.failureOrSuccess
-          : failureOrSuccess as Option<Either<Admin_Features_Failure, Unit>>,
+          : failureOrSuccess as Option<Either<AdminFeaturesFailure, Unit>>,
     ));
   }
 }
@@ -111,7 +105,7 @@ abstract class _$InspectEmployeeStateCopyWith<$Res>
       Option<DateTime> creationDateTime,
       UserName creatorUsername,
       bool isLoading,
-      Option<Either<Admin_Features_Failure, Unit>> failureOrSuccess});
+      Option<Either<AdminFeaturesFailure, Unit>> failureOrSuccess});
 }
 
 class __$InspectEmployeeStateCopyWithImpl<$Res>
@@ -146,7 +140,7 @@ class __$InspectEmployeeStateCopyWithImpl<$Res>
       isLoading: isLoading == freezed ? _value.isLoading : isLoading as bool,
       failureOrSuccess: failureOrSuccess == freezed
           ? _value.failureOrSuccess
-          : failureOrSuccess as Option<Either<Admin_Features_Failure, Unit>>,
+          : failureOrSuccess as Option<Either<AdminFeaturesFailure, Unit>>,
     ));
   }
 }
@@ -177,7 +171,7 @@ class _$_InspectEmployeeState implements _InspectEmployeeState {
   @override
   final bool isLoading;
   @override
-  final Option<Either<Admin_Features_Failure, Unit>> failureOrSuccess;
+  final Option<Either<AdminFeaturesFailure, Unit>> failureOrSuccess;
 
   @override
   String toString() {
@@ -237,7 +231,7 @@ abstract class _InspectEmployeeState implements InspectEmployeeState {
           @required
               bool isLoading,
           @required
-              Option<Either<Admin_Features_Failure, Unit>> failureOrSuccess}) =
+              Option<Either<AdminFeaturesFailure, Unit>> failureOrSuccess}) =
       _$_InspectEmployeeState;
 
   @override
@@ -251,7 +245,7 @@ abstract class _InspectEmployeeState implements InspectEmployeeState {
   @override
   bool get isLoading;
   @override
-  Option<Either<Admin_Features_Failure, Unit>> get failureOrSuccess;
+  Option<Either<AdminFeaturesFailure, Unit>> get failureOrSuccess;
   @override
   _$InspectEmployeeStateCopyWith<_InspectEmployeeState> get copyWith;
 }

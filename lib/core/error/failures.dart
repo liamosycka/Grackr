@@ -1,24 +1,29 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/material.dart';
-import 'package:gracker_app/core/util/input_converter.dart';
 part 'failures.freezed.dart';
-//asd
 
+/**
+ * Definicion abstracta de ValueFailure
+ * ! Definir en este archivo solo Failures a nivel CORE
+ */
+
+/// Utilizados para las clases ValueObject
 @freezed
 abstract class ValueFailure<T> with _$ValueFailure<T> {
   const factory ValueFailure.shortPassword({@required T failedValue}) =
-      ShortPassword<T>;
+      _ShortPassword<T>;
   const factory ValueFailure.invalidUsername({@required T failedValue}) =
-      InvalidUsername<T>;
+      _InvalidUsername<T>;
   const factory ValueFailure.invalidPermissionLevel({@required T failedValue}) =
-      InvalidPermissionLevel<T>;
+      _InvalidPermissionLevel<T>;
+}
 
-  /// De la clase [InputConverter] Failure que sucede en la clase InputConverter
-  /// al momento de querer convertir un string a int que contiene al menos una
-  /// ocurrencia no numérica
-  const factory ValueFailure.invalidStringToInt({@required T failedValue}) =
-      InvalidStringToInt<T>;
+/// Utilizados para los métodos encontrados en [value_transformers.dart]
+@freezed
+abstract class TransformationFailure<T> with _$TransformationFailure<T> {
+  const factory TransformationFailure.invalidStringToInt(
+      {@required T failedValue}) = _InvalidStringToInt<T>;
 
-  const factory ValueFailure.transformationFailed({@required T failedValue}) =
-      TransformationFailed<T>;
+  const factory TransformationFailure.transformationFailed(
+      {@required T failedValue}) = _TransformationFailed<T>;
 }

@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:gracker_app/core/error/exceptions.dart';
+import 'package:gracker_app/core/error/errors.dart';
 import 'package:gracker_app/data/authentication/datasources/i_user_remote_datasource.dart';
 import 'package:gracker_app/data/authentication/models/user_dto.dart';
-import 'package:gracker_app/data/core/models/postgres_connection_data.dart';
+import 'package:gracker_app/data/core/utils/postgres_connection_data.dart';
 
 class User_Remote_PostgreSQL implements IUserRemoteDataSource {
   final Postgress_Connection_Data postgress_connection_data;
@@ -41,6 +41,12 @@ class User_Remote_PostgreSQL implements IUserRemoteDataSource {
   @override
   Future<Unit> getUsers() {
     // TODO: implement getUsers
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> checkIfAuthenticated() {
+    // TODO: implement checkIfAuthenticated
     throw UnimplementedError();
   }
 }

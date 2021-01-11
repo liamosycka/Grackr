@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:dbcrypt/dbcrypt.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:gracker_app/core/network/network_info.dart';
@@ -10,31 +9,48 @@ import 'package:gracker_app/domain/admin_features/value_objects.dart';
 import 'package:gracker_app/domain/authentication/value_objects.dart';
 import 'package:gracker_app/domain/core/entities/user.dart';
 import 'package:gracker_app/domain/admin_features/repositories/i_employee_repository.dart';
-import 'package:gracker_app/presentation/admin_features/admin_features_failures.dart';
+import 'package:gracker_app/domain/admin_features/admin_features_failures.dart';
 
-class Create_Employee implements UseCase<Admin_Features_Failure, Unit, Params> {
+class Create_Employee implements UseCase<AdminFeaturesFailure, Unit, Params> {
   final IEmployeeRepository employeeRepository;
   final Network_Info networkInfo;
-  final DBCrypt dbCrypt;
 
   Create_Employee({
     @required this.employeeRepository,
     @required this.networkInfo,
-    @required this.dbCrypt,
   });
 
   @override
-  Future<Either<Admin_Features_Failure, Unit>> call(Params params) async {
+  Future<Either<AdminFeaturesFailure, Unit>> call(Params params) async {
     if (await networkInfo.isConnected) {
-      final UserName username = transformIntoUsername(
+      final failureOrUsername = transformIntoUsername(
         params.surname.getOrCrash(),
         params.employeeID.getOrCrash(),
       );
-      final Password password = transformIntoPassword(
+
+      final failureOrPassword = transformIntoPassword(
         params.surname.getOrCrash(),
       );
 
-      if (username.isValid() && password.isValid()) {
+      Password password;
+      UserName username;
+
+      bool validObjects = failureOrUsername.fold(
+        (_) => false,
+        (user) {
+          username = user;
+          return user.isValid();
+        },
+      );
+      validObjects &= failureOrPassword.fold(
+        (_) => false,
+        (pass) {
+          password = pass;
+          return pass.isValid();
+        },
+      );
+
+      if (validObjects) {
         final user = User(
           username: username,
           permissionLevel: params.permissionLevel,
@@ -46,11 +62,11 @@ class Create_Employee implements UseCase<Admin_Features_Failure, Unit, Params> {
           employeeID: params.employeeID,
         );
 
-        final String hashedPass = dbCrypt.hashpw(
-          password.getOrCrash(),
-          dbCrypt.gensalt(),
-        );
-
+        final String hashedPass = 'JAJAJAJAJAJAJAJAJJAJAJA';
+        // final String hashedPass = dbCrypt.hashpw(
+        //   password.getOrCrash(),
+        //   dbCrypt.gensalt(),
+        // );
         final failureOrSuccess = await employeeRepository.createEmployee(
             user, employee, hashedPass, params.creatorUsername);
 
@@ -59,10 +75,10 @@ class Create_Employee implements UseCase<Admin_Features_Failure, Unit, Params> {
           (r) => Right(r),
         );
       } else {
-        return const Left(Admin_Features_Failure.failedDomainVerification());
+        return const Left(AdminFeaturesFailure.failedDomainVerification());
       }
     } else {
-      return const Left(Admin_Features_Failure.noInternetConnection());
+      return const Left(AdminFeaturesFailure.noInternetConnection());
     }
   }
 }

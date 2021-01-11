@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gracker_app/core/injection/injection_container.dart';
-import 'package:gracker_app/domain/authentication/repositories/i_user_repository.dart';
 
 class TestPage extends StatefulWidget {
   @override
@@ -45,7 +43,14 @@ class _TestPageState extends State<TestPage> {
           child: FlatButton(
             onPressed: () async {
               // grapi.User_Remote_GrAPI.test();
-              getIt<IUserRepository>().getUsers();
+              // getIt<IUserRemoteDataSource>().getUsers();
+              String str;
+              try {
+                str = 'No hubo excepcion :(';
+              } on Exception {
+                str = 'Hubo excepcion :)';
+              }
+              print(str);
             },
             child: Text('PRUEBAME JAJAJA'),
           ),

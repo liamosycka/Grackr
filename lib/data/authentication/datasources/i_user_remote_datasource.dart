@@ -7,4 +7,8 @@ abstract class IUserRemoteDataSource {
   Future<Unit> authenticate(UserDto userDto);
 
   Future<Unit> getUsers();
+
+  /// Hace una verificación *Remota* con el servidor para verificar
+  /// si la sesión actual es válida
+  Future<bool> checkIfAuthenticated();
 }

@@ -51,39 +51,44 @@ class _LoginFormState extends State<LoginForm> {
     final screenHeight = MediaQuery.of(context).size.height;
     final colorScheme = Theme.of(context).colorScheme;
     void _loginSubmit() {
-      BlocProvider.of<LoginBloc>(context).add(
-        const LoginEvent.submittedLogin(),
-      );
+      context.read<LoginBloc>().add(
+            const LoginEvent.submittedLogin(),
+          );
     }
 
     void _permissionSwitchGuardia() {
       setState(() {
         _currentPermissions = PermissionLevel.guard;
-        context.bloc<LoginBloc>().add(
-            LoginEvent.permissionsChanged(permissions: _currentPermissions));
+        context.read<LoginBloc>().add(
+              LoginEvent.permissionsChanged(permissions: _currentPermissions),
+            );
 
-        context
-            .bloc<ThemeBloc>()
-            .add(const ThemeEvent.changed(theme: AppTheme.Guard));
+        context.read<ThemeBloc>().add(
+              const ThemeEvent.changed(theme: AppTheme.Guard),
+            );
       });
     }
 
     void _permissionSwitchAdmin() {
       setState(() {
         _currentPermissions = PermissionLevel.admin;
-        context.bloc<LoginBloc>().add(
-            LoginEvent.permissionsChanged(permissions: _currentPermissions));
+        context.read<LoginBloc>().add(
+              LoginEvent.permissionsChanged(permissions: _currentPermissions),
+            );
 
-        context
-            .bloc<ThemeBloc>()
-            .add(const ThemeEvent.changed(theme: AppTheme.Admin));
+        context.read<ThemeBloc>().add(
+              const ThemeEvent.changed(theme: AppTheme.Admin),
+            );
       });
     }
 
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, LoginState state) {
         return Form(
-          autovalidate: state.showErrorMessages,
+          autovalidateMode: state.showErrorMessages
+              ? AutovalidateMode.always
+              : AutovalidateMode.disabled,
+          // autovalidate: ,
           child: Column(
             children: [
               _CustomTextLoginField(
@@ -105,7 +110,7 @@ class _LoginFormState extends State<LoginForm> {
               Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Container(
+                  SizedBox(
                     width: double.infinity,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -278,23 +283,23 @@ class __CustomTextLoginFieldState extends State<_CustomTextLoginField> {
         autocorrect: false,
         onChanged: (newValue) {
           widget.isUsername
-              ? context.bloc<LoginBloc>().add(
+              ? context.read<LoginBloc>().add(
                     LoginEvent.usernameChanged(newValue),
                   )
-              : context.bloc<LoginBloc>().add(
+              : context.read<LoginBloc>().add(
                     LoginEvent.passwordChanged(newValue),
                   );
         },
         validator: (_) {
           return widget.isUsername
-              ? context.bloc<LoginBloc>().state.username.value.fold(
+              ? context.read<LoginBloc>().state.username.value.fold(
                     (failure) => failure.maybeMap(
                       invalidUsername: (_) => 'Nombre de usuario inválido.',
                       orElse: () => null,
                     ),
                     (_) => null,
                   )
-              : context.bloc<LoginBloc>().state.password.value.fold(
+              : context.read<LoginBloc>().state.password.value.fold(
                     (failure) => failure.maybeMap(
                       shortPassword: (_) => 'Contraseña muy corta.',
                       orElse: () => null,

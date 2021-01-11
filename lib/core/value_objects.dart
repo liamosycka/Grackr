@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:gracker_app/core/error/exceptions.dart';
+import 'package:gracker_app/core/error/errors.dart';
 import 'package:uuid/uuid.dart';
 
 import 'error/failures.dart';
@@ -38,6 +38,7 @@ abstract class ValueObject<T> {
   String toString() => 'value($value)';
 }
 
+/// Clase a nivel CORE para implementar como ValueObject el UUID
 class UniqueID extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;

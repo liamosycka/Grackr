@@ -30,10 +30,13 @@ class CreateGuardFrontPanel extends StatelessWidget {
                       ? transformIntoUsername(
                           state.surname.getOrCrash(),
                           state.employeeID.getOrCrash(),
-                        ).value.fold(
-                            (f) => 'Nombre de Usuario Inválido',
+                        ).fold(
+                          (f) => 'Usuario inválido',
+                          (u) => u.value.fold(
+                            (f) => 'Usuario inválido',
                             (username) => username,
-                          )
+                          ),
+                        )
                       : CreateEmployeePage.uninitializedString,
                 ),
               ),
@@ -43,10 +46,13 @@ class CreateGuardFrontPanel extends StatelessWidget {
                   (state.surname.isValid())
                       ? transformIntoPassword(
                           state.surname.getOrCrash(),
-                        ).value.fold(
-                            (f) => 'Nombre de Usuario Inválido',
-                            (username) => username,
-                          )
+                        ).fold(
+                          (f) => 'Contraseña inválida',
+                          (p) => p.value.fold(
+                            (f) => 'Contraseña inválida',
+                            (password) => password,
+                          ),
+                        )
                       : CreateEmployeePage.uninitializedString,
                 ),
               ),

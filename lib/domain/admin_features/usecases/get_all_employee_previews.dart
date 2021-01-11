@@ -5,10 +5,10 @@ import 'package:gracker_app/core/network/network_info.dart';
 import 'package:gracker_app/core/usecases/usecase.dart';
 import 'package:gracker_app/domain/admin_features/entities/employee_preview.dart';
 import 'package:gracker_app/domain/admin_features/repositories/i_employee_repository.dart';
-import 'package:gracker_app/presentation/admin_features/admin_features_failures.dart';
+import 'package:gracker_app/domain/admin_features/admin_features_failures.dart';
 
 class Get_All_Employee_Previews
-    implements UseCase<Admin_Features_Failure, List<EmployeePreview>, Params> {
+    implements UseCase<AdminFeaturesFailure, List<EmployeePreview>, Params> {
   final IEmployeeRepository employeeRepository;
   final Network_Info networkInfo;
 
@@ -18,7 +18,7 @@ class Get_All_Employee_Previews
   });
 
   @override
-  Future<Either<Admin_Features_Failure, List<EmployeePreview>>> call(
+  Future<Either<AdminFeaturesFailure, List<EmployeePreview>>> call(
       Params params) async {
     if (await networkInfo.isConnected) {
       final failureOrList = await employeeRepository.getAllEmployeePreviews();
@@ -27,7 +27,7 @@ class Get_All_Employee_Previews
         (list) => Right(list),
       );
     } else {
-      return const Left(Admin_Features_Failure.noInternetConnection());
+      return const Left(AdminFeaturesFailure.noInternetConnection());
     }
   }
 }

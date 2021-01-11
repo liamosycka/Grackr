@@ -7,7 +7,7 @@ import 'package:gracker_app/domain/admin_features/usecases/get_employee_info.dar
     as uc_get;
 import 'package:gracker_app/domain/admin_features/value_objects.dart';
 import 'package:gracker_app/domain/authentication/value_objects.dart';
-import 'package:gracker_app/presentation/admin_features/admin_features_failures.dart';
+import 'package:gracker_app/domain/admin_features/admin_features_failures.dart';
 
 part 'inspect_employee_state.dart';
 part 'inspect_employee_event.dart';
@@ -27,7 +27,7 @@ class InspectEmployeeBloc
       InspectEmployeeEvent event) async* {
     yield* event.map(
       delete: (e) async* {
-        Either<Admin_Features_Failure, Unit> failureOrSuccess;
+        Either<AdminFeaturesFailure, Unit> failureOrSuccess;
         final isIdValid = state.employeeID.isValid();
         if (isIdValid) {
           yield state.copyWith(
@@ -37,7 +37,7 @@ class InspectEmployeeBloc
               uc_delete.Params(employeeID: state.employeeID));
         } else {
           failureOrSuccess =
-              const Left(Admin_Features_Failure.failedDomainVerification());
+              const Left(AdminFeaturesFailure.failedDomainVerification());
         }
 
         yield state.copyWith(

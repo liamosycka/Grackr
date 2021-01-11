@@ -5,7 +5,7 @@ abstract class AdminEmployeesState with _$AdminEmployeesState {
   const factory AdminEmployeesState({
     @required bool isLoadingPreviews,
     @required
-        Option<Either<Admin_Features_Failure, List<EmployeePreview>>>
+        Option<Either<AdminFeaturesFailure, List<EmployeePreview>>>
             failureOrPreviews,
   }) = _AdminEmployeesState;
 

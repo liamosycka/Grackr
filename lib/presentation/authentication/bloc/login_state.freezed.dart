@@ -19,14 +19,14 @@ class _$LoginStateTearOff {
       @required PermissionLevel permissions,
       @required bool showErrorMessages,
       @required bool isSubmitting,
-      @required Option<Either<AuthFailure, Unit>> authFailrueOrSuccess}) {
+      @required Option<Either<AuthFailure, Unit>> authFailureOrSuccess}) {
     return _LoginState(
       username: username,
       password: password,
       permissions: permissions,
       showErrorMessages: showErrorMessages,
       isSubmitting: isSubmitting,
-      authFailrueOrSuccess: authFailrueOrSuccess,
+      authFailureOrSuccess: authFailureOrSuccess,
     );
   }
 }
@@ -40,7 +40,7 @@ mixin _$LoginState {
   PermissionLevel get permissions;
   bool get showErrorMessages;
   bool get isSubmitting;
-  Option<Either<AuthFailure, Unit>> get authFailrueOrSuccess;
+  Option<Either<AuthFailure, Unit>> get authFailureOrSuccess;
 
   $LoginStateCopyWith<LoginState> get copyWith;
 }
@@ -55,7 +55,7 @@ abstract class $LoginStateCopyWith<$Res> {
       PermissionLevel permissions,
       bool showErrorMessages,
       bool isSubmitting,
-      Option<Either<AuthFailure, Unit>> authFailrueOrSuccess});
+      Option<Either<AuthFailure, Unit>> authFailureOrSuccess});
 }
 
 class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
@@ -72,7 +72,7 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
     Object permissions = freezed,
     Object showErrorMessages = freezed,
     Object isSubmitting = freezed,
-    Object authFailrueOrSuccess = freezed,
+    Object authFailureOrSuccess = freezed,
   }) {
     return _then(_value.copyWith(
       username: username == freezed ? _value.username : username as UserName,
@@ -85,9 +85,9 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
           : showErrorMessages as bool,
       isSubmitting:
           isSubmitting == freezed ? _value.isSubmitting : isSubmitting as bool,
-      authFailrueOrSuccess: authFailrueOrSuccess == freezed
-          ? _value.authFailrueOrSuccess
-          : authFailrueOrSuccess as Option<Either<AuthFailure, Unit>>,
+      authFailureOrSuccess: authFailureOrSuccess == freezed
+          ? _value.authFailureOrSuccess
+          : authFailureOrSuccess as Option<Either<AuthFailure, Unit>>,
     ));
   }
 }
@@ -103,7 +103,7 @@ abstract class _$LoginStateCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
       PermissionLevel permissions,
       bool showErrorMessages,
       bool isSubmitting,
-      Option<Either<AuthFailure, Unit>> authFailrueOrSuccess});
+      Option<Either<AuthFailure, Unit>> authFailureOrSuccess});
 }
 
 class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
@@ -122,7 +122,7 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     Object permissions = freezed,
     Object showErrorMessages = freezed,
     Object isSubmitting = freezed,
-    Object authFailrueOrSuccess = freezed,
+    Object authFailureOrSuccess = freezed,
   }) {
     return _then(_LoginState(
       username: username == freezed ? _value.username : username as UserName,
@@ -135,9 +135,9 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
           : showErrorMessages as bool,
       isSubmitting:
           isSubmitting == freezed ? _value.isSubmitting : isSubmitting as bool,
-      authFailrueOrSuccess: authFailrueOrSuccess == freezed
-          ? _value.authFailrueOrSuccess
-          : authFailrueOrSuccess as Option<Either<AuthFailure, Unit>>,
+      authFailureOrSuccess: authFailureOrSuccess == freezed
+          ? _value.authFailureOrSuccess
+          : authFailureOrSuccess as Option<Either<AuthFailure, Unit>>,
     ));
   }
 }
@@ -149,13 +149,13 @@ class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
       @required this.permissions,
       @required this.showErrorMessages,
       @required this.isSubmitting,
-      @required this.authFailrueOrSuccess})
+      @required this.authFailureOrSuccess})
       : assert(username != null),
         assert(password != null),
         assert(permissions != null),
         assert(showErrorMessages != null),
         assert(isSubmitting != null),
-        assert(authFailrueOrSuccess != null);
+        assert(authFailureOrSuccess != null);
 
   @override
   final UserName username;
@@ -168,11 +168,11 @@ class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
   @override
   final bool isSubmitting;
   @override
-  final Option<Either<AuthFailure, Unit>> authFailrueOrSuccess;
+  final Option<Either<AuthFailure, Unit>> authFailureOrSuccess;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LoginState(username: $username, password: $password, permissions: $permissions, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, authFailrueOrSuccess: $authFailrueOrSuccess)';
+    return 'LoginState(username: $username, password: $password, permissions: $permissions, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, authFailureOrSuccess: $authFailureOrSuccess)';
   }
 
   @override
@@ -185,7 +185,7 @@ class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
       ..add(DiagnosticsProperty('permissions', permissions))
       ..add(DiagnosticsProperty('showErrorMessages', showErrorMessages))
       ..add(DiagnosticsProperty('isSubmitting', isSubmitting))
-      ..add(DiagnosticsProperty('authFailrueOrSuccess', authFailrueOrSuccess));
+      ..add(DiagnosticsProperty('authFailureOrSuccess', authFailureOrSuccess));
   }
 
   @override
@@ -207,9 +207,9 @@ class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
             (identical(other.isSubmitting, isSubmitting) ||
                 const DeepCollectionEquality()
                     .equals(other.isSubmitting, isSubmitting)) &&
-            (identical(other.authFailrueOrSuccess, authFailrueOrSuccess) ||
+            (identical(other.authFailureOrSuccess, authFailureOrSuccess) ||
                 const DeepCollectionEquality()
-                    .equals(other.authFailrueOrSuccess, authFailrueOrSuccess)));
+                    .equals(other.authFailureOrSuccess, authFailureOrSuccess)));
   }
 
   @override
@@ -220,7 +220,7 @@ class _$_LoginState with DiagnosticableTreeMixin implements _LoginState {
       const DeepCollectionEquality().hash(permissions) ^
       const DeepCollectionEquality().hash(showErrorMessages) ^
       const DeepCollectionEquality().hash(isSubmitting) ^
-      const DeepCollectionEquality().hash(authFailrueOrSuccess);
+      const DeepCollectionEquality().hash(authFailureOrSuccess);
 
   @override
   _$LoginStateCopyWith<_LoginState> get copyWith =>
@@ -234,7 +234,7 @@ abstract class _LoginState implements LoginState {
           @required PermissionLevel permissions,
           @required bool showErrorMessages,
           @required bool isSubmitting,
-          @required Option<Either<AuthFailure, Unit>> authFailrueOrSuccess}) =
+          @required Option<Either<AuthFailure, Unit>> authFailureOrSuccess}) =
       _$_LoginState;
 
   @override
@@ -248,7 +248,7 @@ abstract class _LoginState implements LoginState {
   @override
   bool get isSubmitting;
   @override
-  Option<Either<AuthFailure, Unit>> get authFailrueOrSuccess;
+  Option<Either<AuthFailure, Unit>> get authFailureOrSuccess;
   @override
   _$LoginStateCopyWith<_LoginState> get copyWith;
 }

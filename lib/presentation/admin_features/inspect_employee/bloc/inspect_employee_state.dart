@@ -8,7 +8,7 @@ abstract class InspectEmployeeState with _$InspectEmployeeState {
     @required Option<DateTime> creationDateTime,
     @required UserName creatorUsername,
     @required bool isLoading,
-    @required Option<Either<Admin_Features_Failure, Unit>> failureOrSuccess,
+    @required Option<Either<AdminFeaturesFailure, Unit>> failureOrSuccess,
   }) = _InspectEmployeeState;
 
   factory InspectEmployeeState.initial() => InspectEmployeeState(

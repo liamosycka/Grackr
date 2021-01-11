@@ -1,30 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gracker_app/core/routes/router.dart';
-import 'package:gracker_app/domain/authentication/value_objects.dart';
-import 'package:gracker_app/presentation/core/blocs/auth_bloc.dart';
-import 'package:gracker_app/presentation/core/blocs/auth_state.dart';
 
 class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthBloc, AuthState>(
-      listener: (context, state) {
-        state.maybeMap(
-          orElse: () {},
-          authenticated: (state) {
-            return Navigator.of(context).pushReplacementNamed(
-              state.permissionLevel.getOrCrash() == PermissionLevel.admin
-                  ? Routes.homeAdmin
-                  : Routes.homeGuard,
-            );
-          },
-          unauthenticated: (_) =>
-              Navigator.of(context).pushReplacementNamed(Routes.landing),
-        );
-      },
-      child: _SplashPageWidget(),
-    );
+    return _SplashPageWidget();
   }
 }
 

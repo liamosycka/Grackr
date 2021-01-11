@@ -17,7 +17,7 @@ class _$AdminEmployeesStateTearOff {
       {@required
           bool isLoadingPreviews,
       @required
-          Option<Either<Admin_Features_Failure, List<EmployeePreview>>>
+          Option<Either<AdminFeaturesFailure, List<EmployeePreview>>>
               failureOrPreviews}) {
     return _AdminEmployeesState(
       isLoadingPreviews: isLoadingPreviews,
@@ -31,7 +31,7 @@ const $AdminEmployeesState = _$AdminEmployeesStateTearOff();
 
 mixin _$AdminEmployeesState {
   bool get isLoadingPreviews;
-  Option<Either<Admin_Features_Failure, List<EmployeePreview>>>
+  Option<Either<AdminFeaturesFailure, List<EmployeePreview>>>
       get failureOrPreviews;
 
   $AdminEmployeesStateCopyWith<AdminEmployeesState> get copyWith;
@@ -43,7 +43,7 @@ abstract class $AdminEmployeesStateCopyWith<$Res> {
       _$AdminEmployeesStateCopyWithImpl<$Res>;
   $Res call(
       {bool isLoadingPreviews,
-      Option<Either<Admin_Features_Failure, List<EmployeePreview>>>
+      Option<Either<AdminFeaturesFailure, List<EmployeePreview>>>
           failureOrPreviews});
 }
 
@@ -67,7 +67,7 @@ class _$AdminEmployeesStateCopyWithImpl<$Res>
       failureOrPreviews: failureOrPreviews == freezed
           ? _value.failureOrPreviews
           : failureOrPreviews
-              as Option<Either<Admin_Features_Failure, List<EmployeePreview>>>,
+              as Option<Either<AdminFeaturesFailure, List<EmployeePreview>>>,
     ));
   }
 }
@@ -80,7 +80,7 @@ abstract class _$AdminEmployeesStateCopyWith<$Res>
   @override
   $Res call(
       {bool isLoadingPreviews,
-      Option<Either<Admin_Features_Failure, List<EmployeePreview>>>
+      Option<Either<AdminFeaturesFailure, List<EmployeePreview>>>
           failureOrPreviews});
 }
 
@@ -106,7 +106,7 @@ class __$AdminEmployeesStateCopyWithImpl<$Res>
       failureOrPreviews: failureOrPreviews == freezed
           ? _value.failureOrPreviews
           : failureOrPreviews
-              as Option<Either<Admin_Features_Failure, List<EmployeePreview>>>,
+              as Option<Either<AdminFeaturesFailure, List<EmployeePreview>>>,
     ));
   }
 }
@@ -120,7 +120,7 @@ class _$_AdminEmployeesState implements _AdminEmployeesState {
   @override
   final bool isLoadingPreviews;
   @override
-  final Option<Either<Admin_Features_Failure, List<EmployeePreview>>>
+  final Option<Either<AdminFeaturesFailure, List<EmployeePreview>>>
       failureOrPreviews;
 
   @override
@@ -157,13 +157,13 @@ abstract class _AdminEmployeesState implements AdminEmployeesState {
       {@required
           bool isLoadingPreviews,
       @required
-          Option<Either<Admin_Features_Failure, List<EmployeePreview>>>
+          Option<Either<AdminFeaturesFailure, List<EmployeePreview>>>
               failureOrPreviews}) = _$_AdminEmployeesState;
 
   @override
   bool get isLoadingPreviews;
   @override
-  Option<Either<Admin_Features_Failure, List<EmployeePreview>>>
+  Option<Either<AdminFeaturesFailure, List<EmployeePreview>>>
       get failureOrPreviews;
   @override
   _$AdminEmployeesStateCopyWith<_AdminEmployeesState> get copyWith;
