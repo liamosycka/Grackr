@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gracker_app/core/routes/router.dart';
-import 'package:gracker_app/core/themes/bloc/theme_bloc.dart';
-import 'package:gracker_app/core/themes/bloc/theme_event.dart';
 import 'package:gracker_app/core/themes/global_themes.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -118,10 +115,7 @@ class _OptionsGridState extends State<OptionsGrid> {
         icon: MdiIcons.palette,
         title: 'Cambiar theme',
         subtitle: 'porque si :)',
-        onTap: (context) {
-          BlocProvider.of<ThemeBloc>(context)
-              .add(const ThemeEvent.changed(theme: AppTheme.Guard));
-        },
+        onTap: (context) {},
       ),
       _CardContent(
         icon: MdiIcons.accountSearch,

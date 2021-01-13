@@ -14,11 +14,13 @@ class _$EmployeePreviewPrimitiveTearOff {
 
 // ignore: unused_element
   _EmployeePreviewPrimitive call(
-      {@required String fullName,
+      {@required int id,
+      @required String fullName,
       @required String employeeId,
       @required String permissionLevel,
       @required Option<IconData> icon}) {
     return _EmployeePreviewPrimitive(
+      id: id,
       fullName: fullName,
       employeeId: employeeId,
       permissionLevel: permissionLevel,
@@ -31,6 +33,7 @@ class _$EmployeePreviewPrimitiveTearOff {
 const $EmployeePreviewPrimitive = _$EmployeePreviewPrimitiveTearOff();
 
 mixin _$EmployeePreviewPrimitive {
+  int get id;
   String get fullName;
   String get employeeId;
   String get permissionLevel;
@@ -44,7 +47,8 @@ abstract class $EmployeePreviewPrimitiveCopyWith<$Res> {
           $Res Function(EmployeePreviewPrimitive) then) =
       _$EmployeePreviewPrimitiveCopyWithImpl<$Res>;
   $Res call(
-      {String fullName,
+      {int id,
+      String fullName,
       String employeeId,
       String permissionLevel,
       Option<IconData> icon});
@@ -60,12 +64,14 @@ class _$EmployeePreviewPrimitiveCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object id = freezed,
     Object fullName = freezed,
     Object employeeId = freezed,
     Object permissionLevel = freezed,
     Object icon = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed ? _value.id : id as int,
       fullName: fullName == freezed ? _value.fullName : fullName as String,
       employeeId:
           employeeId == freezed ? _value.employeeId : employeeId as String,
@@ -84,7 +90,8 @@ abstract class _$EmployeePreviewPrimitiveCopyWith<$Res>
       __$EmployeePreviewPrimitiveCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String fullName,
+      {int id,
+      String fullName,
       String employeeId,
       String permissionLevel,
       Option<IconData> icon});
@@ -103,12 +110,14 @@ class __$EmployeePreviewPrimitiveCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object id = freezed,
     Object fullName = freezed,
     Object employeeId = freezed,
     Object permissionLevel = freezed,
     Object icon = freezed,
   }) {
     return _then(_EmployeePreviewPrimitive(
+      id: id == freezed ? _value.id : id as int,
       fullName: fullName == freezed ? _value.fullName : fullName as String,
       employeeId:
           employeeId == freezed ? _value.employeeId : employeeId as String,
@@ -122,16 +131,20 @@ class __$EmployeePreviewPrimitiveCopyWithImpl<$Res>
 
 class _$_EmployeePreviewPrimitive extends _EmployeePreviewPrimitive {
   const _$_EmployeePreviewPrimitive(
-      {@required this.fullName,
+      {@required this.id,
+      @required this.fullName,
       @required this.employeeId,
       @required this.permissionLevel,
       @required this.icon})
-      : assert(fullName != null),
+      : assert(id != null),
+        assert(fullName != null),
         assert(employeeId != null),
         assert(permissionLevel != null),
         assert(icon != null),
         super._();
 
+  @override
+  final int id;
   @override
   final String fullName;
   @override
@@ -143,13 +156,15 @@ class _$_EmployeePreviewPrimitive extends _EmployeePreviewPrimitive {
 
   @override
   String toString() {
-    return 'EmployeePreviewPrimitive(fullName: $fullName, employeeId: $employeeId, permissionLevel: $permissionLevel, icon: $icon)';
+    return 'EmployeePreviewPrimitive(id: $id, fullName: $fullName, employeeId: $employeeId, permissionLevel: $permissionLevel, icon: $icon)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _EmployeePreviewPrimitive &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.fullName, fullName) ||
                 const DeepCollectionEquality()
                     .equals(other.fullName, fullName)) &&
@@ -166,6 +181,7 @@ class _$_EmployeePreviewPrimitive extends _EmployeePreviewPrimitive {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(fullName) ^
       const DeepCollectionEquality().hash(employeeId) ^
       const DeepCollectionEquality().hash(permissionLevel) ^
@@ -180,11 +196,14 @@ class _$_EmployeePreviewPrimitive extends _EmployeePreviewPrimitive {
 abstract class _EmployeePreviewPrimitive extends EmployeePreviewPrimitive {
   const _EmployeePreviewPrimitive._() : super._();
   const factory _EmployeePreviewPrimitive(
-      {@required String fullName,
+      {@required int id,
+      @required String fullName,
       @required String employeeId,
       @required String permissionLevel,
       @required Option<IconData> icon}) = _$_EmployeePreviewPrimitive;
 
+  @override
+  int get id;
   @override
   String get fullName;
   @override

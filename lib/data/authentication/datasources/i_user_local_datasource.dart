@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:gracker_app/data/authentication/models/user_dto.dart';
+import 'package:gracker_app/data/core/models/user_dto.dart';
 
 abstract class IUserLocalDataSource {
   /// Throws [NoCachedAuthException] cuando no hay nada almacenado en el SharedPreferences.

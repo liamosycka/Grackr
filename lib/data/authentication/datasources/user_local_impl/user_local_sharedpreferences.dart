@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:gracker_app/data/authentication/datasources/i_user_local_datasource.dart';
-import 'package:gracker_app/data/authentication/models/user_dto.dart';
-import 'package:gracker_app/data/core/utils/jwt_manager.dart';
+import 'package:gracker_app/data/core/models/user_dto.dart';
+import 'package:gracker_app/data/core/utils/jwt_manager/jwt_manager.dart';
 import 'package:gracker_app/domain/authentication/auth_exceptions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

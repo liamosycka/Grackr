@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:gracker_app/core/value_objects.dart';
 import 'package:gracker_app/data/admin_features/models/employee_dto.dart';
-import 'package:gracker_app/data/authentication/models/user_dto.dart';
 import 'package:gracker_app/data/admin_features/datasources/i_employee_remote_datasource.dart';
+import 'package:gracker_app/data/core/models/user_dto.dart';
 import 'package:gracker_app/domain/admin_features/admin_features_exceptions.dart';
 import 'package:gracker_app/domain/admin_features/entities/employee.dart';
 import 'package:gracker_app/domain/admin_features/entities/employee_info.dart';
 import 'package:gracker_app/domain/admin_features/entities/employee_preview.dart';
-import 'package:gracker_app/domain/admin_features/value_objects.dart';
 import 'package:gracker_app/domain/authentication/value_objects.dart';
 import 'package:gracker_app/domain/core/entities/user.dart';
 import 'package:dartz/dartz.dart';
@@ -80,11 +80,10 @@ class EmployeeRepositoryImpl implements IEmployeeRepository {
   }
 
   @override
-  Future<Either<AdminFeaturesFailure, Unit>> deleteEmployee(
-      EmployeeID employeeID) async {
+  Future<Either<AdminFeaturesFailure, Unit>> deleteEmployee(ID id) async {
     try {
-      final result = await employeeRemoteDataSource
-          .deleteEmployee(employeeID.getOrCrash());
+      final result =
+          await employeeRemoteDataSource.deleteEmployee(id.getOrCrash());
       return Right(result);
     } on AdminFeaturesException catch (e) {
       return Left(
@@ -104,10 +103,10 @@ class EmployeeRepositoryImpl implements IEmployeeRepository {
 
   @override
   Future<Either<AdminFeaturesFailure, EmployeeInfo>> getEmployeeInfo(
-      EmployeeID employeeID) async {
+      ID id) async {
     try {
-      final result = await employeeRemoteDataSource
-          .getEmployeeInfo(employeeID.getOrCrash());
+      final result =
+          await employeeRemoteDataSource.getEmployeeInfo(id.getOrCrash());
       return Right(result.toEmployeeInfo());
     } on AdminFeaturesException catch (e) {
       return Left(

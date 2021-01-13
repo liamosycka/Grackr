@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:gracker_app/core/network/network_info.dart';
 import 'package:gracker_app/core/usecases/usecase.dart';
-import 'package:gracker_app/domain/admin_features/value_objects.dart';
+import 'package:gracker_app/core/value_objects.dart';
 import 'package:gracker_app/domain/admin_features/repositories/i_employee_repository.dart';
 import 'package:gracker_app/domain/admin_features/admin_features_failures.dart';
 
@@ -20,7 +20,7 @@ class Delete_Employee implements UseCase<AdminFeaturesFailure, Unit, Params> {
   Future<Either<AdminFeaturesFailure, Unit>> call(Params params) async {
     if (await networkInfo.isConnected) {
       final failureOrSuccess =
-          await employeeRepository.deleteEmployee(params.employeeID);
+          await employeeRepository.deleteEmployee(params.id);
 
       return failureOrSuccess.fold(
         (failure) => Left(failure),
@@ -33,12 +33,12 @@ class Delete_Employee implements UseCase<AdminFeaturesFailure, Unit, Params> {
 }
 
 class Params extends Equatable {
-  final EmployeeID employeeID;
+  final ID id;
 
   const Params({
-    @required this.employeeID,
+    @required this.id,
   });
 
   @override
-  List<Object> get props => [employeeID];
+  List<Object> get props => [id];
 }

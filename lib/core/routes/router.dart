@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:gracker_app/core/routes/route_buiders.dart';
 import 'package:gracker_app/core/routes/test_page.dart';
 import 'package:gracker_app/core/routes/test_second_page.dart';
+import 'package:gracker_app/domain/authentication/value_objects.dart';
 import 'package:gracker_app/presentation/admin_features/admin_employees/misc/employee_preview_primitive.dart';
 import 'package:gracker_app/presentation/admin_features/admin_employees/pages/admin_employees_page.dart';
 import 'package:gracker_app/presentation/admin_features/create_employee/pages/create_employee_page.dart';
 import 'package:gracker_app/presentation/admin_features/inspect_employee/pages/inspect_employee_page.dart';
 import 'package:gracker_app/presentation/admin_features/pages/admin_page.dart';
 import 'package:gracker_app/presentation/authentication/pages/landing_page.dart';
+import 'package:gracker_app/presentation/core/blocs/auth_state.dart';
+import 'package:gracker_app/presentation/core/pages/main_app_widget.dart';
 import 'package:gracker_app/presentation/core/pages/splash/splash_page.dart';
 import 'package:gracker_app/presentation/guard_features/pages/guard_page.dart';
 
@@ -23,63 +26,84 @@ class Routes {
   static const String test2 = 'test2';
 }
 
+// ignore: avoid_classes_with_only_static_members
 class Router {
+  static final GlobalKey<NavigatorState> navKey = GlobalKey();
+
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     // Elementos pasados por el Navigator.pushNamed()
     final args = settings.arguments;
     Route<dynamic> route;
-
+    Widget page;
     route = _errorRoute();
     switch (settings.name) {
       case Routes.landing:
-        route = MaterialPageRoute(builder: (_) => const LandingPage());
+        page = GlobalBlocConsumers(
+          navKey: navKey,
+          key: const ValueKey('global'),
+          child: const LandingPage(),
+        );
+        route = MaterialPageRoute(builder: (_) => page);
         break;
       case Routes.splash:
-        route = MaterialPageRoute(builder: (_) => SplashPage());
+        page = SplashPage();
+        route = MaterialPageRoute(builder: (_) => page);
         break;
       case Routes.homeAdmin:
-        // route = MaterialPageRoute(builder: (_) => const AdminPage());
+        page = GlobalBlocConsumers(
+          navKey: navKey,
+          key: const ValueKey('global'),
+          child: const AdminPage(),
+        );
         route = BackdropSlideRouteBuilder(
           true,
-          page: const AdminPage(),
+          page: page,
           milliseconds: 500,
         );
         break;
       case Routes.homeGuard:
-        route = MaterialPageRoute(builder: (_) => const GuardPage());
+        page = GlobalBlocConsumers(
+          navKey: navKey,
+          key: const ValueKey('global'),
+          child: const GuardPage(),
+        );
+        route = MaterialPageRoute(builder: (_) => page);
         break;
       case Routes.createEmployee:
+        page = const CreateEmployeePage();
         route = BackdropSlideRouteBuilder(
           false,
-          page: const CreateEmployeePage(),
+          page: page,
           milliseconds: 500,
         );
         break;
       case Routes.adminEmployees:
-        // route = MaterialPageRoute(builder: (_) => const AdminEmpleadosPage());
+        page = const AdminEmployeesPage();
         route = BackdropSlideAndStayRouteBuilder(
           false,
-          page: const AdminEmployeesPage(),
+          page: page,
           milliseconds: 500,
         );
         break;
       case Routes.inspectEmployee:
-        // route = MaterialPageRoute(builder: (_) => const AdminEmpleadosPage());
         if (args is EmployeePreviewPrimitive) {
+          page = InspectEmployeePage(
+            preview: args,
+          );
           route = BackdropSlideUpwardsRouteBuilder(
             false,
-            page: InspectEmployeePage(
-              preview: args,
-            ),
+            page: page,
             milliseconds: 800,
           );
         }
         break;
       case Routes.test:
-        route = MaterialPageRoute(builder: (_) => TestPage());
+        page = TestPage();
+        route = MaterialPageRoute(builder: (_) => page);
         break;
       case Routes.test2:
-        route = MaterialPageRoute(builder: (_) => const TestSecondPage());
+        page = const TestSecondPage();
+        route = MaterialPageRoute(builder: (_) => page);
         break;
       default:
         route = _errorRoute();
@@ -97,6 +121,18 @@ class Router {
           ),
         );
       },
+    );
+  }
+
+  static String namedRouteFromAuth(AuthState state) {
+    return state.map(
+      uninitialized: (_) => Routes.landing,
+      authenticated: (state) {
+        return state.permissionLevel.getOrCrash() == PermissionLevel.admin
+            ? Routes.homeAdmin
+            : Routes.homeGuard;
+      },
+      unauthenticated: (_) => Routes.landing,
     );
   }
 }

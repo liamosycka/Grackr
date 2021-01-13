@@ -1,22 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:gracker_app/core/error/failures.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-/// Utilizada de forma global para denotar que un método no se ha implementado
-class UnimplementedError implements Exception {}
-
-class JWTException implements Exception {
-  final String explanation;
-
-  JWTException({@required this.explanation});
-
-  @override
-  String toString() {
-    return Error.safeToString(explanation);
-  }
-}
-
-class JWTRefreshTokenExpired implements Exception {}
 
 /*
 Error and its subclasses are for programmatic errors. If one of those occurs, your code is bad and you should fix your code.
@@ -43,3 +25,6 @@ class UnexpectedValueError extends Error {
 }
 
 class NotAuthenticatedError extends Error {}
+
+/// Utilizada de forma global para denotar que un método no se ha implementado
+class UnimplementedError implements Exception {}

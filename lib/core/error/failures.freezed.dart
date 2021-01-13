@@ -33,6 +33,13 @@ class _$ValueFailureTearOff {
       failedValue: failedValue,
     );
   }
+
+// ignore: unused_element
+  _InvalidID<T> invalidID<T>({@required T failedValue}) {
+    return _InvalidID<T>(
+      failedValue: failedValue,
+    );
+  }
 }
 
 // ignore: unused_element
@@ -46,12 +53,14 @@ mixin _$ValueFailure<T> {
     @required Result shortPassword(T failedValue),
     @required Result invalidUsername(T failedValue),
     @required Result invalidPermissionLevel(T failedValue),
+    @required Result invalidID(T failedValue),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result shortPassword(T failedValue),
     Result invalidUsername(T failedValue),
     Result invalidPermissionLevel(T failedValue),
+    Result invalidID(T failedValue),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -59,12 +68,14 @@ mixin _$ValueFailure<T> {
     @required Result shortPassword(_ShortPassword<T> value),
     @required Result invalidUsername(_InvalidUsername<T> value),
     @required Result invalidPermissionLevel(_InvalidPermissionLevel<T> value),
+    @required Result invalidID(_InvalidID<T> value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result shortPassword(_ShortPassword<T> value),
     Result invalidUsername(_InvalidUsername<T> value),
     Result invalidPermissionLevel(_InvalidPermissionLevel<T> value),
+    Result invalidID(_InvalidID<T> value),
     @required Result orElse(),
   });
 
@@ -162,10 +173,12 @@ class _$_ShortPassword<T> implements _ShortPassword<T> {
     @required Result shortPassword(T failedValue),
     @required Result invalidUsername(T failedValue),
     @required Result invalidPermissionLevel(T failedValue),
+    @required Result invalidID(T failedValue),
   }) {
     assert(shortPassword != null);
     assert(invalidUsername != null);
     assert(invalidPermissionLevel != null);
+    assert(invalidID != null);
     return shortPassword(failedValue);
   }
 
@@ -175,6 +188,7 @@ class _$_ShortPassword<T> implements _ShortPassword<T> {
     Result shortPassword(T failedValue),
     Result invalidUsername(T failedValue),
     Result invalidPermissionLevel(T failedValue),
+    Result invalidID(T failedValue),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -190,10 +204,12 @@ class _$_ShortPassword<T> implements _ShortPassword<T> {
     @required Result shortPassword(_ShortPassword<T> value),
     @required Result invalidUsername(_InvalidUsername<T> value),
     @required Result invalidPermissionLevel(_InvalidPermissionLevel<T> value),
+    @required Result invalidID(_InvalidID<T> value),
   }) {
     assert(shortPassword != null);
     assert(invalidUsername != null);
     assert(invalidPermissionLevel != null);
+    assert(invalidID != null);
     return shortPassword(this);
   }
 
@@ -203,6 +219,7 @@ class _$_ShortPassword<T> implements _ShortPassword<T> {
     Result shortPassword(_ShortPassword<T> value),
     Result invalidUsername(_InvalidUsername<T> value),
     Result invalidPermissionLevel(_InvalidPermissionLevel<T> value),
+    Result invalidID(_InvalidID<T> value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -287,10 +304,12 @@ class _$_InvalidUsername<T> implements _InvalidUsername<T> {
     @required Result shortPassword(T failedValue),
     @required Result invalidUsername(T failedValue),
     @required Result invalidPermissionLevel(T failedValue),
+    @required Result invalidID(T failedValue),
   }) {
     assert(shortPassword != null);
     assert(invalidUsername != null);
     assert(invalidPermissionLevel != null);
+    assert(invalidID != null);
     return invalidUsername(failedValue);
   }
 
@@ -300,6 +319,7 @@ class _$_InvalidUsername<T> implements _InvalidUsername<T> {
     Result shortPassword(T failedValue),
     Result invalidUsername(T failedValue),
     Result invalidPermissionLevel(T failedValue),
+    Result invalidID(T failedValue),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -315,10 +335,12 @@ class _$_InvalidUsername<T> implements _InvalidUsername<T> {
     @required Result shortPassword(_ShortPassword<T> value),
     @required Result invalidUsername(_InvalidUsername<T> value),
     @required Result invalidPermissionLevel(_InvalidPermissionLevel<T> value),
+    @required Result invalidID(_InvalidID<T> value),
   }) {
     assert(shortPassword != null);
     assert(invalidUsername != null);
     assert(invalidPermissionLevel != null);
+    assert(invalidID != null);
     return invalidUsername(this);
   }
 
@@ -328,6 +350,7 @@ class _$_InvalidUsername<T> implements _InvalidUsername<T> {
     Result shortPassword(_ShortPassword<T> value),
     Result invalidUsername(_InvalidUsername<T> value),
     Result invalidPermissionLevel(_InvalidPermissionLevel<T> value),
+    Result invalidID(_InvalidID<T> value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -416,10 +439,12 @@ class _$_InvalidPermissionLevel<T> implements _InvalidPermissionLevel<T> {
     @required Result shortPassword(T failedValue),
     @required Result invalidUsername(T failedValue),
     @required Result invalidPermissionLevel(T failedValue),
+    @required Result invalidID(T failedValue),
   }) {
     assert(shortPassword != null);
     assert(invalidUsername != null);
     assert(invalidPermissionLevel != null);
+    assert(invalidID != null);
     return invalidPermissionLevel(failedValue);
   }
 
@@ -429,6 +454,7 @@ class _$_InvalidPermissionLevel<T> implements _InvalidPermissionLevel<T> {
     Result shortPassword(T failedValue),
     Result invalidUsername(T failedValue),
     Result invalidPermissionLevel(T failedValue),
+    Result invalidID(T failedValue),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -444,10 +470,12 @@ class _$_InvalidPermissionLevel<T> implements _InvalidPermissionLevel<T> {
     @required Result shortPassword(_ShortPassword<T> value),
     @required Result invalidUsername(_InvalidUsername<T> value),
     @required Result invalidPermissionLevel(_InvalidPermissionLevel<T> value),
+    @required Result invalidID(_InvalidID<T> value),
   }) {
     assert(shortPassword != null);
     assert(invalidUsername != null);
     assert(invalidPermissionLevel != null);
+    assert(invalidID != null);
     return invalidPermissionLevel(this);
   }
 
@@ -457,6 +485,7 @@ class _$_InvalidPermissionLevel<T> implements _InvalidPermissionLevel<T> {
     Result shortPassword(_ShortPassword<T> value),
     Result invalidUsername(_InvalidUsername<T> value),
     Result invalidPermissionLevel(_InvalidPermissionLevel<T> value),
+    Result invalidID(_InvalidID<T> value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -475,6 +504,137 @@ abstract class _InvalidPermissionLevel<T> implements ValueFailure<T> {
   T get failedValue;
   @override
   _$InvalidPermissionLevelCopyWith<T, _InvalidPermissionLevel<T>> get copyWith;
+}
+
+abstract class _$InvalidIDCopyWith<T, $Res>
+    implements $ValueFailureCopyWith<T, $Res> {
+  factory _$InvalidIDCopyWith(
+          _InvalidID<T> value, $Res Function(_InvalidID<T>) then) =
+      __$InvalidIDCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T failedValue});
+}
+
+class __$InvalidIDCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements _$InvalidIDCopyWith<T, $Res> {
+  __$InvalidIDCopyWithImpl(
+      _InvalidID<T> _value, $Res Function(_InvalidID<T>) _then)
+      : super(_value, (v) => _then(v as _InvalidID<T>));
+
+  @override
+  _InvalidID<T> get _value => super._value as _InvalidID<T>;
+
+  @override
+  $Res call({
+    Object failedValue = freezed,
+  }) {
+    return _then(_InvalidID<T>(
+      failedValue:
+          failedValue == freezed ? _value.failedValue : failedValue as T,
+    ));
+  }
+}
+
+class _$_InvalidID<T> implements _InvalidID<T> {
+  const _$_InvalidID({@required this.failedValue})
+      : assert(failedValue != null);
+
+  @override
+  final T failedValue;
+
+  @override
+  String toString() {
+    return 'ValueFailure<$T>.invalidID(failedValue: $failedValue)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _InvalidID<T> &&
+            (identical(other.failedValue, failedValue) ||
+                const DeepCollectionEquality()
+                    .equals(other.failedValue, failedValue)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
+
+  @override
+  _$InvalidIDCopyWith<T, _InvalidID<T>> get copyWith =>
+      __$InvalidIDCopyWithImpl<T, _InvalidID<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result shortPassword(T failedValue),
+    @required Result invalidUsername(T failedValue),
+    @required Result invalidPermissionLevel(T failedValue),
+    @required Result invalidID(T failedValue),
+  }) {
+    assert(shortPassword != null);
+    assert(invalidUsername != null);
+    assert(invalidPermissionLevel != null);
+    assert(invalidID != null);
+    return invalidID(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result shortPassword(T failedValue),
+    Result invalidUsername(T failedValue),
+    Result invalidPermissionLevel(T failedValue),
+    Result invalidID(T failedValue),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (invalidID != null) {
+      return invalidID(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result shortPassword(_ShortPassword<T> value),
+    @required Result invalidUsername(_InvalidUsername<T> value),
+    @required Result invalidPermissionLevel(_InvalidPermissionLevel<T> value),
+    @required Result invalidID(_InvalidID<T> value),
+  }) {
+    assert(shortPassword != null);
+    assert(invalidUsername != null);
+    assert(invalidPermissionLevel != null);
+    assert(invalidID != null);
+    return invalidID(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result shortPassword(_ShortPassword<T> value),
+    Result invalidUsername(_InvalidUsername<T> value),
+    Result invalidPermissionLevel(_InvalidPermissionLevel<T> value),
+    Result invalidID(_InvalidID<T> value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (invalidID != null) {
+      return invalidID(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InvalidID<T> implements ValueFailure<T> {
+  const factory _InvalidID({@required T failedValue}) = _$_InvalidID<T>;
+
+  @override
+  T get failedValue;
+  @override
+  _$InvalidIDCopyWith<T, _InvalidID<T>> get copyWith;
 }
 
 class _$TransformationFailureTearOff {

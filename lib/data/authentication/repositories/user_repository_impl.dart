@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:gracker_app/data/authentication/datasources/i_user_local_datasource.dart';
 import 'package:gracker_app/data/authentication/datasources/i_user_remote_datasource.dart';
-import 'package:gracker_app/data/authentication/models/user_dto.dart';
+import 'package:gracker_app/data/core/models/user_dto.dart';
 import 'package:gracker_app/domain/authentication/auth_exceptions.dart';
 import 'package:gracker_app/domain/authentication/repositories/i_user_repository.dart';
 import 'package:gracker_app/domain/authentication/value_objects.dart';
@@ -22,7 +22,6 @@ class User_Repository_Impl implements IUserRepository {
   Future<Either<AuthFailure, User>> getCachedUser() async {
     try {
       final cached_usermodel = await userLocalDataSource.getCachedUser();
-      //? JWT
       return Right(cached_usermodel.toUser());
     } on AuthException catch (e) {
       return e.maybeMap(
@@ -71,18 +70,6 @@ class User_Repository_Impl implements IUserRepository {
         AuthFailure.cacheFailure(
             failedValue:
                 "Username: ${user.username.getOrCrash()}, Exception: ${e.toString()}"),
-      );
-    }
-  }
-
-  @override
-  Future<Either<AuthFailure, Unit>> getUsers() async {
-    try {
-      await userRemoteDataSource.getUsers();
-      return const Right(unit);
-    } on Exception catch (e) {
-      return Left(
-        AuthFailure.operationFailed(failedValue: " Exception: ${e.toString()}"),
       );
     }
   }

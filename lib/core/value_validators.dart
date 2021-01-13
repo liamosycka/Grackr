@@ -48,6 +48,14 @@ Either<ValueFailure<int>, int> validatePermissionLevel(int input) {
   }
 }
 
+Either<ValueFailure<int>, int> validateID(int input) {
+  if (input >= 0) {
+    return right(input);
+  } else {
+    return left(ValueFailure.invalidID(failedValue: input));
+  }
+}
+
 Either<TransformationFailure, int> stringToUnsignedInt(String str) {
   try {
     return Right(int.parse(str));

@@ -10,7 +10,7 @@ import 'package:gracker_app/data/authentication/datasources/user_local_impl/user
 import 'package:gracker_app/data/authentication/datasources/i_user_remote_datasource.dart';
 import 'package:gracker_app/data/authentication/datasources/user_remote_impl/user_remote_grapi.dart';
 import 'package:gracker_app/data/authentication/repositories/user_repository_impl.dart';
-import 'package:gracker_app/data/core/utils/jwt_manager.dart';
+import 'package:gracker_app/data/core/utils/jwt_manager/jwt_manager.dart';
 import 'package:gracker_app/domain/admin_features/repositories/i_employee_repository.dart';
 import 'package:gracker_app/domain/admin_features/usecases/create_employee.dart';
 import 'package:gracker_app/domain/admin_features/usecases/delete_employee.dart';
@@ -33,6 +33,8 @@ final GetIt getIt = GetIt.instance;
   Singleton son persistentes. Si una Page pide una instancia de un Singleton, se devuelve siempre el mismo (Pues se cachea la primera vez que fue creado)
     Por lo general, los Blocs nunca deben ser Singletons
  */
+
+const baseGrAPIUrl = 'https://grackr-api.herokuapp.com/api/';
 Future<void> initGetItDependencies() async {
   // Features
   await _initBlocs();
@@ -139,7 +141,7 @@ Future<void> _initRepositories() async {
 Future<void> _initDataSources() async {
   getIt.registerLazySingleton<IUserRemoteDataSource>(
     () => UserRemoteGrAPI(
-      baseUrl: 'https://grackr-api.herokuapp.com/api/users/',
+      baseUrl: baseGrAPIUrl,
       jwtManager: getIt(),
     ),
   );
@@ -150,7 +152,10 @@ Future<void> _initDataSources() async {
     ),
   );
   getIt.registerLazySingleton<IEmployeeRemoteDataSource>(
-    () => EmployeeRemoteGrAPI(),
+    () => EmployeeRemoteGrAPI(
+      baseUrl: baseGrAPIUrl,
+      jwtManager: getIt(),
+    ),
   );
 }
 
@@ -164,7 +169,7 @@ Future<void> _initCore() async {
   getIt.registerLazySingleton<JWTManager>(
     () => JWTManager(
       sharedPreferences: getIt(),
-      tokenProviderEndpoint: 'https://grackr-api.herokuapp.com/api/token/',
+      tokenProviderEndpoint: '${baseGrAPIUrl}token/',
     ),
   );
   // getIt.registerLazySingleton<Postgress_Connection_Data>(

@@ -65,7 +65,7 @@ class _EmpleadosList extends StatelessWidget {
             ? const Center(child: CircularProgressIndicator())
             : state.failureOrPreviews.fold(
                 () => const Center(
-                  child: Text('No se han encontrado empleados'),
+                  child: Text('Error obteniendo empleados.'),
                 ),
                 (either) => either.fold(
                   (failure) => const Center(

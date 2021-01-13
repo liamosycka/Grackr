@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gracker_app/core/injection/injection_container.dart';
-import 'package:gracker_app/presentation/core/main_app_widget.dart';
+import 'package:gracker_app/presentation/core/pages/main_app_widget.dart';
 import 'package:bloc/bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 

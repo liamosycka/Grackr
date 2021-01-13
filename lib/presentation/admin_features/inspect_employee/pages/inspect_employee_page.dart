@@ -22,7 +22,7 @@ class InspectEmployeePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<InspectEmployeeBloc>(
       create: (context) => getIt<InspectEmployeeBloc>()
-        ..add(InspectEmployeeEvent.initialize(employeeId: preview.employeeId)),
+        ..add(InspectEmployeeEvent.initialize(id: preview.id)),
       child: _Page(preview: preview),
     );
   }

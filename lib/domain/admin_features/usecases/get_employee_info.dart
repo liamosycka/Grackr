@@ -3,9 +3,9 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:gracker_app/core/network/network_info.dart';
 import 'package:gracker_app/core/usecases/usecase.dart';
+import 'package:gracker_app/core/value_objects.dart';
 import 'package:gracker_app/domain/admin_features/entities/employee_info.dart';
 import 'package:gracker_app/domain/admin_features/repositories/i_employee_repository.dart';
-import 'package:gracker_app/domain/admin_features/value_objects.dart';
 import 'package:gracker_app/domain/admin_features/admin_features_failures.dart';
 
 class Get_Employee_Info
@@ -21,8 +21,7 @@ class Get_Employee_Info
   @override
   Future<Either<AdminFeaturesFailure, EmployeeInfo>> call(Params params) async {
     if (await networkInfo.isConnected) {
-      final failureOrInfo =
-          await employeeRepository.getEmployeeInfo(params.employeeID);
+      final failureOrInfo = await employeeRepository.getEmployeeInfo(params.id);
       return failureOrInfo.fold(
         (failure) => Left(failure),
         (info) => Right(info),
@@ -35,11 +34,11 @@ class Get_Employee_Info
 
 class Params extends Equatable {
   const Params({
-    @required this.employeeID,
+    @required this.id,
   });
 
-  final EmployeeID employeeID;
+  final ID id;
 
   @override
-  List<Object> get props => [employeeID];
+  List<Object> get props => [id];
 }

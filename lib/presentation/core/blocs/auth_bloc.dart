@@ -20,9 +20,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Stream<AuthState> mapEventToState(AuthEvent event) async* {
     yield* event.map(
       appStart: (e) async* {
-        // TODO Remove Future.delayed
-        await Future.delayed(const Duration(seconds: 2));
-
         final failureOrUser = await checkIfAuthenticated.call(cia.Params());
         yield failureOrUser.fold(
           (_) => const AuthState.unauthenticated(),

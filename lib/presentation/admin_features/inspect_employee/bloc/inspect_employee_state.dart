@@ -3,7 +3,7 @@ part of 'inspect_employee_bloc.dart';
 @freezed
 abstract class InspectEmployeeState with _$InspectEmployeeState {
   const factory InspectEmployeeState({
-    @required EmployeeID employeeID,
+    @required ID id,
     @required UserName username,
     @required Option<DateTime> creationDateTime,
     @required UserName creatorUsername,
@@ -12,7 +12,7 @@ abstract class InspectEmployeeState with _$InspectEmployeeState {
   }) = _InspectEmployeeState;
 
   factory InspectEmployeeState.initial() => InspectEmployeeState(
-        employeeID: EmployeeID(''),
+        id: ID(-1),
         isLoading: false,
         username: UserName(''),
         creationDateTime: none(),

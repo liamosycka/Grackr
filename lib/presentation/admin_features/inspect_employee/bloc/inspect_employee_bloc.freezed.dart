@@ -14,14 +14,14 @@ class _$InspectEmployeeStateTearOff {
 
 // ignore: unused_element
   _InspectEmployeeState call(
-      {@required EmployeeID employeeID,
+      {@required ID id,
       @required UserName username,
       @required Option<DateTime> creationDateTime,
       @required UserName creatorUsername,
       @required bool isLoading,
       @required Option<Either<AdminFeaturesFailure, Unit>> failureOrSuccess}) {
     return _InspectEmployeeState(
-      employeeID: employeeID,
+      id: id,
       username: username,
       creationDateTime: creationDateTime,
       creatorUsername: creatorUsername,
@@ -35,7 +35,7 @@ class _$InspectEmployeeStateTearOff {
 const $InspectEmployeeState = _$InspectEmployeeStateTearOff();
 
 mixin _$InspectEmployeeState {
-  EmployeeID get employeeID;
+  ID get id;
   UserName get username;
   Option<DateTime> get creationDateTime;
   UserName get creatorUsername;
@@ -50,7 +50,7 @@ abstract class $InspectEmployeeStateCopyWith<$Res> {
           $Res Function(InspectEmployeeState) then) =
       _$InspectEmployeeStateCopyWithImpl<$Res>;
   $Res call(
-      {EmployeeID employeeID,
+      {ID id,
       UserName username,
       Option<DateTime> creationDateTime,
       UserName creatorUsername,
@@ -68,7 +68,7 @@ class _$InspectEmployeeStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object employeeID = freezed,
+    Object id = freezed,
     Object username = freezed,
     Object creationDateTime = freezed,
     Object creatorUsername = freezed,
@@ -76,8 +76,7 @@ class _$InspectEmployeeStateCopyWithImpl<$Res>
     Object failureOrSuccess = freezed,
   }) {
     return _then(_value.copyWith(
-      employeeID:
-          employeeID == freezed ? _value.employeeID : employeeID as EmployeeID,
+      id: id == freezed ? _value.id : id as ID,
       username: username == freezed ? _value.username : username as UserName,
       creationDateTime: creationDateTime == freezed
           ? _value.creationDateTime
@@ -100,7 +99,7 @@ abstract class _$InspectEmployeeStateCopyWith<$Res>
       __$InspectEmployeeStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {EmployeeID employeeID,
+      {ID id,
       UserName username,
       Option<DateTime> creationDateTime,
       UserName creatorUsername,
@@ -120,7 +119,7 @@ class __$InspectEmployeeStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object employeeID = freezed,
+    Object id = freezed,
     Object username = freezed,
     Object creationDateTime = freezed,
     Object creatorUsername = freezed,
@@ -128,8 +127,7 @@ class __$InspectEmployeeStateCopyWithImpl<$Res>
     Object failureOrSuccess = freezed,
   }) {
     return _then(_InspectEmployeeState(
-      employeeID:
-          employeeID == freezed ? _value.employeeID : employeeID as EmployeeID,
+      id: id == freezed ? _value.id : id as ID,
       username: username == freezed ? _value.username : username as UserName,
       creationDateTime: creationDateTime == freezed
           ? _value.creationDateTime
@@ -147,13 +145,13 @@ class __$InspectEmployeeStateCopyWithImpl<$Res>
 
 class _$_InspectEmployeeState implements _InspectEmployeeState {
   const _$_InspectEmployeeState(
-      {@required this.employeeID,
+      {@required this.id,
       @required this.username,
       @required this.creationDateTime,
       @required this.creatorUsername,
       @required this.isLoading,
       @required this.failureOrSuccess})
-      : assert(employeeID != null),
+      : assert(id != null),
         assert(username != null),
         assert(creationDateTime != null),
         assert(creatorUsername != null),
@@ -161,7 +159,7 @@ class _$_InspectEmployeeState implements _InspectEmployeeState {
         assert(failureOrSuccess != null);
 
   @override
-  final EmployeeID employeeID;
+  final ID id;
   @override
   final UserName username;
   @override
@@ -175,16 +173,15 @@ class _$_InspectEmployeeState implements _InspectEmployeeState {
 
   @override
   String toString() {
-    return 'InspectEmployeeState(employeeID: $employeeID, username: $username, creationDateTime: $creationDateTime, creatorUsername: $creatorUsername, isLoading: $isLoading, failureOrSuccess: $failureOrSuccess)';
+    return 'InspectEmployeeState(id: $id, username: $username, creationDateTime: $creationDateTime, creatorUsername: $creatorUsername, isLoading: $isLoading, failureOrSuccess: $failureOrSuccess)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _InspectEmployeeState &&
-            (identical(other.employeeID, employeeID) ||
-                const DeepCollectionEquality()
-                    .equals(other.employeeID, employeeID)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.username, username) ||
                 const DeepCollectionEquality()
                     .equals(other.username, username)) &&
@@ -205,7 +202,7 @@ class _$_InspectEmployeeState implements _InspectEmployeeState {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(employeeID) ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(username) ^
       const DeepCollectionEquality().hash(creationDateTime) ^
       const DeepCollectionEquality().hash(creatorUsername) ^
@@ -221,7 +218,7 @@ class _$_InspectEmployeeState implements _InspectEmployeeState {
 abstract class _InspectEmployeeState implements InspectEmployeeState {
   const factory _InspectEmployeeState(
           {@required
-              EmployeeID employeeID,
+              ID id,
           @required
               UserName username,
           @required
@@ -235,7 +232,7 @@ abstract class _InspectEmployeeState implements InspectEmployeeState {
       _$_InspectEmployeeState;
 
   @override
-  EmployeeID get employeeID;
+  ID get id;
   @override
   UserName get username;
   @override
@@ -254,9 +251,9 @@ class _$InspectEmployeeEventTearOff {
   const _$InspectEmployeeEventTearOff();
 
 // ignore: unused_element
-  Initialize initialize({@required String employeeId}) {
+  Initialize initialize({@required int id}) {
     return Initialize(
-      employeeId: employeeId,
+      id: id,
     );
   }
 
@@ -272,12 +269,12 @@ const $InspectEmployeeEvent = _$InspectEmployeeEventTearOff();
 mixin _$InspectEmployeeEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result initialize(String employeeId),
+    @required Result initialize(int id),
     @required Result delete(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result initialize(String employeeId),
+    Result initialize(int id),
     Result delete(),
     @required Result orElse(),
   });
@@ -313,7 +310,7 @@ abstract class $InitializeCopyWith<$Res> {
   factory $InitializeCopyWith(
           Initialize value, $Res Function(Initialize) then) =
       _$InitializeCopyWithImpl<$Res>;
-  $Res call({String employeeId});
+  $Res call({int id});
 }
 
 class _$InitializeCopyWithImpl<$Res>
@@ -327,38 +324,36 @@ class _$InitializeCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object employeeId = freezed,
+    Object id = freezed,
   }) {
     return _then(Initialize(
-      employeeId:
-          employeeId == freezed ? _value.employeeId : employeeId as String,
+      id: id == freezed ? _value.id : id as int,
     ));
   }
 }
 
 class _$Initialize implements Initialize {
-  const _$Initialize({@required this.employeeId}) : assert(employeeId != null);
+  const _$Initialize({@required this.id}) : assert(id != null);
 
   @override
-  final String employeeId;
+  final int id;
 
   @override
   String toString() {
-    return 'InspectEmployeeEvent.initialize(employeeId: $employeeId)';
+    return 'InspectEmployeeEvent.initialize(id: $id)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is Initialize &&
-            (identical(other.employeeId, employeeId) ||
-                const DeepCollectionEquality()
-                    .equals(other.employeeId, employeeId)));
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(employeeId);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
 
   @override
   $InitializeCopyWith<Initialize> get copyWith =>
@@ -367,24 +362,24 @@ class _$Initialize implements Initialize {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result initialize(String employeeId),
+    @required Result initialize(int id),
     @required Result delete(),
   }) {
     assert(initialize != null);
     assert(delete != null);
-    return initialize(employeeId);
+    return initialize(id);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result initialize(String employeeId),
+    Result initialize(int id),
     Result delete(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (initialize != null) {
-      return initialize(employeeId);
+      return initialize(id);
     }
     return orElse();
   }
@@ -416,9 +411,9 @@ class _$Initialize implements Initialize {
 }
 
 abstract class Initialize implements InspectEmployeeEvent {
-  const factory Initialize({@required String employeeId}) = _$Initialize;
+  const factory Initialize({@required int id}) = _$Initialize;
 
-  String get employeeId;
+  int get id;
   $InitializeCopyWith<Initialize> get copyWith;
 }
 
@@ -456,7 +451,7 @@ class _$Delete implements Delete {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result initialize(String employeeId),
+    @required Result initialize(int id),
     @required Result delete(),
   }) {
     assert(initialize != null);
@@ -467,7 +462,7 @@ class _$Delete implements Delete {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result initialize(String employeeId),
+    Result initialize(int id),
     Result delete(),
     @required Result orElse(),
   }) {

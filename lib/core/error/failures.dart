@@ -16,6 +16,8 @@ abstract class ValueFailure<T> with _$ValueFailure<T> {
       _InvalidUsername<T>;
   const factory ValueFailure.invalidPermissionLevel({@required T failedValue}) =
       _InvalidPermissionLevel<T>;
+  const factory ValueFailure.invalidID({@required T failedValue}) =
+      _InvalidID<T>;
 }
 
 /// Utilizados para los métodos encontrados en [value_transformers.dart]

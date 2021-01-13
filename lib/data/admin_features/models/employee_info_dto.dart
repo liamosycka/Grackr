@@ -4,9 +4,9 @@ import 'package:gracker_app/domain/authentication/value_objects.dart';
 
 /// Data Transfer Object para el objeto [EmployeeInfo]
 class EmployeeInfoDto {
-  static const String _username = 'username';
-  static const String _creationDateTime = 'creationDateTime';
-  static const String _creatorUsername = 'creatorUsername';
+  static const String jsonKeyUsername = 'username';
+  static const String jsonKeyCreationDateTime = 'date_joined';
+  static const String jsonKeyCreatorUsername = 'created_by';
 
   final String username;
   final String creationDateTime;
@@ -20,17 +20,17 @@ class EmployeeInfoDto {
 
   factory EmployeeInfoDto.fromJson(Map<String, dynamic> json) {
     return EmployeeInfoDto(
-      username: json[_username].toString(),
-      creationDateTime: json[_creationDateTime].toString(),
-      creatorUsername: json[_creatorUsername].toString(),
+      username: json[jsonKeyUsername].toString(),
+      creationDateTime: json[jsonKeyCreationDateTime].toString(),
+      creatorUsername: json[jsonKeyCreatorUsername].toString(),
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      _username: username,
-      _creationDateTime: creationDateTime,
-      _creatorUsername: creatorUsername,
+      jsonKeyUsername: username,
+      jsonKeyCreationDateTime: creationDateTime,
+      jsonKeyCreatorUsername: creatorUsername,
     };
   }
 

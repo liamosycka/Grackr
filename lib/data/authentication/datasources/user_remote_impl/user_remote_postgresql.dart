@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:gracker_app/core/error/errors.dart';
 import 'package:gracker_app/data/authentication/datasources/i_user_remote_datasource.dart';
-import 'package:gracker_app/data/authentication/models/user_dto.dart';
+import 'package:gracker_app/data/core/models/user_dto.dart';
 import 'package:gracker_app/data/core/utils/postgres_connection_data.dart';
 
 class User_Remote_PostgreSQL implements IUserRemoteDataSource {

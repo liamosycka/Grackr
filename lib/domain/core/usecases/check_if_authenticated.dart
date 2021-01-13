@@ -21,7 +21,7 @@ class Check_If_Authenticated extends UseCase<AuthFailure, User, Params> {
   /// su ingreso, reportar, etc...
   @override
   Future<Either<AuthFailure, User>> call(Params params) async {
-    final failureOrUser = await userRepository.getCachedUser();
+    final failureOrUser = await userRepository.checkIfAuthenticated();
     return failureOrUser.fold(
       (failure) => failure.maybeMap(
         orElse: () =>

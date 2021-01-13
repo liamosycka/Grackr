@@ -18,6 +18,11 @@ class _$AdminFeaturesExceptionTearOff {
   }
 
 // ignore: unused_element
+  _NotEnoughPermissions notEnoughPermissions() {
+    return const _NotEnoughPermissions();
+  }
+
+// ignore: unused_element
   _OperationFailed operationFailed({@required String failedValue}) {
     return _OperationFailed(
       failedValue: failedValue,
@@ -32,22 +37,26 @@ mixin _$AdminFeaturesException {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result notAuthenticated(),
+    @required Result notEnoughPermissions(),
     @required Result operationFailed(String failedValue),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result notAuthenticated(),
+    Result notEnoughPermissions(),
     Result operationFailed(String failedValue),
     @required Result orElse(),
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result notAuthenticated(_NotAuthenticated value),
+    @required Result notEnoughPermissions(_NotEnoughPermissions value),
     @required Result operationFailed(_OperationFailed value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result notAuthenticated(_NotAuthenticated value),
+    Result notEnoughPermissions(_NotEnoughPermissions value),
     Result operationFailed(_OperationFailed value),
     @required Result orElse(),
   });
@@ -105,9 +114,11 @@ class _$_NotAuthenticated implements _NotAuthenticated {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result notAuthenticated(),
+    @required Result notEnoughPermissions(),
     @required Result operationFailed(String failedValue),
   }) {
     assert(notAuthenticated != null);
+    assert(notEnoughPermissions != null);
     assert(operationFailed != null);
     return notAuthenticated();
   }
@@ -116,6 +127,7 @@ class _$_NotAuthenticated implements _NotAuthenticated {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result notAuthenticated(),
+    Result notEnoughPermissions(),
     Result operationFailed(String failedValue),
     @required Result orElse(),
   }) {
@@ -130,9 +142,11 @@ class _$_NotAuthenticated implements _NotAuthenticated {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result notAuthenticated(_NotAuthenticated value),
+    @required Result notEnoughPermissions(_NotEnoughPermissions value),
     @required Result operationFailed(_OperationFailed value),
   }) {
     assert(notAuthenticated != null);
+    assert(notEnoughPermissions != null);
     assert(operationFailed != null);
     return notAuthenticated(this);
   }
@@ -141,6 +155,7 @@ class _$_NotAuthenticated implements _NotAuthenticated {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result notAuthenticated(_NotAuthenticated value),
+    Result notEnoughPermissions(_NotEnoughPermissions value),
     Result operationFailed(_OperationFailed value),
     @required Result orElse(),
   }) {
@@ -154,6 +169,100 @@ class _$_NotAuthenticated implements _NotAuthenticated {
 
 abstract class _NotAuthenticated implements AdminFeaturesException {
   const factory _NotAuthenticated() = _$_NotAuthenticated;
+}
+
+abstract class _$NotEnoughPermissionsCopyWith<$Res> {
+  factory _$NotEnoughPermissionsCopyWith(_NotEnoughPermissions value,
+          $Res Function(_NotEnoughPermissions) then) =
+      __$NotEnoughPermissionsCopyWithImpl<$Res>;
+}
+
+class __$NotEnoughPermissionsCopyWithImpl<$Res>
+    extends _$AdminFeaturesExceptionCopyWithImpl<$Res>
+    implements _$NotEnoughPermissionsCopyWith<$Res> {
+  __$NotEnoughPermissionsCopyWithImpl(
+      _NotEnoughPermissions _value, $Res Function(_NotEnoughPermissions) _then)
+      : super(_value, (v) => _then(v as _NotEnoughPermissions));
+
+  @override
+  _NotEnoughPermissions get _value => super._value as _NotEnoughPermissions;
+}
+
+class _$_NotEnoughPermissions implements _NotEnoughPermissions {
+  const _$_NotEnoughPermissions();
+
+  @override
+  String toString() {
+    return 'AdminFeaturesException.notEnoughPermissions()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _NotEnoughPermissions);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result notAuthenticated(),
+    @required Result notEnoughPermissions(),
+    @required Result operationFailed(String failedValue),
+  }) {
+    assert(notAuthenticated != null);
+    assert(notEnoughPermissions != null);
+    assert(operationFailed != null);
+    return notEnoughPermissions();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result notAuthenticated(),
+    Result notEnoughPermissions(),
+    Result operationFailed(String failedValue),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (notEnoughPermissions != null) {
+      return notEnoughPermissions();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result notAuthenticated(_NotAuthenticated value),
+    @required Result notEnoughPermissions(_NotEnoughPermissions value),
+    @required Result operationFailed(_OperationFailed value),
+  }) {
+    assert(notAuthenticated != null);
+    assert(notEnoughPermissions != null);
+    assert(operationFailed != null);
+    return notEnoughPermissions(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result notAuthenticated(_NotAuthenticated value),
+    Result notEnoughPermissions(_NotEnoughPermissions value),
+    Result operationFailed(_OperationFailed value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (notEnoughPermissions != null) {
+      return notEnoughPermissions(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NotEnoughPermissions implements AdminFeaturesException {
+  const factory _NotEnoughPermissions() = _$_NotEnoughPermissions;
 }
 
 abstract class _$OperationFailedCopyWith<$Res> {
@@ -217,9 +326,11 @@ class _$_OperationFailed implements _OperationFailed {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result notAuthenticated(),
+    @required Result notEnoughPermissions(),
     @required Result operationFailed(String failedValue),
   }) {
     assert(notAuthenticated != null);
+    assert(notEnoughPermissions != null);
     assert(operationFailed != null);
     return operationFailed(failedValue);
   }
@@ -228,6 +339,7 @@ class _$_OperationFailed implements _OperationFailed {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result notAuthenticated(),
+    Result notEnoughPermissions(),
     Result operationFailed(String failedValue),
     @required Result orElse(),
   }) {
@@ -242,9 +354,11 @@ class _$_OperationFailed implements _OperationFailed {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result notAuthenticated(_NotAuthenticated value),
+    @required Result notEnoughPermissions(_NotEnoughPermissions value),
     @required Result operationFailed(_OperationFailed value),
   }) {
     assert(notAuthenticated != null);
+    assert(notEnoughPermissions != null);
     assert(operationFailed != null);
     return operationFailed(this);
   }
@@ -253,6 +367,7 @@ class _$_OperationFailed implements _OperationFailed {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result notAuthenticated(_NotAuthenticated value),
+    Result notEnoughPermissions(_NotEnoughPermissions value),
     Result operationFailed(_OperationFailed value),
     @required Result orElse(),
   }) {

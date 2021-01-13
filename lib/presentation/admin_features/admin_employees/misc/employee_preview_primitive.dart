@@ -9,6 +9,7 @@ part 'employee_preview_primitive.freezed.dart';
 @freezed
 abstract class EmployeePreviewPrimitive implements _$EmployeePreviewPrimitive {
   const factory EmployeePreviewPrimitive({
+    @required int id,
     @required String fullName,
     @required String employeeId,
     @required String permissionLevel,
@@ -18,6 +19,7 @@ abstract class EmployeePreviewPrimitive implements _$EmployeePreviewPrimitive {
   const EmployeePreviewPrimitive._();
 
   factory EmployeePreviewPrimitive.empty() => EmployeePreviewPrimitive(
+        id: -1,
         fullName: '',
         employeeId: '',
         permissionLevel: '',
@@ -36,10 +38,11 @@ abstract class EmployeePreviewPrimitive implements _$EmployeePreviewPrimitive {
         break;
     }
     final fullName =
-        '${employeePreview.employeeData.name.getOrCrash()} ${employeePreview.employeeData.surname.getOrCrash()}';
+        '${employeePreview.name.getOrCrash()} ${employeePreview.surname.getOrCrash()}';
     return EmployeePreviewPrimitive(
+      id: employeePreview.id.getOrCrash(),
       fullName: fullName,
-      employeeId: employeePreview.employeeData.employeeID.getOrCrash(),
+      employeeId: employeePreview.employeeID.getOrCrash(),
       permissionLevel: PermissionLevel.mapPermissionToString(
           employeePreview.permissionLevel.getOrCrash()),
       icon: icon,
